@@ -2,14 +2,25 @@
 
 2019년 7월 12일
 
+운영체제를 설치할때마다 개발환경을 구성하는 것은 피곤한 일입니다. 저는 스크립트 파일을 작성하여 깃헙에 올려두고 필요시 클론하여 스크립트로 설치합니다. 개인적으로 사용하는 설치 스크립트는 비밀번호등도 함께 있어 공개하지 못하고, Flutter, VSCode에 대한 설치 스크립트만 공유 합니다.
+
+이 문서의 소스 파일은 [이곳](https://github.com/booiljung/ubuntu_flutter_vscode)에 있습니다.
+
 ### 준비
 
-저는 `~/lispace`라는 linux workspace 폴더에서 개발 작업을 합니다. 별도의 폴더 이름을 사용하는 경우 아래 스크립트에서 `linspace`를 사용하시는 폴더 이름으로 변경 하시면 됩니다.
+저는 `~/linspace`라는 linux workspace 폴더에서 개발 작업을 합니다. 별도의 폴더 이름을 사용하는 경우 아래 스크립트에서 `linspace`를 사용하시는 폴더 이름으로 변경 하시면 됩니다.
 
 ```sh
-cd ~
-mkdir linspace
+$ cd ~						# 홈디렉토리
+$ mkdir linspace			# 개발 작업용 폴더 생성 유저마다 다를 것입니다.
+$ cd linspace
+$ sudo apt install git		# git 설치 및 스크립트 클론
+$ git clone https://github.com/booiljung/ubuntu_flutter_vscode.git
+$ cd ubuntu_flutter_vscode
+$ sh install.sh				# 설치 스크립트 실행
 ```
+
+이 설치 스크립트 파일 들의 내용은 아래와 같습니다.
 
 ### VSCode 설치 스크립트
 
@@ -80,7 +91,7 @@ tar xf ~/Download/flutter_linux_vx.x.x+xxxxx-stable.tar.xz
 | bloc     | bloc                    | Felix Angelov         | Dart Bloc, Flutter Bloc 패턴 지원 플러그인 |
 | aqueduct | Aqueduct Helper         | AzMoza                | REST API 프레임워크 플러그인               |
 
-### AVD 설치 (안드로이드 개발)
+### Andorid Studio 설치
 
 ```sh
 # Android Studio
@@ -102,6 +113,12 @@ cat android_studio_profile.txt >> ~/.profile
 # android studio
 export PATH="$PATH":"/opt/android-studio/bin/"
 ```
+
+## 이곳부터 수작업 설치.
+
+(스크립트 설치 하는 방법이 정리되면 수정해서 올리겠습니다.)
+
+### AVD 설치 (안드로이드 개발)
 
 Android Studio 를 설치하고 실행하면 Welcome 상자가 표시 됩니다.
 
@@ -143,7 +160,7 @@ Ubuntu 의 파일 프로그램에서 Flutter 프로젝트 폴더를 선택하고
 
 ### AVD 권한 오류 
 
-QEMU 를 설치하였더라도 권한때문에 `KVM is required to run this AVD` 오류를 표시하며, 실행이 되지 않는 경우가 있습니다. 반드시 `kvm` 그룹에 현재 사용자 이름을 추가해야 합니다.
+위에 스크립트에서 QEMU도 설치합니다만, QEMU 를 설치하였더라도 권한때문에 `KVM is required to run this AVD` 오류를 표시하며, 실행이 되지 않는 경우가 있습니다. 반드시 `kvm` 그룹에 현재 사용자 이름을 추가해야 합니다.
 
 ```sh
 sudo adduser 유저이름 kvm
