@@ -1,8 +1,13 @@
-# bloc
-
 [Up](../index.md)
 
-원문: [Bloc](https://felangel.github.io/bloc/#/gettingstarted)
+# BLoC
+
+## 기사
+
+- 번역: [Effective BLoC pattern](./effective_bloc_pattern.md)
+- 번역: [flutter_bloc 0.2.0](flutter_bloc.md)
+
+### 번역: 공식문서 원문: [Bloc](https://felangel.github.io/bloc/#/gettingstarted)
 
 - 소개 (Introduction)
   - [시작 하기 (Getting Started)](introduction_getting_started.md)
