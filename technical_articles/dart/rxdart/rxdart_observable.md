@@ -1372,11 +1372,11 @@ Type을 올바르게 캡처하려면 generic 매개 변수로 [TypeToken] (https
 
 Dart generics가 작동하는 방식을 감안할 때이 방법만으로`T`` /``T`` 검사와 주조를 간단히 사용할 수는 없습니다. 그러므로`TypeToken '(https://pub.dev/documentation/rxdart/latest/rx/TypeToken-class.html) 클래스가`ofType`을 필터링 할 클래스 유형을 포착하기 위해 도입되었습니다.
 
-### Examples
+Examples
 
 ```dart
 new Observable.fromIterable([1, "hi"])
-  .ofType(new TypeToken<String>)
+  .ofType(new TypeToken<String>())
   .listen(print); // prints "hi"
 ```
 
@@ -1631,7 +1631,7 @@ This is useful for converting a single-subscription stream into a broadcast Stre
 
 이 기능은 단일 구독 스트림을 최신 수신 값을 모든 새 수신기에 재생하는 방송 스트림으로 변환 할 때 유용합니다. 또한 최신 값에 동 기적으로 액세스 할 수 있습니다.
 
-### Example
+Example
 
 ```dart
 final source = Observable.fromIterable([1, 2, 3]);
