@@ -2,6 +2,7 @@
 
 #### 최신 글
 
+- Network: [서비스 팀을 위한 네트워크 교육 자료](technical_articles/networks/communication_basics.md)
 - Flutter: [Ubuntu에서 재빠르게 VSCode와 Flutter 개발 환경 구성하기](technical_articles/flutter/ubuntu_flutter_vscode_quick.md)
 - Flutter: [플러터에서 유닛 테스트](technical_articles/flutter/unit_test/flutter_unit_test.md)
 - Flutter: [통합 테스트](technical_articles/flutter/unit_test/integrated_test.md)
