@@ -93,7 +93,7 @@
 - [Android 프로그래밍 (Android Programming)](./android/index.md)
 - [Qt 프로그래밍 (Qt Programming)](qt_programming/index.md)
 - 윈도우 프로그래밍 (Windows Programming)
-- 닷넷 프로그래밍 (.NET Programming)
+- [닷넷 프로그래밍 (.NET Programming)](dotnet/index.md)
 - [Vue.js](vuejs/index.md)
 - [Node.js](./nodejs/index.md)
 - [React Native](./react_native/index.md)

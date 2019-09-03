@@ -4,6 +4,48 @@
 
 ## Vectors
 
+### 벡터
+
+벡터는 일반적으로 열벡터 입니다.
+$$
+\begin{aligned}
+\mathbf p 
+= \begin{bmatrix}
+p_x\\ p_y\\ p_z
+\end{bmatrix}
+\end{aligned}
+$$
+때로 전치하여 포현되기도 합니다.
+$$
+\begin{aligned}
+\mathbf p^\top
+= \begin{bmatrix}
+p_x & p_y & p_z
+\end{bmatrix}
+\end{aligned}
+$$
+
+### 벡터와 스칼라 곱
+
+벡터에 스칼라를 곱하는 것은 벡터 각 요소에 스칼라를 곱한것과 같습니다.
+$$
+\begin{aligned}
+a \cdot \mathbf p
+= \mathbf p \cdot a
+= a \cdot 
+\begin{bmatrix}
+p_x\\ p_y\\ p_z
+\end{bmatrix}
+= \begin{bmatrix}
+p_x\\ p_y\\ p_z
+\end{bmatrix}
+\cdot a
+= \begin{bmatrix}
+a \cdot p_x\\ a \cdot p_y\\ a \cdot p_z
+\end{bmatrix}
+\end{aligned}
+$$
+
 ### 벡터의 합 (Vector Addition)
 
 두 벡터의 위치나 방향을 합합니다.
@@ -39,7 +81,7 @@ $$
 
 ### 벡터의 내적 (Dot product)
 
-두개의 n차원 벡터 $\mathbf p$와 $\mathbf q​$의 내적(dot product)은 다음 식
+두개의 n차원 벡터 $\mathbf p$와 $\mathbf q$의 내적(dot product)은 다음 식
 $$
 \begin{aligned}
 \mathbf p \cdot \mathbf q
@@ -64,7 +106,7 @@ $$
 &= \frac{\mathbf p \cdot \mathbf q}{\| \mathbf q \|^2} \mathbf q
 \end{aligned}
 $$
-이며, $\mathbf q$에 수직(perpendicular)인 $\mathbf p​$의 성분은 다음 식
+이며, $\mathbf q$에 수직(perpendicular)인 $\mathbf p$의 성분은 다음 식
 $$
 \begin{aligned}
 \text{perp}_\mathbf q
@@ -134,7 +176,7 @@ $$
 = \sum_{k=1}^m F_{ik} G_{kj}
 \end{aligned}
 $$
-에 주어지는  $n \times p​$ 행렬이 됩니다.
+에 주어지는  $n \times p$ 행렬이 됩니다.
 
 ### 행렬식 (Determinants)
 
@@ -530,7 +572,7 @@ $$
 
 ### Analytic Root Finding
 
-Solution to the quadratic equation $at^2 + bt + c = 0​$ are given by quadratic formular:
+Solution to the quadratic equation $at^2 + bt + c = 0$ are given by quadratic formular:
 $$
 t = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
 $$
@@ -538,7 +580,7 @@ Cubic and quartic equations can also be solved analytically.
 
 ### Numberical Root Finding
 
-Root of a function $f(x)​$ can be found numerically using Newton's method, whitch refines an approximate solution $x_n​$ using the formula
+Root of a function $f(x)$ can be found numerically using Newton's method, whitch refines an approximate solution $x_n$ using the formula
 $$
 x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}
 $$
@@ -553,25 +595,25 @@ $$
 
 ### Intersection of a Ray and a Sphere
 
-The points where a ray $\mathbf p (t) = \mathbf s + t \mathbf v​$ intersect a spere of radius $r​$ are given by the solutions of the quadratic equation
+The points where a ray $\mathbf p (t) = \mathbf s + t \mathbf v$ intersect a spere of radius $r$ are given by the solutions of the quadratic equation
 $$
 v^2 t^2 + 2(\mathbf s \cdot \mathbf v) t + s^2 - r^2 = 0
 $$
 
 ### Normal Vector Calculation
 
-The normal vector at a point $\left< x, y, z \right>​$ on a surface defined by the function $f(x, y, z) = 0​$ is given by $\mathbf n = \Delta f (x, y, z)​$.
+The normal vector at a point $\left< x, y, z \right>$ on a surface defined by the function $f(x, y, z) = 0$ is given by $\mathbf n = \Delta f (x, y, z)$.
 
 ### Reflection Vector Calculation
 
-The reflection $\mathbf r​$ of a vector $\mathbf l​$ across the normal vector $\mathbf n​$ is given by
+The reflection $\mathbf r$ of a vector $\mathbf l$ across the normal vector $\mathbf n$ is given by
 $$
 \mathbf r = 2 (\mathbf n \cdot \mathbf l) \mathbf n - \mathbf l
 $$
 
 ### Transmission Vector Calculation
 
-The direction $\mathbf t$ in which light is transmitted when leaving a medium having index of refraction $\mu _\mathbf L$ and entering a medium having index of refraction $\eta _\mathbf t​$ is given by
+The direction $\mathbf t$ in which light is transmitted when leaving a medium having index of refraction $\mu _\mathbf L$ and entering a medium having index of refraction $\eta _\mathbf t$ is given by
 $$
 \mathbf t = \left(
 	\frac{\eta_\mathbf l}{\eta_\mathbf t} \mathbf n \cdot \mathbf l

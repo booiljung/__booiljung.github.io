@@ -11,4 +11,5 @@
 ## Flutter Pub
 
 - [Flutter Pub: BLOC 패턴을 사용한 Flutter 프로젝트 아키텍쳐 설계](architecture_your_flutter_project_using_bloc_pattern.md)
+- [ScopedModel 로 상태관리 하기](state_management_with_scope_model.md)
 
