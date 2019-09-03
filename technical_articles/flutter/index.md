@@ -15,6 +15,7 @@
 - [Flutter: 상태 관리하기](state_management/index.md)
 - [Flutter: 머터리얼 테마](material_theme.md)
 - [Flutter: Unit Test](./unit_test/index.md)
+- [Flutter: Using BoxIcons in Flutter](using_boxicons_in_flutter.md)
 
 ### Flutter for Mobile
 
