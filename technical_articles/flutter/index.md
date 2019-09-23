@@ -16,6 +16,7 @@
 - [Flutter: 머터리얼 테마](material_theme.md)
 - [Flutter: Unit Test](./unit_test/index.md)
 - [Flutter: Using BoxIcons in Flutter](using_boxicons_in_flutter.md)
+- [Flutter: Flutter 1.9에서 새로운 점](what_is_new_in_flutter_1_9.md)
 
 ### Flutter for Mobile
 

@@ -2,6 +2,8 @@
 
 #### 최신 글
 
+- Flutter 번역: [Flutter 1.9의 새로운 점](./technical_articles/flutter/what_is_new_in_flutter_1_9.md)
+
 - Flutter: [Flutter: Using BoxIcons in Flutter](./technical_articles/flutter/using_boxicons_in_flutter.md)
 - .NET: [.NET SQLite dll failure](./technical_articles/dotnet/donet_sqlite_dll_failure.md)
 - PowerShell: [파워셸 스크립트를 윈도우에서 백그라운드로 구동하기](./technical_articles/windows/poweshell_script_signing_tutorials.md)
