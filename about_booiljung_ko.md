@@ -7,6 +7,8 @@
 
 ## 경력
 
+첫 프로그래밍은 중학교때 MSX에서 베이직과 기계어를 통해 시작하였으며, 고등학교에 진학하여 전산을 배우면서 시작 하였습니다. 총 경력은 20년 이상입니다.
+
 #### 3D 게임 및 엔진
 
 당시 3D 엔진의 비용 부담이 높아 나는 자체적으로 엔진 부분을 직접 개발 하여 제품에 적용 하였습니다.이 게임들은 제품에 임베디드 되어 국외에 수출되었습니다.
@@ -14,6 +16,7 @@
 - 리눅스 환경에서 C++, OpenGL을 활용.
 - 간결한 씬 구성을 위한 선언형 프로그래밍 및 아티스트를 위한 인터프리터 구현.
 - 유저로부터 상호작용을 위해 위한 물리 엔진 구현.
+- 6년 경험.
 
 #### iOS 앱 개발
 
@@ -27,17 +30,23 @@ iOS에서 구동되는 카메라 DVR 및 뮤직 플레이어를 개발 및 출�
 
 - OSX 환경에서 모바일을 타겟으로, Unity, XCode 사용.
 - C++, Objective-C로 결재 등의 플러그인을 구현하고 C#에서 호출. 이종 언어간의 인터페이스는 디버깅이 어려움.
+- 5년 경험.
 
 #### 컴퓨터 비전 및 머신 러닝 연구
 
-가상 패션 피팅을 위한 서비스를 연구 하고 있습니다.
+개인적으로 가상 패션 피팅을 위한 서비스를 연구 하고 있습니다.
 
-- 신호처리, 영상처리, 머신러닝, 딥러닝, 3D 재구성, 3D 스캔.
-- Unity, Pytorch, Python, OpenCV, dlib, C++ 사용.
-- 웹, 모바일 앱 구현을 위해 Dart, Flutter, Aqueduct 사용.
-- 카메라, 리얼센스 장비 사용.
+#### 사내 ERP 시스템
+
+거래처들과 정보 공유를 위한 사내 ERP 시스템을 개발에 참여 하였습니다.
+
+- 분석 및 설계.
+- 암호학, Smart card 등 보안 모듈을 담당.
+- 웹, 윈도우 및 리눅스 데스크탑에서 구동되는 애플리케이션 개발.
 
 #### 메디컬 소프트웨어
+
+EMR 소프트웨어를 개발하여 고객사들에게 제공하고 있습니다.
 
 - .NET, C#, Python, HL7.
 - 윈도우즈 서비스 및 .NET Winform 응용 프로그램.
@@ -62,11 +71,13 @@ iOS에서 구동되는 카메라 DVR 및 뮤직 플레이어를 개발 및 출�
 
 15년 이상 사용하였으며 전문적입니다.
 
+- C/C++, Assembly
+
 #### C# 및 .NET (Service, Winform, HTTP ...)
 
 8년 이상 사용하였으며 전문적입니다.
 
-ASP.NET은 경험이 없습니다.
+- C# .NET
 
 #### Unity
 
@@ -76,25 +87,50 @@ ASP.NET은 경험이 없습니다.
 
 iOS 앱 개발을 위해 2년 정도 사용하였습니다.
 
-#### 신호처리, 영상처리, 컴퓨터 비전, 머신러닝, Python, Pytorch, OpenCV, dlib ...
+- XCode
+- Cocoa Tourch Framework
+- Objective-C, C++
 
-가상 패션 피팅 연구를 위해, 머신러닝, 영상처리, 컴퓨터 비전에 사용하였습니다.
+#### 영상처리, 컴퓨터 비전, 머신러닝
 
-#### Dart, Flutter, Aqueduct
+관심 분야이며 프로그래밍으로 해결하기 어려운 문제를 해결할 방법으로 생각합니다. 가상 패션 피팅 연구를 위해, 머신러닝, 영상처리, 컴퓨터 비전에 사용하였습니다.
 
-Flutter와 Aqueduct를 스터디하며 토이 프로젝트로 CRM을 개발해 보았습니다. 나는 이들 도구들이 미래의 영향력이 큰 프레임워크가 될거라고 예상 합니다.
+- 신호처리, 영상처리, 컴퓨터 비전, 머신러닝, 딥러닝. 3D 재구성, 3D 스캔.
+- Python, C++.
+- Unity, Pytorch, Python, OpenCV, dlib.
+- DNN, GAN, AE, RNN, LSTM, GRU에 대한 이해.
+- Humal Facial Annotation, Human Pose Tracking.
+- 카메라, 리얼센스 장비 사용.
 
 #### WIN32, MFC, 델파이
 
 전문적으로 사용하였으나, 사용한지 오래 되어 지금은 아닙니다. 닷넷등의 프레임워크들이 지원하지 않는 기능이나 고속 처리가 필요한 경우 C나 C++로 네이티브 기능을 호출하거나 구현하는데 이 경험들을 사용하고 있습니다.
 
+- Visual Studio, C/C++, WIN32 SDK, MFC.
+- 델파이, Objective-Pascal, Visual Component.
+
 #### Qt
 
 가상 패션 피팅 연구에서 부가적으로 사용하였습니다. Python에서 PyQt를 사용하여 표시를 하거나, C++로 OpenCV 사용시 Qt를 사용하였습니다. 직접 Qt API를 호출하여 위젯을 구성하였으며, QtCreator 및 QML은 사용 경험이 없습니다.
 
-#### OpenGL, GLSL
+- C++, libqt
+- Python, PyQt
 
-리눅스에서 게임 엔진 및 게임 개발시 사용하였습니다. Unity 사용 이후 사용 빈도가 거의 없습니다.
+#### 3D 그래픽, OpenGL, GLSL
+
+6년 이상 리눅스에서 게임 엔진 및 게임 개발시 사용하였습니다. Unity 사용 이후 사용 빈도가 거의 없습니다.
+
+- 3D  그래픽 프로그래밍
+- OpenGL, GLSL, C/C++
+- Ogres
+
+#### Dart, Flutter, Aqueduct
+
+Dart, 웹 및 모바일 또는 데스크탑 프레임워크인 Flutter와 HTTP API 백엔드 프레임워크인 Aqueduct를 스터디하며 토이 프로젝트로 CRM을 개발해 보았습니다. 이 도구들은 미래의 웹 및 앱 개발에서 중요한 위치를 가지는 프레임워크가 될거라고 예상 합니다.
+
+- Dart
+- Flutter
+- Aqueduct, HTTP, PostgreSQL
 
 #### 물리엔진
 
@@ -102,17 +138,36 @@ Flutter와 Aqueduct를 스터디하며 토이 프로젝트로 CRM을 개발해 �
 
 #### 개발 환경
 
-마이크로 컨트롤러, Linux, Windows, iOS, Mac 기반의 타겟 플랫폼에 구현한 경험을 가지고 있습니다.
+다음과 같은 개발 타겟 또는 환경, 도구를 사용합니다.
 
-협업을 위해 svn, git, jira를 사용하며, 배포를 위해 docker를 사용하고, 문서를 위해 markdown, latex 도구를 사용합니다.
+- Windows, Linux, MacOS, Micro-controllers.
+- SVN, git, docker.
+- Markdown, LaTeX.
+- Visual Studio, Xcode, Eclipce.
 
 #### 공학 수학
 
-수학 관련 전공자는 아니지만, 프로그래밍 문제는 수학으로 풀어야 하는 경우들이 있습니다. 선형대수, 통계학, 해석학 등에서 꾸준히 향상 시키고 있습니다.
+수학 관련 전공자는 아니지만, 프로그래밍 문제를 푸는데 수학으로 풀어야 하는 경우들이 있습니다. 
+
+- 선형대수, 통계학, 해석학 등에서 꾸준히 향상 시키고 있습니다.
 
 #### 분석 및 설계
 
 중대형 과제에서 요구사항을 파악하고 비용을 추정하며 업무를 분배하고 성과를 측정하기 위해 중요한 문제입니다. 사내 ERP 시스템 개발시 경험하였습니다.
+
+#### DBMS 및 메시지 큐 등
+
+5년 정도의 서버 사이드 경험을 가지고 있습니다. DBMS에 대해서는 이것을 설치하고 데이터베이스, 사용자, 테이블 등을 생성하고 쿼리를 주고 받는 정도로 사용 할 뿐이며, 튜닝이나 유지 보수등의 DBA의 전문성을 가지고 있지 않습니다.
+
+- PostgreSQL
+- MySQL
+- Oracle Database Server
+- (MS) SQL Server
+- Rabbit MQ
+
+#### GPU를 사용한 병렬 컴퓨팅
+
+GPU를 사용한 병렬 컴퓨팅은 셰이더 프로그래밍과 유사합니다. OpenMP, OpenACC, Metal Framework, CUDA, OpenCL 은 스터디는 하였지만 이미 높은 수준의 프레임워크 라이브러들이 있어 사용할 경우가 없었으며, 전문적이지는 않습니다.
 
 #### DirectX, Vulkan, MetalKit
 
@@ -120,11 +175,7 @@ Flutter와 Aqueduct를 스터디하며 토이 프로젝트로 CRM을 개발해 �
 
 Vulkan, MetalKit은 스터디 및 경험이 없습니다.
 
-#### GPU를 사용한 병렬 컴퓨팅
-
-Metal Framework, CUDA, OpenCL 은 스터디는 하였지만 이미 높은 수준의 프레임워크 라이브러들이 있어 사용할 경우가 없었으며, 전문적이지 않습니다.
-
-#### Java, Ruby, JavaScript, TypeScript, HTML, CSS
+#### Java, Ruby (on Rails), JavaScript, TypeScript, HTML, CSS
 
 학습 정도만 한 수준으로 전문성과 거리가 멉니다.
 
