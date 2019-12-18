@@ -8,8 +8,6 @@ Software Developer
 
 ## Experienced
 
-My first programming was in MSX with basic and machine language, and I started by going to high school and learning about computing. The total experience is over 20 years.
-
 #### 3D games and engines
 
 At the time, the 3D engine was expensive, so I developed the engine part myself and applied it to the product. These games were embedded in the product and exported abroad.
@@ -169,13 +167,4 @@ I have 5 years of server side experience. For a DBMS, you only need to install i
 #### Parallel computing with the GPU
 
 Parallel computing with the GPU is similar to shader programming. OpenMP, OpenACC, Metal Framework, CUDA, and OpenCL have been studied, but there are already high-level framework libraries that have never been used and are not professional.
-
-#### DirectX, Vulkan, MetalKit
-
-I mainly develop Linux target products, so I have less DirectX experience. (DirectDraw) or so.
-Vulkan, MetalKit has no studies and experience.
-
-#### Java, Ruby, JavaScript, TypeScript, HTML, CSS
-
-Learning is far from professional with just one level of learning.
 

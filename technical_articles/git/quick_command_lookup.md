@@ -78,9 +78,7 @@ git clone <remote-repository>
 git remote add <remote-repository>
 ```
 
-#### 파일
-
-##### 새로운 파일 추가
+#### 새로운 파일 추가
 
 다음은 커밋하고자하는 변경된 파일을 스테이지 합니다.
 
@@ -297,7 +295,7 @@ git branch -a
 ##### 브랜치 생성하기
 
 ```sh
-git branch <branch>
+git branch <new branch>
 ```
 
 원격 브랜치에서 지역 브랜치 생성합니다.
@@ -388,6 +386,8 @@ git checkout <branch>
 git rebase <master>
 ```
 
+`<branch>`는 `<master>` 다음에 rebase 됩니다.
+
 #### HEAD
 
 `HEAD`는 현재 `checkout`된 작업중인 커밋을 말합니다. 일반적으로 `HEAD`는 각 작업중인 브랜치의 마지막 커밋을 가리키지만, 특정 커밋을 작업하는 경우 브랜치 끝이 아닐 수 있습니다. 
@@ -440,6 +440,14 @@ git checkout HEAD~1
 git branch -f master HEAD~3
 ```
 
+참조가 부모와 자식 관계라면 rebase를 시용하여 브랜치를 강제이동 할 수 있습니다. 예를 들어  `master` 브랜치가 `bugFix`의 부모 참조이고, `master`가 선택되었다면
+
+```
+git rebase bugFix
+```
+
+를 하여 `master` 브랜치를 `bugFix`로 옮길 수 있습니다.
+
 #### Reset
 
 로컬에서 현재 작업중인 브랜치를 마지막 커밋을 하지 않은 것처럼 지정한 이전의 커밋으로 되돌리는 것을 말합니다. `HEAD`와 브랜치가 동시에 이동합니다.
@@ -458,7 +466,7 @@ git reset HEAD~1
 
 #### Revert
 
-리셋은 참조를 옮기는 것으로 로컬에서만 적용할 수 있습니다. 원격에서 되돌리려면 `revert`를 사용해야 합니다. 다음은 변경분을 되돌리고, 이 되돌린 내용을 다른 사람들과 공유합니다.
+`reset`은 참조를 옮기는 것으로 로컬에서만 적용할 수 있습니다. 원격에서 되돌리려면 `revert`를 사용해야 합니다. 다음은 변경분을 되돌리고, 이 되돌린 내용을 다른 사람들과 공유합니다.
 
 다음은 현재 작업 중인 커밋의 부모 커밋을 가져와 새로운 커밋을 만듭니다.
 
@@ -471,7 +479,7 @@ git revert HEAD
 `cherry-pick`은 지정한 커밋을 현재 작업중 브랜치 아래로 가져옵니다.
 
 ```sh
-git cherry-pick <Commit1> <Commit2> <...>
+git cherry-pick <reference1> <reference2> <...>
 ```
 
 #### Interactive Rebase
@@ -479,7 +487,7 @@ git cherry-pick <Commit1> <Commit2> <...>
 인터렉티브 리베이스는 `-i` 옵션을 지정하여 편집기를 통해 리베이스를 편집하고 적용합니다. 
 
 ```sh
-git rebase -i <commit>
+git rebase -i <reference>
 ```
 
 다음은 헤더로부터 4개의 커밋을 리베이스 합니다.
@@ -487,6 +495,32 @@ git rebase -i <commit>
 ```sh
 git rebase -i HEAD~4
 ```
+
+### 태그
+
+커밋에 태그를 붙입니다.
+
+```shell
+git tag <new tag> <exist reference>
+```
+
+### Describe
+
+지정한 reference의 위치를 얻습니다.
+
+```shell
+git describe <reference>
+```
+
+결과는 다음과 같습니다.
+
+```shell
+<tag>_<number of commits>_g<hash>
+```
+
+
+
+
 
 ### Remote
 

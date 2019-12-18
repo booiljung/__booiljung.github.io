@@ -66,6 +66,7 @@
 - [케라스 (Keras)](keras/index.md)
 - [LUIS 챗봇](./azure_visual_studio/luis_chat_bot.md)
 - [Datasets](datasets/index.md)
+- [Automatic Speech Recognition](./asr/index.md)
 
 ## 클라우드 서비스
 

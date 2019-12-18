@@ -64,4 +64,4 @@
 
 ---
 
-About booiljung. [English](about_booiljung_en.md) [한국어](about_booiljung_ko.md)
+About booiljung: [English](about_booiljung_en.md) [한국어](about_booiljung_ko.md)

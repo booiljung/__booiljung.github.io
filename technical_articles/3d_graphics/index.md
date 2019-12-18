@@ -4,11 +4,11 @@
 
 ## 선형대수
 
-- [벡터](../linear_algebra/vector.md)
-- [벡터의 합](../linear_algebra/vector_sum.md)
-- [행렬의 곱셈 (matrix multiplication)](../linear_algebra/matrix_multiplication.md)
-- [정칙행렬](../linear_algebra/nonsingular_matrix.md)
-- [대칭행렬](../linear_algebra/symmetric_matrix.md)
+- [벡터](../mathematics/linear_algebra/vector.md)
+- [벡터의 합](../mathematics/linear_algebra/vector_sum.md)
+- [행렬의 곱셈 (matrix multiplication)](../mathematics/linear_algebra/matrix_multiplication.md)
+- [정칙행렬](../mathematics/linear_algebra/nonsingular_matrix.md)
+- [대칭행렬](../mathematics/linear_algebra/symmetric_matrix.md)
 
 ## 이미지 프로세싱
 
