@@ -1,3 +1,5 @@
+자주 사용되는 보일러플레이트
+
 # Python: MNIST 처럼 IDX1이나 IDX3파일 만들기
 
 Yann LeCun 교수가 만든 필기체 이미지 데이터 MNIST는 딥러닝 뉴비들을 위한 좋은 데이터셋입니다. MNIST 데이터셋은 IDX라는 파일 포맷을 되어 있고, 데이터 구조는 [MNIST 페이지](http://yann.lecun.com/exdb/mnist/)에 소개 되어 있습니다.

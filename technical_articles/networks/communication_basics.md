@@ -1,3 +1,5 @@
+필드엔지니어를 위한
+
 # 컴퓨터 통신 (computer communication)
 
 이 자료는 사내 서비스팀의 교육을 위해 제작되었습니다. 필자는 네트워크 엔지니어(network engineer)가 아닌 소프트웨어 개발자(software developer)로, 이 글은 소프트웨어 개발자의 시각으로 제한 될 가능성이 있습니다.

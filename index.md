@@ -2,14 +2,15 @@
 
 #### 최신 글
 
-- Python: [MNIST처럼 IDX1이나 IDX3파일 만들기](./technical_articles/python/python_idx.md)
-- 윈도우 10: [주기적으로 재부팅하기](./technical_articles/windows/periodical_reboots_on_windows.md)
+- Python: [자주 사용되는 보일러플레이트: Python에서 numpy array를 gzip에 저장](./technical_articles/python/python_gzip_bytes.md)
+- Python: [자주 사용되는 보일러플레이트: MNIST처럼 IDX1이나 IDX3파일 만들기](./technical_articles/python/python_idx.md)
+- 윈도우 10: [필드 엔지니어를 위한: 주기적으로 재부팅하기](./technical_articles/windows/periodical_reboots_on_windows.md)
 - Flutter 번역: [Flutter 1.9의 새로운 점](./technical_articles/flutter/what_is_new_in_flutter_1_9.md)
 - Flutter: [Flutter: Using BoxIcons in Flutter](./technical_articles/flutter/using_boxicons_in_flutter.md)
 - .NET: [.NET SQLite dll failure](./technical_articles/dotnet/donet_sqlite_dll_failure.md)
-- PowerShell: [파워셸 스크립트를 윈도우에서 백그라운드로 구동하기](./technical_articles/windows/poweshell_script_signing_tutorials.md)
+- PowerShell: [필드 엔지니어를 위한: 파워셸 스크립트를 윈도우에서 백그라운드로 구동하기](./technical_articles/windows/poweshell_script_signing_tutorials.md)
 - TMAXOS: [티맥스 OS 데스크탑을 설치해 봤습니다](technical_articles/linux/tmaxos/installation_of_tmaxos_desktop.md)
-- Network: [서비스 팀을 위한 네트워크 교육 자료](technical_articles/networks/communication_basics.md)
+- Network: [필드 엔지니어를 위한: 네트워크 교육 자료](technical_articles/networks/communication_basics.md)
 - Flutter: [Ubuntu에서 재빠르게 VSCode와 Flutter 개발 환경 구성하기](technical_articles/flutter/ubuntu_flutter_vscode_quick.md)
 - Flutter: [플러터에서 유닛 테스트](technical_articles/flutter/unit_test/flutter_unit_test.md)
 - Flutter: [통합 테스트](technical_articles/flutter/unit_test/integrated_test.md)
