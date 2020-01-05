@@ -2,7 +2,8 @@
 
 #### 최신 글
 
-- 윈도우 10: [주기적으로 재부팅하기](./technical_articles/windows/windows_service_management.md)
+- Python: [MNIST처럼 IDX1이나 IDX3파일 만들기](./technical_articles/python/python_idx.md)
+- 윈도우 10: [주기적으로 재부팅하기](./technical_articles/windows/periodical_reboots_on_windows.md)
 - Flutter 번역: [Flutter 1.9의 새로운 점](./technical_articles/flutter/what_is_new_in_flutter_1_9.md)
 - Flutter: [Flutter: Using BoxIcons in Flutter](./technical_articles/flutter/using_boxicons_in_flutter.md)
 - .NET: [.NET SQLite dll failure](./technical_articles/dotnet/donet_sqlite_dll_failure.md)
