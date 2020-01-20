@@ -57,6 +57,7 @@
 #### 페이지
 
 - [Technical notes](./technical_articles/index.md)
+- [Movies](movies/index.md)
 - [Study notes](study_notes/index.md)
 - [Book reviews](book_reviews/index.md)
 - [Paper revies](./reviews/index.md)
