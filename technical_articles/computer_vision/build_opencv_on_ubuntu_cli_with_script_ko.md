@@ -1,6 +1,10 @@
-# 우분투 CLI에서 스크립트로 OpenCV 빌드
+[Up](./index.md)
 
-`cmake-gui`를 사용하여 OpenCV를 설치하는 방법은 [이 문서를](build_opencv_with_cmake.md)를 참조합니다. 하지만, 운영체제를 설치할때마다 `cmake-gui`로 설치하는 것은 번거롭습니다.
+# 우분투에서 OpenCV를 자동 빌드하는 스크립트
+
+[외국 커뮤니티에도 질문이 많은 관계로 영어로 번역해 두었습니다](build_opencv_on_ubuntu_cli_with_script_en.md)
+
+`cmake-gui`를 사용하여 OpenCV를 설치하는 방법은 [이 문서를](build_opencv_with_cmake.md)를 참조합니다. 하지만, 운영체제를 설치할때마다 `cmake-gui`로 빌드하고 설치하는 것은 번거롭습니다.
 
 이 글은 우분투 CLI에서 OpenCV를 다운로드하여 설치하는 스크립트를 설명합니다. 이 스크립트를 복사한 후 변수나 빌드 디렉토리를 변경하고 `opencv_debian.sh` 같은 파일로 저장 한 후
 
@@ -8,7 +12,7 @@
 sh opencv_debian.sh
 ```
 
-로 실행하면 자동으로 진행 됩니다. 빌드 스크립트는 github 등에 올려두면 편리 합니다.
+로 실행하면 자동으로 진행 됩니다. 자신에 맞게 변경된 빌드 스크립트는 github 등에 올려두면 편리 합니다.
 
 전체 스크립트 내용입니다.
 
@@ -74,7 +78,7 @@ sudo apt install libeigen3-dev -y
 
 추가적인 라이브러리가 있다면 이곳에서 설치 하세요.
 
-홈의 `linspace/opencv.github` 폴더가 작업할 폴더 입니다. 우분투의 경우 반드시 EXT4 파일 시스템에서 빌드를 해야 합니다. OpenCV는 `cmake`를 사용하고 `cmake`는 링크를 사용합니다. 우분투에서 cmake가 다른 파일 시스템서는 링크를 사용할 수 없습니다.
+홈의 `linspace/opencv.github` 폴더가 작업할 폴더 입니다. 우분투의 경우 반드시 EXT4 파일 시스템에서 빌드를 해야 합니다. OpenCV는 `cmake`를 사용하고 `cmake`는 링크를 사용합니다. 우분투에서 다른 종류의 파일 시스템을 사용하면  `cmake`가 링크를 사용할 수 없어 오류가 발생 합니다.
 
 ```
 mkdir -p ~/linspace
