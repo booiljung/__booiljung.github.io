@@ -6,7 +6,7 @@
 
 See [this article](build_opencv_with_cmake.md) for how to build and install OpenCV using `cmake-gui`. However, every time you install an operating system, installing with `cmake-gui` is cumbersome.
 
-This article describes a script for downloading and installing OpenCV from the Ubuntu CLI. After copying this script, change the variable or build directory and save it as a file like `opencv_debian.sh` and
+This article describes a script for downloading, building and installing OpenCV on Ubuntu CLI. After copying this script, change the variable or build directory and save it as a file like `opencv_debian.sh` and
 
 ```
 sh opencv_debian.sh
@@ -49,7 +49,7 @@ cmake -D BUILD_PERF_TESTS=False -D BUILD_TESTS=False -D BUILD_opencv_python_test
 #cmake -D BUILD_PERF_TESTS=False -D BUILD_TESTS=False -D BUILD_opencv_python_tests=False -D OPENCV_EXTRA_MODULES_PATH=~/linspace/opencv.github/opencv_contrib/modules -D OPENCV_ENABLE_NONFREE=True -D BUILD_opencv_ts=False -D BUILD_JAVA=False -D BUILD_PACKAGE=False -D WITH_GSTREAMER=False -D WITH_LAPACK=False -D WITH_VTK=False -B ~/linspace/opencv.github/opencv.build.linux -S ~/linspace/opencv.github/opencv
 
 make
-#sudo make install
+sudo make install
 
 popd
 ```
