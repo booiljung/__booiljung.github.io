@@ -1,0 +1,150 @@
+# 우분투 CLI에서 스크립트로 OpenCV 빌드
+
+`cmake-gui`를 사용하여 OpenCV를 설치하는 방법은 [이 문서를](build_opencv_with_cmake.md)를 참조합니다. 하지만, 운영체제를 설치할때마다 `cmake-gui`로 설치하는 것은 번거롭습니다.
+
+이 글은 우분투 CLI에서 OpenCV를 다운로드하여 설치하는 스크립트를 설명합니다. 이 스크립트를 복사한 후 변수나 빌드 디렉토리를 변경하고 `opencv_debian.sh` 같은 파일로 저장 한 후
+
+```
+sh opencv_debian.sh
+```
+
+로 실행하면 자동으로 진행 됩니다. 빌드 스크립트는 github 등에 올려두면 편리 합니다.
+
+전체 스크립트 내용입니다.
+
+```
+sudo apt update
+sudo apt upgrade -y
+sudo apt install build-essential -y
+sudo apt install git cmake cmake-gui -y
+sudo apt install libeigen3-dev -y
+
+mkdir -p ~/linspace
+mkdir -p ~/linspace/opencv.github
+rm -rf ~/linspace/opencv.github/opencv
+rm -rf ~/linspace/opencv.github/opencv_contrib
+rm -rf ~/linspace/opencv.github/opencv.build.linux
+
+pushd
+
+git clone --recursive https://github.com/opencv/opencv.git ~/linspace/opencv.github/opencv
+cd ~/linspace/opencv.github/opencv
+git checkout tags/4.1.2
+
+git clone --recursive https://github.com/opencv/opencv_contrib.git ~/linspace/opencv.github/opencv_contrib
+cd ~/linspace/opencv.github/opencv_contrib
+git checkout tags/4.1.2
+
+mkdir -p ~/linspace/opencv.github/opencv.build.linux
+cd ~/linspace/opencv.github/opencv.build.linux
+
+cmake -D BUILD_PERF_TESTS=False -D BUILD_TESTS=False -D BUILD_opencv_python_tests=False -D OPENCV_EXTRA_MODULES_PATH=~/linspace/opencv.github/opencv_contrib/modules -D OPENCV_ENABLE_NONFREE=True -D BUILD_opencv_ts=False -D BUILD_JAVA=False -D BUILD_PACKAGE=False -D WITH_GSTREAMER=False -D WITH_LAPACK=False -D WITH_VTK=False ~/linspace/opencv.github/opencv
+
+# cmake 3.13 or later
+
+#cmake -D BUILD_PERF_TESTS=False -D BUILD_TESTS=False -D BUILD_opencv_python_tests=False -D OPENCV_EXTRA_MODULES_PATH=~/linspace/opencv.github/opencv_contrib/modules -D OPENCV_ENABLE_NONFREE=True -D BUILD_opencv_ts=False -D BUILD_JAVA=False -D BUILD_PACKAGE=False -D WITH_GSTREAMER=False -D WITH_LAPACK=False -D WITH_VTK=False -B ~/linspace/opencv.github/opencv.build.linux -S ~/linspace/opencv.github/opencv
+
+make
+#sudo make install
+
+popd
+```
+
+## 스크립트 내용 설명
+
+먼저 우분투 소프트웨어 패키지들을 업데이트 합니다.
+
+```
+sudo apt update
+sudo apt upgrade -y
+```
+
+빌드 도구들을 설치 합니다.
+
+```
+sudo apt install build-essential -y
+sudo apt install git cmake cmake-gui -y
+```
+
+OpenCV가 필요로 하는 라이브러리들을 설치 합니다.
+
+```
+sudo apt install libeigen3-dev -y
+```
+
+추가적인 라이브러리가 있다면 이곳에서 설치 하세요.
+
+홈의 `linspace/opencv.github` 폴더가 작업할 폴더 입니다. 우분투의 경우 반드시 EXT4 파일 시스템에서 빌드를 해야 합니다. OpenCV는 `cmake`를 사용하고 `cmake`는 링크를 사용합니다. 우분투에서 cmake가 다른 파일 시스템서는 링크를 사용할 수 없습니다.
+
+```
+mkdir -p ~/linspace
+mkdir -p ~/linspace/opencv.github
+```
+
+이미 폴더가 있다면 제거합니다.
+
+```
+rm -rf ~/linspace/opencv.github/opencv
+rm -rf ~/linspace/opencv.github/opencv_contrib
+rm -rf ~/linspace/opencv.github/opencv.build.linux
+```
+
+빌드의 원래의 폴더로 되돌아 가기 위해 현재 디렉토리를 푸시 합니다.
+
+```
+pushd
+```
+
+OpenCV 소스 코드를 github에서 다운로드 합니다. 이 예제는 4.1.2를 빌드 할 것입니다. 다른 버전을 사용하려면 github에서 [opencv/release](https://github.com/opencv/opencv/releases)를 확인하고 버전을 변경 합니다.
+
+```
+git clone --recursive https://github.com/opencv/opencv.git ~/linspace/opencv.github/opencv
+cd ~/linspace/opencv.github/opencv
+git checkout tags/4.1.2
+```
+
+OpenCV contribution을 github에서 다운로드 합니다. 이 예제도 4.1.2를 빌드 할 것입니다. 다른 버전을 사용하려면 github에서 [opencv_contrib/release](https://github.com/opencv/opencv_contrib/releases)를 확인하고 버전을 변경 합니다.
+
+```
+git clone --recursive https://github.com/opencv/opencv_contrib.git ~/linspace/opencv.github/opencv_contrib
+cd ~/linspace/opencv.github/opencv_contrib
+git checkout tags/4.1.2
+```
+
+빌드를 수행할 폴더를 만들고 해당 폴더로 이동합니다. 이 예제에서 폴더 이름은 `opencv.build.linux`로 소스 코드 폴더에 만들지 않고 별도로 분리된 폴더입니다.
+
+```
+mkdir -p ~/linspace/opencv.github/opencv.build.linux
+cd ~/linspace/opencv.github/opencv.build.linux
+```
+
+`cmake`로 Configuration을 하고 Generation을 합니다. `-D`  인수로 몇가지 변수를 변경 하였습니다.
+
+```
+cmake -D BUILD_PERF_TESTS=False -D BUILD_TESTS=False -D BUILD_opencv_python_tests=False -D OPENCV_EXTRA_MODULES_PATH=~/linspace/opencv.github/opencv_contrib/modules -D OPENCV_ENABLE_NONFREE=True -D BUILD_opencv_ts=False -D BUILD_JAVA=False -D BUILD_PACKAGE=False -D WITH_GSTREAMER=False -D WITH_LAPACK=False -D WITH_VTK=False ~/linspace/opencv.github/opencv
+```
+
+`cmake 3.13` 또는 이후를 사용하고 있다면 `-B`로 빌드 폴더를 지정하고, `-S`로 소스 폴더를 지정할 수 있습니다. 2020년 2월 현재 우분투의 패키지 관리자는 `3.10`을 가지고 있습니다.
+
+```
+# cmake 3.13 or later
+#cmake -D BUILD_PERF_TESTS=False -D BUILD_TESTS=False -D BUILD_opencv_python_tests=False -D OPENCV_EXTRA_MODULES_PATH=~/linspace/opencv.github/opencv_contrib/modules -D OPENCV_ENABLE_NONFREE=True -D BUILD_opencv_ts=False -D BUILD_JAVA=False -D BUILD_PACKAGE=False -D WITH_GSTREAMER=False -D WITH_LAPACK=False -D WITH_VTK=False -B ~/linspace/opencv.github/opencv.build.linux -S ~/linspace/opencv.github/opencv
+```
+
+생성이 되었으면 빌드하고 설치 합니다.
+
+```
+make
+sudo make install
+```
+
+원래의 폴더로 되돌아 갑니다.
+
+```
+popd
+```
+
+
+
+
+

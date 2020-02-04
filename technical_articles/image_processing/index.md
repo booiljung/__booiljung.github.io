@@ -30,7 +30,9 @@
 - SURF; Speeded-Up Robust Featues
 - Lucas-Kanade optical flow
 
+## 참조
 
+- [kylog 이미지 프로세싱](https://kylog.tistory.com/13)
 
 
 

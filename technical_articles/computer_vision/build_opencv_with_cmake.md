@@ -280,4 +280,4 @@ VSCode로 OpenCV 소스 폴더를 엽니다. 그리고 `./vscode/settings.json`�
 
 ## 참조
 
-- [빌드 동영상 튜토리얼](https://webnautes.tistory.com/1036)
+- ###### [빌드 동영상 튜토리얼](https://webnautes.tistory.com/1036)

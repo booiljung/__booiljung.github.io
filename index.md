@@ -2,6 +2,7 @@
 
 #### 최신 글
 
+- OpenCV: [우분투에서 Opencv 자동 빌드 및 설치](technical_articles/computer_vision/build_opencv_on_ubuntu_cli_with_script.md)
 - Python: [자주 사용되는 보일러플레이트: Python에서 numpy array를 gzip에 저장](./technical_articles/python/python_gzip_bytes.md)
 - Python: [자주 사용되는 보일러플레이트: MNIST처럼 IDX1이나 IDX3파일 만들기](./technical_articles/python/python_idx.md)
 - 윈도우 10: [필드 엔지니어를 위한: 주기적으로 재부팅하기](./technical_articles/windows/periodical_reboots_on_windows.md)
