@@ -67,6 +67,7 @@
 - [LUIS 챗봇](./azure_visual_studio/luis_chat_bot.md)
 - [Datasets](datasets/index.md)
 - [Automatic Speech Recognition](./asr/index.md)
+- [Robotics](./robotics/index.md)
 
 ## 클라우드 서비스
 
