@@ -26,3 +26,6 @@ ROS melodic에서는 RealSense2를 설치해야 합니다.
 sudo apt install ros-melodic-librealsense2 ros-melodic-realsense2-camera
 ```
 
+## 참조
+
+- [github.com/IntelRealSense/realsense-ros](https://github.com/IntelRealSense/realsense-ros?fbclid=IwAR3ZCG4d4KQJLcIVMTxKt0QN-sQ48L9N9OxRThwwTyXgdbw4hijlrW-arlI)
