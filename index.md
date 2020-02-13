@@ -2,6 +2,7 @@
 
 #### 최신 글
 
+- ROS: [Ubuntu 18.04 ROS melodic에 RealSense 설치](technical_articles/robotics/ros/install_realsense_on_melodic.md)
 - OpenCV: [우분투에서 Opencv 자동 빌드 및 설치](technical_articles/computer_vision/build_opencv_on_ubuntu_cli_with_script_ko.md)
 - Python: [자주 사용되는 보일러플레이트: Python에서 numpy array를 gzip에 저장](./technical_articles/python/python_gzip_bytes.md)
 - Python: [자주 사용되는 보일러플레이트: MNIST처럼 IDX1이나 IDX3파일 만들기](./technical_articles/python/python_idx.md)
