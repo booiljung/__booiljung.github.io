@@ -49,7 +49,7 @@
 - OpenCV: [Contours hierarchy 구조](technical_articles/computer_vision/contours_hierarchy.md)
 - C/C++: [CMake 간단한 소개서](technical_articles/c_language/simple_cmake_introduction.md)
 - C/C++: [Ubuntu 18.04에서 VSCode로 CMake로 빌드 하고 디버깅 하기](technical_articles/c_language/build_cmake_in_vscode_on_linux.md)
-- 3D Vision: [Build librealsense on Ubuntun 18.04 LTS](technical_articles/3d_vision/build_librealsense_on_ubuntu_1604.md)
+- 3D Vision: [Build librealsense on Ubuntun 18.04 LTS](technical_articles/computer_vision/build_librealsense_on_ubuntu_1604.md)
 - eCommerce: [온라인 쇼핑몰 키워드 검색과 옵션 비교](technical_articles/product_managements/ecommerce_search.md)
 - Coding: [첫 프로그래밍 언어?](./technical_articles/learning_programming_languages/which_programming_language_do_you_want_to_learn.md)
 - Linux: [Installation of FTP, FTPS, SFPT on Ubuntu 16.04](./technical_articles/linux/ubuntu_ftp.md)
