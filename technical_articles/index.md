@@ -58,7 +58,6 @@
 - [신호처리 (Signal Processing)](signal_processing/index.md)
 - [영상처리 (Image Processing)](image_processing/index.md)
 - [컴퓨터 비전 (Computer Vision)](computer_vision/index.md)
-- [3D 비전 (3D Vision)](3d_vision/index.md)
 - [머신러닝 (Machine Learning)](machine_learning/index.md)
 - [텐서플로우 (Tensorflow)](tensorflow/index.md)
 - [토치 (Torch)](torch/index.md)
@@ -67,7 +66,6 @@
 - [LUIS 챗봇](./azure_visual_studio/luis_chat_bot.md)
 - [Datasets](datasets/index.md)
 - [Automatic Speech Recognition](./asr/index.md)
-- [Robotics](./robotics/index.md)
 
 ## 클라우드 서비스
 
@@ -101,8 +99,10 @@
 - [React Native](./react_native/index.md)
 - [skia.org: Skia Graphics Library](https://skia.org/)
 
-## 자동화
+## 로봇
 
+- [임베디드](embedded/index.md)
+- [Robotics](./robotics/index.md)
 - [Autopilot](autopilot/index.md)
 
 ### 운영체제
@@ -120,4 +120,4 @@
 - [패키지](./packages/index.md)
 - [git](./git/index.md)
 - [제품 및 서비스 기획 (Product Management)](product_managements/index.md)
-- 프로젝트 관리 (Project Management)
+- ###### 프로젝트 관리 (Project Management)

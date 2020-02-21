@@ -13,3 +13,5 @@ ROS runtime graph란 ROS 통신 기반구조를 사용해 느슨하게 결합된
 
 - [ROS melodic에서 UVC 카메라 캘리브레이션](ros_melodic_uvc_camera_calibration.md)
 
+- Stereolabs: [ROS and Nvidia Jetson Nano](https://www.stereolabs.com/blog/ros-and-nvidia-jetson-nano/)
+
