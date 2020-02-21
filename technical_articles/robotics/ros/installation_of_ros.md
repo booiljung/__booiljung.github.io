@@ -15,10 +15,11 @@ sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31
 sudo apt update
 ```
 
-ROS를 설치합니다.
+ROS melodic 또는 ROS kinetic을 설치합니다.
 
 ```sh
 sudo apt install ros-melodic-desktop-full
+sudo apt install ros-kinetic-desktop-full
 ```
 
 ROS 의존성을 자동으로 해결 하도록 합니다.
