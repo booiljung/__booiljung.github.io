@@ -2,6 +2,8 @@
 
 #### 최신 글
 
+- ROS: [kenetic에서 Turtlebot3와 네비게이션](technical_articles/robotics/ros/ros_kinetic_turtlebot3_navigation.md)
+- ROS: [kenetic에서 Turtlebot3와 SLAM](technical_articles/robotics/ros/ros_kinetic_turtlebot3_slam.md)
 - ROS: [kinetic에서 Turtlebot3](technical_articles/robotics/ros/ros_kinetic_turtlebot3.md)
 - ROS: [melodic 에서 UVC 카메라 캘리브레이션](technical_articles/robotics/ros/ros_melodic_uvc_camera_calibration.md)
 - ROS: [melodic에서 UVC 카메라 보기](technical_articles/robotics/ros/ros_melodic_uvc_camera.md)
