@@ -11,11 +11,11 @@ export TURTLEBOT3_MODEL=waffle
 roslaunch turtlebot3_gazebo turtlebot3_world.launch
 ```
 
-다시 새 터미널을 열어 내비게이션을 실행 합니다.
+다시 새 터미널을 열어 맵파일 경로에 주의하여 내비게이션을 실행 합니다.
 
 ```
 export TURTLEBOT3_MODEL=waffle
-roslaunch turtlebot3_navigation turtlebot3_navigation.launch map_file:=~/map.yaml
+roslaunch turtlebot3_navigation turtlebot3_navigation.launch map_file:=/home/사용자/map.yaml
 ```
 
 다시 새 터미널을 열어 RViz을 실행 합니다.
@@ -24,6 +24,8 @@ roslaunch turtlebot3_navigation turtlebot3_navigation.launch map_file:=~/map.yam
 export TURTLEBOT3_MODEL=waffle
 rosrun rviz rviz -d 'rospack find turtlebot3_navigation'/rviz/turtlebot3_nav.rviz
 ```
+
+여기서 `2D Nav Goal`을 누르면 화살표가 표시되고 화살표로 목적지를 지정하면 로봇이 장애물을 피하며 이동하게 됩니다. 
 
 ## 참조
 

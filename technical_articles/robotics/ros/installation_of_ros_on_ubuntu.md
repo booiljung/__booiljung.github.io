@@ -1,6 +1,6 @@
-# Installation of ROS on Ubuntu
+# Installation of ROS kinetic on Ubuntu
 
-이 글은 우분투 18.04와 bash를 사용하는 경우에 한정합니다.
+이 글은 우분투와 bash를 사용하는 경우에 한정합니다.
 
 우분투에 ROS 소프트웨어 패키지 리파지토리와 키를 등록 합니다.
 
@@ -15,7 +15,7 @@ sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31
 sudo apt update
 ```
 
-ROS melodic 또는 ROS kinetic을 설치합니다.
+우분투 18.04에는 ROS melodic를 설치 할 수 있고, 우분투 16.04에는 ROS kinetic을 설치 할 수 있습니다. 2020년 2월 현재 ROS melodic가 모든 패키지를 지원하지는 않습니다.
 
 ```sh
 sudo apt install ros-melodic-desktop-full
