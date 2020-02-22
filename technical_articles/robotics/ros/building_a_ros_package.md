@@ -76,4 +76,6 @@ Successfully created files in /home/<사용자>/<경로>/catkin_src/src/beginner
 catkin_create_pkg <package_name> [depend1] [depend2] [depend3]
 ```
 
-## 
+## 참조
+
+- [ROS catin tutorials](http://wiki.ros.org/catkin/Tutorials)
