@@ -6,8 +6,9 @@ URDF, Gazebo, MoveIt!을 위한 패키지를 미리 설치 합니다.
 sudo apt install ros-kinetic-ros-controllers
 sudo apt install ros-kinetic-gazebo*
 sudo apt install ros-kinetic-moveit*
-sudo apt install ros-kinetic-industrial-core
-sudo apt install ros-kinetic-joint-state-publisher-gui
+sudo apt install ros-kinetic-industrial*
+sudo apt install ros-kinetic-joint-state*
+sudo apt install ros-kinetic-xpp
 ```
 
 testbot_description 패키지를 생성합니다. 그리고 URDF 파일을 생성합니다.
@@ -212,19 +213,40 @@ gedit testbot.launch
 
 준비가 완료되면 각각의 터미널에서 testbot.launch와 RViz를 실행합니다.
 
+터미널1:
+
 ```
 roscore
 ```
+
+터미널2:
 
 ```
 roslaunch testbot_description testbot.launch
 ```
 
+터미널3:
+
 ```
-rviz
+rosrun rviz rviz
 ```
+
+그런데 오류가 발생
+
+![image-20200223220044070](ros_kinetic_open_manipulator.assets/image-20200223220044070-1582463150145.png)
+
+`Fixed Frame [map] does not exist`라는 오류 메시지 입니다.
+
+Displays아래 Add 버튼을 눌러서 RobotModel을 추가해주고, Displays에서 FixedFrame을 base로 선택 합니다. 그러면 로봇팔을 볼 수 있습니다.
+
+![image-20200223220431284](ros_kinetic_open_manipulator.assets/image-20200223220431284.png)
+
+관절을 제어하여 로봇팔을 움직여 봅니다.
+
+![image-20200223220742819](ros_kinetic_open_manipulator.assets/image-20200223220742819.png)
 
 ## 참조
 
 - https://github.com/ROBOTIS-GIT/ros_tutorials/tree/master/testbot_description
 
+- ROS 로봇 프로그래밍, 2017, 표윤석, 조한철, 정려운, 임태훈.
