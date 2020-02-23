@@ -1,0 +1,230 @@
+# ROS OpenManipulator
+
+URDF, Gazebo, MoveIt!을 위한 패키지를 미리 설치 합니다.
+
+```
+sudo apt install ros-kinetic-ros-controllers
+sudo apt install ros-kinetic-gazebo*
+sudo apt install ros-kinetic-moveit*
+sudo apt install ros-kinetic-industrial-core
+sudo apt install ros-kinetic-joint-state-publisher-gui
+```
+
+testbot_description 패키지를 생성합니다. 그리고 URDF 파일을 생성합니다.
+
+```
+cd ~/catkin_ws/src
+catkin_create_pkg testbot_description urdf
+cd testbot_description
+```
+
+```
+mkdir urdf
+cd urdf
+gedit testbot.urdf
+```
+
+다음은 URDF 파일의 내용입니다. URDF 태그에 대한 자세한 설명은 [이곳](http://wiki.ros.org/urdf/XML/link)에 있습니다.
+
+```xml
+<?xml version="1.0" ?>
+<robot name="testbot">
+
+  <material name="black">
+    <color rgba="0.0 0.0 0.0 1.0"/>
+  </material>
+  <material name="orange">
+    <color rgba="1.0 0.4 0.0 1.0"/>
+  </material>
+
+  <link name="base"/>
+
+  <joint name="fixed" type="fixed">
+    <parent link="base"/>
+    <child link="link1"/>
+  </joint>
+
+  <link name="link1">
+    <collision>
+      <origin xyz="0 0 0.25" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.1 0.1 0.5"/>
+      </geometry>
+    </collision>
+    <visual>
+      <origin xyz="0 0 0.25" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.1 0.1 0.5"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <inertial>
+      <origin xyz="0 0 0.25" rpy="0 0 0"/>
+      <mass value="1"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+    </inertial>
+  </link>
+
+  <joint name="joint1" type="revolute">
+    <parent link="link1"/>
+    <child link="link2"/>
+    <origin xyz="0 0 0.5" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="30" lower="-2.617" upper="2.617" velocity="1.571"/>
+  </joint>
+
+  <link name="link2">
+    <collision>
+      <origin xyz="0 0 0.25" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.1 0.1 0.5"/>
+      </geometry>
+    </collision>
+    <visual>
+      <origin xyz="0 0 0.25" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.1 0.1 0.5"/>
+      </geometry>
+      <material name="orange"/>
+    </visual>
+    <inertial>
+      <origin xyz="0 0 0.25" rpy="0 0 0"/>
+      <mass value="1"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+    </inertial>
+  </link>
+
+  <joint name="joint2" type="revolute">
+    <parent link="link2"/>
+    <child link="link3"/>
+    <origin xyz="0 0 0.5" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="30" lower="-2.617" upper="2.617" velocity="1.571"/>
+  </joint>
+
+  <link name="link3">
+    <collision>
+      <origin xyz="0 0 0.5" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.1 0.1 1"/>
+      </geometry>
+    </collision>
+    <visual>
+      <origin xyz="0 0 0.5" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.1 0.1 1"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <inertial>
+      <origin xyz="0 0 0.5" rpy="0 0 0"/>
+      <mass value="1"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+    </inertial>
+  </link>
+
+  <joint name="joint3" type="revolute">
+    <parent link="link3"/>
+    <child link="link4"/>
+    <origin xyz="0 0 1.0" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="30" lower="-2.617" upper="2.617" velocity="1.571"/>
+  </joint>
+
+  <link name="link4">
+    <collision>
+      <origin xyz="0 0 0.25" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.1 0.1 0.5"/>
+      </geometry>
+    </collision>
+    <visual>
+      <origin xyz="0 0 0.25" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.1 0.1 0.5"/>
+      </geometry>
+      <material name="orange"/>
+    </visual>
+    <inertial>
+      <origin xyz="0 0 0.25" rpy="0 0 0"/>
+      <mass value="1"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+    </inertial>
+  </link>
+
+</robot>
+```
+
+모두 작성되였으면 각 링크와 관절의 구성에 오류가 없는지 린트를 합니다.
+
+```
+check_urdf testbot.urdf
+```
+
+정상적이면 관절 구조를 볼 수 있습니다.
+
+```
+robot name is: testbot
+---------- Successfully Parsed XML ---------------
+root Link: base has 1 child(ren)
+    child(1):  link1
+        child(1):  link2
+            child(1):  link3
+                child(1):  link4
+```
+
+이 구조를 시각적인 파일로 문서화 합니다.
+
+```
+urdf_to_graphiz testbot.urdf
+```
+
+그려면 두개의 파일이 생성 됩니다.
+
+```
+Created file testbot.gv
+Created file testbot.pdf
+```
+
+파일 내용을 확인 해 보겠습니다.
+
+![image-20200223000310914](/home/booil/.config/Typora/typora-user-images/image-20200223000310914.png)
+
+다시 패키지 폴더로 이동하여 launch  파일을 작성 합니다.
+
+```
+cd ~/catkin_ws/src/testbot_description
+mkdir launch
+cd launch
+gedit testbot.launch
+```
+
+```xml
+<launch>
+  <arg name="model" default="$(find testbot_description)/urdf/testbot.urdf" />
+  <arg name="gui" default="True" />
+  <param name="robot_description" textfile="$(arg model)" />
+  <param name="use_gui" value="$(arg gui)"/>
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
+</launch>
+```
+
+준비가 완료되면 각각의 터미널에서 testbot.launch와 RViz를 실행합니다.
+
+```
+roscore
+```
+
+```
+roslaunch testbot_description testbot.launch
+```
+
+```
+rviz
+```
+
+## 참조
+
+- https://github.com/ROBOTIS-GIT/ros_tutorials/tree/master/testbot_description
+
