@@ -189,7 +189,7 @@ Created file testbot.pdf
 
 파일 내용을 확인 해 보겠습니다.
 
-![image-20200223000310914](/home/booil/.config/Typora/typora-user-images/image-20200223000310914.png)
+![image-20200223000310914](ros_kinetic_open_manipulator.assets/image-20200223000310914.png)
 
 다시 패키지 폴더로 이동하여 launch  파일을 작성 합니다.
 
@@ -244,6 +244,14 @@ Displays아래 Add 버튼을 눌러서 RobotModel을 추가해주고, Displays�
 관절을 제어하여 로봇팔을 움직여 봅니다.
 
 ![image-20200223220742819](ros_kinetic_open_manipulator.assets/image-20200223220742819.png)
+
+
+
+
+
+
+
+
 
 ## 참조
 
