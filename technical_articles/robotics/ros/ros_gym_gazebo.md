@@ -1,4 +1,4 @@
-# Melodic에 Gym Gazebo 데모
+# Gym Gazebo 데모
 
 ## 참조
 

@@ -1,4 +1,4 @@
-# Installation of ROS kinetic on Ubuntu
+# Installation of ROS on Ubuntu
 
 이 글은 우분투와 bash를 사용하는 경우에 한정합니다.
 
@@ -18,7 +18,10 @@ sudo apt update
 우분투 18.04에는 ROS melodic를 설치 할 수 있고, 우분투 16.04에는 ROS kinetic을 설치 할 수 있습니다. 2020년 2월 현재 ROS melodic가 모든 패키지를 지원하지는 않습니다.
 
 ```sh
+# Ubuntu 18.04
 sudo apt install ros-melodic-desktop-full
+
+# Ubuntun 16.04
 sudo apt install ros-kinetic-desktop-full
 ```
 
@@ -37,7 +40,12 @@ rosdep update
 환경 변수를 등록 합니다.
 
 ```sh
+# melodic
 echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
+source ~/.bashrc
+
+# kinetic
+echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
 source ~/.bashrc
 ```
 

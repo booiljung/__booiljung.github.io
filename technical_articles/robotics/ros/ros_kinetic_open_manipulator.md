@@ -245,16 +245,109 @@ Displays아래 Add 버튼을 눌러서 RobotModel을 추가해주고, Displays�
 
 ![image-20200223220742819](ros_kinetic_open_manipulator.assets/image-20200223220742819.png)
 
+## OpenManipulor Chain
 
+튜토리얼 소스 코드를 다운로드 합니다.
 
+```
+cd ~/catkin_ws/src
+git clone https://github.com/ROBOTIS-GIT/DynamixelSDK.git
+git clone https://github.com/ROBOTIS-GIT/dynamixel-workbench.git
+git clone https://github.com/ROBOTIS-GIT/dynamixel-workbench-msgs.git
+git clone https://github.com/ROBOTIS-GIT/robotis_manipulator.git
+git clone https://github.com/ROBOTIS-GIT/open_manipulator.git
+git clone https://github.com/ROBOTIS-GIT/open_manipulator_msgs.git
+git clone https://github.com/ROBOTIS-GIT/open_manipulator_simulations.git
+```
 
+`open_manipulator`폴더의 구조
 
+- `open_manipulator`: 메타 패키지.
 
+- `open_manipulator_control_gui`: GUI 패키지.
+- `open_manipulator_controller`: 제어 패키지.
+- `open_manipulator_description`: 모델링 패키지.
+  - `urdf`
+    - `materials.xacro`: 물질 정보.
+    - `open_manipulator.urdf.xacro`: 매니풀레이터 모델링.
+    - `open_manipulator.gazebo.xacor`: 매니풀레이터 Gazebo 모델링.
+  - `launch`
+    - `open_manipulator_rviz.launch`: 매니풀레이터 모델링 정보 시각화, 상태 정보 퍼블리셔 노드 실행 파일.
+- `open_manipulator_libs`: 매니풀레이션 라이브러리.
+- `open_manipulator_moveit`: MoveIt! 구성 패키지.
+- `open_manipulator_teleop`: teleoperation 패키지.
 
+실행은
 
+```
+roslaunch open_manipulator_gazebo open_manipulator_gazebo.launch
+```
+
+하면
+
+![image-20200225212847938](ros_kinetic_open_manipulator.assets/image-20200225212847938.png)
+
+를 볼 수 있습니다. 새 터미널에서
+
+```
+rostopic list
+```
+
+하여, 토픽을 확인해 보면,
+
+```
+/clock
+/gazebo/link_states
+/gazebo/model_states
+/gazebo/set_link_state
+/gazebo/set_model_state
+/open_manipulator/gripper_position/command
+/open_manipulator/gripper_position/pid/parameter_descriptions
+/open_manipulator/gripper_position/pid/parameter_updates
+/open_manipulator/gripper_position/state
+/open_manipulator/gripper_sub_position/command
+/open_manipulator/gripper_sub_position/pid/parameter_descriptions
+/open_manipulator/gripper_sub_position/pid/parameter_updates
+/open_manipulator/gripper_sub_position/state
+/open_manipulator/joint1_position/command
+/open_manipulator/joint1_position/pid/parameter_descriptions
+/open_manipulator/joint1_position/pid/parameter_updates
+/open_manipulator/joint1_position/state
+/open_manipulator/joint2_position/command
+/open_manipulator/joint2_position/pid/parameter_descriptions
+/open_manipulator/joint2_position/pid/parameter_updates
+/open_manipulator/joint2_position/state
+/open_manipulator/joint3_position/command
+/open_manipulator/joint3_position/pid/parameter_descriptions
+/open_manipulator/joint3_position/pid/parameter_updates
+/open_manipulator/joint3_position/state
+/open_manipulator/joint4_position/command
+/open_manipulator/joint4_position/pid/parameter_descriptions
+/open_manipulator/joint4_position/pid/parameter_updates
+/open_manipulator/joint4_position/state
+/open_manipulator/joint_states
+/rosout
+/rosout_agg
+```
+
+를 확인 할 수 있습니다.
+
+토픽을 보내 로봇을 움직여 보겠습니다.
+
+```
+rostopic pub /open_manipulator/joint2_position/command std_msgs/Float64 "data: -1.0" --once
+```
 
 ## 참조
 
 - https://github.com/ROBOTIS-GIT/ros_tutorials/tree/master/testbot_description
+
+- https://github.com/ROBOTIS-GIT/DynamixelSDK.git
+- https://github.com/ROBOTIS-GIT/dynamixel-workbench.git
+- https://github.com/ROBOTIS-GIT/dynamixel-workbench-msgs.git
+- https://github.com/ROBOTIS-GIT/robotis_manipulator.git
+- https://github.com/ROBOTIS-GIT/open_manipulator.git
+- https://github.com/ROBOTIS-GIT/open_manipulator_msgs.git
+- https://github.com/ROBOTIS-GIT/open_manipulator_simulations.git
 
 - ROS 로봇 프로그래밍, 2017, 표윤석, 조한철, 정려운, 임태훈.
