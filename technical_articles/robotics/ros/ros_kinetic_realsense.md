@@ -86,6 +86,8 @@ rqt_graph
 
 토픽 그래프가 다르다면 계속 리프레시를 누르면서 토픽이 설정될때까지 기다리세요.
 
+ROS melodic에서는 제대로 토픽이 보이지 않으며 아래 내용은 동작하지 않습니다.
+
 ![image-20200301190925712](ros_kinetic_realsense.assets/image-20200301190925712.png)
 
 Realsense2는 다양한 토픽에서 영상을 받습니다.
