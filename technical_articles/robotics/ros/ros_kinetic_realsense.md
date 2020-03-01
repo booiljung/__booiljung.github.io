@@ -45,7 +45,13 @@ sudo apt install librealsense2-dbg # optional
 realsense-viewer
 ```
 
-여기서, 펌웨어 추천 업그레이드를 확인하고 설치 할 수 있습니다. 펌웨어 최신 버전이 ROS에서 제대로 동작합니다. 혹 업그레이드 중 중단되기도 하는데, 중단되면 장치 이름이 DxxxRecovery로 바뀝니다. 장치 선택하고 업그레이드를 하면 됩니다.
+<img src="ros_kinetic_realsense.assets/image-20200301232939724.png" alt="image-20200301232939724" style="zoom:33%;" />
+
+realsense-viewer에서, Install Recommended Firmware를 확인하고 설치 할 수 있습니다.
+
+![image-20200301233051343](ros_kinetic_realsense.assets/image-20200301233051343.png)
+
+펌웨어 최신 버전이 ROS에서 제대로 동작합니다. 혹 업그레이드 중 중단되기도 하는데, 중단되면 장치 이름이 DxxxRecovery로 바뀝니다. 장치 선택하고 업그레이드를 하면 됩니다.
 
 ## ROS에 패키지 설치
 
@@ -60,7 +66,7 @@ Realsense2를 설치하려면 아래와 같습니다.
 sudo apt install ros-<distro>-librealsense2 ros-<distro>-realsense2-camera
 ```
 
-## 실행
+## RGBD 카메라로 실행
 
 터미널에서
 
