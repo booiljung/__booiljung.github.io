@@ -4,7 +4,7 @@
 
 - D200은 Realsense로 사용할 수 있으며, D300, D400은 Realsense2로 사용 할 수 있습니다.
 
-- 이 글은 ROS kinetic과 melodic에 한정합니다.
+- 이 글은 Realsense2와 ROS kinetic과 melodic에 한정합니다.
 
 - 최신 펌웨어가 제대로 동작 합니다.
 
@@ -54,12 +54,6 @@ realsense-viewer
 - Ubuntu 16.04 - kinetic
 - Ubuntu 18.04 - melodic
 
-Ubuntu ROS 에 RealSense를 설치하려면 아래처럼 합니다.
-
-```sh
-sudo apt install ros-<distro>-librealsense ros-<distro>-realsense-camera
-```
-
 Realsense2를 설치하려면 아래와 같습니다.
 
 ```
@@ -76,21 +70,25 @@ roscore
 
 하고, 
 
+새 창에서 카메라 퍼블리셔를 실행합니다.
+
+```
+roslaunch realsense2_camera rs_camera.launch
+```
+
+그리고, 새 창에서
+
 ```
 rqt_graph
 ```
 
 로 ROS 토픽들을 확인해 봅니다. 아래는 D435i의 토픽입니다.
 
+토픽 그래프가 다르다면 계속 리프레시를 누르면서 토픽이 설정될때까지 기다리세요.
+
 ![image-20200301190925712](ros_kinetic_realsense.assets/image-20200301190925712.png)
 
-새 터미널에서 Realsense의 실행은
-
-```sh
-roslaunch realsense_camera r200_nodelet_default.launch
-```
-
-Realsense2는 다양한 토픽에서 받습니다.
+Realsense2는 다양한 토픽에서 영상을 받습니다.
 
 컬러 영상:
 
