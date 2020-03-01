@@ -41,7 +41,7 @@ sudo apt install librealsense2-dbg # optional
 동작하는지 테스트 합니다.
 
 ```
-realse-viewer
+realsense-viewer
 ```
 
 여기서, 펌웨어 추천 업그레이드를 확인하고 설치 할 수 있습니다. 펌웨어 최신 버전이 ROS에서 제대로 동작합니다. 혹 업그레이드 중 중단되기도 하는데, 중단되면 장치 이름이 DxxxRecovery로 바뀝니다. 장치 선택하고 업그레이드를 하면 됩니다.
