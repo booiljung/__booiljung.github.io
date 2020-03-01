@@ -31,6 +31,7 @@ sudo add-apt-repository "deb http://realsense-hw-public.s3.amazonaws.com/Debian/
 라이브러리들을 설치 합니다.
 
 ```
+sudo apt update
 sudo apt install librealsense2
 sudo apt install librealsense2-dkms
 sudo apt install librealsense2-utils
