@@ -6,7 +6,7 @@ ROS runtime graph란 ROS 통신 기반구조를 사용해 느슨하게 결합된
 
 - [ROS 설치](installation_of_ros_on_ubuntu.md)
 - [ROS 파일 시스템 튜토리얼](ros_filesystem_tutorials.md)
-- [ROS에 RealSense 설치](installation_of_realsense_on_ros.md)
+- [ROS kinetic에서 RealSense](ros_kinetic_realsense.md)
 - [ROS에서 UVC 카메라 보기](ros_kinetic_uvc_camera.md)
 - [ROS에서 UVC 카메라 캘리브레이션](ros_kinetic_uvc_camera_calibration.md)
 - [ROS에서 Turtlebot3](ros_kinetic_turtlebot3.md)
