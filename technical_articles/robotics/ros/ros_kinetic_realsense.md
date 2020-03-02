@@ -2,7 +2,7 @@
 
 2020년 3월 1일
 
-- D200은 Realsense로 사용할 수 있으며, D300, D400은 Realsense2로 사용 할 수 있습니다.
+- SR300, D415, D435, D435i은 Realsense2로 사용 할 수 있습니다.
 
 - 이 글은 Realsense2와 ROS kinetic과 melodic에 한정합니다.
 
@@ -33,10 +33,8 @@ sudo add-apt-repository "deb http://realsense-hw-public.s3.amazonaws.com/Debian/
 ```
 sudo apt update
 sudo apt install librealsense2
-sudo apt install librealsense2-dkms
-sudo apt install librealsense2-utils
-sudo apt install librealsense2-dev # optional
-sudo apt install librealsense2-dbg # optional
+sudo apt install librealsense2-dkms librealsense2-utils
+sudo apt install librealsense2-dev librealsense2-dbg # optional
 ```
 
 동작하는지 테스트 합니다.
@@ -60,10 +58,20 @@ realsense-viewer에서, Install Recommended Firmware를 확인하고 설치 할 
 - Ubuntu 16.04 - kinetic
 - Ubuntu 18.04 - melodic
 
-Realsense2를 설치하려면 아래와 같습니다.
-
 ```
 sudo apt install ros-<distro>-librealsense2 ros-<distro>-realsense2-camera
+```
+
+ROS kinetic에 Realsense2  패키지를 설치하려면 아래와 같습니다.
+
+```
+sudo apt install ros-kinetic-librealsense2 ros-kinetic-realsense2-camera
+```
+
+ROS melodic에 Realsense2  패키지를 설치하려면 아래와 같습니다.
+
+```
+sudo apt install ros-melodic-librealsense2 ros-melodic-realsense2-camera
 ```
 
 ## RGBD 카메라로 실행
@@ -88,15 +96,15 @@ roslaunch realsense2_camera rs_camera.launch
 rqt_graph
 ```
 
-로 ROS 토픽들을 확인해 봅니다. 아래는 D435i의 토픽입니다.
+로 ROS 노드들을 확인해 봅니다. 아래는 D435i의 노드와 토픽입니다.
 
-토픽 그래프가 다르다면 계속 리프레시를 누르면서 토픽이 설정될때까지 기다리세요.
+노드 그래프가 다르다면 노드가 준비 될때까지 계속 리프레시를 누르면서 기다리세요.
 
-ROS melodic에서는 제대로 토픽이 보이지 않으며 아래 내용은 동작하지 않습니다.
+ROS melodic에서는 제대로 노드가 보이지 않으며 아래 내용은 동작하지 않습니다.
 
 ![image-20200301190925712](ros_kinetic_realsense.assets/image-20200301190925712.png)
 
-Realsense2는 다양한 토픽에서 영상을 받습니다.
+Realsense2는 다양한 노드에서 영상을 받습니다.
 
 컬러 영상:
 
