@@ -74,7 +74,9 @@ ROS melodic에 Realsense2  패키지를 설치하려면 아래와 같습니다.
 sudo apt install ros-melodic-librealsense2 ros-melodic-realsense2-camera
 ```
 
-## RGBD 카메라의 토픽을 받아서 실행
+## UVC 카메라로 보기
+
+UVC 카메라는 [USB video device class](https://en.wikipedia.org/wiki/USB_video_device_class)로 일반적인 웹카메라를 말합니다. 리얼센스도 깊이 영상을 UVC로 퍼블리쉬합니다.
 
 터미널에서
 
@@ -82,7 +84,41 @@ sudo apt install ros-melodic-librealsense2 ros-melodic-realsense2-camera
 roscore
 ```
 
-하고, 
+하고, 새 터미널에서
+
+```
+sudo apt install ros-<distro>-uvc-camera
+```
+
+를 설치 합니다. 그리고 rosrun으로 uvc-camera를 퍼블리싱 합니다.
+
+```
+rosrun uvc_camera uvc_camra_node
+```
+
+를 합니다.
+
+그리고, 새 터미널에서
+
+```
+rqt_graph
+```
+
+를 하여 토픽을 확인합니다. 아래와 같은 노드와 토픽을 볼 수 있습니다.
+
+![image-20200302234655462](ros_kinetic_realsense.assets/image-20200302234655462.png)
+
+토픽 경로를 알았으니 `/image_raw`를 보겠습니다. 새 창을 열어서
+
+```
+rosrun image_view image_view image:=/image_raw
+```
+
+를 하여 영상을 확인 합니다.
+
+## RGBD 카메라의 토픽을 받아서 실행
+
+실행중인 roscore를 제외하고. 나머지 터미널에서 Ctrl+C를 눌러서 중단 합니다.
 
 새 터미널에서 카메라 퍼블리셔를 실행합니다.
 
@@ -106,25 +142,25 @@ ROS melodic에서는 제대로 노드가 보이지 않으며 아래 내용은 �
 
 Realsense2는 다양한 토픽에서 영상을 받습니다.
 
-컬러 영상:
+RGB 영상:
 
 ```
 rosrun image_view image_view image:=/camera/color/image_raw
 ```
 
-깊이 영상:
+Depth 영상:
 
 ```
 rosrun image_view image_view image:=/camera/depth/image_rect_raw
 ```
 
-IR 1번 카메라의 영상:
+Infra Red 1번 카메라의 영상:
 
 ```
 rosrun image_view image_view image:=/camera/infra1/image_rect_raw
 ```
 
-IR 2번 카메라의 영상:
+Infra Red 2번 카메라의 영상:
 
 ```
 rosrun image_view image_view image:=/camera/infra2/image_rect_raw
@@ -132,7 +168,7 @@ rosrun image_view image_view image:=/camera/infra2/image_rect_raw
 
 ## 포인트 클라이드 데모
 
-실행중인 roscore를 제외하고 터미널에서 Ctrl+C를 눌러서 중단 합니다.
+실행중인 roscore를 제외하고. 나머지 터미널에서 Ctrl+C를 눌러서 중단 합니다.
 
 새 터미널에서 RViz로 포인트 클라우드를 표시 합니다.
 
