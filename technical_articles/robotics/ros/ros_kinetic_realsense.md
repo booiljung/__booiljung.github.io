@@ -74,7 +74,7 @@ ROS melodic에 Realsense2  패키지를 설치하려면 아래와 같습니다.
 sudo apt install ros-melodic-librealsense2 ros-melodic-realsense2-camera
 ```
 
-## RGBD 카메라로 실행
+## RGBD 카메라의 토픽을 받아서 실행
 
 터미널에서
 
@@ -84,13 +84,13 @@ roscore
 
 하고, 
 
-새 창에서 카메라 퍼블리셔를 실행합니다.
+새 터미널에서 카메라 퍼블리셔를 실행합니다.
 
 ```
 roslaunch realsense2_camera rs_camera.launch
 ```
 
-그리고, 새 창에서
+그리고, 새 터미널에서
 
 ```
 rqt_graph
@@ -128,6 +128,38 @@ IR 2번 카메라의 영상:
 
 ```
 rosrun image_view image_view image:=/camera/infra2/image_rect_raw
+```
+
+## 포인트 클라이드 데모
+
+실행중인 roscore를 제외하고 터미널에서 Ctrl+C를 눌러서 중단 합니다.
+
+새 터미널에서 RViz로 포인트 클라우드를 표시 합니다.
+
+```
+roslaunch realsense2_camera demo_pointcloud.launch
+```
+
+## rs_aligned_depth
+
+실행중인 roscore를 제외하고 터미널에서 Ctrl+C를 눌러서 중단 합니다.
+
+rqt_graph에서 토픽을 갱신하고 확인 합니다.
+
+![image-20200302212752342](ros_kinetic_realsense.assets/image-20200302212752342.png)
+
+이전 `roslaunch realsense2_camera rs_camera.launch` 와 달리 
+
+- `/camera/aligned_depth_to_color/image_raw`
+-  `/camera/aligned_depth_to_infra1/image_raw`
+
+추가 토픽이 있습니다.
+
+각각 image_view로 볼 수 있습니다.
+
+```
+rosrun image_view image_view image:=/camera/aligned_depth_to_color/image_raw
+rosrun image_view image_view image:=/camera/aligned_depth_to_infra1/image_raw
 ```
 
 ## 참조
