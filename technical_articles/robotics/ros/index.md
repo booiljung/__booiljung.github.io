@@ -12,6 +12,10 @@ ROS runtime graph란 ROS 통신 기반구조를 사용해 느슨하게 결합된
 - [ROS에서 Turtlebot3](ros_kinetic_turtlebot3.md)
 - Stereolabs: [ROS and Nvidia Jetson Nano](https://www.stereolabs.com/blog/ros-and-nvidia-jetson-nano/)
 
+## 소스 코드 이해
+
+- [Turtlebot3 소스코드에 대한 이해](understandings_of_turtlebot3/index.md)
+
 ## ros
 
 - [rospack](rospack.md)

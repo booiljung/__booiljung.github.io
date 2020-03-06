@@ -4,14 +4,14 @@
 
 먼저 이전에 [터틀봇3가 설치](ros_kinetic_turtlebot3.md)되어 있어야  하고 [SLAM을 하여 지도 파일을 확보](ros_kinetic_turtlebot3_slam.md)해야 합니다.
 
-먼저 터미널을 열어 Gazebo를 실행 합니다.
+roscore가 실행된 상태에서, 먼저 터미널을 열어 Gazebo를 실행 합니다.
 
 ```
 export TURTLEBOT3_MODEL=waffle
 roslaunch turtlebot3_gazebo turtlebot3_world.launch
 ```
 
-다시 새 터미널을 열어 맵파일 경로에 주의하여 내비게이션을 실행 합니다.
+다시 새 터미널을 열어 맵파일 경로에 주의하여 내비게이션을 실행 합니다. 여기서  `/home/사용자` 대신 `~`를 사용하면 오류가 발생합니다. 반드시 `/home/사용자/`로 해야 합니다.
 
 ```
 export TURTLEBOT3_MODEL=waffle

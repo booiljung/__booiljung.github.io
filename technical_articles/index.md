@@ -116,6 +116,10 @@
 
 - 레이텍 $\LaTeX$
 
+### 기계
+
+- [OpenSCAD](openscad/index.md)
+
 ### 관리 및 운영
 
 - [패키지](./packages/index.md)

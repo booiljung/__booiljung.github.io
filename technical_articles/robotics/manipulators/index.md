@@ -3,6 +3,10 @@
 - [Arduino Robot Arm](arduino_robot_arm.md)
 - [OpenSource Robot Arm](open_source_robot_arm.md)
 
+## 제작
+
+- Skyentific: Another 7DoF Brushless Robot Arm [Part 1](https://www.youtube.com/watch?v=f6luI7hJuj4), [Part 2](https://www.youtube.com/watch?v=_ZUm34xyyV8), [Part 3](https://www.youtube.com/watch?v=gP8aSdMLwYw&t=180s)
+
 ## 제품
 
 - Youtube: [Top 5 Robotic Arms for your desktop](https://www.youtube.com/watch?v=-69raWQ2DUc)
