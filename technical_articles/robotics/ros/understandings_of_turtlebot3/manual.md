@@ -2,15 +2,9 @@ ROS 이해를 돕기 위한
 
 # Turtlebot3 에 대한 이해
 
-2020년 3월 4일 코로나-19가 기승을 부리고 있다.
-
-## 라이센스
-
-아파치 라이센스다.
-
 ## 매뉴얼
 
-소스코드를 보기 전에 매뉴얼을 보자. 사용 방법을 알아야 소스코드를 이해 할 수 있다.
+소스코드를 보기 전에 매뉴얼을 숙지해야 합니다. 사용 방법을 알아야 소스코드를 빠르게 이해 할 수 있습니다.
 
 ### [Overview](http://emanual.robotis.com/docs/en/platform/turtlebot3/overview/)
 
@@ -20,9 +14,9 @@ Turtlebot3는
 - Waffle
 - Waffle Pi
 
- 이렇게 3종류가 있다.
+ 이렇게 3종류가 있습니다.
 
-Turtlebot3는[ROBOTIS](http://en.robotis.com/subindex/dxl_en.php)의 [DYNAMIXEL 스마트 액추에이터](http://en.robotis.com/shop_en/list.php?ca_id=2010)를 주행용으로 채용 했다. <<< 자세한 부품 모델은 Part list를 보라.
+Turtlebot3는[ROBOTIS](http://en.robotis.com/subindex/dxl_en.php)의 [DYNAMIXEL 스마트 액추에이터](http://en.robotis.com/shop_en/list.php?ca_id=2010)를 주행용으로 채용 했다. <<< 자세한 부품 모델은 Part list를 보시기 바랍니다.
 
 핵심 기술은
 
@@ -30,17 +24,17 @@ Turtlebot3는[ROBOTIS](http://en.robotis.com/subindex/dxl_en.php)의 [DYNAMIXEL 
 - Navigation,
 - Manipulation
 
-이다.
+입니다.
 
-방에서 돌아다니기 위해 SLAM 알고리즘을 사용한다.
+방에서 돌아다니기 위해 SLAM 알고리즘을 사용 합니다.
 
-노트북, 게임패드, 안드로이드 스마트폰으로 원격 제어 할 수 있다. 
+노트북, 게임패드, 안드로이드 스마트폰으로 원격 제어 할 수 있습니다. 
 
-사람의 다리를 따라 다니게 할 수도 있다.
+사람의 다리를 따라 다니게 할 수도 있습니다.
 
-OpenMANIPULATOR와 같은 manipulator를 부착하여 사물을 조작 할 수 있는 mobile manipulator로 사용할 수 있다.
+OpenMANIPULATOR와 같은 manipulator를 부착하여 사물을 조작 할 수 있는 mobile manipulator로 사용할 수 있습니다.
 
-OpenMANIPULATOR는 Waffle와 Waffle Pi와 호환되는 장점이 있다.
+OpenMANIPULATOR는 Waffle와 Waffle Pi와 호환되는 장점이 있습니다.
 
 [소개 영상](https://www.youtube.com/watch?time_continue=3&v=9OC3J53RUsk&feature=emb_logo)
 
@@ -50,13 +44,13 @@ OpenMANIPULATOR는 Waffle와 Waffle Pi와 호환되는 장점이 있다.
 
 - [DYNAMIXEL XM 스마트 액추에이터](http://en.robotis.com/shop_en/list.php?ca_id=202020)를 주행용으로 채용 했다. <<< DYNAMIXEL XM시리즈는 로봇 세트보다 비싼데 확인 필요.
 
-- 오픈소스 SBC 인 OpenCR1.0을 채용 했다.
-  - OpenCR1.0은 IMU를 내장하고 있다.
-  - 3.3V, 5V, 12V 파워를 공급해야 한다.
-- Burger는 향상된 360 LiDAR와 9축 IMU를 사용한다.
-- Waffle은 추가적으로 Intel RealSense R200을 장착 할 수 있다.
-- Waffle Pi는 Rapsberry Pi용 카메라를 사용 한다.
-- 모든 것이 오픈 소스다.
+- 오픈소스 SBC 인 OpenCR1.0을 채용 했습니다.
+  - OpenCR1.0은 IMU를 내장하고 있습니다.
+  - 3.3V, 5V, 12V 파워를 공급해야 합니다.
+- Burger는 향상된 360 LiDAR와 9축 IMU를 사용합니다.
+- Waffle은 추가적으로 Intel RealSense R200을 장착 할 수 있습니다.
+- Waffle Pi는 Rapsberry Pi용 카메라를 사용 합니다.
+- 모든 것이 오픈 소스입니다.
 
 ### [Specifications](http://emanual.robotis.com/docs/en/platform/turtlebot3/specifications/)
 
@@ -66,17 +60,17 @@ OpenMANIPULATOR는 Waffle와 Waffle Pi와 호환되는 장점이 있다.
 
 Topic monitor는 rqt를 사용합니다.
 
-- `/battery_state`  토픽은 배터리의 전압과 잔량 같은 메시지를 나타 낸다.
-- `/diagnostics` 토픽은 MPU9250, DYNAMIXEL-X, HLS-LFCD-LDS, 배터리, OpenCR 등 부품의 연결 상태를 나타 낸다.
-- `/odm` 토픽은 odometry를 나타낸다.
-- `/sensor_state` 토픽 배터리와 토크의 인코더 값을 나타낸다.
-- `/scan` 토픽은 최대각, 최소각, 최대 거리, 최소 거리 같은 LDS 데이터를 나타낸다.
+- `/battery_state`  토픽은 배터리의 전압과 잔량 같은 메시지를 나타 냅니다.
+- `/diagnostics` 토픽은 MPU9250, DYNAMIXEL-X, HLS-LFCD-LDS, 배터리, OpenCR 등 부품의 연결 상태를 나타 냅니다.
+- `/odm` 토픽은 odometry를 나타냅니다.
+- `/sensor_state` 토픽 배터리와 토크의 인코더 값을 나타냅니다.
+- `/scan` 토픽은 최대각, 최소각, 최대 거리, 최소 거리 같은 LDS 데이터를 나타냅니다.
 
 ### [Teleoperation](http://emanual.robotis.com/docs/en/platform/turtlebot3/teleoperation/)
 
 PS3, XBOX 360, ROBOTIS RC100 등을 사용합니다.
 
-키보드는  `turtlebot3_teleop_key` 노드를 원격 컴퓨터에 런치 한다.
+키보드는  `turtlebot3_teleop_key` 노드를 원격 컴퓨터에 런치 합니다.
 
 ```
   w
