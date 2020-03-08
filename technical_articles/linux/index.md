@@ -29,3 +29,4 @@
 ## 기타
 
 - [Markdown Editor on Linux](markdown_on_linux.md)
+- [우분투 16.04 LTS에서 마우스 휠 스크롤 간격 설정](ubuntu_imwheel.md)
