@@ -2,6 +2,7 @@
 
 #### 최신 글
 
+- 번역: Git: [A successful Git branching model](technical_articles/git/a_successful_git_branching_model.md)
 - ROS: [kenetic에서 OpenManipulator 튜토리얼](technical_articles/robotics/ros/ros_kinetic_open_manipulator.md)
 - ROS: [kenetic에서 Turtlebot3와 네비게이션](technical_articles/robotics/ros/ros_kinetic_turtlebot3_navigation.md)
 - ROS: [kenetic에서 Turtlebot3와 SLAM](technical_articles/robotics/ros/ros_kinetic_turtlebot3_slam.md)

@@ -6,6 +6,7 @@
 
 - [git interactive tutorials](https://learngitbranching.js.org/)
 - [git quick command lookup](quick_command_lookup.md)
+- 번역: [A successful Git branching model](a_successful_git_branching_model.md)
 
 ## Tips
 
