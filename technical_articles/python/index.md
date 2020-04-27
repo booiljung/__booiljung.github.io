@@ -22,6 +22,7 @@
 
 ## Installation and Environment
 
+- [pyenv on Ubuntu](./pyenv.md)
 - [VSCODE에서 파이썬 환경 지정하기](python_env_for_vscode.md)
 - [Anaconda 설치 및 관리](installation_and_management.md)
 - [VSCode에서 Anaconda 사용](vscode_and_anaconda.md)
