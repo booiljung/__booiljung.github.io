@@ -15,7 +15,9 @@ sudo apt install git -y
 git clone https://github.com/pyenv/pyenv.git ~/.pyenv
 ```
 
-사용자 로그인 프로플에 환경 변수를 설정합니다.
+사용자 로그인 프로필에 환경 변수를 설정합니다. 다른 안내서들과 다른점을 주의 합니다.
+
+`./bash_profile` 같은 파일에 환경을 설정할 수도 있지만, VSCode 같은 GUI 프로그램에서도 사용하기 위해 로그인시 활성화되도록 `~/.profile` 파일에 환경을 설정 하였습니다.
 
 ```sh
 echo '' >> ~/.profile
@@ -48,6 +50,20 @@ pyenv install <version_name>
 
 ## 파이썬 가상환경
 
+먼저 github에서 클론하여 설치 합니다.
+
+```sh
+git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
+```
+
+환경을 구성합니다.
+
+```sh
+echo '' >> ~/.profile
+echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.profile
+source ~/.profile
+```
+
 새 파이썬 가상환경 생성은 `virtualenv`를 사용합니다.
 
 ```sh
@@ -73,7 +89,7 @@ cd ~/myproject
 pyenv local ml
 ```
 
-이려면 prompt가 `(virtual_env_name)`으로 바뀝니다. 예를들어 `ml` 가상환경을 사용하면 아래와 같습니다.
+이려면 셸 프롬프트가 `(virtual_env_name)`으로 바뀝니다. 예를들어 `ml` 가상환경을 사용하면 아래와 같습니다.
 
 ```sh
 ~$ cd myproject
