@@ -29,4 +29,5 @@
 ## 기타
 
 - [Markdown Editor on Linux](markdown_on_linux.md)
+- [Change apt sources list on Ubuntu](change_apt_sources_list_on_ubuntu.md)
 - [우분투 16.04 LTS에서 마우스 휠 스크롤 간격 설정](ubuntu_imwheel.md)
