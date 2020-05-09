@@ -79,6 +79,4 @@
 - [Machine Learning Notes](./machine_learning_notes/index.md)
 - [콩트](conte/index.md)
 
----
 
-About booiljung: [English](about_booiljung_en.md) [한국어](about_booiljung_ko.md)
