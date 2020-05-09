@@ -193,7 +193,7 @@ a {
     color: $code-text-color;
     background-color: $code-bg-color;
     border-color: $code-border-color;
-    border-style: groove;
+    border-style: solid;
     border-radius: 0.0rem;
     tab-size: 4;
     -moz-tab-size: 4; /* Firefox */
@@ -209,7 +209,6 @@ a {
     background-color: $code-bg-color;
     border: solid 1px $border-color;
     border-radius: 0.0rem;
-
     > code {
       padding: 0;
       margin: 0;
