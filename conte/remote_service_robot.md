@@ -1,4 +1,4 @@
-[목록](index.md)
+[Up](index.md)
 
 # 원격 수리 로봇
 

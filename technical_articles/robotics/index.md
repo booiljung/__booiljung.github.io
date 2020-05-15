@@ -1,6 +1,6 @@
 # Robotics
 
-- [로봇의 분류](class_of_robots.md)
+- [이론](./theory/index.md)
 - [Gazebo](./gazebo/index.md)
 - [ROS](./ros/index.md)
 - [Manipulators](manipulators/index.md)
