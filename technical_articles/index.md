@@ -68,7 +68,7 @@
 - [Datasets](datasets/index.md)
 - [Automatic Speech Recognition](./asr/index.md)
 
-## 클라우드 서비스
+## 개발도구
 
 - [애저와 비주얼 스튜디오](azure_visual_studio/index.md)
 
