@@ -81,9 +81,10 @@
 - [C/C++](c_language/index.md)
 - Objective-C
 - [Dart](./dart/index.md)
-- [Swift](./swfit/index.md)
+- [Swift](./swift/index.md)
 - [JavaScript](./javascript/index.md)
 - 루아 (Lua)
+- [Haskell](./haskell/index.md)
 - [웹 개발](web/index.md)
 
 ### 프레임워크 라이브러리
