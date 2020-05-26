@@ -190,7 +190,8 @@ a {
     font-size: 0.9rem;
     color: $code-text-color;
     background-color: $code-bg-color;
-    border-radius: 0.3rem;
+    border: solid 0.25px $border-color;
+    border-radius: 0.1rem;
     tab-size: 4;
     -moz-tab-size: 4; /* Firefox */
   }
@@ -203,8 +204,8 @@ a {
     color: $code-text-color;
     word-wrap: normal;
     background-color: $code-bg-color;
-    border: solid 1px $border-color;
-    border-radius: 0.3rem;
+    border: solid 0.25px $border-color;
+    border-radius: 0.1rem;
 
     > code {
       padding: 0;
