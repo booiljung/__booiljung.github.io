@@ -57,6 +57,12 @@ TEST_CASE( "Factorials of 1 and higher are computed (pass)", "[single-file]" )
 }
 ```
 
+`#define CATCH_CONFIG_MAIN`은 `main` 함수를 코드에 삽입하게 합니다.
+
+`TEST_CASE(,)`는 테스트 케이스 함수를 작성합니다.
+
+`REQUIRE()`는 테스트를 합니다.
+
 이 코드는 
 
 ```sh
@@ -109,7 +115,116 @@ Failed 1 test case, failed 1 assertion.
 
 실패 예제를 확인하였으면 `factorial` 함수를 변경하여 테스트가 성공하도록 시도하고 확인해 보세요.
 
+---
+
+`TEST_CASE`안에는 `SECTION`을 둘 수도 있습니다.
+
+```c++
+TEST_CASE( "vectors can be sized and resized", "[vector]" )
+{
+    std::vector<int> v( 5 );
+    REQUIRE( v.size() == 5 );
+    REQUIRE( v.capacity() >= 5 );
+
+    SECTION( "resizing bigger changes size and capacity" )
+    {
+        v.resize( 10 );
+        REQUIRE( v.size() == 10 );
+        REQUIRE( v.capacity() >= 10 );
+    }
+    SECTION( "resizing smaller changes size but not capacity" )
+    {
+        v.resize( 0 );
+        REQUIRE( v.size() == 0 );
+        REQUIRE( v.capacity() >= 5 );
+    }
+    SECTION( "reserving bigger changes capacity but not size" )
+    {
+        v.reserve( 10 );
+        REQUIRE( v.size() == 5 );
+        REQUIRE( v.capacity() >= 10 );
+    }
+    SECTION( "reserving smaller does not change size or capacity" )
+    {
+        v.reserve( 0 );
+        REQUIRE( v.size() == 5 );
+        REQUIRE( v.capacity() >= 5 );
+    }
+}
+```
+
+또한 `SECTION` 안에 `SECTION`을 둘 수도 있습니다.
+
+```c++
+TEST_CASE(...)
+{
+    ...
+	SECTION( "reserving bigger changes capacity but not size" ) {
+        v.reserve( 10 );
+        REQUIRE( v.size() == 5 );
+        REQUIRE( v.capacity() >= 10 );
+        SECTION( "reserving smaller again does not change capacity" ) {
+            v.reserve( 7 );
+            REQUIRE( v.capacity() >= 10 );
+        }
+    }
+    ...
+}
+```
+
+---
+
+BDD 스타일로 테스트를 작성 할 수도 있습니다.
+
+```c++
+SCENARIO( "vectors can be sized and resized", "[vector]" )
+{
+    GIVEN( "A vector with some items" )
+    {
+        std::vector<int> v( 5 );
+        REQUIRE( v.size() == 5 );
+        REQUIRE( v.capacity() >= 5 );
+        WHEN( "the size is increased" )
+        {
+            v.resize( 10 );
+            THEN( "the size and capacity change" )
+            {
+                REQUIRE( v.size() == 10 );
+                REQUIRE( v.capacity() >= 10 );
+            }
+        }
+        WHEN( "the size is reduced" )
+        {
+            v.resize( 0 );
+            THEN( "the size changes but not capacity" )
+            {
+                REQUIRE( v.size() == 0 );
+                REQUIRE( v.capacity() >= 5 );
+            }
+        }
+        WHEN( "more capacity is reserved" )
+        {
+            v.reserve( 10 );
+            THEN( "the capacity changes but not the size" )
+            {
+                REQUIRE( v.size() == 5 );
+                REQUIRE( v.capacity() >= 10 );
+            }
+        }
+        WHEN( "less capacity is reserved" )
+        {
+            v.reserve( 0 );
+            THEN( "neither size nor capacity are changed" )
+            {
+                REQUIRE( v.size() == 5 );
+                REQUIRE( v.capacity() >= 5 );
+            }
+        }
+    }
+}
+```
+
 ## 참조
 
-[Catch2](https://github.com/catchorg/Catch2)
+[Catch2](https://github.com/catchorg/Catch2), [레퍼런스](https://github.com/catchorg/Catch2/blob/master/docs/Readme.md#top)
 
