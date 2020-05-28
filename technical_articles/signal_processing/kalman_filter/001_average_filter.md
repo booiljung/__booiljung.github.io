@@ -1,6 +1,6 @@
-# Kalman filters
+# 칼만필터 (Kalman filters)
 
-## Average Filter
+## 평균필터 (Average Filter)
 
 평균은 데이터의 총합을 개수로 나눈 값입니다. $k$개의 데이터($x_1, x_2, x_3, \dots, x_k$)가 있을때 , 평균은 아래와 같습니다.
 $$

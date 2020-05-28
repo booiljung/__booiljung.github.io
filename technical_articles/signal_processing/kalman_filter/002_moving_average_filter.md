@@ -1,6 +1,6 @@
-# Kalman filters
+# 칼만필터 (Kalman filters)
 
-## Moving average filter
+## 이동평균필터 (Moving average filter)
 
 시간에 따라 변화하는 주식 가격과 같은 데이터에 평균을 취하면 변화가 뭉게지고 맙니다. 그래서 주식 가격은 최근의 몇개의 데이터에 대해 평균을 얻고 이것을 이동평균 (Moving average)라고 합니다. 이동평균은 가장 오래된 데이터를 버리고 최근의 데이터를 추가하여 데이터 갯수를 유지하며 평균을 얻습니다.
 
