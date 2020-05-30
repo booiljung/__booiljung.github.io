@@ -2,6 +2,7 @@
 
 #### 최신 글
 
+- Pytorch: [libtorch 와 예제](technical_articles/pytorch/libtorch_and example.md)
 - Pytorch: [Ubuntu에 Pytorch 설치](technical_articles/pytorch/installation_of_pytorch_on_ubuntu.md)
 - Python: [Ubuntu에 Pyenv 설치](technical_articles/python/pyenv.md)
 - Linux: [Ubuntu에 CUDA 툴킷 설치](technical_articles/linux/installation_on_cuda_toolkit_on_ubuntu.md)

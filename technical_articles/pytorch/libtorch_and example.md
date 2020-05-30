@@ -1,10 +1,10 @@
 [Up](index.md)
 
-# Ubuntu에 C++을 위한 LibTorch를 설치하고 예제를 테스트 해보자.
+# Ubuntu에 C++을 위한 LibTorch 예제를 테스트 해보자.
 
-2020년 5월 29일
+2020년 5월 30일
 
-Ubuntu에서 C++로 LibTorch를 실험해 보려고 하는데, 직접 해가며 정리를 합니다. 임베디드 환경에서 사용하기 위해 준비하는 과정입니다.
+Ubuntu에서 C++로 LibTorch를 실험해 보려고 하는데, 직접 해가며 정리를 합니다. 임베디드 환경에서 사용하기 위해 준비하는 과정으로 Pytorch 가능성을 태스트 하는 목적입니다.
 
 먼저 libtorch 다운로드 합니다. 먼저 [pytorch.org](https://pytorch.org/)에서 개발 환경과 언어 버전을 선택하면 다운로드 경로를 얻을 수 있습니다. 저는 아래와 같은 옵션을 주어 다운로드 하기로 하였습니다.
 
@@ -18,41 +18,10 @@ Ubuntu에서 C++로 LibTorch를 실험해 보려고 하는데, 직접 해가며 
 wget https://download.pytorch.org/libtorch/cpu/libtorch-cxx11-abi-shared-with-deps-1.5.0%2Bcpu.zip
 ```
 
-다운로드가 시작 되었습니다.
-
-```
---2020-05-29 22:22:59--  https://download.pytorch.org/libtorch/cpu/libtorch-cxx11-abi-shared-with-deps-1.5.0%2Bcpu.zip
-Resolving download.pytorch.org (download.pytorch.org)... 99.86.144.18, 99.86.144.71, 99.86.144.56, ...
-Connecting to download.pytorch.org (download.pytorch.org)|99.86.144.18|:443... connected.
-HTTP request sent, awaiting response... 200 OK
-Length: 107915014 (103M) [application/zip]
-Saving to: ‘libtorch-cxx11-abi-shared-with-deps-1.5.0+cpu.zip’
-
-libtorch-cxx11-abi-shared-with-dep 100%[===============================================================>] 102.92M  10.4MB/s    in 11s     
-
-2020-05-29 22:23:10 (9.76 MB/s) - ‘libtorch-cxx11-abi-shared-with-deps-1.5.0+cpu.zip’ saved [107915014/107915014]
-```
-
-다운로드가 완료 되면 압축을 해제 합니다. 파일명 지정시 URL의 일부 문자가 + 문자로 디코딩 된것에 주의 합니다.
+다운로드가 완료 되면 압축을 해제 합니다. 파일명 지정시 다운로드 URL의 일부 문자가 + 문자로 디코딩 된것에 주의 합니다.
 
 ```sh
 unzip libtorch-cxx11-abi-shared-with-deps-1.5.0+cpu.zip
-```
-
-압축이 해제 됩니다.
-
-```
-Archive:  libtorch-cxx11-abi-shared-with-deps-1.5.0+cpu.zip
-   creating: libtorch/
-   creating: libtorch/bin/
-   creating: libtorch/lib/
-  inflating: libtorch/lib/libfbgemm.a  
-  inflating: libtorch/lib/libgmock.a  
-  inflating: libtorch/lib/libprotobuf.a  
-  ...
-  inflating: libtorch/include/c10d/HashStore.hpp  
-  inflating: libtorch/include/c10d/FileStore.hpp  
-  inflating: libtorch/include/c10d/Store.hpp
 ```
 
 이제 예제를 작성하는데 cmake와 빌드 도구들이 설치 되어 있어야 합니다.
@@ -67,12 +36,13 @@ sudo apt install -y build-essential automake cmake cmake-gui git
 
 ```sh
 git init torchapp
+cd torchapp
 ```
 
 여러 예제들을 연습할 것이기 때문에 예제를 서브프로젝트에 만듭니다.
 
 ```
-git init 001_example
+mkdir 001_example
 cd 001_example
 ```
 
@@ -118,7 +88,7 @@ build
 *.app
 ```
 
-`CMakeLists.txt`를 작성합니다.
+`CMakeLists.txt`를 작성합니다. cmake는 C/C++이나 ROS의 빌드 도구로 사용됩니다. cmake 대한 간략한 사용법은 [이 글](../c_language/simple_cmake_introduction.md)을 참조하세요.
 
 ```cmake
 cmake_minimum_required(VERSION 3.0 FATAL_ERROR)
@@ -170,6 +140,28 @@ cd build
 cmake로 Configure를 할때 LibTorch 경로를 지정해 주어야 합니다.
 
 ```
-cmake 
+cmake -DCMAKE_PREFIX_PATH=/home/booil/libtorch ..
+cmake --build . --config Release
 ```
 
+실행해 봅니다.
+
+```
+./001_example 
+```
+
+결과는
+
+```
+ 0.2120  0.8186  0.3743
+ 0.6642  0.9435  0.3570
+[ CPUFloatType{2,3} ]
+```
+
+입니다.
+
+성공하였고, 앞으로 디테일하게 테스트를 해보겠습니다.
+
+## 참조
+
+- [Installing C++ Distributions of PyTorch](https://pytorch.org/cppdocs/installing.html)
