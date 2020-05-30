@@ -9,6 +9,11 @@
 - [exFAT으로 파일시스템을 설치](exfat_filesystem.md)
 - [Link on Linux](link_on_linux.md)
 
+## Driver
+
+- [Ubuntu에 nvidia 드라이버 설치하기](installation_of_nvidia_on_ubuntu.md)
+- [Ubuntu에 cuda 툴킷 설치하기](installation_of_cuda_toolkit_on_ubuntu.md)
+
 ## VirtualBox
 
 - [VirtualBox: 개발용 우분투 설치 템플릿](./installation_ubuntu_on_virtualbox_for_development.md)
