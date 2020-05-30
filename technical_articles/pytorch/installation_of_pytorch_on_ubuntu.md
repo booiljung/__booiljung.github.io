@@ -127,6 +127,8 @@ conda create -n ml python=3.6
 conda activate ml
 ```
 
+가상환경 `ml`이 활성화되면 셸 프롬프트에 `(ml)` 이 표시될 것입니다.
+
 [pytorch.org](https://pytorch.org/)에서 패키지 관리자로 Conda로 선택하면 셸 명령어를 제공해 줍니다. 제 Ubuntu에는 CUDA 10.1이 설치되어 있으니 아래처럼 선택 합니다.
 
 ![image-20200530125851300](installation_of_pytorch_on_ubuntu.assets/image-20200530125851300.png)
