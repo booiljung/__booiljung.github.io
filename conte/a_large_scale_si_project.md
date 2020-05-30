@@ -10,7 +10,7 @@
 
 초기의 총은 머스킷 종류였고, 몇분에 한발 밖에 쏠 수 없었는데, 차츰 전쟁터를 휘어 잡게 되고, 군주들이 선호하는 무기가 된다. 총의 가격은 천만원정도로 비쌌지만, 농부의 자식이나 도망자, 떠돌이, 범죄자들을 모아서 2~3일 동안 제식과 사격 자세를 가르치고, 2~5발의 실사격을 거친 후 전쟁터에 데려 갈 수 있었다. 이들에게 멋진 재킷을 입힌 이유도, 멋지게 보여서 이제 세상에 나온 순진한 뜨내기들을 꼬드겨서 전쟁터에 데려가기 위해서였다.
 
-![Viggo Mortensen in Alatriste](a_large_scale_si_project.assets/viggo-mortensen-alatriste-soldiers-02.jpg)
+![![Viggo Mortensen in Alatriste]](https://www.brego.net/wp-content/uploads/2006/07/viggo-mortensen-alatriste-soldiers-02.jpg)
 
 *[영화 알라트리스테: 냉병기에서 화기로 넘어가는 과정이다. 전문 군인들의 일사분란한 제식을 볼 수 있다. 당시 냉병기 그중에서 검을 잘 사용할 수 있으면 전문 군인이라고 할 수 있었다.]*
 
