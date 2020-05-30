@@ -2,6 +2,10 @@
 
 #### 최신 글
 
+- Pytorch: [Ubuntu에 Pytorch 설치](technical_articles/pytorch/installation_of_pytorch_on_ubuntu.md)
+- Python: [Ubuntu에 Pyenv 설치](technical_articles/python/pyenv.md)
+- Linux: [Ubuntu에 CUDA 툴킷 설치](technical_articles/linux/installation_on_cuda_toolkit_on_ubuntu.md)
+- Linux: [Ubuntu에 nvidia 드라이버 설치](technical_articles/linux/installation_of_nvidia_on_ubuntu.md)
 - Ubuntu: [우분투 16.04 LTS에서 마우스 휠 스크롤 간격 설정](technical_articles/linux/ubuntu_imwheel.md)
 - 번역: Git: [A successful Git branching model](technical_articles/git/a_successful_git_branching_model.md)
 - ROS: [kenetic에서 OpenManipulator 튜토리얼](technical_articles/robotics/ros/ros_kinetic_open_manipulator.md)
