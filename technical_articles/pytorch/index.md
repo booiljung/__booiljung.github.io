@@ -2,6 +2,10 @@
 
 # 파이토치 (PyTorch)
 
+## 설치
+
+- [Ubuntu에 Pytorch  설치](installation_of_pytorch_on_ubuntu.md)
+
 ## Models
 
 - [Conv2dClassifier](conv2d_classifier.md)
