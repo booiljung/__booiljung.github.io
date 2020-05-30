@@ -7,7 +7,7 @@
 
 ## 설치
 
-먼저 git을 설치 하고, github에서 클론합니다.
+git 설치되어 있지 않다면 git을 먼저 설치 하고, github에서 Pyenv를 `~/.pyenv`에 클론합니다.
 
 ```sh
 sudo apt update
@@ -16,9 +16,7 @@ sudo apt install git -y
 git clone https://github.com/pyenv/pyenv.git ~/.pyenv
 ```
 
-사용자 로그인 프로필에 환경 변수를 설정합니다. 다른 안내서들과 다른점을 주의 합니다.
-
-`./bash_profile` 같은 파일에 환경을 설정할 수도 있지만, VSCode 같은 GUI 프로그램에서도 사용하기 위해 로그인시 활성화되도록 `~/.bashrc 파일에 환경을 설정 하였습니다.
+환경 변수들을 설정합니다.
 
 ```sh
 echo '' >> ~/.bashrc
@@ -27,7 +25,7 @@ echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
 echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
 ```
 
-로그인시 `pyenv init` 를 추가 합니다.
+`pyenv init` 를 추가 합니다.
 
 ```sh
 echo '' >> ~/.bashrc
