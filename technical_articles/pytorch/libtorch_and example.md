@@ -160,7 +160,7 @@ cmake --build . --config Release
 
 입니다.
 
-성공하였고, 앞으로 디테일하게 테스트를 해보겠습니다.
+성공하였고, 소스 코드는 [이 곳](https://github.com/booiljung/torchapp)에 있으며 앞으로 디테일하게 테스트를 해보겠습니다.
 
 ## 참조
 
