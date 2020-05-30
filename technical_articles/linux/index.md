@@ -1,3 +1,5 @@
+[Up](../index.md)
+
 # Ubuntu
 
 ## User
