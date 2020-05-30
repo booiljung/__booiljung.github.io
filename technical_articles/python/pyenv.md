@@ -33,6 +33,12 @@ echo '# pyenv' >> ~/.bashrc
 echo 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.bashrc
 ```
 
+`.bashrc`에 변경된 환경변수들을 업데이트 합니다.
+
+```sh
+source ~/.bashrc
+```
+
 ## 파이썬 인터프리터/컴파일러 설치/제거
 
 pyenv는 다양한 파이썬 인터프리터나 컴파일러를 설치해주는 도구입니다. 설치 할 수 있는 파이썬 버전을 확인해 보겠습니다.
