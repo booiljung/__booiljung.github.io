@@ -1,5 +1,5 @@
 [Up](index.md)
-# pyenv on Ubuntu
+# Pyenv on Ubuntu
 
 파이썬 언어는 간결하여 배우기 쉽고 간단하고 짧은 프로그램을 빠르게 작성할 수 있습니다. 파이썬의 문제는 다양한 파이썬 인터프리터/컴파일러와 버전이 있으며, 패키지 관리자가 엉망이라는 것입니다. 패키지 관리자가 엉망이라는 것은 dart의 pub와 비교해 보면 알 수 있을 것입니다. 일단 파이썬 인터프리터나 컴파일러가 pytion2, python3, cython, ipython, iron-python 등 다양하기도 할뿐만 아니라, 운영체제에 패키지의 버전도 하나밖에 설치할 수 없습니다. 프로젝트에 따라 여러가지 다른 버전의 패키지를 사용할 수도 있는데 기본 파이썬은 그렇지 않습니다.
 
@@ -47,6 +47,27 @@ pyenv는 다양한 파이썬 인터프리터나 컴파일러를 설치해주는 
 pyenv install --list
 ```
 
+이 리스트를 보면 여러가지 파이썬 인터프리터나 다른 패키지 관리자도 설치할 수 있는데 설치할 수 있는 목록은 아래와 같습니다. (`x.w.y`는 버전).
+
+- CPython
+  - Python 2: `pyenv install v.x.x`
+  - Python 3: `pyenv install v.w.x`
+  - Active Python 2: `pyenv install activepython-x.w.y`
+  - Active Python 3: `pyenv install activepython-x.w.y`
+  - Stackless Python 2: `pyenv install stackless-v.x.x`
+  - Stackless Python 3: `pyenv install stackless-v.x.x`
+- Anaconda
+  - Anaconda: `pyenv install anaconda-x.w.y`
+  - Miniconda: `pyenv install miniconda-x.w.y` 
+- Iron Python on .NET CLR
+  - `pyenv install ironpython-x.w.y`
+- Jython on Java VM
+  - `pyenv install jython-x.w.y`
+- Micro Python
+  - `pyenv install micropthon-x.w.y`
+- Pypy on JIT
+  - `pyenv install pypy-x.w.y`
+
 설치할 수 있는 버전에서 필요한 버전을 설치 합니다.
 
 ```sh
@@ -59,7 +80,7 @@ pyenv install <version_name>
 pyenv versions
 ```
 
-pyenv를 제거하려면 폴더를 삭제합니다.
+pyenv를 자체를 제거하려면 폴더를 삭제합니다. `~/.bashrc`에 추가된 환경변수도 수작업으로 삭제 하면 됩니다.
 
 ```
 rm -rf $(pyenv root)
@@ -67,7 +88,7 @@ rm -rf $(pyenv root)
 
 ## 파이썬 가상환경
 
-먼저 github에서 클론하여 설치 합니다.
+먼저 github에서 `virualenv` 플러그인을 클론하여 설치 합니다.
 
 ```sh
 git clone https://github.com/pyenv/pyenv-virtualenv.git $PYENV_ROOT/plugins/pyenv-virtualenv
@@ -87,7 +108,7 @@ source ~/.bashrc
 pyenv virtualenv <version_name> <virtual_env_name>
 ```
 
-예를 들어 python 3.6.1 인터프리터를 사용하는 ml이라는 가상환경 이름으로 가상환경을 생성하면 아래와 같습니다.
+예를 들어 python 3.6.1 인터프리터를 먼저 설치하고, python 3.6.1을 사용하는 ml이라는 가상환경 이름으로 가상환경을 생성하면 아래와 같습니다.
 
 ```sh
 pyenv virtualenv 3.6.1 ml

@@ -15,11 +15,11 @@ $$
 \begin{aligned}
 \hat x_k
 &= \breve x_k + K_k (z_k - H \breve x_k)
-\\\\
+\\
 &= \breve x_k + K_k z_k - K_k H \breve x_k
-\\\\
+\\
 &= \breve x_k - K_k H \breve x_k + K_k z_k
-\\\\
+\\
 &= (I - K_k H) \breve x_k + K_k z_k
 \end{aligned}
 $$
@@ -28,9 +28,9 @@ $$
 \begin{aligned}
 \hat x_k
 &= (I - K_k H) \breve x_k + K_k z_k
-\\\\
+\\
 &= (I - K_k I) \breve x_k + K_k z_k
-\\\\
+\\
 &= (I - K_k) \breve x_k + K_k z_k
 \end{aligned}
 $$
@@ -45,9 +45,9 @@ $$
 \begin{aligned}
 \bar x_{k}
 &= a \bar x_{k-1} + (1-a) x_k
-\\\\
+\\
 &= (1-K) \bar x_{k-1} + (1-(1-K)) x_k
-\\\\
+\\
 &= (1-K) \bar x_{k-1} + K x_k
 \end{aligned}
 $$
@@ -57,7 +57,7 @@ $$
 1차 저주파 통과 필터&:
 \bar x_{k}
 = (1-K) \bar x_{k-1} + K x_k
-\\\\
+\\
 칼만 필터&: \hat x_k
 = (I - K_k) \breve x_k + K_k z_k
 \end{aligned}
@@ -135,7 +135,7 @@ $$
 $$
 \begin{align}
 \breve x_k &= A \hat x_{k-1} \\\\
-\end{align}
+\end{align}																																																																																																																																																		
 $$
 이전 추정값에 시스템 상수 $A$를 적용하여 계산합니다.
 

@@ -20,6 +20,7 @@
 
 - [C++ GUI Libraries](cpp_gui_libraries.md)
 - [libboost](libboost/index.md)
+- [QCustomPlot](https://www.qcustomplot.com/)
 
 ## Visual Studio:
 
