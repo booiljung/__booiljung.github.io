@@ -87,7 +87,23 @@ conda activate ml
 
 가상환경 `ml`이 활성화되면 셸 프롬프트에 `(ml)` 이 표시될 것입니다.
 
-[pytorch.org](https://pytorch.org/)에서 패키지 관리자로 Conda로 선택하면 셸 명령어를 제공해 줍니다. 제 Ubuntu에는 CUDA 10.1이 설치되어 있으니 아래처럼 선택 합니다.
+[pytorch.org](https://pytorch.org/)에서 패키지 관리자로 Conda로 선택하면 셸 명령어를 제공해 줍니다. CUDA 버전 확인 하는 방법은 [CUDA  툴킷 설치 방법](../linux/installation_on_cuda_toolkit_on_ubuntu.md)에서 제시하고 있으며, 
+
+```sh
+nvidia-smi
+```
+
+하면
+
+```
++-----------------------------------------------------------------------------+
+| NVIDIA-SMI 430.64       Driver Version: 430.64       CUDA Version: 10.1     |
+|-------------------------------+----------------------+----------------------+
+```
+
+로 확인할 수 있습니다.
+
+제 Ubuntu에는 CUDA 10.1이 설치되어 있으니 아래처럼 선택 합니다.
 
 ![image-20200530125851300](installation_of_pytorch_on_ubuntu.assets/image-20200530125851300.png)
 
@@ -151,7 +167,25 @@ pyenv virtualenv 3.6.1 ml
 pyenv activate ml
 ```
 
-그러면 프롬프트 앞에 `(ml)`이 표시될 것입니다. 이제 Pytorch를 설치할 수 있습니다. 저의 경우 CUDA 10.1 이므로 해당 버전을 설치할 것입니다. 각자 CUDA 버전에 맞는 명령어를 [pytorch.org](https://pytorch.org/)에서 얻어서 설치하시면 됩니다. Pyenv에 설치할 경우 패키지 관리자는 `pip` 입니다.
+그러면 프롬프트 앞에 `(ml)`이 표시될 것입니다. 이제 Pytorch를 설치할 수 있습니다.
+
+자신의 PC에 설치된 CUDA 버전에 맞는 Pytorch를 선택해야 하는데, PC에서 CUDA 버전 확인 하는 방법은 [CUDA  툴킷 설치 방법](../linux/installation_on_cuda_toolkit_on_ubuntu.md)에서 제시하고 있으며, 
+
+```sh
+nvidia-smi
+```
+
+하면
+
+```
++-----------------------------------------------------------------------------+
+| NVIDIA-SMI 430.64       Driver Version: 430.64       CUDA Version: 10.1     |
+|-------------------------------+----------------------+----------------------+
+```
+
+로 확인 할 수 있습니다. 저의 경우 CUDA 10.1 이므로 해당 버전을 설치할 것입니다. 각자 CUDA 버전에 맞는 명령어를 [pytorch.org](https://pytorch.org/)에서 얻어서 설치하시면 됩니다. 
+
+Pyenv에 설치할 경우 패키지 관리자는 `pip` 입니다.
 
 ![image-20200530130117404](installation_of_pytorch_on_ubuntu.assets/image-20200530130117404.png)
 
