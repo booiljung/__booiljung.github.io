@@ -2,30 +2,39 @@
 
 # Kalman filter
 
-## 초음파 거리계로 속도 추정하기
-
-속도가 일정하지 않는 경우 위치로 속도를 추정해 보겠습니다.
+## 이미지상에서 개체 추적하기
 
 상태 변수는 아래와 같습니다.
 $$
 \begin{aligned}
 x = \begin{bmatrix}
-\text{pos}\\
-\text{vel}\\
+\text{pos}_x\\
+\text{vel}_x\\
+\text{pos}_y\\
+\text{vel}_y\\
 \end{bmatrix}
 \end{aligned}
 $$
+여기서, $\text{pos}_x$는 개체의 $x$좌표, $\text{pos}_y$는 개체의 $y$좌표, $\text{vel}_x$는 개체의 $x$속도, $\text{vel}_y$는 개체의 $y$속도입니다.
+
+시스템 모델은 다음과 같습니다.
 
 $$
 \begin{aligned}
-x_{k+1} &= A x_k + w_k \\
+x_{k+1}	&= A x_k + w_k \\
+
 z_k &= H x_k + v_k \\
+
 A &= \begin{bmatrix}
-	1 & \Delta t\\
-	0 & 1 \\
+	1 & \Delta t & 0 & 0 \\
+	0 & 1 & 0 & 0 \\
+	0 & 0 & 1 & \Delta t \\
+	0 & 0 & 0 & 1 \\
 \end{bmatrix} \\
+
 H &= \begin{bmatrix}
-	0 & 1 \\
+	1 & 0 & 0 & 0 \\
+	0 & 0 & 1 & 0 \\
 \end{bmatrix}
 \end{aligned}
 $$
@@ -33,10 +42,12 @@ $$
 $$
 \begin{aligned}
 x_{k+1} &= A x_k + w_k \\
-
-&= \begin{bmatrix}
-	1 & \Delta t\\
-	0 & 1 \\
+&=
+\begin{bmatrix}
+	1 & \Delta t & 0 & 0 \\
+	0 & 1 & 0 & 0 \\
+	0 & 0 & 1 & \Delta t \\
+	0 & 0 & 0 & 1 \\
 \end{bmatrix} x_k + w_k \\
 \end{aligned}
 $$
@@ -45,32 +56,42 @@ $$
 \begin{aligned}
 
 \begin{bmatrix}
-	\text{pos} \\
-	\text{velocity} \\
+	\text{pos}_x \\
+	\text{vel}_x \\
+	\text{pos}_y \\
+	\text{vel}_y \\
 \end{bmatrix} _{k+1} 
 
 &=
 
 \begin{bmatrix}
-	1 & \Delta t\\
-	0 & 1 \\
-\end{bmatrix} 
+	1 & \Delta t & 0 & 0 \\
+	0 & 1 & 0 & 0 \\
+	0 & 0 & 1 & \Delta t \\
+	0 & 0 & 0 & 1 \\
+\end{bmatrix}
 
 \begin{bmatrix}
-	\text{pos} \\
-	\text{velocity} \\
-\end{bmatrix}_k + 
+	\text{pos}_x \\
+	\text{vel}_x \\
+	\text{pos}_y \\
+	\text{vel}_y \\
+\end{bmatrix} _{k}
 
 \begin{bmatrix}
 	0 \\
-	w_k \\
-\end{bmatrix} \\
+	w \\
+	0 \\
+	w \\
+\end{bmatrix}_k \\
 
 &= 
 
 \begin{bmatrix}
-	\text{pos} + \text{velocity} \cdot \Delta t \\
-	\text{velocity} + w
+	\text{pos}_x + \text{vel}_x \cdot \Delta t \\
+	\text{vel}_x + w \\
+	\text{pos}_y + \text{vel}_y \cdot \Delta t \\
+	\text{vel}_y + w \\
 \end{bmatrix} _k
 
 \end{aligned}
@@ -89,7 +110,7 @@ $$
 
 \end{aligned}
 $$
-입니다. 배의 속도는
+입니다.  개체의 속도는
 $$
 \begin{aligned}
 
@@ -112,18 +133,19 @@ $$
 z_k &= H x_k + v_k \\
 
 &=
-
 \begin{bmatrix}
-	0 & 1
+	1 & 0 & 0 & 0 \\
+	0 & 0 & 1 & 0 \\
 \end{bmatrix}
 
 \begin{bmatrix}
-	\text{pos} \\
-	\text{vel} \\
-\end{bmatrix} + v_k
-\\
-&=
+	\text{pos}_x \\
+	\text{vel}_x \\
+	\text{pos}_y \\
+	\text{vel}_y \\
+\end{bmatrix}_k + v_k \\
 
+&=
 \text{vel} _k + v_k
 \end{aligned}
 $$
@@ -133,13 +155,18 @@ $$
 Q
 &=
 \begin{bmatrix}
-	1 & 0 \\
-	0 & 3 \\
+	1 & 0 & 0 & 0 \\
+	0 & 1 & 0 & 0 \\
+	0 & 0 & 1 & 0 \\
+	0 & 0 & 0 & 1 \\
 \end{bmatrix}
 \\
 R
 &=
-10
+\begin{bmatrix}
+	50 & 0 \\
+	0 & 50 \\
+\end{bmatrix}
 \end{aligned}
 $$
 

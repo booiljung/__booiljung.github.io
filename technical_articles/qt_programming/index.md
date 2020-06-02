@@ -1,6 +1,7 @@
 # Qt Programming
 
-- [Install Qt5 on Ubuntu 18.04 LTS](install_qt_on_ubuntu_1804.md)
+- [Installation of Qt5 on Ubuntu](installation_of_qt5_on_ubuntu.md)
+- [Build Qt5 applications with CMake](build_qt5_applications_with_cmake.md)
 
 
 
