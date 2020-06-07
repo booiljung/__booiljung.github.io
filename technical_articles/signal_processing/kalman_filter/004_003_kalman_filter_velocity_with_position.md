@@ -10,8 +10,8 @@
 $$
 \begin{aligned}
 x = \begin{bmatrix}
-\text{position}\\
-\text{velocity}\\
+\text{pos}\\
+\text{vel}\\
 \end{bmatrix}
 \end{aligned}
 $$
@@ -45,8 +45,8 @@ $$
 \begin{aligned}
 
 \begin{bmatrix}
-	\text{position} \\
-	\text{velocity} \\
+	\text{pos} \\
+	\text{vel} \\
 \end{bmatrix} _{k+1} 
 
 &=
@@ -57,8 +57,8 @@ $$
 \end{bmatrix} 
 
 \begin{bmatrix}
-	\text{position} \\
-	\text{velocity} \\
+	\text{pos} \\
+	\text{vel} \\
 \end{bmatrix}_k + 
 
 \begin{bmatrix}
@@ -69,8 +69,8 @@ $$
 &= 
 
 \begin{bmatrix}
-	\text{position} + \text{velocity} \cdot \Delta t \\
-	\text{velocity} + w
+	\text{pos} + \text{vel} \cdot \Delta t \\
+	\text{vel} + w
 \end{bmatrix} _k
 
 \end{aligned}
@@ -79,13 +79,13 @@ $$
 $$
 \begin{aligned}
 
-\text{position} _{k+1} 
+\text{pos} _{k+1} 
 
 &=
 
-\text{position} _{k} 
+\text{pos} _{k} 
 +
-\text{velocity}_k \cdot \Delta t
+\text{vel}_k \cdot \Delta t
 
 \end{aligned}
 $$
@@ -118,13 +118,13 @@ z_k &= H x_k + v_k \\
 \end{bmatrix}
 
 \begin{bmatrix}
-	\text{position} \\
-	\text{velocity} \\
+	\text{pos} \\
+	\text{vel} \\
 \end{bmatrix} + v_k
 \\
 &=
 
-\text{location} _k + v_k
+\text{loc} _k + v_k
 \end{aligned}
 $$
 노이즈의 공분산 행렬 $Q$, $R$을 정해야 하는데 노이즈 특성을 따라야 하며, 센서 제작사에서 제공하는 것을 기본으로 사용하고, 제공되지 않는다면 실험과 경험을 통해 결정해야 합니다.

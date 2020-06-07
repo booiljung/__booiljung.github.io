@@ -2,7 +2,7 @@
 
 # Kalman filter
 
-## 이미지상에서 개체 추적하기
+## 2D 이미지에서 개체 추적하기
 
 상태 변수는 아래와 같습니다.
 $$
@@ -15,8 +15,6 @@ x = \begin{bmatrix}
 \end{bmatrix}
 \end{aligned}
 $$
-여기서, $\text{pos}_x$는 개체의 $x$좌표, $\text{pos}_y$는 개체의 $y$좌표, $\text{vel}_x$는 개체의 $x$속도, $\text{vel}_y$는 개체의 $y$속도입니다.
-
 시스템 모델은 다음과 같습니다.
 
 $$
@@ -60,7 +58,7 @@ $$
 	\text{vel}_x \\
 	\text{pos}_y \\
 	\text{vel}_y \\
-\end{bmatrix} _{k+1} 
+\end{bmatrix} _{k+1}
 
 &=
 
@@ -77,7 +75,7 @@ $$
 	\text{pos}_y \\
 	\text{vel}_y \\
 \end{bmatrix} _{k}
-
++
 \begin{bmatrix}
 	0 \\
 	w \\
@@ -124,7 +122,7 @@ w_k
 
 \end{aligned}
 $$
-시스템 노이즈 $w_k$에 대해서만 영향을 받습니다.
+이며, 시스템 노이즈 $w_k$의 영향을 받습니다.
 
 시스템 모델의 측정값 $z_k$를 보겠습니다.
 $$
@@ -146,7 +144,12 @@ z_k &= H x_k + v_k \\
 \end{bmatrix}_k + v_k \\
 
 &=
-\text{vel} _k + v_k
+
+\begin{bmatrix}
+	\text{vel}_x \\
+	\text{vel}_y \\
+\end{bmatrix}_k + v_k \\
+
 \end{aligned}
 $$
 노이즈의 공분산 행렬 $Q$, $R$을 정해야 하는데 노이즈 특성을 따라야 하며, 센서 제작사에서 제공하는 것을 기본으로 사용하고, 제공되지 않는다면 실험과 경험을 통해 결정해야 합니다.
@@ -171,15 +174,6 @@ R
 $$
 
 
-```c++
-
-```
-
-호출은 아래와 같습니다.
-
-```c++
-
-```
 
 
 
