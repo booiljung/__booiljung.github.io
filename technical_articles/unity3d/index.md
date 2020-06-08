@@ -2,6 +2,8 @@
 
 # Unity3D
 
+- [Linux에 Unity 설치하는 방법](https://www.techrepublic.com/article/how-to-install-the-unity-editor-on-linux/)
+
 ## Examples
 
 - [Unity3D에서 벽타기 데모](unity3d_wall_climb_demo.md)

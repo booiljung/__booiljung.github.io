@@ -39,14 +39,13 @@
 - [NVIDIA DeepStream SDK](https://developer.nvidia.com/deepstream-sdk) is a Video Streaming Acceleration using NVIDIA GPUs.
 - [NVIDIA VisionWorks](https://developer.nvidia.com/embedded/visionworks) is NVIDIA Computer Vision Library using Accelerated NVIDIA GPU programming.
 - [OpenCV ](https://opencv.org) is an open-source BSD-licensed library that includes several hundreds of computer vision algorithms. [Source code](https://github.com/opencv/opencv). [3-clause BSD](https://en.wikipedia.org/wiki/BSD_licenses) Licensed.
+- [OpenVSLAM](https://github.com/xdspacelab/openvslam): A Versatile Visual SLAM Framework https://openvslam.readthedocs.io/
 - [OpenGV](https://laurentkneip.github.io/opengv/) aims at unifying geometric computer vision algorithms for calibrated camera pose computation within a single efficient  C++ library and stands for Open Geometric Vision. [BSD](https://en.wikipedia.org/wiki/BSD_licenses) Licensed.
 - [OpenMVG](https://github.com/openMVG/openMVG) is Open Multiple View Geometry library. Basis for 3D computer vision and Structure from Motion. [MPL2](https://en.wikipedia.org/wiki/Mozilla_Public_License) Licensed.
 - [OpenMVS](http://cdcseacave.github.io/openMVS/) is Open Multi-View Stereo reconstruction library. [AGPL](https://en.wikipedia.org/wiki/Affero_General_Public_License) Licensed.
 - [OpenSfM](https://github.com/mapillary/OpenSfM) is a SfM Library written in Python, by mapillary. [2-clause BSD](https://en.wikipedia.org/wiki/BSD_licenses) Licensed.
 - [PCL (Point Cloud Library)](https://pointclouds.org/) is a standalone, large scale, open project for 2D/3D image and point cloud processing. [BSD](https://en.wikipedia.org/wiki/BSD_licenses) Licensed.
 - [PopSift](https://github.com/alicevision/popsift) is an open-source implementation of the SIFT algorithm in CUDA. PopSift tries to stick as closely as possible to David Lowe's famous  paper. [MPL2](https://en.wikipedia.org/wiki/Mozilla_Public_License) Licensed.
-
 - [posest](http://users.ics.forth.gr/~lourakis/posest/) is a C/C++ Library for Robust 6DOF Pose Estimation from 3D-2D Correspondences. [GPL](https://en.wikipedia.org/wiki/GNU_General_Public_License) Licensed.
-
 - [REMODE - Probabilistic, Monocular Dense Reconstruction in Real-Time](http://rpg.ifi.uzh.ch/docs/ICRA14_Pizzoli.pdf)
 
