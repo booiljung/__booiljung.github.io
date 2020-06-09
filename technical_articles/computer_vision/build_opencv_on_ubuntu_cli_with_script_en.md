@@ -16,9 +16,21 @@ sh opencv_debian.sh
 
 run it automatically. It is convenient to put the build script on github.
 
+Install the libraries that OpenCV requires.
+
+```
+sudo apt install libeigen3-dev -y
+```
+
+If you have additional libraries, install them now.
+
 Here is the complete script:
 
 ```
+# eigen3_ubuntu.sh#first!
+
+pushd .
+
 sudo apt update
 sudo apt upgrade -y
 sudo apt install build-essential -y
@@ -29,28 +41,74 @@ mkdir -p ~/linspace
 mkdir -p ~/linspace/opencv.github
 rm -rf ~/linspace/opencv.github/opencv
 rm -rf ~/linspace/opencv.github/opencv_contrib
-rm -rf ~/linspace/opencv.github/opencv.build.linux
+rm -rf ~/linspace/opencv.github/build.linux
 
-pushd
+cd ~/linspace/opencv.github
+git clone --recursive https://github.com/opencv/opencv.git
+if [ "$?" != "0" ]; then
+	echo "Cannot clone opencv" 1>&2
+    popd
+	exit 1
+fi
+cd opencv
+git checkout tags/4.3.0
+if [ "$?" != "0" ]; then
+	echo "Cannot checkout opencv" 1>&2
+    popd
+	exit 1
+fi
 
-git clone --recursive https://github.com/opencv/opencv.git ~/linspace/opencv.github/opencv
-cd ~/linspace/opencv.github/opencv
-git checkout tags/4.1.2
+cd ~/linspace/opencv.github
+git clone --recursive https://github.com/opencv/opencv_contrib.git
+if [ "$?" != "0" ]; then
+	echo "Cannot clone opencv_contrib" 1>&2
+    popd
+	exit 1
+fi
+cd opencv_contrib
+git checkout tags/4.3.0
+if [ "$?" != "0" ]; then
+	echo "Cannot checkout opencv_contrib" 1>&2
+    popd
+	exit 1
+fi
 
-git clone --recursive https://github.com/opencv/opencv_contrib.git ~/linspace/opencv.github/opencv_contrib
-cd ~/linspace/opencv.github/opencv_contrib
-git checkout tags/4.1.2
+cd ~/linspace/opencv.github
+mkdir -p build.linux
+cd build.linux
 
-mkdir -p ~/linspace/opencv.github/opencv.build.linux
-cd ~/linspace/opencv.github/opencv.build.linux
-
-cmake -D BUILD_PERF_TESTS=False -D BUILD_TESTS=False -D BUILD_opencv_python_tests=False -D OPENCV_EXTRA_MODULES_PATH=~/linspace/opencv.github/opencv_contrib/modules -D OPENCV_ENABLE_NONFREE=True -D BUILD_opencv_ts=False -D BUILD_JAVA=False -D BUILD_PACKAGE=False -D WITH_GSTREAMER=False -D WITH_LAPACK=False -D WITH_VTK=False ~/linspace/opencv.github/opencv
+cmake ~/linspace/opencv.github/opencv \
+    -D Eigen3_DIR=/usr/local/share/eigen3/cmake \
+    -D BUILD_PERF_TESTS=False \
+    -D BUILD_TESTS=False \
+    -D BUILD_opencv_python_tests=False \
+    -D OPENCV_EXTRA_MODULES_PATH=~/linspace/opencv.github/opencv_contrib/modules \
+    -D OPENCV_ENABLE_NONFREE=True \
+    -D INSTALL_C_EXAMPLES=True \
+    -D BUILD_opencv_ts=False \
+    -D BUILD_JAVA=False \
+    -D BUILD_PACKAGE=False \
+    -D WITH_1394=False \
+    -D WITH_GSTREAMER=False \
+    -D WITH_LAPACK=False \
+    -D WITH_VTK=False \
+    -D BUILD_opencv_world=True
+if [ "$?" != "0" ]; then
+	echo "Cannot cmake" 1>&2
+    popd
+	exit 1
+fi
 
 # cmake 3.13 or later
-
 #cmake -D BUILD_PERF_TESTS=False -D BUILD_TESTS=False -D BUILD_opencv_python_tests=False -D OPENCV_EXTRA_MODULES_PATH=~/linspace/opencv.github/opencv_contrib/modules -D OPENCV_ENABLE_NONFREE=True -D BUILD_opencv_ts=False -D BUILD_JAVA=False -D BUILD_PACKAGE=False -D WITH_GSTREAMER=False -D WITH_LAPACK=False -D WITH_VTK=False -B ~/linspace/opencv.github/opencv.build.linux -S ~/linspace/opencv.github/opencv
 
 make
+if [ "$?" != "0" ]; then
+	echo "Cannot make" 1>&2
+    popd
+	exit 1
+fi
+
 sudo make install
 
 popd
@@ -72,14 +130,6 @@ sudo apt install build-essential -y
 sudo apt install git cmake cmake-gui -y
 ```
 
-Install the libraries that OpenCV requires.
-
-```
-sudo apt install libeigen3-dev -y
-```
-
-If you have additional libraries, install them now.
-
 The `linspace/opencv.github` folder in your home directory is the folder to work with. For Ubuntu, you must build on the EXT4 file system. OpenCV uses `cmake` and` cmake` uses links. If you use a different kind of file system on Ubuntu, `cmake` will not use the link and you will get an error.
 
 ```
@@ -92,7 +142,7 @@ If there is already the same folder, remove it.
 ```
 rm -rf ~/linspace/opencv.github/opencv
 rm -rf ~/linspace/opencv.github/opencv_contrib
-rm -rf ~/linspace/opencv.github/opencv.build.linux
+rm -rf ~/linspace/opencv.github/build.linux
 ```
 
 Push the current directory to return to the original folder after the build.
@@ -104,30 +154,73 @@ pushd
 Download the OpenCV source code from github. This example will build 4.1.2. To use a different version, check [opencv/release](https://github.com/opencv/opencv/releases) on github and change the version.
 
 ```
-git clone --recursive https://github.com/opencv/opencv.git ~/linspace/opencv.github/opencv
-cd ~/linspace/opencv.github/opencv
-git checkout tags/4.1.2
+cd ~/linspace/opencv.github
+git clone --recursive https://github.com/opencv/opencv.git
+if [ "$?" != "0" ]; then
+	echo "Cannot clone opencv" 1>&2
+    popd
+	exit 1
+fi
+cd opencv
+git checkout tags/4.3.0
+if [ "$?" != "0" ]; then
+	echo "Cannot checkout opencv" 1>&2
+    popd
+	exit 1
+fi
 ```
 
 Download the OpenCV contribution from github. This example will also build 4.1.2. To use a different version, check [opencv_contrib/release](https://github.com/opencv/opencv_contrib/releases) on github and change the version.
 
 ```
-git clone --recursive https://github.com/opencv/opencv_contrib.git ~/linspace/opencv.github/opencv_contrib
-cd ~/linspace/opencv.github/opencv_contrib
-git checkout tags/4.1.2
+cd ~/linspace/opencv.github
+git clone --recursive https://github.com/opencv/opencv_contrib.git
+if [ "$?" != "0" ]; then
+	echo "Cannot clone opencv_contrib" 1>&2
+    popd
+	exit 1
+fi
+cd opencv_contrib
+git checkout tags/4.3.0
+if [ "$?" != "0" ]; then
+	echo "Cannot checkout opencv_contrib" 1>&2
+    popd
+	exit 1
+fi
 ```
 
 Create a folder to perform the build and make it the current folder. In this example, the folder name is `opencv.build.linux`, which is a separate folder instead of being created in the source code folder.
 
 ```
-mkdir -p ~/linspace/opencv.github/opencv.build.linux
-cd ~/linspace/opencv.github/opencv.build.linux
+cd ~/linspace/opencv.github
+mkdir -p build.linux
+cd build.linux
 ```
 
 Configure with 'cmake` and generate. Some variables have been changed with the `-D` argument.
 
 ```
-cmake -D BUILD_PERF_TESTS=False -D BUILD_TESTS=False -D BUILD_opencv_python_tests=False -D OPENCV_EXTRA_MODULES_PATH=~/linspace/opencv.github/opencv_contrib/modules -D OPENCV_ENABLE_NONFREE=True -D BUILD_opencv_ts=False -D BUILD_JAVA=False -D BUILD_PACKAGE=False -D WITH_GSTREAMER=False -D WITH_LAPACK=False -D WITH_VTK=False ~/linspace/opencv.github/opencv
+cmake ~/linspace/opencv.github/opencv \
+    -D Eigen3_DIR=/usr/local/share/eigen3/cmake \
+    -D BUILD_PERF_TESTS=False \
+    -D BUILD_TESTS=False \
+    -D BUILD_opencv_python_tests=False \
+    -D OPENCV_EXTRA_MODULES_PATH=~/linspace/opencv.github/opencv_contrib/modules \
+    -D OPENCV_ENABLE_NONFREE=True \
+    -D INSTALL_C_EXAMPLES=True \
+    -D BUILD_opencv_ts=False \
+    -D BUILD_JAVA=False \
+    -D BUILD_PACKAGE=False \
+    -D WITH_1394=False \
+    -D WITH_GSTREAMER=False \
+    -D WITH_LAPACK=False \
+    -D WITH_VTK=False \
+    -D BUILD_opencv_world=True
+if [ "$?" != "0" ]; then
+	echo "Cannot cmake" 1>&2
+    popd
+	exit 1
+fi
 ```
 
 If you are using `cmake 3.13` or later, you can specify the build folder with` -B` and the source folder with `-S`. As of February 2020, Ubuntu's package manager has `3.10`.
@@ -141,6 +234,12 @@ Was it created? Now build and install.
 
 ```
 make
+if [ "$?" != "0" ]; then
+	echo "Cannot make" 1>&2
+    popd
+	exit 1
+fi
+
 sudo make install
 ```
 
