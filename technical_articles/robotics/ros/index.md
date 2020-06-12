@@ -16,6 +16,10 @@ ROS runtime graph란 ROS 통신 기반구조를 사용해 느슨하게 결합된
 
 - [Turtlebot3 소스코드에 대한 이해](understandings_of_turtlebot3/index.md)
 
+## 장치
+
+- [IMU](../imu.md)
+
 ## ros
 
 - [rospack](rospack.md)
