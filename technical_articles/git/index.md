@@ -5,7 +5,9 @@
 ## Tutorials
 
 - [git interactive tutorials](https://learngitbranching.js.org/)
-- [git quick command lookup](quick_command_lookup.md)
+- [git 치트시트](git_cheatsheet.md)
+- [git remote 충돌 해결 연습](practice_git_merge_conflict.md)
+- [git rebase 충돌 해결 연습](practice_git_rebase_conflict.md)
 - 번역: [A successful Git branching model](a_successful_git_branching_model.md)
 
 ## Tips
