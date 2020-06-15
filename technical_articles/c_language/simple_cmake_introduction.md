@@ -4,7 +4,7 @@ CMake는 [Kitware]()에서 개발하고 있으며, [cmake.org](https://cmake.org
 
 ## 단계
 
-CMake를 사용하는 것은 `cmake`에 의해 CMakeLists.txt를 파싱하거나 Makefile을 생성하는 구성(Configure) 단계와, `make`에 의한 빌드 (Build) 단계로 나눠 볼 수 있습니다.
+CMake를 사용하는 것은 `cmake`에 의해 `CMakeLists.txt`를 파싱하거나 `Makefile`들을 생성하는 구성(Configure) 단계와, `make`에 의한 빌드 (Build) 단계로 나눠 볼 수 있습니다.
 
 구성단계는 `CMakeLists.txt`를 파싱하고 실행하여 `Makefile` 이나 `Ninja`, `vsproj`등을 생성하는 단계이며, 이 파일들을 자동으로 구성하는 것이 `cmake`의 기본 목표 입니다. 이 글은  `Makefile`만을 구성하는 과정을 다룹니다.
 
@@ -53,7 +53,7 @@ cmake project_path
 cmake ..
 ```
 
-이글의 주제는 아니지만 참고로 다른 빌드 시스템을 위한 cmake  옵션은 다음과 같습니다.
+이글의 주제는 아니지만 참고로 다른 빌드 시스템을 위한 CMake 옵션은 다음과 같습니다.
 
 Visual Studio
 
@@ -89,7 +89,7 @@ make
 sudo make install
 ```
 
-## 변종 (variant)
+## 변종 (Variant)
 
 기본적으로 4 가지 변종을 지원하며, 필요시 사용자 정의 변종을 정의할 수 있습니다.
 
@@ -106,9 +106,9 @@ CMake는 별도로 지정하지 않는다면 프로젝트 폴더 내에 있는 `
 
 ### 표기법
 
-- cmake 명령과 변수이름은 대소문자를 구분하지 않습니다.
+- `cmake` 명령과 변수이름은 대소문자를 구분하지 않습니다.
 - 내장 상수는 반드시 대문자입니다.
-- 파일이름은 각 운영체제 기준을 따릅니다. Windows는 구분하지 않으며, Unix나 Unix Link 운영체제는 대소문자를 구분합니다.
+- 파일이름은 각 운영체제 기준을 따릅니다. Windows, macos는 구분하지 않으며, Unix나 Unix Like 운영체제는 대소문자를 구분합니다.
 
 이 예제에서는 소문자로 표시한 스크립트는 대문자나 소문자로 작성할 수 있습니다. 대문자로 표시한 스크립트는 반드시 대문자로 작성해야 합니다.
 
@@ -142,7 +142,7 @@ add_library(my_lib STATIC ${source})
 cmake_minimum_required(VERSION 3.10)
 ```
 
-이 cmake 스크립트는 3.10 이상 버전의 cmake를 필요로 합니다.
+위 예제의 스크립트는 3.10 이상 버전의 cmake를 필요로 합니다.
 
 ### 프로젝트 이름: project()
 
@@ -333,13 +333,36 @@ add_library(my_lib STATIC main.cpp data.cpp network.cpp ...)
 add_library(my_lib SHARED main.cpp data.cpp network.cpp ...)
 ```
 
+### 빌드에 필요한 라이브러리 패키지 설치
+
+check_include_file_cxx() 를 사용하여 include 할 header file을 찾아본 후, 없는 경우 라이브러리 설치합니다. find_library()를 사용하여 link할 library file을 검색하고, 없는 경우 라이브러리 설치 합니다. [출처](https://m.blog.naver.com/PostView.nhn?blogId=likeafree&logNo=221475154955&proxyReferer=https:%2F%2Fwww.google.com%2F)
+
+```cmake
+set (CMAKE_REQUIRED_INCLUDES include ../include ../framework)
+include_directories ( ${CMAKE_REQUIRED_INCLUDES} )
+
+include(CheckIncludeFileCXX)
+check_include_file_cxx(glog/logging.h HAVE_H)
+if (NOT HAVE_H)
+	message(STATUS "install libgoogle-glog-dev")
+	execute_process(COMMAND "sudo apt-get install libgoogle-glog-dev")
+endif (NOT HAVE_H)
+
+find_library(HAVE_LIB NAMES jsoncpp PATHS /usr/lib/)
+if (NOT HAVE_LIB)
+	message(STATUS "install libjsoncpp-dev")
+	execute_process( COMMAND "sudo apt-get install libjsoncpp-dev")
+endif (NOT HAVE_LIB)
+
+```
+
 ### 사용자 정의 타겟
 
 ```cmake
 add_custom_target(my_target ...)
 ```
 
-[예) 다음 구문은 ESP8266 프로젝트에서 생성한 바이너리(app.bin)를 Flashing하기 위한 `make flash` 매크로를 정의합니다.](https://www.tuwlab.com/ece/27260)
+예) 다음 구문은 ESP8266 프로젝트에서 생성한 바이너리(app.bin)를 Flashing하기 위한 `make flash` 매크로를 정의합니다. [예제 출처](https://www.tuwlab.com/ece/27260)
 
 ```cmake
 add_custom_target ( flash
@@ -360,7 +383,7 @@ add_dependencies(my_taget your_target his_target ...)
 
 `my_target`은 `your_target`과 `his_target`에 의존하게 됩니다.
 
-[예) 다음 명령은 flash(매크로)가 app.out에 의존적임을 명시합니다. 이렇게 작성하고 'make flash'를  실행하면 app.out이 최신인지 여부를 먼저 검사해서 필요시 app.out을 먼저 빌드하고 flash 매크로를 실행합니다.](https://www.tuwlab.com/ece/27260#)
+예) 다음 명령은 flash(매크로)가 app.out에 의존적임을 명시합니다. 이렇게 작성하고 'make flash'를  실행하면 app.out이 최신인지 여부를 먼저 검사해서 필요시 app.out을 먼저 빌드하고 flash 매크로를 실행합니다. [예제 인용](https://www.tuwlab.com/ece/27260#)
 
 ```cmake
 `ADD_DEPENDENCIES ( flash app.out )`
@@ -555,7 +578,270 @@ install(TARGETS target1 target2
 set(CMAKE_INSTALL_PREFIX /usr/world)
 ```
 
+## 데비안 패키지 생성
 
+CPack를 사용하여 데비안 패키지를 생성할 수 있습니다. [출처](https://m.blog.naver.com/PostView.nhn?blogId=likeafree&logNo=221475154955&proxyReferer=https:%2F%2Fwww.google.com%2F)
+
+```cmake
+set(VERSION "0.0.1")
+set(CPACK_PACKAGE_RELEASE 2)
+set(CPACK_PACKAGE_VERSION ${VERSION})
+set(CPACK_GENERATOR DEB)
+set(CPACK_PACKAGE_NAME "_NAME_")
+set(CPACK_PACKAGE_CONTACT "developer")
+set(CPACK_PACKAGING_INSTALL_PREFIX ${CMAKE_INSTALL_PREFIX})
+set(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION}-${CPACK_PACKAGE_RELEASE}.${CMAKE_SYSTEM_PROCESSOR}")
+set(CPACK_DEBIAN_PACKAGE_CONTROL_EXTRA ${CMAKE_CURRENT_SOURCE_DIR}/postinst)
+
+include(CPack)
+```
+
+이렇게 하고
+
+```sh
+make package
+```
+
+를 하면 데비안 패키지가 만들어 집니다.
+
+### 데비안 패키지에서 postinst
+
+데비안 패키지는 패키지 설치 전/후에 스크립트를 실행할 수 있습니다. 위 예제에서는 `CPACK_DEBIAN_PACKAGE_CONTROL_EXTRA` 명령을 사용하여 설치 후에 postinst 스크립트가 실행될 수 있도록 설정할 수 있습니다.
+
+#### postinst 예제
+
+- 데비안 패키지는 root 권한으로 설치되어 소유자를 user로 변경합니다.
+
+- 실행에 필요한 라이브러리가 설치되어 있는지 확인하고 없는 경우 설치합니다.
+
+```sh
+STR_USERS=$(users)
+USERNAME=${STR_USERS%% *}
+
+if [ "$USERNAME" != "root" ]; then
+    echo $USERNAME
+else
+    homedir=$HOME
+    USERNAME=${homedir##*/}
+    echo $USERNAME
+fi
+
+echo "change owner to $USERNAME"
+sudo chown $(echo $USERNAME|tr -d '\r'):$(echo $USERNAME|tr -d '\r') -R /{install_dir}
+
+CHECKLIB=$(dpkg-query -l | grep libopencv2.4-java | wc -l)
+if [ "$CHECKLIB" = "0" ]; then
+	echo "install libopencv2.4-java"
+	sudo apt-get install libopencv2.4-java
+fi
+```
+
+## CPake으로 특정 형식 패키지 만들기
+
+특정 형식을 사용하여 패키지를 만들려면 사용할 Generator 를 선택할 수 있으며,  CMake와 비슷하게 **-G** 인수를 지정합니다. [인용](https://riptutorial.com/ko/cmake/example/16826/%EC%82%AC%EC%9A%A9%ED%95%A0-cpack-%EC%83%9D%EC%84%B1%EA%B8%B0-%EC%84%A0%ED%83%9D)
+
+```sh
+cpack -G 7Z .
+```
+
+이 명령 줄을 사용하면 7-Zip 아카이브 형식을 사용하여 현재 디렉토리에 빌드 된 프로젝트를 패키지화 합니다. 다음은 CPack 버전 3.5 기본적으로 다음 Generator를 지원합니다.
+
+-  `7Z` 7-Zip 파일 형식 (아카이브) 
+-  `IFW` Qt Installer 프레임 워크 (실행 파일) 
+-  `NSIS` 널 소프트 설치 프로그램 (실행 가능) 
+-  `NSIS64` 널 소프트 설치 프로그램 (64 비트, 실행 가능) 
+-  `STGZ` Tar GZip 자동 압축 풀기 (압축 파일) 
+-  `TBZ2` Tar BZip2 압축 (아카이브) 
+-  `TGZ` Tar GZip 압축 (아카이브) 
+-  `TXZ` Tar XZ 압축 (아카이브) 
+-  `TZ` Tar 압축 압축 (아카이브) 
+-  WiX 도구 (실행 가능한 아카이브)를 통한 `WIX` MSI 파일 형식 
+-  `ZIP` ZIP 파일 형식 (아카이브) 
+
+명시적인 Generator가 제공되지 않으면 CPack은 실제 환경에 따라 최적의 사용 가능한 전원을 결정하려고 합니다. 예를 들어,  Windows에서 자동 압축 풀기 실행 파일을 만드는 것이 좋으며 적절한 툴셋이 없는 경우 ZIP 압축 파일만 만들면 됩니다.
+
+## CTest
+
+[참조: freehuni's home](http://freehuni.blogspot.com/2017/12/ctest.html)
+
+CTest는 cmake로 구상한 빌드환경에 빌드 및 테스트를 수행하고 그 결과를 dashboard에 게재할 수 있도록 도와줍니다.
+
+### CTest 예제
+
+일반적으로 CMake 프로젝트의 폴더들은
+
+- `lib` 폴더
+- `src` 폴더
+- `test` 폴더
+
+로 구성 됩니다.
+
+```cmake
+cmake_minimum_required(VERSION 2.8)
+project(hello_ctest)
+
+add_subdirectory(lib)
+add_subdirectory(src)
+add_subdirectory(test)
+
+include (CTest) # CTest 모듈을 포함합니다.
+add_test(test1 test/test_hello1) # 테스트를 수행할 실행파일을 지정합니다.
+add_test(test2 test/test_hello2) # 테스트를 수행할 실행파일을 지정합니다.
+add_test(test3 test/test_hello3) # 테스트를 수행할 실행파일을 지정합니다.
+```
+
+### `lib` 폴더
+
+`lib` 폴더의 `CMakeLists.txt`입니다.
+
+```cmake
+cmake_minimum_required(VERSION 2.8)
+project(utility)
+
+add_library(utility SHARED utility.cpp)
+```
+
+`lib` 폴더의 `utility.cpp`는 아래와 같습니다.
+
+```c++
+#include "utility.h"
+
+int g_value = 0;
+
+void setValue(int value)
+{
+	g_value = value;
+}
+
+int getValue(void)
+{
+	return g_value;
+}
+```
+
+### `src` 폴더
+
+`src` 폴더의 `CMakeLists.txt` 파일은 아래와 같습니다.
+
+```cmake
+cmake_minimum_required(VERSION 2.8)
+project(hello_application)
+
+include_directories(../lib)
+add_executable(hello main.cpp)
+
+add_dependencies(hello utility)
+target_link_libraries(hello utility)
+```
+
+`src` 폴더의 `main.cpp` 파일은 아래와 같습니다.
+
+```c++
+#include <stdio.h>
+#include "utility.h"
+
+int main(int argc, char* argv[])
+{
+	printf("previous: %d\n", getValue());
+	setValue(1000);
+	printf("after   : %d\n", getValue());
+	return 0;
+}
+
+```
+
+### `test` 폴더
+
+`test` 폴더의 `CMakeLists.txt` 파일은 아래와 같습니다.
+
+```cmake
+cmake_minimum_required(VERSION 2.8)
+project(unit_test)
+
+include_directories(../lib)
+
+add_executable(test_hello1 test1.cpp)
+add_dependencies(test_hello1 utility)
+target_link_libraries(test_hello1 utility)
+
+add_executable(test_hello2 test2.cpp)
+add_dependencies(test_hello2 utility)
+target_link_libraries(test_hello2 utility)
+
+add_executable(test_hello3 test3.cpp)
+add_dependencies(test_hello3 utility)
+target_link_libraries(test_hello3 utility)
+```
+
+`test` 폴더의 `test1.cpp`, `test2.cpp`, `test3.cpp`파일은 아래와 같습니다.
+
+```c++
+#include <stdio.h>
+#include "utility.h"
+
+int main(int argc, char* argv[])
+{
+	setValue(1000);
+	printf("%s evaluate value: %d\n", __FILE__, getValue());
+	return 0;
+}
+```
+
+### 테스트
+
+```sh
+mkdir -p build # 빌드 폴더 만들기
+cd build
+cmake .. # 구성
+make -j4 # 컴파일 및 링크
+ctest # 테스트
+```
+
+`ctest` 결과는 아래와 같습니다.
+
+```
+Test project /ctest
+    Start 1: test1
+100% tests passed, 0 tests failed out of 1
+Total Test time (real) =   0.01 sec
+```
+
+## CDash
+
+CTest는 빌드 및 테스트 결과를 dashboard에 report 합니다. [my.cdash.org](https://my.cdash.org)를 사용하여 dashboard를 CTest 결과를 Web으로 조회할 수 있습니다.
+
+CDash를 사용하려면 최상위 폴더에 `CTestConfig.cmake` 파일을 추가합니다.
+
+```cmake
+set(CTEST_PROJECT_NAME "hello ctest")
+set(CTEST_NIGHTLY_START_TIME "01:00:00 UTC")
+set(CTEST_DROP_METHOD "http")
+set(CTEST_DROP_SITE "my.cdash.org")
+set(CTEST_DROP_LOCATION "/submit.php?project=hello+ctest")
+set(CTEST_DROP_SITE_CDASH TRUE)
+```
+
+여기서 `CTEST_DROP_METHOD`에는 다음 옵션들이 있습니다.
+
+- cp
+- ftp
+- http
+- https
+- scp
+- xmlrpc
+
+그리고 
+
+```sh
+rm -rf build
+mkdir build
+cd build
+cmake ..
+# 여기서 make를 하지 않습니다!
+ctest -D Experimental # 이렇게 하면 make까지 수행 되며, 미리 make를 하면 보고가 되지 않을 수 있습니다.
+```
+
+이제 `Build.xml`, `Configuration.xml`, `Test.xml`이 대시보드 사이트로 전송됩니다.
 
 ## 참조
 
@@ -564,3 +850,5 @@ set(CMAKE_INSTALL_PREFIX /usr/world)
 - [CGold: The Hitchhiker’s Guide to the CMake](https://cgold.readthedocs.io/en/latest/)
 - [CMake and Visual Studio](https://cognitivewaves.wordpress.com/cmake-and-visual-studio/)
 - [CMake 튜토리얼](https://www.tuwlab.com/27234)
+- [CMake 사용법](https://m.blog.naver.com/PostView.nhn?blogId=likeafree&logNo=221475154955&proxyReferer=https:%2F%2Fwww.google.com%2F)
+- [CTest](http://freehuni.blogspot.com/2017/12/ctest.html)

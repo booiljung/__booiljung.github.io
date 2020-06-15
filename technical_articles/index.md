@@ -106,8 +106,6 @@
 - [임베디드](embedded/index.md)
 - [전자공학](electronics/index.md)
 - [Robotics](./robotics/index.md)
-- [Autopilot](autopilot/index.md)
-- [Dron](dron/index.md)
 
 ### 운영체제
 
