@@ -142,9 +142,9 @@ crontab -e
 ## 참조
 
 - [Redmine + Git Remote 연동](https://jistol.github.io/its/2018/01/23/redmine-git/)
-
 - [git clone 의 두가지 옵션 --bare / --mirror 의 차이점](https://pinocc.tistory.com/138)
 - [7.14 Git 도구 - Credential 저장소](https://git-scm.com/book/ko/v2/Git-%EB%8F%84%EA%B5%AC-Credential-%EC%A0%80%EC%9E%A5%EC%86%8C)
+- [crontab 사용법](https://jdm.kr/blog/2)
 
 
 
