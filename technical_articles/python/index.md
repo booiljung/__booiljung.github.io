@@ -2,6 +2,8 @@
 
 # Python (파이썬)
 
+- [Zen of Python](./zen_of_python.md)
+
 ## Packages
 
 - [파이썬 모듈과 패키지](./module_and_package.md)
