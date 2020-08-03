@@ -8,6 +8,7 @@
 - [git 치트시트](git_cheatsheet.md)
 - [git remote 충돌 해결 연습](practice_git_merge_conflict.md)
 - [git rebase 충돌 해결 연습](practice_git_rebase_conflict.md)
+- [Mirroring](mirroring.md)
 - 번역: [A successful Git branching model](a_successful_git_branching_model.md)
 
 ## Tips
