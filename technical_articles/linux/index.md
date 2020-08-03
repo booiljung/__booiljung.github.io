@@ -14,6 +14,7 @@
 ## Driver
 
 - [Ubuntu에 nvidia 드라이버 설치하기](installation_of_nvidia_on_ubuntu.md)
+- [Ubuntu에 Radeon 드라이버 설치하기](installation_of_radeon_on_ubuntu.md)
 - [Ubuntu에 cuda 툴킷 설치하기](installation_of_cuda_toolkit_on_ubuntu.md)
 
 ## VirtualBox
