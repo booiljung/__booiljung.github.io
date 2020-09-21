@@ -77,7 +77,6 @@
 - [Movies](movies/index.md)
 - [Study notes](study_notes/index.md)
 - [Book reviews](book_reviews/index.md)
-- [Paper revies](./reviews/index.md)
 - [Open source projects](./opensource_projects/index.md)
 - [Unity C# Script Book](technical_articles/unity_csharp_script_book/index.md)
 - [Dev Portal](dev_portal/index.md)
