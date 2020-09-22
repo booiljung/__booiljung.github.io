@@ -28,17 +28,32 @@
   - embedding learning
   - generative modeling
 
-## Notation
+## 1.2 Notation
 
-Task: $T$
+- Task: $T$
 
-Dataset: $D = \{ D_{train}, D_{test}\}$
+- 데이터셋: $D = \{ D_\text{train}, D_\text{test}\}$
 
-Training set: $D_{train} = \{ (x_i, y_i )\}_{i=1}^I$
+- 훈련셋: $D_\text{train} = \{ (x_i, y_i )\}_{i=1}^I$
 
-where $I$ is small
+- 시험셋: $D_\text{test} = \{ x^\text{test}\}_{i=1}^I$
 
+- Ground-truth 결합확률분포: $p(x, y)$
 
+- $x$에서 $y$를 구하는 가설: $\hat h$
+
+- $h(\cdot;\theta)$에 대한 가설 공간: $\mathcal H$
+  - $h$의 모든 매개변수: $\theta$
+
+- FSL 알고리즘은 $\theta$를 발견하여 $\mathcal H$를 찾기 위한 최적화 전략.
+
+- 최선의 매개변수화: $h^\ast \in \mathcal H$
+
+- 성능 측정을 위한 손실함수: $\mathcal l(\hat y, y)$
+
+  - $\hat y = h(x;\theta)$
+
+  
 
 
 
