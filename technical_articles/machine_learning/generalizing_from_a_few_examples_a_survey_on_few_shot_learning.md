@@ -17,7 +17,28 @@
 - 하드웨어 발전 (GPU, 분산 컴퓨팅)
 - 모델의 발전
 - 인간 챔피온을 이긴 모델들
-- 기존 딥러닝 모델의 단점
+- 현 딥러닝 모델의 단점
+- Few-Shot Learning (FSL) 소개
+  - one-shot imitation
+  - multi-armed bandits
+  - visual navigation
+  - continuous control
+- 학계에서 주목
+  -  meta-learning
+  - embedding learning
+  - generative modeling
+
+## Notation
+
+Task: $T$
+
+Dataset: $D = \{ D_{train}, D_{test}\}$
+
+Training set: $D_{train} = \{ (x_i, y_i )\}_{i=1}^I$
+
+where $I$ is small
+
+
 
 
 
