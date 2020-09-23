@@ -19,16 +19,16 @@
 - 인간 챔피온을 이긴 모델들
 - 현 딥러닝 모델의 단점
 - Few-Shot Learning (FSL) 소개
-  - one-shot imitation
-  - multi-armed bandits
-  - visual navigation
-  - continuous control
+  - one-shot imitation [147]
+  - multi-armed bandits [33]
+  - visual navigation [37]
+  - continuous control [156]
 - 학계에서 주목
-  -  meta-learning
-  - embedding learning
-  - generative modeling
+  -  meta-learning [37, 106, 114]
+  - embedding learning [14, 126, 138]
+  - generative modeling [34, 35, 113]
 
-## 1.2 Notation
+## 1.2 표기
 
 - Task: $T$
 
@@ -53,7 +53,46 @@
 
   - $\hat y = h(x;\theta)$
 
-  
+
+## 2.1 문제정의
+
+> Definition 2.1 (Machine Learning [92, 94] ). A computer program is said to learn from experience $E$ with respect to some classes of task $T$ and performance measure $P$ if its performance can improvewith $E$ on $T$ measured by $P$.
+
+$E$: 경험 (experience) - 데이터
+
+$T$: 작업 (task)
+
+$P$: 성능 측정 (performance measure)
+
+성능  $P$는 $T$에 기반한 $E$에 의해 향상되고 $P$에 의해 측정
+
+> Definition 2.2.
+>
+> Few-Shot Learning(FSL) is a type of machine learning problems (specified by $E$, $T$ and $P$), where $E$ contains only a limited number of examples with supervised information for the target $T$.
+
+### FSL 예
+
+- 영상 분류 [138]
+- 단문 의미 분류 [157]
+- 객체인식 [35]
+
+### Few-shot classification
+
+$h$: 분류기
+
+각 입력 $x_i$에 대해 라벨 $y_i$를 예측
+
+### N-way-K-shot classification [37, 138]
+
+$D_\text{train}$ 은 $I = K N$을 포함.
+
+$N$: 클래스
+
+$K$: examples
+
+### Few-shot regression [37, 156]
+
+
 
 
 
