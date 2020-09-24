@@ -1,4 +1,4 @@
-# 리뷰
+# 리뷰: A Survey on Few-ShotLearning
 
 [Generalizing from a Few Examples: A Survey on Few-ShotLearning](https://arxiv.org/abs/1904.05046)
 
@@ -82,7 +82,7 @@ $h$: 분류기
 
 각 입력 $x_i$에 대해 라벨 $y_i$를 예측
 
-### N-way-K-shot classification [37, 138]
+#### N-way-K-shot classification [37, 138]
 
 $D_\text{train}$ 은 $I = K N$을 포함.
 
@@ -90,9 +90,115 @@ $N$: 클래스
 
 $K$: examples
 
+$I$: 샘플 수
+
 ### Few-shot regression [37, 156]
 
+$h$: 회귀 추정 함수
 
+$y_i$ observed value of the dependent variable $y$
+
+$x_i$: observed value of independent variable $x$
+
+### Few-short reinforcement learning [3, 33]
+
+ finding a policy given only a few trajectories consisting of state-action pairs
+
+### 3 typical scenarios of FSL
+
+- Acting as a test bed for learning like human
+- Learning for rare cases
+- Reducing data gathering effort and computational cost
+
+experience $E$: prior knowledge
+
+One typical type of FSL methods: Bayesianlearning [35,76]
+
+​	- It combines the provided training set $D_\text{train}$with some prior probability distribution which is available before $D_\text{train}$ is given.
+
+One-shot learning: one example with supervised information in $E$, FSL called One-shot learning [14, 35, 138]
+
+Zero-shot learningproblem (ZSL): $E$ does not contain any example with supervised information for the target $T$, FSL becomes azero-shot learningproblem.
+
+## 2.2  Relevant Learning Problems
+
+Weakly supervised learning [163] : learns from experience $E$ containing only weak supervision (such as incomplete, inexact, inaccurate or noisy supervised information)
+
+- Semi-supervised learning [165]: learns from a small number of labeled samples and (usually a large number of) unlabeled samples in $E$. Example applications are text and webpage classification
+  - Positive-unlabeled learning [81]: a special case of semi-supervisedlearning, in which only positive and unlabeled samples are given. 
+    - example, to recommend friends in social networks, we only know the users’ current friends according to the friend list, while their relationships to other people are unknown
+
+- Active learning [117]: Elects informative unlabeled data to query an oracle for output $y$. This is usually used for applications where annotation labels are costly, such aspedestrian detection.
+
+Weakly supervised learning with incomplete supervision: only a smallamount of samples have supervised information
+
+- includes only classification and regression
+  - while FSL also includes reinforcement learning problems
+- mainly uses unlabeled data as additional information in $E$
+
+Imbalanced learning [54]: learns from experienceEwith a skewed distribution for $y$
+
+- some values of $y$ are rarely taken
+- as in fraud detection and catastropheanticipation applications
+- trains and tests to choose among all possible $y$
+- FSL trains and tests forywith a few examples, while possibly taking the other $y$’s as prior knowledge for learning
+
+Transfer learning [101]: 
+
+- transfers knowledge from the source domain/task, where training data is abundant, to the target domain/task
+- used inapplications such as cross-domain recommendation
+- Domain adaptation [11]: the source/target tasks are the same but the source/target domains are different
+  -  For example, in sentiment analysis, the source domain data contains customer comments on movies, while the target domain data contains customer comments on daily goods
+- Transfer learning methodsare popularly used in FSL [7,82,85]
+  - prior knowledge is transferred from thesource task to the few-shot task
+
+Meta-learning [59]: improves $P$ of the new task $T$ by the provided data set and the meta-knowledge extracted across tasks by a **meta-learner**
+
+-  meta-learner gradually learns generic information (meta-knowledge) across tasks, and the learner generalizes the meta-learner for a new task $T$ using task-specific information
+-  learning optimizers [5,80]
+-  dealing with the cold-start problemin collaborative filtering [137]
+-   guiding policies by natural language [25]
+-  meta-learner is taken as prior knowledge to guide each specific FSL task
+- formal definition, using --> Appendix A 참조 TODO
+
+## Core Issue
+
+the core issue of FSL based on error decomposition in supervised machine learning [17,18]
+
+FSL supervised learning includingclassification and regression
+
+provide insights for understanding FSL reinforcement learning
+
+### Empirical Risk Minimization
+
+$$
+R(h) = \int \mathcal l (h(x), \mathbb d p(x, y)
+\\
+= \mathbb E \left [ \mathcal l (h(x), y) \right ]
+$$
+
+
+
+where:
+
+$\mathcal l$: 성능측정을 위한 손실 함수
+
+$h$: hypothesis
+
+$R$: we want to minimize its expected **risk**
+
+$p(x, y)$: 찾고자 하는 함수
+
+empirical risk
+
+$$
+R_I (h) = \frac{1}{I} \sum _{i=1}^I \mathcal l(h(x_i), y_i)
+$$
+sed as a proxy forR(h), leading toempirical risk minimization[94,136] (with possiblysome regularizers)
+
+$I$: 샘플 수
+
+sed as a proxy forR(h), leading to **empirical risk minimization** [94,136] (with possibly some regularizers)
 
 
 
