@@ -78,27 +78,27 @@ $P$: 성능 측정 (performance measure)
 
 ### Few-shot classification
 
-$h$: 분류기
+- $h$: 분류기 (classfier)
 
 각 입력 $x_i$에 대해 라벨 $y_i$를 예측
 
 #### N-way-K-shot classification [37, 138]
 
-$D_\text{train}$ 은 $I = K N$을 포함.
+- $D_\text{train}$ 은 $I = K N$을 포함.
 
-$N$: 클래스
+- $N$: 클래스
 
-$K$: examples
+- $K$: examples
 
-$I$: 샘플 수
+- $I$: 샘플 수
 
 ### Few-shot regression [37, 156]
 
-$h$: 회귀 추정 함수
+- $h$: 회귀 추정 함수
 
-$y_i$ observed value of the dependent variable $y$
+- $y_i$ observed value of the dependent variable $y$
 
-$x_i$: observed value of independent variable $x$
+- $x_i$: observed value of independent variable $x$
 
 ### Few-short reinforcement learning [3, 33]
 
@@ -114,7 +114,7 @@ experience $E$: prior knowledge
 
 One typical type of FSL methods: Bayesianlearning [35,76]
 
-​	- It combines the provided training set $D_\text{train}$with some prior probability distribution which is available before $D_\text{train}$ is given.
+- It combines the provided training set $D_\text{train}$with some prior probability distribution which is available before $D_\text{train}$ is given.
 
 One-shot learning: one example with supervised information in $E$, FSL called One-shot learning [14, 35, 138]
 
@@ -155,7 +155,7 @@ Transfer learning [101]:
 Meta-learning [59]: improves $P$ of the new task $T$ by the provided data set and the meta-knowledge extracted across tasks by a **meta-learner**
 
 -  meta-learner gradually learns generic information (meta-knowledge) across tasks, and the learner generalizes the meta-learner for a new task $T$ using task-specific information
--  learning optimizers [5,80]
+-  learning optimizers [5, 80]
 -  dealing with the cold-start problemin collaborative filtering [137]
 -   guiding policies by natural language [25]
 -  meta-learner is taken as prior knowledge to guide each specific FSL task
@@ -169,7 +169,7 @@ FSL supervised learning includingclassification and regression
 
 provide insights for understanding FSL reinforcement learning
 
-### Empirical Risk Minimization
+### Empirical Risk Minimization [94, 136]
 
 $$
 R(h) = \int \mathcal l (h(x), \mathbb d p(x, y)
@@ -181,13 +181,13 @@ $$
 
 where:
 
-$\mathcal l$: 성능측정을 위한 손실 함수
+- $\mathcal l$: 성능측정을 위한 손실 함수
 
-$h$: hypothesis
+- $h$: 가설 (hypothesis)
 
-$R$: we want to minimize its expected **risk**
+- $R$: we want to minimize its expected **risk**
 
-$p(x, y)$: 찾고자 하는 함수
+- $p(x, y)$: 찾고자 하는 함수
 
 empirical risk
 
@@ -196,9 +196,62 @@ R_I (h) = \frac{1}{I} \sum _{i=1}^I \mathcal l(h(x_i), y_i)
 $$
 sed as a proxy forR(h), leading toempirical risk minimization[94,136] (with possiblysome regularizers)
 
-$I$: 샘플 수
+- $I$: 샘플 수
 
 sed as a proxy forR(h), leading to **empirical risk minimization** [94,136] (with possibly some regularizers)
 
+- $\hat h = \arg \min _h R(h)$: minimizes the **expected** risk
+
+- $h^\ast = \arg \min _{h \in \mathcal H} R(h)$: minimizes the **expected** risk
+
+- $h_I = \arg \min _{h \in \mathcal H} R_I(h)$: minimizes the **empirical** risk
+
+Total error [17, 18]: $\mathbb E$
+$$
+\mathbb E[R(h_I) - R(\hat  h)]
+= \mathbb E[R(h^\ast) - R(\hat  h)]
++ \mathbb E[R(h_I) - R(h^\ast)]
+$$
+- $\mathbb E[R(h^\ast) - R(\hat  h)]$: $\mathcal E _\text{app}(\mathcal H)$
+
+- $\mathbb E[R(h_I) - R(h^\ast)]$: $\mathcal E _\text{est}(\mathcal H, I)$
 
 
+
+
+
+
+
+
+
+
+
+
+
+나중에...
+
+  - one-shot imitation [147]
+  - multi-armed bandits [33]
+  - visual navigation [37]
+  - continuous control [156]
+- meta-learning [37, 106, 114]
+- Meta-learning [59]
+-  embedding learning [14, 126, 138]
+-  영상 분류 [138]
+- 단문 의미 분류 [157]
+- 객체인식 [35]
+- N-way-K-shot classification [37, 138]
+- Few-shot regression [37, 156]
+- Few-short reinforcement learning [3, 33]
+- One typical type of FSL methods: Bayesianlearning [35, 76]
+- One-shot learning [14, 35, 138]
+- generative modeling [34, 35, 113]
+- Weakly supervised learning [163]
+- Positive-unlabeled learning [81]
+- Active learning [117]
+- Imbalanced learning [54]
+- Transfer learning [101]
+- Transfer learning methods are popularly used in FSL [7,82,85]
+- Semi-supervised learning [165]
+- learning optimizers [5, 80]
+- Empirical Risk Minimization [94, 136]
