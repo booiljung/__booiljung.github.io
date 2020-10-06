@@ -25,7 +25,7 @@ In this work we build on ORB-SLAM [2], [3] and ORB-SLAM Visual-Inertial [4], the
 
 All these novelties, together with a few code improvements make ORB-SLAM3 the new reference visual and visual-inertial open-source SLAM library, being as robust as the best systems available in the literature, and significantly more accurate, as shown by our experimental results in section VII. We also provide comparisons between monocular, stereo,monocular-inertial and stereo-inertial SLAM results that can be of interest for practitioners.
 
-## 2. RELATEDWORK
+## 2. RELATED WORK
 
 Table I presents a summary of the most representative visual and visual-inertial systems, showing the main techniques used for estimation and data association. The qualitative accuracy and robustness ratings included in the table are based, for modern systems, on the comparisons reported in section VII, and for classical systems, on previous comparisons in the literature [2], [52].
 
@@ -150,13 +150,20 @@ where $\Pi : \R^3 \rightarrow \R^n$ is the projection function for the correspon
 
 Figure 2: Factor graph representation for different optimizations along the system
 
+Combining inertial and visual residual terms, visual-inertial SLAM can be posed as a keyframe-based minimization problem [39].  Given a set of $ k + 1 $ keyframes  and  its  state $\bar{\mathcal{S}}_k \doteq \{ \mathcal S_0 \dots \mathcal S_k \}$,  and  a  set  of $l$ 3D  points  and  its  state $\mathcal X \doteq {\mathbf x_0 \dots \mathbf x_{l−1}}$,  the  visual-inertial  optimization  problem can be stated as:
 
+![image-20201005124807140](understanding_of_orb_slam3.assets/image-20201005124807140.png)
 
+where $\mathcal K_j$ is  the  set  of  keyframes  observing  3D  point $j$. This optimization may be outlined as the factor-graph shown in  figure  2a.  Note  that  for  reprojection  error  we  use  a  robust  Huber  kernel $\rho$ Hub to  reduce  the  influence  of  spurious matchings,  while  for  inertial  residuals  it  is  not  needed,  since miss-associations  do  not  exist.  This  optimization  needs  to be  adapted  for  efficiency  during  tracking  and  mapping,  but more importantly, it requires good initial seeds to converge to accurate solutions.
 
+### B.  IMU Initialization
 
+The  goal  of  this  step  is  to  obtain  good  initial  values  for the  inertial  variables:  body  velocities,  gravity  direction,  and IMU biases. Some systems like VI-DSO [46] try to solve from scratch visual-inertial BA, sidestepping a specific initialization process, obtaining slow convergence for inertial parameters (up to 30 seconds). In  this  work  we  propose  a  fast  and  accurate  initialization method based on three key insights: 
 
-
-
+- Pure monocular SLAM can provide very accurate initial maps [2], whose main problem is that scale is unknown. Solving  first  the  vision-only  problem  will  enhance  IMU initialization.
+- As shown in [77], scale converges much faster when it is explicitly represented as an optimization variable, instead of using the implicit representation of BA.
+- Ignoring  sensor  uncertainties  during  IMU  initialization produces large unpredictable errors [65]. So,  taking  properly  into  account  sensor  uncertainties,  we state  the  IMU  initialization  as  a  MAP  estimation  problem,split in three steps:
+  - 1) **Vision-only    MAP    Estimation**:   We   initialize   pure monocular  SLAM  [2]  and  run  it  during  2  seconds, inserting keyframes at 4Hz. After this period, we have an up-to-scale map composed of $k = 10$ camera poses and hundreds of points, that is optimized using Visual-Only BA  (figure  2b).  These  poses  are  transformed  to  body reference,  obtaining  the  trajectory $\bar{\mathbf T}_{0:k} = [\mathbf R,\bar{\mathbf p}]_{0:k}$where the bar denotes up-to-scale variables.
 
 
 
