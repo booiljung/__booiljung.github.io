@@ -120,6 +120,12 @@ pyenv virtualenv 3.6.1 ml
 pyenv activate <virtual_env_name>
 ```
 
+생성된 가상환경 목록 보기
+
+```sh
+ pyenv versions
+```
+
 예를 들어 새로 만들어진 `ml` 이라는 가상환경을 사용하겠습니다.
 
 ```sh
