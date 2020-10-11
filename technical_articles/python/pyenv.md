@@ -5,6 +5,10 @@
 
 하나의 운영체제에서 다양한 파이썬 인터프리터와 패키지 버전을 사용하기 위해 pyenv를 사용합니다.
 
+## 환경변수 설정 위치
+
+GUI 도구에서도 사용하게 하려면 `~/.profile`파일에 설정하고, 터미널에서 실행하게 하려면 `~/.bashrc`에 설정합니다.
+
 ## 설치
 
 git 설치되어 있지 않다면 git을 먼저 설치 하고, github에서 Pyenv를 `~/.pyenv`에 클론합니다.
@@ -13,30 +17,30 @@ git 설치되어 있지 않다면 git을 먼저 설치 하고, github에서 Pyen
 sudo apt update
 sudo apt upgrade -y
 sudo apt install git -y
-git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+git clone https://github.com/pyenv/pyenv.git ~/.profile
 ```
 
 환경 변수들을 설정합니다.
 
 ```sh
-echo '' >> ~/.bashrc
-echo '# pyenv' >> ~/.bashrc
-echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
-echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
+echo '' >> ~/.profile
+echo '# pyenv' >> ~/.profile
+echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.profile
+echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.profile
 ```
 
 `pyenv init` 를 추가 합니다.
 
 ```sh
-echo '' >> ~/.bashrc
-echo '# pyenv' >> ~/.bashrc
-echo 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.bashrc
+echo '' >> ~/.profile
+echo '# pyenv' >> ~/.profile
+echo 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.profile
 ```
 
 `.bashrc`에 변경된 환경변수들을 업데이트 합니다.
 
 ```sh
-source ~/.bashrc
+source ~/.profile
 ```
 
 ## 파이썬 인터프리터/컴파일러 설치/제거
@@ -86,7 +90,7 @@ pyenv를 자체를 제거하려면 폴더를 삭제합니다. `~/.bashrc`에 추
 rm -rf $(pyenv root)
 ```
 
-## 파이썬 가상환경
+## 파이썬 가상환경: virtualenv
 
 먼저 github에서 `virualenv` 플러그인을 클론하여 설치 합니다.
 
@@ -97,9 +101,9 @@ git clone https://github.com/pyenv/pyenv-virtualenv.git $PYENV_ROOT/plugins/pyen
 환경을 구성합니다.
 
 ```sh
-echo '' >> ~/.bashrc
-echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.bashrc
-source ~/.bashrc
+echo '' >> ~/.profile
+echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.profile
+source ~/.profile
 ```
 
 새 파이썬 가상환경 생성은 `virtualenv`를 사용합니다.
@@ -157,6 +161,40 @@ pyenv uninstall <virtual_env_name>
 
 ```sh
 pyenv uninstall ml
+```
+
+## 폴더에 따른 가상환경: autoenv
+
+특정 폴더에서 특정 가상환경이 활성화 되도록 합니다.
+
+Autoenv를 클론하고 제공되는 스크립트가 환경변수를 설정하게 합니다.
+
+```sh
+git clone https://github.com/kennethreitz/autoenv.git ~/.autoenv
+'source ~/.autoenv/activate.sh' >> ~/.profile
+source ~/.profile
+```
+
+적용하고자 하는 특정 폴더에서 `.env`파일을 생성합니다.
+
+```sh
+touch .env
+echo "pyenv activate <virtual_env_name>" > .env
+```
+
+해당 폴더로 이동하면 활성화를 묻습니다.
+
+```
+autoenv:
+autoenv: WARNING:
+autoenv: This is the first time you are about to source <directory_name>/.env:
+autoenv:
+autoenv:   --- (begin contents) ---------------------------------------
+autoenv:     pyenv activate <virtual_env_name>$
+autoenv:
+autoenv:   --- (end contents) -----------------------------------------
+autoenv:
+autoenv: Are you sure you want to allow this? (y/N) y
 ```
 
 ## 참조
