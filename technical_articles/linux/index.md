@@ -33,6 +33,7 @@
 - [Ubuntu 18.04 LTS에서 GUI와 CLI를 전환](switch_gui_and_cli.md)
 - [Ubuntu 18.04에서 FFMPEG 설치](./ffmpeg.md)
 - [Ubuntu 18.04에서 RabbitMQ 서버 설치 및 관리](./ubuntu_rabbitmq.md)
+- [우분투에 원격 데스크탑 설치](./ubuntu_remote_desktop.md)
 
 ## 기타
 
