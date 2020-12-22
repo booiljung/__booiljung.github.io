@@ -170,23 +170,23 @@ git merge <branch2>
 | ---- | ---- |
 | `git push <remote> <branch>` | 브랜치를 리모트에 브랜치에 전송 |
 | `git push -u <remote> <local branch>` | 브랜치를 리모트에 브랜치에 전송 |
-| `git push -u <remote> <local branch>:<remote branch>` | 로컬 브랜치를 원격 브랜치 이름으로 전송. 로컬과 원격 브랜치 이름을 다르게 함.<br>브랜치 이름이 겹칠때. |
+| `git push -u <remote> <local branch>:<remote branch>` | 로컬 브랜치를 원격 브랜치 이름으로 전송.<br>로컬과 원격 브랜치 이름을 다르게 함.<br>브랜치 이름이 겹칠때. |
 | `git push <remote> --delete <branch>` | 원격 브랜치 삭제 |
 | `git push <remote> <local branch>:<remote branch>` | 로컬 저장소의 브랜치를 원격 브랜치에 전송 |
 | `git checkout -b <remote>/<branch>` | 지정한 원격 브랜치로 이동 |
 | `git checkout -b <local branch> <remote>/<branch>` | 지정한 원격 브랜치를 새 이름으로 로컬 브랜치로 가져와서 이동 |
 | `git checkout -t <remote>/<branch>` | 지정한 원격 브랜치 가져와서 추적 |
-| git checkout --track <remote>/<branch> | 지정한 원격 브랜치 가져와서 추적 |
+| `git checkout --track <remote>/<branch>` | 지정한 원격 브랜치 가져와서 추적 |
 | `git checkout <remote>/<branch>` | 추적하지 않고 브랜치를 가져온다. 수정사항 전송 되지 않음. |
 
 ## 원격 저장소 가져오기
 
 | 명령 | 설명 |
 | ---- | ---- |
-| `git pull` | `fetch + merge` 와 동일 |
-| `git pull <remote>` | `fetch + merge` 와 동일 |
 | `git fetch` | 리모트에서 변경사항 가져오기 |
 | `git fetch <remote>` | 원격 저장소에서 커밋들을 작업에 합치지 않고 로컬로 가져 오기 |
+| `git pull` | `fetch + merge` 와 동일 |
+| `git pull <remote>` | `fetch + merge` 와 동일 |
 
 ## 스태시 (임시 저장)
 
@@ -223,8 +223,8 @@ git merge <branch2>
 
 | 명령 | 설명 |
 | ---- | ---- |
-| `git reset --soft HEAD~` | add 로 스테이지 상태를 그대로 두고 되돌림. HEAD의 위치만 이동. |
-| `git reset --mixed HEAD~` | 스테이지 상태를 unstage 하여 되돌림. 추가로 add를 해야 커밋 가능. |
+| `git reset --soft HEAD~` | add 로 스테이지 상태를 그대로 두고 되돌림.<br>HEAD의 위치만 이동. |
+| `git reset --mixed HEAD~` | 스테이지 상태를 unstage 하여 되돌림.<br>추가로 add를 해야 커밋 가능. |
 | `git reset --mixed HEAD~ <file>` | 파일에 대해서만 |
 | `git reset HEAD~` | --mixed와 동일 |
 | `git reset HEAD~ <fil>` | 파일에 대해서만 --mixed와 동일 |
@@ -269,8 +269,8 @@ git merge <branch2>
 
 | 명령 | 설명 |
 | ---- | ---- |
-| `git submodule add <remote url> <folder> | |
-| `git add .gitmodules | |
+| `git submodule add <remote url> <folder>` | |
+| `git add .gitmodules` | |
 
 ## 병합
 
