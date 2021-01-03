@@ -4,6 +4,7 @@
 
 - [음성처리 (Audio Processing)](audio_processing/index.md)
 - [딥러닝 (Deep Learning)](deep_learning/index.md)
+- [퓨샷러닝](fewshot_learning/index.md)
 
 ## 테크니컬
 
