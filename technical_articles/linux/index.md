@@ -34,6 +34,8 @@
 - [Ubuntu 18.04에서 FFMPEG 설치](./ffmpeg.md)
 - [Ubuntu 18.04에서 RabbitMQ 서버 설치 및 관리](./ubuntu_rabbitmq.md)
 - [우분투에 원격 데스크탑 설치](./ubuntu_remote_desktop.md)
+- [Ubuntu 18.04에 Docker-Compose로 ownCloud 설치](installation_of_owncloud_on_ubuntu1804.md)
+- [Ubuntu 18.04에 Samba 설치 하기](installation_of_samba_on_ubuntu_1804.md)
 
 ## 기타
 

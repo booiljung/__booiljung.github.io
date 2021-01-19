@@ -2,6 +2,12 @@
 
 #### 최신 글
 
+- Ubuntu: [Ubuntu 에서 VirtualBox VM 자동으로 시작](./technical_articles/linux/virtualbox_vm_auto_start_on_ubuntu.md)
+- Git: [Docker-Compose로 Ubuntu에 GitLab 설치](./technical_articles/git/installation_of_gitlab_with_docker_compose.md)
+- Ubuntu: [Ubuntu에서 Let's Encrypt 인증서 자동으로 받기](./technical_articles/linux/letsencrypt_on_ubuntu.md)
+- Ubuntu: [Ubuntu 18.04 LTS에 samba 설치](./technical_articles/linux/installation_of_samba_on_ubuntu_1804.md)
+- Ubuntu: [Ubuntu 18.04에 Docker-Compose로 ownCloud 설치](./technical_articles/linux/installation_of_owncloud_on_ubuntu1804.md)
+- Ubuntu: [Ubuntu에 bind9 네임서버 구성](./technical_articles/linux/bind9_ubuntu.md)
 - Pytorch: [libtorch 와 예제](technical_articles/pytorch/libtorch_and example.md)
 - Pytorch: [Ubuntu에 Pytorch 설치](technical_articles/pytorch/installation_of_pytorch_on_ubuntu.md)
 - Python: [Ubuntu에 Pyenv 설치](technical_articles/python/pyenv.md)

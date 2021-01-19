@@ -14,6 +14,8 @@ sudo ufw allow 3389/tcp
 
 ### dock 숨기 문제 해결
 
+**실험 결과 아래 경로 없음.**
+
 원격 접속시 DOCK이 숨김 상태로 전환 되어 있고, 설정에서 설정이 불가능한데, 이는 gnome-tweak-tool 을 설치해서 설정하면 해결 됩니다.
 
 20.04 이후 버전에서는
@@ -58,7 +60,7 @@ sudo apt install xfce4 -y
 
 ### 화면이 나오지 않을 경우
 
-화면이 검은색 또는 파란색으로 냐올 경우 다음을 설치 합니다.
+화면이 검은색 또는 파란색으로 나올 경우 다음을 설치 합니다.
 
 ```sh
 sudo apt-get install xorgxrdp-hwe-18.04 -y
@@ -68,47 +70,7 @@ sudo apt-get install xorgxrdp-hwe-18.04 -y
 
 - 수정하지 않아도 된다는 얘기가 있다.
 
-`/etc/xrdp/startwm.sh` 파일을 보면 아래와 같습니다.
-
-
-```
-#!/bin/sh
-# xrdp X session start script (c) 2015, 2017 mirabilos
-# published under The MirOS Licence
-
-if test -r /etc/profile; then
-	. /etc/profile
-fi
-
-if test -r /etc/default/locale; then
-	. /etc/default/locale
-	test -z "${LANG+x}" || export LANG
-	test -z "${LANGUAGE+x}" || export LANGUAGE
-	test -z "${LC_ADDRESS+x}" || export LC_ADDRESS
-	test -z "${LC_ALL+x}" || export LC_ALL
-	test -z "${LC_COLLATE+x}" || export LC_COLLATE
-	test -z "${LC_CTYPE+x}" || export LC_CTYPE
-	test -z "${LC_IDENTIFICATION+x}" || export LC_IDENTIFICATION
-	test -z "${LC_MEASUREMENT+x}" || export LC_MEASUREMENT
-	test -z "${LC_MESSAGES+x}" || export LC_MESSAGES
-	test -z "${LC_MONETARY+x}" || export LC_MONETARY
-	test -z "${LC_NAME+x}" || export LC_NAME
-	test -z "${LC_NUMERIC+x}" || export LC_NUMERIC
-	test -z "${LC_PAPER+x}" || export LC_PAPER
-	test -z "${LC_TELEPHONE+x}" || export LC_TELEPHONE
-	test -z "${LC_TIME+x}" || export LC_TIME
-	test -z "${LOCPATH+x}" || export LOCPATH
-fi
-
-if test -r /etc/profile; then
-	. /etc/profile
-fi
-
-test -x /etc/X11/Xsession && exec /etc/X11/Xsession
-exec /bin/sh /etc/X11/Xsession
-```
-
-여기에서 아래 3개의 `/etc/X11/Xsession` 을 `/usr/bin/startxfce4` 로 변경합니다. 변경 결과는 아래와 같습니다.
+`/etc/xrdp/startwm.sh` 파일을 열어서 아래 3개의 `/etc/X11/Xsession` 을 `/usr/bin/startxfce4` 로 변경합니다. 변경 결과는 아래와 같습니다.
 
 ```
 #!/bin/sh
@@ -235,3 +197,41 @@ sudo service xrdp start
 https://z-wony.tistory.com/19
 
 
+
+
+
+#  모두 실패하고 구글링  다시 
+
+실패. 키보드 마우스가 입력 되지 않는다. 
+
+https://linuxize.com/post/how-to-install-xrdp-on-ubuntu-18-04/
+
+중간에 컴퓨터를 끄면 안되며 단숨에 해야 함.
+
+sudo apt install -y xfce4 xfce4-goodies xorg dbus-x11 x11-xserver-utils
+
+sudo apt install -y xorg-video-abi-23 xserver-xorg-core
+
+sudo apt autoremove
+
+sudo apt instlal -y xorgxrdp
+
+sudo apt install -y xrdp
+
+reboot
+
+```
+sudo systemctl status xrdp
+```
+
+```
+sudo adduser xrdp ssl-cert  
+```
+
+```
+sudo systemctl restart xrdp
+```
+
+```
+sudo ufw allow 3389
+```
