@@ -28,3 +28,4 @@
 
 - [Self-Supervised Image Classification](self_supervised_image_classification.md)
 - [Generating images with sparse representations][generating_images_with_sparse_representations.md]
+- Youtube: [Zero-Shot Text-to-Image Generator](https://www.youtube.com/watch?v=az-OV47oKvA)
