@@ -9,9 +9,7 @@
 - https://my.freenom.com/clientarea.php 에 가입하고 도메인 이름을 만든다.
 - 관리자 메뉴에서 등록한 도메인에 대해 기본 네임 서버를 등록 한다.
 - DNS Management에서 A 레코드를 등록한다.
-- registry.booiljungtest01.tk를 회사 IP 주소로 연결 한다.
-- mavlink.booiljungtest01.tk를 회사 IP 주소로 연결 한다.
-- p2p.booiljungtest01.tk를 회사 IP 주소로 연결 한다.
+- www.booiljungtest01.tk를 공인IP 주소로 연결 한다.
 
 ## 네트워크 장비 확인
 
@@ -68,7 +66,7 @@ sudo certbot --nginx
 성공하면 다음이 표시 된다.
 
 ```
-Requesting a certificate for registry.booiljungtest1.tk
+Requesting a certificate for www.booiljungtest1.tk
 Performing the following challenges:
 http-01 challenge for registry.booiljungtest1.tk
 Waiting for verification...
@@ -89,25 +87,25 @@ sudo certbot renew --dry-run
 Saving debug log to /var/log/letsencrypt/letsencrypt.log
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-Processing /etc/letsencrypt/renewal/registry.booiljungtest1.tk.conf
+Processing /etc/letsencrypt/renewal/www.booiljungtest1.tk.conf
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Cert not due for renewal, but simulating renewal for dry run
 Plugins selected: Authenticator nginx, Installer nginx
 Account registered.
-Simulating renewal of an existing certificate for registry.booiljungtest1.tk
+Simulating renewal of an existing certificate for www.booiljungtest1.tk
 Performing the following challenges:
-http-01 challenge for registry.booiljungtest1.tk
+http-01 challenge for www.booiljungtest1.tk
 Waiting for verification...
 Cleaning up challenges
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 new certificate deployed with reload of nginx server; fullchain is
-/etc/letsencrypt/live/registry.booiljungtest1.tk/fullchain.pem
+/etc/letsencrypt/live/www.booiljungtest1.tk/fullchain.pem
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Congratulations, all simulated renewals succeeded: 
-  /etc/letsencrypt/live/registry.booiljungtest1.tk/fullchain.pem (success)
+  /etc/letsencrypt/live/www.booiljungtest1.tk/fullchain.pem (success)
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 ```
 
@@ -115,13 +113,13 @@ certbot 이 nginx/site-enabled/default 를 변경하여
 
 ```
 server {
-    if ($host = registry.booiljungtest1.tk) {
+    if ($host = www.booiljungtest1.tk) {
         return 301 https://$host$request_uri;
     } # managed by Certbot
 
     listen 80 ;
     listen [::]:80 ;
-    server_name registry.booiljungtest1.tk;
+    server_name www.booiljungtest1.tk;
     return 404; # managed by Certbot
 }
 ```
@@ -130,7 +128,7 @@ server {
 
 인증서는
 
-`/etc/letsencrypt/live/registry.booiljungtest1.tk/*`
+`/etc/letsencrypt/archive/*`
 
 에 있다고 한다.
 

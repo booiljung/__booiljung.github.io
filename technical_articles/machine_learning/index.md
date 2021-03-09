@@ -23,3 +23,7 @@
 ## 리뷰
 
 - [Generalizing from a Few Examples: A Survey on Few-ShotLearning](generalizing_from_a_few_examples_a_survey_on_few_shot_learning.md)
+
+## 참조
+
+- [Self-Supervised Image Classification](self_supervised_image_classification.md)
