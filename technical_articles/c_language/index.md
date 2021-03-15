@@ -22,15 +22,20 @@
 - [libboost](libboost/index.md)
 - [QCustomPlot](https://www.qcustomplot.com/)
 
-## Visual Studio:
+## Visual Studio
 
 - [Visual C++ 컴파일러 버전](visual_studio_cpp_compiler_versins.md)
+
+## Visual Studio Code
+
+- [VSCode 에서 C++ 프로젝트 디버깅](vscode_cpp_launch.md)
 
 ## CMake
 
 - [CMake 간단한 소개서](simple_cmake_introduction.md)
 - [VSCode로 CMake로 빌드 하고 디버깅 하기](build_cmake_in_vscode_on_linux.md)
 - [Jenkins CMake Pipeline example](jenkins_cmake_pipleline_example.md)
+- [CMakeLists.txt 템플릿](cmakelists_template.md)
 
 ## 테스트
 
