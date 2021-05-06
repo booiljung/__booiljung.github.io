@@ -19,7 +19,7 @@ tasks:
 ```ansible
 tasks:
   - name: Make directory if not exists
-    shell: "{{ item }}      
+    shell: "{{ item }}"
     with_items:
       - "mkdir -p directory"
 ```
@@ -29,15 +29,7 @@ tasks:
 ```ansible
 tasks:
   - name: Install package
-    yum:
-      name: git
-      status: present
-```
-
-```ansible
-tasks:
-  - name: Install package
-    apt:
+    yum 또는 apt:
       name: git
       status: present
 ```
@@ -47,15 +39,7 @@ tasks:
 ```ansible
 tasks:
   - name: Install package
-    yum:
-      name: git
-      status: absent
-```
-
-```ansible
-tasks:
-  - name: Install package
-    apt:
+    yum 또는 apt:
       name: git
       status: absent
 ```
