@@ -116,7 +116,8 @@
 - [Windows](./windows/index.md)
 - [Linux](./linux/index.md)
 - [Docker](./docker/index.md)
-- [Vagrant](./vargrant/index.md)
+- [Vagrant](./vagrant/index.md)
+- [Ansible](./ansible/index.md)
 
 ### 마크업 언어
 

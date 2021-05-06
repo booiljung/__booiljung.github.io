@@ -1,4 +1,4 @@
-# Ansible Guide
+# Ansible Simple Guide
 
 호스트 추가하기
 
@@ -82,5 +82,4 @@ tasks:
       - "..."
       - "..."
 ```
-
 
