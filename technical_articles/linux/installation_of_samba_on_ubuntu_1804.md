@@ -31,8 +31,8 @@ sudo cp /etc/samba/smb.conf /etc/samba/smb.conf.back
 [표시 되는 폴더 이름]
 comment = Workspace directory
 path = /files
-valid users = booil # 인증된 유저
-admin users = booil
+valid users = <user> # 인증된 유저
+admin users = <user>
 browsable = yes
 writeable = yes
 public = yes
@@ -40,7 +40,7 @@ read only = no
 guest ok = no
 create mode = 0777
 directory mode = 0777
-force user = aero
+force user = <user>
 ```
 
 사용자 추가
