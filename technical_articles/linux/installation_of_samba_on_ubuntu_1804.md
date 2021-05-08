@@ -31,8 +31,8 @@ sudo cp /etc/samba/smb.conf /etc/samba/smb.conf.back
 [표시 되는 폴더 이름]
 comment = Workspace directory
 path = /files
-valid users = aero # 인증된 유저
-admin users = aero
+valid users = booil # 인증된 유저
+admin users = booil
 browsable = yes
 writeable = yes
 public = yes
@@ -50,7 +50,13 @@ sudo useradd <userid> # 유저가 없으면
 sudo smbpasswd -a <userid>
 ```
 
-방화벽 개방
+samba 재시작
+
+```sh
+sudo /etc/init.d/smbd restart
+```
+
+(방화벽이 있다면) 방화벽 개방
 
 ```
 sudo ufw allow 137,138/udp
