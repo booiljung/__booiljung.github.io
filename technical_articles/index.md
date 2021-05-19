@@ -19,7 +19,7 @@
 
 - [컴퓨터 아키텍처 (Computer Architecture)](computer_architecture/index.md)
 - [Software Architecture](software_architecture/index.md)
-- 객체지향 프로그래밍 및 디자인 패턴 (Object Oriented Programming and Design Patterns)
+- [객체지향 프로그래밍](./object_oriented_programming/index.md) 및 디자인 패턴 (Object Oriented Programming and Design Patterns)
 - 병렬컴퓨팅 (Parallel Computing)
 - 분산컴퓨팅 (Distributed Computing)
 - [네트워크 프로그래밍 (Network Programming)](./networks/index.md)
