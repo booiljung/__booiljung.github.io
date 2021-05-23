@@ -100,26 +100,26 @@ ansible <그룹이름> -m ping -k
 |        `ansible_connection=`         |                              |                |
 | `ansible_network_os=<운영체제 이름>` |     노드의 운영체제 종류     |                |
 
-**인벤토리 파일 지정:**
+**인벤터리 파일 지정:**
 
 `/etc/ansible/hosts`파일을 사용하지 않고 특정한 노드 목록 파일을 지정.
 
-`-i <인벤토리 파일 경로>` 또는 `---inventory-file <인벤토리 파일 경로>` 로 지정.
+`-i <인벤터리 파일 경로>` 또는 `---inventory-file <인벤터리 파일 경로>` 로 지정.
 
 ```sh
-ansible -i <인벤토리 파일 경로> ...
+ansible -i <인벤터리 파일 경로> ...
 ```
 
-인벤토리 파일내의 모든 호스트에 대해 지정.
+인벤터리 파일내의 모든 호스트에 대해 지정.
 
 ```sh
-ansible -i <인벤토리 파일 경로> all ...
+ansible -i <인벤터리 파일 경로> all ...
 ```
 
-인벤토리 파일내의 특정 호스트에 대해 지정.
+인벤터리 파일내의 특정 호스트에 대해 지정.
 
 ```sh
-ansible -i <인벤토리 파일 경로> <호스트 주소> ...
+ansible -i <인벤터리 파일 경로> <호스트 주소> ...
 ```
 
 **노드에 대한 패스워드를 물어 보도록 지정:**
@@ -137,6 +137,12 @@ ansible --ask-pass
 ```sh
 ansible --list-hosts
 ```
+
+## 앤서블 모듈
+
+- [앤서블 모듈 인덱스](https://docs.ansible.com/ansible/2.9/modules/modules_by_category.html)
+
+
 
 ## 앤서블 애드혹
 
@@ -409,6 +415,10 @@ tasks:
       become_user: <유저 이름>
 ```
 
+**앤서블 모듈:**
+
+플레이북에서 작업을 수행하는 수단. 파일 복사, 다운로드, 패키지 설치 등 각 작업을 수행하는 기능을 제공.
+
 **패스워드 없이 수행하기 위해 앤서블 서버와 노드사이의 인증 생성:**
 
 ```
@@ -628,7 +638,7 @@ tasks:
       action: "{{ ansible_pkg_mgr }} name=<패키지이름> state=absent"
 ```
 
-**Git 저장소 클론:**
+**git 저장소 클론:**
 
 ```ansible
   tasks:
@@ -1011,7 +1021,7 @@ timedatectl list-timezones
         name: tftp
 ```
 
-## 핸들러
+**핸들러**
 
 - 전 단계가 정상적으로 이루어진 경우에 동작
 - 변경 사항이 발생한 경우에만 동작
