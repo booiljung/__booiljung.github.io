@@ -409,7 +409,7 @@ tasks:
       become_user: <유저 이름>
 ```
 
-**앤서블 서버와 노드사이의 인증 생성**
+**패스워드 없이 수행하기 위해 앤서블 서버와 노드사이의 인증 생성:**
 
 ```
 ---
@@ -552,8 +552,9 @@ tasks:
   tasks:
     - name: <이름>
       yum:
-        name: "{{ item }}"
+        name: " {{ item }}"
         status: <present 또는 latest>
+        update_cache: true
       with_items:
         - "<패키지 이름 1>"
         - "<패키지 이름 2>"
@@ -568,9 +569,15 @@ tasks:
   tasks:
     - name: <이름>
       apt:
-        pkg: <패키지 이름>
+        pkg: " {{ item }}"
+        status: <present 또는 latest>          
         update_cache: true
-        status: <present 또는 latest>
+      with_items:
+        - "<패키지 이름 1>"
+        - "<패키지 이름 2>"
+        - ...
+        - "<패키지 이름 n-1>"
+        - "<패키지 이름 n>"
 ```
 
 윈도우:
@@ -629,6 +636,19 @@ tasks:
       git:
         repo: <git 저장소 URL>
         dest: <로컬 컴퓨터의 경로>
+```
+
+[**cmake로 빌드:**](https://github.com/mdklatt/ansible-cmake-module)
+
+```
+  tasks:
+    - name: <이름>
+      cmake:
+        binary_dir: <빌드 디렉토리, 필수>
+        source_dir: <소스 디렉토리>
+        build_type: <빌드 타입, 기본 Debug>
+        target: <빌드 타겟>
+        cache_vars: <캐시 변수>
 ```
 
 **.bashrc 구성:**
@@ -1015,4 +1035,5 @@ handlers:
 ## 참조
 
 - https://www.ansible.com
+- https://nirsa.tistory.com/281
 - 우아하게 앤서블, 조훈, 김정민, 비제이퍼블릭
