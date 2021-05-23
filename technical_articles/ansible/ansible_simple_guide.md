@@ -3,9 +3,10 @@
 **Ansible 이란:**
 
 - 파이썬으로 만들어 졌다.
-- 그래서, 느리다는 하소연이 많다.
+- 그래서, 느리다는 하소연이 있다.
 - 원격의 컴퓨터를 구성-관리 한다.
-- ssh를 통해 원격 컴퓨터에 명령한다. 원격 컴퓨터에 에이전트를 설치할 필요가 없다.
+- 원격 컴퓨터에 에이전트를 설치할 필요가 없다.
+- ssh를 통해 원격 컴퓨터에 명령한다. 
 - 원격 컴퓨터에 앤서블 명령을 내리는 컴퓨터는 앤서블 코어가 설치 되어야 한다.
 
 **앤서블 서버**
@@ -41,14 +42,14 @@ ls /usr/bin/ansible*
 
 앤서블 서버의 명령을 받아서 실행될 컴퓨터들
 
-앤서블 서버의 `/etc/ansible/hosts` 파일에 컴퓨터 주소를 나열
+앤서블 서버의 `/etc/ansible/hosts` 파일에 앤서블 노드를 나열
 
 ```
-192.168.1.11
-192.168.1.12
+<앤서블 노드 1>
+<앤서블 노드 2>
 ...
-192.168.1.30
-192.168.1.31
+<앤서블 노드 n-1>
+<앤서블 노드 n>
 ```
 
 앤서블 노드 연결 확인:
@@ -77,17 +78,27 @@ ansible all -m ping -k
 
 ```
 [그룹이름]
-192.168.1.11
-192.168.1.12
+앤서블 노드 1
+앤서블 노드 2
 ...
-192.168.1.30
-192.168.1.31
+앤서블 노드 n-1
+앤서블 노드 n
+```
 
 all 대신 노드 그룹을 지정하여 노드 그룹에 앤서블 명령 전달 확인:
 
 ```sh
 ansible <그룹이름> -m ping -k
 ```
+
+앤서블 노드 상세:
+
+|                 형식                 |             설명             |      예제      |
+| :----------------------------------: | :--------------------------: | :------------: |
+|         `<앤서블 노드 주소>`         | 앤서블 노드 주소 지정 (필수) | `192.168.0.21` |
+|      `ansible_user=<유저이름>`       |  앤서블 SSH 유저 이름 지정   |    `booil`     |
+|        `ansible_connection=`         |                              |                |
+| `ansible_network_os=<운영체제 이름>` |     노드의 운영체제 종류     |                |
 
 **인벤토리 파일 지정:**
 
@@ -231,6 +242,18 @@ ansible ... -m service -a "name=<서비스 이름> state=<상태>"
 - stop: 중지
 - restarted: 재시작
 
+**facts 확인**
+
+```
+ansible <노드> -m setup
+```
+
+노드별로 facts  따로 저장
+
+```
+ansible <노드> -m setup --tree
+```
+
 ## 앤서블 플레이북
 
 - 앤서블 애드혹은 1회성
@@ -248,11 +271,116 @@ ansible-playbook <앤서플 플레이북 파일.yml> -k
 --- # 첫줄은 반드시 ---로 시작해야 함.
 - name: <이 플레이북에 대한 설명>
   hosts: <호스트 지정>
-  gather_facts: <yes 또는 no를 
+  gather_facts: <yes 또는 no> 
   become: <아래 작업들에 대해 수퍼 유저 권한을 사용하려면 yes 아니면 no>
 tasks:
    <이하 작업 내용들 기술>
 ```
+
+**facts를 수집하여 json으로 저장**
+
+```
+---
+- name: <이름>
+  hosts: <노드>
+  
+tasks:
+  - name: <이름>
+    setup:
+    register: facts
+    
+  - name: save facts
+    local_action:
+      module: copy
+      content: "{{ facts | to_nide_json }}"
+      dest: ./{{ ansible_hostname }}_facts_by_collector.txt
+```
+
+**facts를 출력**
+
+```
+  - name: debug by msg
+    debug:
+      msg:
+        - "eth0's ip {{ ansible_eth0.ipv4.adress }}"
+        - "eth1's ip {{ ansible_eth1.ipv4.adress }}"
+```
+
+**작업 include**
+
+```
+---
+- name: <이름>
+  hosts: <노드들>
+  become: yes
+  taks:
+    - include_taks: <서브 작업 파일>
+```
+
+서브 작업 파일
+
+```
+- name: <이름>
+  <do something>
+  ...
+```
+
+**조건에 의한 작업 수행**
+
+구문을 모두 해석하므로 느림
+
+```
+tasks:
+  - name: <이름>
+    <뭔가 함>
+    when: ansible_distribution == 'CentOS'
+    또는
+    when: ansible_distribution == 'Ubuntu'
+```
+
+**배포판 조건에 의한 작업 include**
+
+필요 구문만 해석하므로 빠름
+
+```
+---
+- name: <이름>
+  hosts: <노드>
+  vars:
+    linux_distribution: "{{ 'centos' if ansible_distribution == 'CentOS' }}
+                       else 'ubuntu' if ansible_distribution == 'Ubuntu'
+                       else 'unknown' }}"
+  
+tasks:
+  - name: <이름>
+    include_tasks: "{{ linux_distribution }}.yml"
+```
+
+**Magic Variables**
+
+기본 변수
+
+|                    | 타입               | 매직변수                     |                          |
+| ------------------ | ------------------ | ---------------------------- | ------------------------ |
+| base               | connection         | ansible_connection           |                          |
+|                    | module_compression | ansible_module_compression   |                          |
+|                    | shell              | ansible_shell_type           |                          |
+|                    | executable         | ansible_shell_executable     |                          |
+| connection common  | remote_addr        | ansible_ssh_host             | ansible_host             |
+|                    | remote_user        | ansible_ssh_user             | ansible_user             |
+|                    | password           | ansible_ssh_pass             | ansible_password         |
+|                    | port               | ansible_ssh_port             | ansible_port             |
+|                    | pipelining         | ansible_ssh_pipelining       | ansible_pipelining       |
+|                    | timeout            | ansible_ssha_timeout         | ansible_timeout          |
+|                    | private_key_file   | ansible_ssh_private_key_file | ansible_private_key_file |
+| networking modules | netwok_os          | ansible_network_os           |                          |
+|                    | connection_user    | ansible_connection_user      |                          |
+| become             | become             | ansible_become               |                          |
+|                    | become_method      | ansible_become_method        |                          |
+|                    | become_user        | ansible_become_user          |                          |
+|                    | become_pass        | ansible_become_password      | ansible_become_pass      |
+|                    | become_exe         | ansible_exe                  |                          |
+|                    | become_flags       | ansible_become_flags         |                          |
 
 **hosts:**
 
@@ -262,19 +390,72 @@ tasks:
 - `<노드 그룹 이름>`:  /etc/ansible/hosts에서 특정 그룹의 노드들을 지정.
 - `localhost`: 앤서블 플레이북이 실행되고 있는 컴퓨터를 지정.
 
-**수퍼유저 권한 획득하여 작업 수행:**
+**유저 전환:**
+
+수퍼 유저로 전환:
 
 ```
   tasks:
-    - name: <설명>
+    - name: <이름>
       become: <수퍼 유저 권한을 사용하려면 yes 아니면 no>
+```
+
+지정한 유저로 전환:
+
+```
+  tasks:
+    - name: <이름>
+      become: <유저 권한을 사용하려면 yes 아니면 no>
+      become_user: <유저 이름>
+```
+
+**앤서블 서버와 노드사이의 인증 생성**
+
+```
+---
+- name: Create known_hosts between server and hosts
+  host: nodes
+  connection: local
+  serial: 1
+
+tasks:
+  - name: ssh-keyscan for known_hosts file
+    command: /usr/bin/ssh-keyscan -t ecdsa {{ ansible_host }}
+    register: keyscan
+    
+  - name: input key
+    lineinfile:
+      path: ~/.ssh/known_hosts
+      line: "{{ item }}"
+      create: yes
+    with_item:
+      - "{{ keyscan.stdout_lines }}"
+      
+- name: Create authority_key between server and hosts
+  host: nodes
+  connection: local
+  gather_facts: no
+  vars:
+    ansible_password: <비밀번호>   
+      
+  - name: ssh-keygen for authorized_key file
+    command: "ssh-keygen -b 2048 -t rsa -f ~/ssh/id_rsa -q -N ''"
+    ignore_errors: yes
+    run_once: true
+    
+  - name: input key for each node
+    connection: ssh
+    authorized_key:
+      user: <유저이름>
+      state: present
+      key: "{{ loookup('file', '~/.ssh/id_rsa.pub') }}"
 ```
 
 **셸명령 실행:**
 
 ```
   tasks:
-    - name: <설명>
+    - name: <이름>
       shell: "{{ item }}"
       with_items:
         - "<명령줄 1>"
@@ -286,7 +467,7 @@ tasks:
 
 ```ansible
   tasks:
-    - name: <설명>
+    - name: <이름>
       lineinfile:
         path: <파일경로>
         line: "{{ item }}"
@@ -300,70 +481,151 @@ tasks:
 
 ```
   tasks:
-    - name: <설명>
+    - name: <이름>
       replace:
         path: <파일경로>
         regexp: <검색할 정규식>
         replace: <치환할 텍스트>
 ```
 
+다수의 검색어 치환:
+
+```
+  tasks:
+    - name: <이름>
+      replace:
+        path: "{{ item.path }}"
+        regexp: "{{ item.regexp }}"
+        replace: "{{ item.replace }}"
+      with_items:
+        - { path: "<경로1>", regexp: "<검색 정규식1>", replace: "치환문자열1" }
+        - { path: "<경로2>", regexp: "<검색 정규식2>", replace: "치환문자열2" }
+```
+
 **호스트 추가:**
 
 ```ansible
   tasks:
-    - name: <설명>
+    - name: <이름>
       blockinfile:
         path: /etc/ansible/hosts
         block: |
           [<그룹 이름>]
-          <노드 주소 1>
+          <호스트1>
+          <호스트2>
           ...
-          <노드 주소 2>
+          <호스트n-1>
+          <호스트n>
+```
+
+**SSH 키 생성:**
+
+```
+  tasks:
+    - name: <이름>
+      become: yes
+      become_user: <유저이름>
+      shell: "{{ item }}"
+      with_items:
+        - "ssh-keyscan <IP주소> >> ~/.ssh/known_hosts"
+        - "ssh-keyscan <IP주소> >> ~/.ssh/known_hosts"
+        ...
+        - "ssh-keyscan <IP주소> >> ~/.ssh/known_hosts"
+        - "ssh-keyscan <IP주소> >> ~/.ssh/known_hosts"
 ```
 
 **패키지 설치:**
 
+레드헷:
+
 ```ansible
   tasks:
-    - name: <설명>
+    - name: <이름>
       yum:
         name: <패키지 이름>
         status: <present 또는 latest>
 ```
 
+레드헷 다수의 패키지 설치:
+
 ```
   tasks:
-    - name: <설명>
+    - name: <이름>
+      yum:
+        name: "{{ item }}"
+        status: <present 또는 latest>
+      with_items:
+        - "<패키지 이름 1>"
+        - "<패키지 이름 2>"
+        - ...
+        - "<패키지 이름 n-1>"
+        - "<패키지 이름 n>"
+```
+
+우분투:
+
+```
+  tasks:
+    - name: <이름>
       apt:
         pkg: <패키지 이름>
         update_cache: true
         status: <present 또는 latest>
 ```
 
-패키지 제거:
+윈도우:
+
+```
+  tasks:
+    - name: <이름>
+      win_chocolatey:
+        name: <패키지 이름>
+```
+
+공통: 
+
+```
+  tasks:
+    - name: <이름>
+      action: "{{ ansible_pkg_mgr }} name=<패키지이름> state=<present 또는 latest>"
+```
+
+**패키지 제거:**
+
+레드햇:
 
 ```ansible
   tasks:
-    - name: <설명>
+    - name: <이름>
       yum:
         name: <패키지 이름>
         status: absent
 ```
 
+우분투:
+
 ```
   tasks:
-    - name: <설명>
+    - name: <이름>
       apt:
         pkg: <패키지 이름>
         status: absent
         autoremove: yes
 ```
 
+공통:
+
+```
+  tasks:
+    - name: <이름>
+      action: "{{ ansible_pkg_mgr }} name=<패키지이름> state=absent"
+```
+
 **Git 저장소 클론:**
 
 ```ansible
   tasks:
-    - name: <설명>
+    - name: <이름>
       git:
         repo: <git 저장소 URL>
         dest: <로컬 컴퓨터의 경로>
@@ -373,7 +635,7 @@ tasks:
 
 ```ansible
   tasks:
-    - name: <설명>
+    - name: <이름>
       lineinfile:
         path: /home/.../.bashrc
         line: "{{ item }}
@@ -386,7 +648,7 @@ tasks:
 
 ```
   tasks:
-    - name: <설명>
+    - name: <이름>
       copy:
         src: "<앤서블 서버에서 원본 파일 경로>"
         dest: "<앤서블 노드에서 대상 파일 경로>"
@@ -399,7 +661,7 @@ tasks:
 
 ```
   tasks:
-    - name: <설명>
+    - name: <이름>
       fetch:
         src: "<앤서블 노드에서 원본 파일 경로>"
         dest: "<앤서블 서버에서 대상 파일 경로>"
@@ -409,7 +671,7 @@ tasks:
 
 ```
   tasks:
-    - name: <설명>
+    - name: <이름>
       fetch:
         src: "<앤서블 노드에서 원본 파일 경로>"
         dest: "<앤서블 서버에서 대상 디렉토리>/{{ inventory_hostname }}-파일명.확장자"
@@ -422,7 +684,7 @@ tasks:
 
 ```
   tasks:
-    - name: <설명>
+    - name: <이름>
       debug:
         var: item
       with_file:
@@ -433,10 +695,23 @@ tasks:
 
 **디렉토리 만들기:**
 
+리눅스:
+
 ```
   tasks:
-    - name: <설명>
+    - name: <이름>
       file:
+        state: directory
+        path: <만들 디렉토리 경로>
+        recurse: <기본값은 no이며 깊은 디렉토리를 만드러면 yes를 지정>
+```
+
+윈도우:
+
+```
+  tasks:
+    - name: <이름>
+      win_file:
         state: directory
         path: <만들 디렉토리 경로>
         recurse: <기본값은 no이며 깊은 디렉토리를 만드러면 yes를 지정>
@@ -448,7 +723,7 @@ tasks:
 
 ```
   tasks:
-    - name: <설명>
+    - name: <이름>
       file:
         state: directory
         path: "/tmp/test-{{ item }}"
@@ -463,7 +738,7 @@ tasks:
 
 ```
   tasks:
-    - name: <설명>
+    - name: <이름>
       file:
         state: directory
         path: "/tmp/test-{{ item }}"
@@ -478,7 +753,7 @@ tasks:
 
 ```
   tasks:
-    - name: <설명>
+    - name: <이름>
       file:
         state: link
         src: <원본 경로>
@@ -489,7 +764,7 @@ tasks:
 
 ```ansible
   tasks:
-    - name: <설명>
+    - name: <이름>
       shell: "{{ item }}"
       with_items:
         - "mkdir -p <생성할 디렉토리 이름>"
@@ -499,7 +774,7 @@ tasks:
 
 ```
   tasks:
-    - name: <설명>
+    - name: <이름>
       file:
         state: absent
         path: <앤서블 노드에서 파일 경로>
@@ -509,19 +784,21 @@ tasks:
 
 ```
   tasks:
-    - name: <설명>
+    - name: <이름>
       command: ls -lht <경로>
       register: <결과를 저장할 변수명>
-    - name: <설명>
+    - name: <이름>
       debug:
         msg: "{{ <위에서 결과가 저장된 변수명> }}"
 ```
 
 **URL을 통해 파일 가져오기:**
 
+리눅스:
+
 ```
   tasks:
-    - name: <설명>
+    - name: <이름>
       get_url:
         url: "<원본 URL>"
         dest: "<대상 로컬 경로>"
@@ -537,11 +814,36 @@ tasks:
 - 읽고 쓰기만 가능: `6`
 - 읽고 실행만 가능: `5`
 
-**타임존 변경:**
+윈도우:
 
 ```
   tasks:
-    - name: <설명>
+    - name: <이름>
+      win_get_url:
+        url: "<원본 URL>"
+        dest: "<대상 로컬 경로>"
+```
+
+**윈도우 서비스 등록:**
+
+- 먼저 nssm이 설치되어 있어야 한다.
+
+```
+  tasks:
+    - name: <이름>
+      win_nssm:
+        name: <애플리케이션 이름>
+        application: <애플리케이션 실행파일 경로>
+        state: present
+```
+
+**타임존 변경:**
+
+리눅스:
+
+```
+  tasks:
+    - name: <이름>
       timezone:
         name: Aisa/Seoul
 ```
@@ -552,11 +854,22 @@ tasks:
 timedatectl list-timezones
 ```
 
-**마운트:**
+윈도우:
 
 ```
   tasks:
-    - name: <설명>
+    - name: <이름>
+      win_timezone:
+        timezone: 'Korea Standard Time'
+```
+
+**마운트:**
+
+리눅스:
+
+```
+  tasks:
+    - name: <이름>
       become: yes
       mount:
         path: <마운트 할 대상 경로>
@@ -566,5 +879,140 @@ timedatectl list-timezones
         state: mounted
 ```
 
+윈도우 NFS 마운트:
 
+```
+  tasks:
+    - name: <설명 1>
+      win_feature:
+        name: NFS-Client
+        state: present
+    - name: <설명 2>
+      win_command: net use "드라이브 문자:" "NFS 경로"
+```
 
+**파일 압축 풀기:**
+
+윈도우:
+
+```
+  tasks:
+    - name: <이름>
+      win_unzip:
+        src: <압축된 파일 소스 경로>
+        dst: <풀어진 파일 저장 경로>
+        delete_archive: <압축 파일을 삭제하려면 yes 아니면 no>
+```
+
+**서비스 시작:**
+
+리눅스:
+
+```
+  tasks:
+    - name: <이름>
+      service:
+        name: <서비스 이름>
+        state: started
+```
+
+윈도우:
+
+```
+  tasks:
+    - name: <이름>
+      win_service:
+        name: <서비스 이름>
+        state: started
+```
+
+**서비스 중지:**
+
+리눅스:
+
+```
+  tasks:
+    - name: <이름>
+      service:
+        name: <서비스 이름>
+        state: stop
+```
+
+윈도우:
+
+```
+  tasks:
+    - name: <이름>
+      win_service:
+        name: <서비스 이름>
+        state: stop
+```
+
+**서비스 재시작**
+
+리눅스:
+
+```
+  tasks:
+    - name: <이름>
+      service:
+        name: <서비스 이름>
+        state: restarted
+```
+
+윈도우:
+
+```
+  tasks:
+    - name: <이름>
+      win_service:
+        name: <서비스 이름>
+        state: restarted
+```
+
+**리부팅:**
+
+윈도우:
+
+```
+  tasks:
+    - name: <이름>
+      win_reboot:
+```
+
+**서비스 데몬 재시작:**
+
+```
+  tasks:
+    - name: <이름>
+      systemd:
+        state: restarted
+        daemon_reload: yes
+        name: tftp
+```
+
+## 핸들러
+
+- 전 단계가 정상적으로 이루어진 경우에 동작
+- 변경 사항이 발생한 경우에만 동작
+
+핸들러:
+
+```
+handlers:
+  - name: <핸들러 이름>
+    <Do something>
+```
+
+핸들러 실행을 요청:
+
+```
+- name: <이름>
+  <Do something>
+  notify: <핸들러 이름>
+```
+
+## 참조
+
+- https://www.ansible.com
+- 우아하게 앤서블, 조훈, 김정민, 비제이퍼블릭
