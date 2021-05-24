@@ -2,6 +2,7 @@
 
 #### 최신 글
 
+- Ansible: [앤서블 간단 가이드](./technical_articles/ansible/ansible_simple_guide.md)
 - Ubuntu: [Ubuntu 에서 VirtualBox VM 자동으로 시작](./technical_articles/linux/virtualbox_vm_auto_start_on_ubuntu.md)
 - Git: [Docker-Compose로 Ubuntu에 GitLab 설치](./technical_articles/git/installation_of_gitlab_with_docker_compose.md)
 - Ubuntu: [Ubuntu에서 Let's Encrypt 인증서 자동으로 받기](./technical_articles/linux/letsencrypt_on_ubuntu.md)
