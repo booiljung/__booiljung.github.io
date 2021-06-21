@@ -78,11 +78,11 @@ ansible all -m ping -k
 
 ```
 [그룹이름]
-앤서블 노드 1
-앤서블 노드 2
+<앤서블 노드 1>
+<앤서블 노드 2>
 ...
-앤서블 노드 n-1
-앤서블 노드 n
+<앤서블 노드 n-1>
+<앤서블 노드 n>
 ```
 
 all 대신 노드 그룹을 지정하여 노드 그룹에 앤서블 명령 전달 확인:
@@ -95,7 +95,8 @@ ansible <그룹이름> -m ping -k
 
 |                 형식                 |             설명             |      예제      |
 | :----------------------------------: | :--------------------------: | :------------: |
-|         `<앤서블 노드 주소>`         | 앤서블 노드 주소 지정 (필수) | `192.168.0.21` |
+|                <타겟>                |       타겟 호스트 이름       |    `taget1`    |
+|  `ansible_host=<앤서블 노드 주소>`   | 앤서블 노드 주소 지정 (필수) | `192.168.0.21` |
 |      `ansible_user=<유저이름>`       |  앤서블 SSH 유저 이름 지정   |    `booil`     |
 |        `ansible_connection=`         |                              |                |
 | `ansible_network_os=<운영체제 이름>` |     노드의 운영체제 종류     |                |
@@ -279,8 +280,9 @@ ansible-playbook <앤서플 플레이북 파일.yml> -k
   hosts: <호스트 지정>
   gather_facts: <yes 또는 no> 
   become: <아래 작업들에 대해 수퍼 유저 권한을 사용하려면 yes 아니면 no>
-tasks:
-   <이하 작업 내용들 기술>
+  
+  tasks:
+    <이하 작업 내용들 기술>
 ```
 
 **facts를 수집하여 json으로 저장**
@@ -579,8 +581,8 @@ tasks:
   tasks:
     - name: <이름>
       apt:
-        pkg: " {{ item }}"
-        status: <present 또는 latest>          
+        pkg: "{{ item }}"
+        state: <present 또는 latest>          
         update_cache: true
       with_items:
         - "<패키지 이름 1>"
@@ -636,6 +638,16 @@ tasks:
   tasks:
     - name: <이름>
       action: "{{ ansible_pkg_mgr }} name=<패키지이름> state=absent"
+```
+
+**Docker 우분투 gpg 키 등록:**
+
+```
+  tasks:
+    - name: Add docker apt signing key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
 ```
 
 **git 저장소 클론:**

@@ -20,6 +20,49 @@ sudo apt-get install -y dotnet-sdk-5.0
 
 참조: https://docs.microsoft.com/en-us/dotnet/core/install/linux-ubuntu
 
+## User secrets 설치
+
+user-secrets 설치
+
+```sh
+dotnet tool install dotnet-user-secrets --global
+```
+
+디렉토리 초기화
+```sh
+dotnet user-secrets init
+```
+
+### 개발 환경에 데이터베이스 ConnectionString 저장
+
+#### PostgreSQL
+
+저장
+
+```sh
+dotnet user-secrets set ConnectionStrings:<connection-string> "Server=<host>;Port=<port>;User Id=<User id>;password=<password>;database=<database>"
+```
+
+scaffold 사용 예제
+
+```
+dotnet ef dbcontext scaffold Name=ConnectionStrings:<connection-string> Npgsql.EntityFrameworkCore.PostgreSQL
+```
+
+### SQL Server
+
+저장:
+
+```sh
+dotnet user-secrets set ConnectionStrings:<connection-string> "Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=<database>"
+```
+
+scaffold 사용 예제:
+
+```sh
+dotnet ef dbcontext scaffold Name=ConnectionStrings:<connection-string> Microsoft.EntityFrameworkCore.SqlServer
+```
+
 ## dotnet entity framework 설치
 
 dotnet 툴 설치:
@@ -259,6 +302,14 @@ sqlcmd -S localhost -U SA -P '<YourPassword>'
 ```
 
 참조: https://docs.microsoft.com/en-us/sql/linux/quickstart-install-connect-ubuntu?view=sql-server-ver15
+
+## code-generator
+
+
+
+
+
+
 
 ## Web app Authentication
 
