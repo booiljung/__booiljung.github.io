@@ -45,7 +45,7 @@ ls /usr/bin/ansible*
 앤서블 서버의 `/etc/ansible/hosts` 파일에 앤서블 노드를 나열
 
 ```
-<앤서블 노드 1>
+192.168.0.xxx ansible_connection=ssh ansible_user=<username> ansible_password=<passwd> ansible_become=yes ansible_become_method=su ansible_become_user=root ansible_become_password=<passwd>
 <앤서블 노드 2>
 ...
 <앤서블 노드 n-1>
@@ -607,6 +607,26 @@ tasks:
   tasks:
     - name: <이름>
       action: "{{ ansible_pkg_mgr }} name=<패키지이름> state=<present 또는 latest>"
+```
+
+진행 상태 표시 패키지 설치:
+
+```
+  tasks
+    - name: Install ...
+      become: yes
+      apt:
+        name: <package-name>
+      async: 1000
+      poll: 0
+      register: apt_sleeper
+
+   - name: 'apt - check on async task'
+     async_status:
+       jid: "{{ apt_sleeper.ansible_job_id }}"
+     register: job_result
+     until: job_result.finished
+     retries: 1000
 ```
 
 **패키지 제거:**
