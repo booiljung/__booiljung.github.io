@@ -146,13 +146,13 @@ cmake_minimum_required(VERSION 3.10)
 
 ### 프로젝트 이름: project()
 
-프로젝트의 이름을 지정합니다.
+프로젝트의 이름을 지정합니다:
 
 ```cmake
 project(my_project)
 ```
 
-프로젝트에서 언어와 버전을 지정할 수도 있습니다.
+프로젝트에서 언어와 버전을 지정할 수도 있습니다:
 
 ```cmake
 prject(my_project LANGUAGE CXX VERSION 1.2.3)
@@ -162,27 +162,27 @@ prject(my_project LANGUAGE CXX VERSION 1.2.3)
 
 ### 변수 만들기: set()
 
+`set` 명령으로 변수이름과 값을 지정합니다:
+
 ```cmake
 set(my_variable value)
 ```
 
-`set` 명령으로 변수이름과 값을 지정합니다.
-
 ### 변수의 값 참조: ${variable}
+
+`${}`안에 변수이름을 넣으면 변수의 그 값을 참조할 수 있습니다:
 
 ```cmake
 ${my_variable}
 ```
 
-`${}`안에 변수이름을 넣으면 변수의 그 값을 참조할 수 있습니다.
-
-예를 들어 파일이름 목록을 `SOURCE`라는 변수에 넣고 다른 명령에서 참조 하겠습니다.
+예를 들어 파일이름 목록을 `SOURCE`라는 변수에 넣고 다른 명령에서 참조 하겠습니다:
 
 ```cmake
 set (SOURCE file1.c file2.cpp ...)
 ```
 
-이 `SOURCE`  변수에 있는 파일 이름들을 `add_library()`라는 명령에 전달 합니다.
+이 `SOURCE`  변수에 있는 파일 이름들을 `add_library()`라는 명령에 전달 합니다:
 
 ```cmake
 set (SOURCE file1.c file2.cpp ...)
@@ -191,15 +191,17 @@ add_library(${PROJECT_NAME} SHARED ${SOURCE})
 
 ### 모든 출력 메시지 표시 옵션: CMAKE_VERBOSE_MAKEFILE
 
+`CMAKE_VERBOSE_MAKEFILE`라는 내장 변수에 `true`를 지정하면 Makefile을 구성하는 단계에서 이 모든 출력 메시지들을 표시하도록  Makefile을 생성합니다:
+
 ```cmake
 set (CMAKE_VERBOSE_MAKEFILE true/false)
 ```
 
-`CMAKE_VERBOSE_MAKEFILE`라는 내장 변수에 `true`를 지정하면 Makefile을 구성하는 단계에서 이 모든 출력 메시지들을 표시하도록  Makefile을 생성합니다. 빠른 문제 해결을 위해 이 변수의 값은 기본적으로 켜는 것이 좋습니다.
+빠른 문제 해결을 위해 이 변수의 값은 기본적으로 켜는 것이 좋습니다.
 
 ## 컴파일러 지정
 
-컴파일러의 경로를 `CMAKE_C_COMPILER` 내장 변수에 지정합니다.
+컴파일러의 경로를 `CMAKE_C_COMPILER` 내장 변수에 지정합니다:
 
 ```cmake
 set(CMAKE_C_COMPILER c_compiler_path)
@@ -207,7 +209,7 @@ set(CMAKE_C_COMPILER c_compiler_path)
 
 ### 컴파일 옵션
 
-C/C++ 컴파일러의 옵션을 지정 합니다.
+C/C++ 컴파일러의 옵션을 지정 합니다:
 
 ```cmake
 add_compile_options(-g -Wall ... )
@@ -215,13 +217,15 @@ add_compile_options(-g -Wall ... )
 
 ### 빌드 구성별 컴파일 옵션
 
-`CMAKE_C_FLAGS_빌드구성`이라는 내장 변수에 C 컴파일 플래그(옵션)을 지정합니다.
+`CMAKE_C_FLAGS_빌드구성`이라는 내장 변수에 C 컴파일 플래그(옵션)을 지정합니다:
 
 ```cmake
 set(CMAKE_C_FLAGS_빌드구성 ...)
 ```
 
-로 지정합니다. 다음은 `Release`구성을 위한 C 컴파일 옵션을 지정 합니다.
+로 지정합니다.
+
+다음은 `Release`구성을 위한 C 컴파일 옵션을 지정 합니다:
 
 ```cmake
 set(CMAKE_C_FLAGS_RELEASE "-DMY_DEFINE 3 -DYOUR_DEFINE 4" ...)
@@ -231,7 +235,7 @@ set(CMAKE_C_FLAGS_RELEASE "-DMY_DEFINE 3 -DYOUR_DEFINE 4" ...)
 
 ### 컴파일 중 사용할 전처리 매크로 추가
 
-C 컴파일러 옵션 `-D`에 해당 합니다.
+C 컴파일러 옵션 `-D`에 해당 합니다:
 
 ```cmake
 add_definitions(-Dmy_define=value -Dyour_define=value -Dhis_define=value ...)
@@ -239,7 +243,7 @@ add_definitions(-Dmy_define=value -Dyour_define=value -Dhis_define=value ...)
 
 ### 컴파일 중 사용할 헤더 디렉토리 추가
 
-C 컴파일러 옵션 `-I`에 해당 합니다.
+C 컴파일러 옵션 `-I`에 해당 합니다:
 
 ```cmake
 include_directories(my_include_directory your_include_directory his_include_directory ...)
@@ -247,7 +251,7 @@ include_directories(my_include_directory your_include_directory his_include_dire
 
 ### 링크에 사용할 라이브러리 디렉토리 추가
 
-링크 옵션중 `-L`에 해당 합니다.
+링커 옵션중 `-L`에 해당 합니다:
 
 ```cmake
 link_directories(my_lib_dir your_lib_dir ...)
@@ -255,13 +259,13 @@ link_directories(my_lib_dir your_lib_dir ...)
 
 ### 링크에 사용할 라이브러리 파일 지정
 
-링크 옵션중 `-l`에 해당 합니다.
+링커 옵션중 `-l`에 해당 합니다:
 
 ```cmake
 link_libraries(mine yours his her ...)
 ```
 
-이 명령 인자들을 `-`에서 시작하도록 하여 직접 링크 옵션을 지정할 수도 있습니다.
+이 명령 인자들을 `-`에서 시작하도록 하여 직접 링크 옵션을 지정할 수도 있습니다:
 
 ```cmake
 link_libraries(libmine libyours libhis libher -static ...)
@@ -271,7 +275,7 @@ link_libraries(libmine libyours libhis libher -static ...)
 
 ### 빌드 구성별 링크 옵션: CMAKE_EXE_LINKER_FLAGS_빌드구성
 
-`CMAKE_EXE_LINKER_FLAGS_빌드구성`이라는 내장 변수에 구성별 링크 옵션을 지정합니다.
+`CMAKE_EXE_LINKER_FLAGS_빌드구성`이라는 내장 변수에 구성별 링크 옵션을 지정합니다:
 
 ```cmake
 set(CMAKE_EXE_LINKER_FLAGS_빌드구성 ...)
@@ -285,7 +289,7 @@ set(CMAKE_EXE_LINKER_FLAGS_DEBUG "-DCONFIG_DEBUG -Wl,-whole-archive")
 
 ### 실행 파일 출력 경로: RUNTIME_OUTPUT_DIRECTORY
 
-내장 변수 `RUNTIME_OUTPUT_DIRECTORY`에 빌드 완료한 실행 바이너리를 저장할 디렉토리를 지정합니다.
+내장 변수 `RUNTIME_OUTPUT_DIRECTORY`에 빌드 완료한 실행 바이너리를 저장할 디렉토리를 지정합니다:
 
 ```cmake
 set(RUNTIME_OUTPUT_DIRECTORY output/bin )
@@ -578,6 +582,88 @@ install(TARGETS target1 target2
 set(CMAKE_INSTALL_PREFIX /usr/world)
 ```
 
+## Boost 단위 테스트
+
+프로젝트 CMakeLists.txt:
+
+```cmake
+cmake_minimum_required(VERSION 3.0)
+project(project_name)
+SET(PROJECT_VERSION_MAJOR 0)
+SET(PROJECT_VERSION_MINOR 1)
+enable_testing()
+
+find_package(
+    Boost COMPONENTS
+    filesystem
+    program_options
+    system
+    ...
+    REQUIRED
+)
+
+set(
+    libs
+    pthread
+    stdc++fs
+    boost_filesystem
+    boost_program_options
+    ...
+)
+
+add_library(
+    library_name
+    STATIC
+    src/sample.cpp
+)
+
+#
+# unit test directory
+#
+
+add_subdirectory(test)
+
+#
+# capture_stereo_save_main
+#
+
+add_executable(
+    executable_name
+    src/sample_main.cpp
+)
+
+target_link_libraries(
+    executable_name
+    ${libs}
+    library_name
+)
+```
+
+`test` 하위 폴더를 만들고 단위 테스트를 위한 CMakeLists.txt를 작성합니다:
+
+```cmake
+find_package(Boost COMPONENTS unit_test_framework REQUIRED)
+
+add_executable(test_name test1.cpp)
+target_link_libraries(test_name library_name ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})
+add_test(NAME test1 COMMAND test_name)
+```
+
+빌드:
+
+```sh
+mkdir -p build
+cd build
+cmake ..
+make
+```
+
+테스트:
+
+```
+make test
+```
+
 ## 데비안 패키지 생성
 
 CPack를 사용하여 데비안 패키지를 생성할 수 있습니다. [출처](https://m.blog.naver.com/PostView.nhn?blogId=likeafree&logNo=221475154955&proxyReferer=https:%2F%2Fwww.google.com%2F)
@@ -636,7 +722,7 @@ if [ "$CHECKLIB" = "0" ]; then
 fi
 ```
 
-## CPake으로 특정 형식 패키지 만들기
+## CPack으로 특정 형식 패키지 만들기
 
 특정 형식을 사용하여 패키지를 만들려면 사용할 Generator 를 선택할 수 있으며,  CMake와 비슷하게 **-G** 인수를 지정합니다. [인용](https://riptutorial.com/ko/cmake/example/16826/%EC%82%AC%EC%9A%A9%ED%95%A0-cpack-%EC%83%9D%EC%84%B1%EA%B8%B0-%EC%84%A0%ED%83%9D)
 
