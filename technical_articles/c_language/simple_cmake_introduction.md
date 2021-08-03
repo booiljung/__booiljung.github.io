@@ -646,7 +646,34 @@ find_package(Boost COMPONENTS unit_test_framework REQUIRED)
 
 add_executable(test_name test1.cpp)
 target_link_libraries(test_name library_name ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})
+add_definitions(-DBOOST_TEST_DYN_LINK)
 add_test(NAME test1 COMMAND test_name)
+```
+
+테스트 코드에는 `#include <unit_test.hpp>`앞에 `#define BOOST_TEST_MODULE ****`을 정의합니다:
+
+```c++
+#define BOOST_TEST_MODULE test_path
+#include <boost/test/unit_test.hpp>
+
+#include "../src/path.hpp"
+
+
+BOOST_AUTO_TEST_CASE(test_path)
+{
+    BOOST_CHECK( add( 2,2 ) == 4 );  
+    BOOST_REQUIRE( add( 2,2 ) == 4 );
+    if( add( 2,2 ) != 4 )
+        BOOST_ERROR( "Ouch..." );
+    if( add( 2,2 ) != 4 )
+        BOOST_FAIL( "Ouch..." );
+
+    if( add( 2,2 ) != 4 )
+        throw "Ouch...";
+
+    BOOST_CHECK_MESSAGE( add( 2,2 ) == 4, "add(..) result: " << add( 2,2 ) );
+    BOOST_CHECK_EQUAL( add( 2,2 ), 4 );
+}
 ```
 
 빌드:
