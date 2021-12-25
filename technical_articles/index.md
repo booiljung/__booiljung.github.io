@@ -18,6 +18,7 @@
 ### 아키텍쳐, 디자인, 네트워크
 
 - [컴퓨터 아키텍처 (Computer Architecture)](computer_architecture/index.md)
+- [하드웨어](hardware/index.md)
 - [Software Architecture](software_architecture/index.md)
 - [객체지향 프로그래밍](./object_oriented_programming/index.md) 및 디자인 패턴 (Object Oriented Programming and Design Patterns)
 - 병렬컴퓨팅 (Parallel Computing)
@@ -100,6 +101,7 @@
 - [Node.js](./nodejs/index.md)
 - [React Native](./react_native/index.md)
 - [skia.org: Skia Graphics Library](https://skia.org/)
+- [react](./react/index.md)
 
 ## 로봇
 
