@@ -144,13 +144,13 @@ reportWebVitals();
 
 기본으로 `App` 컴포넌트를 실행하고 있다.
 
-#### 애플리케이션 시작
+#### 애플리케이션 실행 시작
 
 ```sh
 npm start
 ```
 
-HTTPS 시작
+HTTPS로 시작:
 
 ```sh
 HTTPS=true npm start

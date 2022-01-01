@@ -101,7 +101,8 @@
 - [Node.js](./nodejs/index.md)
 - [React Native](./react_native/index.md)
 - [skia.org: Skia Graphics Library](https://skia.org/)
-- [react](./react/index.md)
+- [React in JavaScript](./react_in_js/index.md)
+- [React in TypeScript](./react_in_ts/index.md)
 
 ## 로봇
 
