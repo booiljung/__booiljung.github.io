@@ -11,6 +11,7 @@ ReactJS
 - [컴포넌트의 constructor() 알아보기](reactjs_constructor_of_component.md)
 - [컴포넌트의 getDerivedStateFromProps() 알아보기](reactjs_getderivedstatefromprops_of_component.md)
 - [컴포넌트의 componentDidMount() 알아보기](reactjs_componentdidmount_of_component.md)
+- [props의 자료형](datatypes_of_props.md)
 
 ## JQuery
 

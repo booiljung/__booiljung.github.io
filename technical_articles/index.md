@@ -134,6 +134,7 @@
 ### 관리 및 운영
 
 - [패키지](./packages/index.md)
+- [보안](securities/index.md)
 - [git](./git/index.md)
 - [제품 및 서비스 기획 (Product Management)](product_managements/index.md)
 - 프로젝트 관리 (Project Management)

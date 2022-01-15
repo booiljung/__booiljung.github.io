@@ -59,5 +59,7 @@ MyComponent.constructor() called.
 MyComponent.static getDerivedStateFromProps(props, state) called: from App.js
 ```
 
-- `App.js`에서 `MyComponent` 태그에 `<MyComponent my_props='from App.js'/>`로 주입한 props `from App.js`가 `MyComponent`에 전달 하고 있는 것을 확인 할 수 있다.
+- `App.js`에서 `MyComponent` 태그에 `<MyComponent my_props='from App.js'/>`로 주입한 `from App.js`가 표시 되고 있다.
+- `App.js`에서 `<MyComponent my_props='from App.js'/>`하여 `my_props`에 값을 주입하고 있고
+- `MyComponent`에서 `this.props.my_props` 전달 받고 있다.
 
