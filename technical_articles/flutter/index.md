@@ -2,6 +2,8 @@
 
 # Flutter
 
+- [2022년 플러터 단상](a_shoft_thought_of_flutter_in_2022.md)
+
 ## Tips
 
 - Ubuntu 18.04 LTS에서 Android studio 보다 Visual Studio Code가 경쾌하고 빠릅니다.
