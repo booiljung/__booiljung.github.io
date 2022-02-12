@@ -77,15 +77,16 @@
 
 - [코딩](coding/index.md)
 - [프로그래밍 언어 배우기](./learning_programming_languages/index.md)
-- [파이썬 (Python)](python/index.md)
-- [C#](csharp/index.md)
 - [C/C++](c_language/index.md)
-- Objective-C
+- [C#](csharp/index.md)
 - [Dart](./dart/index.md)
-- [Swift](./swift/index.md)
+- [Haskell](./haskell/index.md)
 - [JavaScript](./javascript/index.md)
 - 루아 (Lua)
-- [Haskell](./haskell/index.md)
+- Objective-C
+- [파이썬 (Python)](python/index.md)
+- [Swift](./swift/index.md)
+- [TypeScript](typescript/index.md)
 - [웹 개발](web/index.md)
 
 ### 프레임워크 라이브러리
