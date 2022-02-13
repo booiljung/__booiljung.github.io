@@ -287,14 +287,14 @@ console.log(count); // expected output: 10
 
 ```ts
 interface UIElement {
-  // 아래 함수의 `this: void` 코드는 함수에 `this` 타입을 선언할 필요가 없다는 의미입니다.
+  // onclick 매개변수 `this: void`는 `this`를 사용할 수 없습니다.
   addClickListener(onclick: (this: void, e: Event) => void): void;
 }
 
 class UIHandler {
     info: string;
     onClick(this: Handler, e: Event) {
-        // `UIElement`에 `this`는 `void`인데 `this`를 사용했기 때문에 오류입니다.
+        // onclick 매개변수 `this`는 `void`인데 `this`를 사용하여 오류입니다.
         this.info = e.message;
     }
 }
@@ -302,13 +302,13 @@ let handler = new UIHandler();
 uiElement.addClickListener(handler.onClick); // error!
 ```
 
-만약 `UIElement` 인터페이스의 스펙에 맞춰 `Handler`를 구현하려면 아래와 같이 변경합니다:
+`UIElement` 인터페이스에 따라 `Handler`를 구현하면 아래와 같습니다.
 
 ```ts
 class UIHandler {
     info: string;
     onClick(this: void, e: Event) {
-        // `this`의 타입이 `void` 이기 때문에 `this`를 사용할 수 없습니다.
+        // onclick 매개변수 `this: void`는 `this`를 사용할 수 없습니다.
         console.log('clicked!');
     }
 }
@@ -316,3 +316,144 @@ let handler = new UIHandler();
 uiElement.addClickListener(handler.onClick);
 ```
 
+## 인터페이스
+
+인터페이스는 규격이며 다음과 같은 규격을 정의 할 수 있습니다.
+
+- 객체의 스펙 (시그니처, 속성 타입)
+- 함수의 스펙 (시그니쳐, 매개변수 타입, 반환 타입)
+- 배열과 객체에 대한 접근 방식
+- 클래스
+
+### 간단한 인터페이스의 예:
+
+자바스크립트에서는 아래처럼:
+
+```js
+let person = { name: 'Tom', age: 12 };
+
+function logAge(obj: { age: number }) {
+  console.log(obj.age); // 12
+}
+logAge(person); // 12
+```
+
+`logAge`는 반드시 `age` 속성을 포함해야 합니다. 그렇지 않으면 런타임에 오류가 발생할 것입니다.
+
+타입스크립트에서는 인터페이스를 제공하여 컴파일시 오류를 검증할 수 있습니다:
+
+```ts
+interface personAge {
+  age: number;
+}
+
+function logAge(obj: personAge) {
+  console.log(obj.age);
+}
+
+let person = { name: 'Tom', age: 12 };
+logAge(person);
+```
+
+### 인터페이스에서 옵션 속성
+
+인터페이스를 사용할때 모든 속성에 대해 값을 주지 않아도 됩니다:
+
+```ts
+interface Meat {
+  name: string;
+  salt?: number;  
+}
+
+let myMeat = {
+  name: 'Beef'
+};
+function eatMeat(meat: Meat) {
+  console.log(meat.name); // Beef
+}
+eatMeat(myMeat);
+```
+
+`Meat` 인터페이스의 속성 `salt`는 옵션 속성이므로 인자로 넘긴 `meat`에는 `salt` 속성을 주지 않아도 오류가 발생하지 않습니다.
+
+옵션 속성은 인터페이스에 정의되어 있지 않은 속성에 대해서 인지시켜줄 수 있습니다.
+
+```ts
+interface Meat {
+  name: string;
+  salt?: number;  
+}
+
+let myMeat = {
+  name: 'Beef'
+};
+function eatMeat(meat: Meat) {
+  console.log(meat.weight); // `weight`는 `Meat`의 속성이 아니므로 오류가 발생합니다.
+}
+eatMeat(myMeat);
+```
+
+이 특성은 컴파일시 오류를 검증할 수 있게 합니다.
+
+### 읽기 전용 속성
+
+읽기 전용 속성은 인터페이스로 객체를 처음 생성할 때만 값을 할당하고 그 이후에는 변경할 수 없는 속성을 의미합니다. 문법은 다음과 같이 `readonly` 속성을 앞에 붙입니다.
+
+```ts
+interface Meat {
+  readonly age: number;
+}
+
+let myMeat = {
+  age: 4  
+};
+
+myMeat.age = 3; // `age`를 변경하려고 하면 오류가 발생합니다.
+```
+
+### 읽기 전용 배열
+
+ `ReadonlyArray<T>` 은 읽기 전용 배열이며 선언시에만 초기자를 줄 수 있습니다:
+
+```ts
+let arr: ReadonlyArray<number> = [ 1,2,3 ];
+arr.splice(0,1); // 배열 내용을 변경할 수 없으므로 오류입니다.
+arr.push(4); // 배열 내용을 변경할 수 없으므로 오류입니다.
+arr[0] = 100; // 배열 내용을 변경할 수 없으므로 오류입니다.
+```
+
+### 타입 체크
+
+타입스크립트는 인터페이스를 통한 객체 선언에서 엄밀한 속성 검사를 합니다:
+
+```ts
+interface Meat {
+  age?: number;
+}
+
+function eatMeat(meat: Meat) {
+  // ..
+}
+
+eatMeat({ aze: 20 }); // `aze`는 `Meat`의 속성이 아니므로 오류가 발생 합니다.
+```
+
+타입 추론을 무시하려면 `as` 를 사용합니다.
+
+```ts
+let myMeat = {
+    aze: 20
+};
+eatMeat(myMeat as Meat);
+```
+
+인터페이스 정의하지 않은 속성들을 추가로 사용하려면 아래와 같습니다.
+
+```ts
+interface Meat {
+  age?: number;
+  [프로퍼티이름: 타입]: any;
+}
+```
+
+### 함수 타입
