@@ -36,7 +36,7 @@
 
 ### 3D 그래픽
 
-- [3D Graphics](3d_graphics/index.md)
+- [Computer Graphics](computer_graphics/index.md)
 - [OpenGL](opengl/index.md)
 - 셰이더 프로그래밍 (Shader Programming)
 
@@ -104,6 +104,7 @@
 - [React in TypeScript](./react_in_ts/index.md)
 - [React Native](./react_native/index.md)
 - [skia.org: Skia Graphics Library](https://skia.org/)
+- [sqlalchemy](./sqlalchemy/index.md)
 - [Qt 프로그래밍 (Qt Programming)](qt_programming/index.md)
 - 윈도우 프로그래밍 (Windows Programming)
 - [Vue.js](vuejs/index.md)
