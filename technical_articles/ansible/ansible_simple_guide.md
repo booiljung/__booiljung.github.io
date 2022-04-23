@@ -3,17 +3,26 @@
 **Ansible 이란:**
 
 - 파이썬으로 만들어 졌다.
-- 그래서, 느리다는 하소연이 있다.
+  - 그래서, 느리다는 하소연이 있다.
+
 - 원격의 컴퓨터를 구성-관리 한다.
-- 원격 컴퓨터에 에이전트를 설치할 필요가 없다.
-- ssh를 통해 원격 컴퓨터에 명령한다. 
-- 원격 컴퓨터에 앤서블 명령을 내리는 컴퓨터는 앤서블 코어가 설치 되어야 한다.
+  - 원격 컴퓨터에 에이전트를 설치할 필요가 없다.
+  - ssh를 통해 원격 컴퓨터에 명령한다. 
+  - 원격 컴퓨터에 앤서블 명령을 내리는 컴퓨터는 앤서블 코어가 설치 되어야 한다.
+
+- 다수의 컴퓨터를 동시에, 동일한 환경을 배포한다.
+
+**앤서블 3요소**
+
+- 인벤터리: 어디서 수행할 것인지 기술한다.
+- 플레이북: 무엇을 수행할 것인지 기술한다.
+- 모듈: 어떻게 수행할 것인지 기술한다.
 
 **앤서블 서버**
 
 앤서블 코어가 설치된 컴퓨터를 말한다.
 
-우분투에 앤서벌 코어 설치:
+우분투에 앤서블 코어 설치:
 
 ```bash
 sudo apt install ansible -y
@@ -38,11 +47,55 @@ ls /usr/bin/ansible*
 /usr/bin/ansible-vaul
 ```
 
+**앤서블 인벤터리** (inventory)
+
+엔서블에 의해 제어될 컴퓨터들을 정의한다. 일반적으로 hosts.ini 파일에 정의한다. 여러 컴퓨터들의 ssh 접근을 위한 IP주소, 포트, 리눅스 사용자 권한과 같은 접속 정보를 기술한다.
+
+```
+[webserver]
+web1 ansible_host = 192.168.112.101
+web2 ansible_host = 192.168.112.102
+[db]
+db1 ansible_host = 192.168.112.103
+db2 ansible_host = 192.168.112.104
+```
+
+**앤서블 플레이북** (playbook)
+
+무엇을 수행할 것인지 yaml 으로 정의한다. 앤서블을 다룬다는 것은 플레이북을 다룬다는 것을 말할정도로 중요하다. 대상을 정의해야 하기때문에 단독으로 사용하지는 않고 플레이북과 함께 사용된다.
+
+```
+- name: install nginx
+  hosts: all
+  become: true
+  tasks:
+    - name: ngix package install
+    apt:
+       name: nginx
+       state: installed
+```
+
+**앤서블 애드혹** (ad-hoc)
+
+shell에서 명령줄로 주는 1회성 명령이다. 반복 사용할 수 있게 yaml로 작성하는 것을 플레이북이라고 한다.
+
+**앤서블 모듈** (module)
+
+플레이북이 task들이 어떻게 수행될지 정의한다.
+
+타겟 호스트로 실제 작업을 처리하는 단위로 이 모듈의 개념을 사용한다. 앤서블 모듈은 파이썬 코드로 작성 된다. 위 플레이북 예시에서 apt가 우분투에서 사용되는 모듈이다.
+
+구글에서 `ansible all modules`를 검색해보면 모듈 목록과 사용법을 확인 할 수 있다.
+
+**멱등성** (idempotency)
+
+앤서블은 선언형으로 멱등성을 가진다. 여러번 코드를 실행하여도 결과가 동일하다. 컴퓨터의 상태가 코드와 다른 부분이 있다면 선언한 코드 내용에 맞게 변경될 뿐이다.
+
 **앤서블 노드:**
 
-앤서블 서버의 명령을 받아서 실행될 컴퓨터들
+앤서블 서버의 명령을 받아서 실행될 컴퓨터들로 앤서블 서버의 `/etc/ans## 앤서블 애드혹
 
-앤서블 서버의 `/etc/ansible/hosts` 파일에 앤서블 노드를 나열
+shell에서 명령줄로 주는 1회성 명령. 반복 사용할 수 있게 YAML로 작성하는 것을 플레이북이라고 함.ible/hosts` 파일에 앤서블 노드를 나열한다.
 
 ```
 192.168.0.xxx ansible_connection=ssh ansible_user=<username> ansible_password=<passwd> ansible_become=yes ansible_become_method=su ansible_become_user=root ansible_become_password=<passwd>
@@ -58,7 +111,9 @@ ls /usr/bin/ansible*
 ansible all -m ping
 ```
 
-이때 SSH 키값을 입력 받기 위해 `yes`를 입력
+## 앤서블 애드혹
+
+ssh키값을 입력 받기 위해 `yes`를 입력
 
 앤서블 명령 전달 확인:
 
@@ -103,21 +158,19 @@ ansible <그룹이름> -m ping -k
 
 **인벤터리 파일 지정:**
 
-`/etc/ansible/hosts`파일을 사용하지 않고 특정한 노드 목록 파일을 지정.
-
-`-i <인벤터리 파일 경로>` 또는 `---inventory-file <인벤터리 파일 경로>` 로 지정.
+`/etc/ansible/hosts`파일을 사용하지 않고 특정한 노드 목록 파일을 지정한다. `-i <인벤터리 파일 경로>` 또는 `---inventory-file <인벤터리 파일 경로>` 로 지정한다:
 
 ```sh
 ansible -i <인벤터리 파일 경로> ...
 ```
 
-인벤터리 파일내의 모든 호스트에 대해 지정.
+인벤터리 파일내의 모든 호스트에 대해 지정:
 
 ```sh
 ansible -i <인벤터리 파일 경로> all ...
 ```
 
-인벤터리 파일내의 특정 호스트에 대해 지정.
+인벤터리 파일내의 특정 호스트에 대해 지정:
 
 ```sh
 ansible -i <인벤터리 파일 경로> <호스트 주소> ...
@@ -127,7 +180,11 @@ ansible -i <인벤터리 파일 경로> <호스트 주소> ...
 
 ```sh
 ansible -k
+```
+
 또는
+
+```sh
 ansible --ask-pass
 ```
 
@@ -138,12 +195,6 @@ ansible --ask-pass
 ```sh
 ansible --list-hosts
 ```
-
-## 앤서블 모듈
-
-- [앤서블 모듈 인덱스](https://docs.ansible.com/ansible/2.9/modules/modules_by_category.html)
-
-
 
 ## 앤서블 애드혹
 
@@ -187,7 +238,7 @@ ansible ... -a uptime
 
 **사용자 모듈:**
 
-사용자 출가:
+사용자 추가:
 
 ```sh
 ansible ... -m user -"name=<사용자 이름>" -k
@@ -263,10 +314,10 @@ ansible <노드> -m setup --tree
 
 ## 앤서블 플레이북
 
-- 앤서블 애드혹은 1회성
-- 앤서블 플레이북은 YAML로 작성
-- 반복적으로 사용
-- 플레이북 자체가 문서
+- 앤서블 애드혹은 1회성이다.
+- 앤서블 플레이북은 YAML로 작성한다.
+- 반복적으로 사용가능하다.
+- 플레이북 자체가 문서다.
 
 명령줄에서 실행:
 
@@ -275,7 +326,7 @@ ansible-playbook <앤서플 플레이북 파일.yml> -k
 ```
 
 ```ansible
---- # 첫줄은 반드시 ---로 시작해야 함.
+--- # 첫줄은 반드시 ---로 시작해야 한다.
 - name: <이 플레이북에 대한 설명>
   hosts: <호스트 지정>
   gather_facts: <yes 또는 no> 
@@ -325,7 +376,7 @@ tasks:
     - include_taks: <서브 작업 파일>
 ```
 
-서브 작업 파일
+서브 작업 파일:
 
 ```
 - name: <이름>
@@ -333,9 +384,9 @@ tasks:
   ...
 ```
 
-**조건에 의한 작업 수행**
+**조건에 의한 작업 수행:**
 
-구문을 모두 해석하므로 느림
+구문을 모두 해석하므로 느리다.
 
 ```
 tasks:
@@ -392,7 +443,7 @@ tasks:
 
 **hosts:**
 
-플레이북 파일을 실행할 호스트를 지정.
+플레이북 파일을 실행할 호스트를 지정한다.
 
 - `all`: /etc/ansible/hosts의 모든 노드들을 지정.
 - `<노드 그룹 이름>`:  /etc/ansible/hosts에서 특정 그룹의 노드들을 지정.
@@ -817,7 +868,7 @@ tasks:
   tasks:
     - name: <이름>
       file:
-        state: link
+        state: link다
         src: <원본 경로>
         path: <심볼링 링크 경로>
 ```
@@ -891,7 +942,7 @@ tasks:
 - 먼저 nssm이 설치되어 있어야 한다.
 
 ```
-  tasks:
+  tasks:https://kim-dragon.tistory.com/53
     - name: <이름>
       win_nssm:
         name: <애플리케이션 이름>
@@ -904,7 +955,7 @@ tasks:
 리눅스:
 
 ```
-  tasks:
+https://kim-dragon.tistory.com/53https://kim-dragon.tistory.com/53  tasks:
     - name: <이름>
       timezone:
         name: Aisa/Seoul
@@ -919,7 +970,7 @@ timedatectl list-timezones
 윈도우:
 
 ```
-  tasks:
+https://kim-dragon.tistory.com/53  tasks:
     - name: <이름>
       win_timezone:
         timezone: 'Korea Standard Time'
@@ -958,7 +1009,7 @@ timedatectl list-timezones
 윈도우:
 
 ```
-  tasks:
+  tasks:https://kim-dragon.tistory.com/https://kim-dragon.tistory.com/53https://kim-dragon.tistory.com/53https://kim-dragon.tistory.com/5353
     - name: <이름>
       win_unzip:
         src: <압축된 파일 소스 경로>
@@ -978,7 +1029,7 @@ timedatectl list-timezones
         state: started
 ```
 
-윈도우:
+https://kim-dragon.tistory.com/53윈도우:https://kim-dragon.tistory.com/53
 
 ```
   tasks:
@@ -990,7 +1041,7 @@ timedatectl list-timezones
 
 **서비스 중지:**
 
-리눅스:
+리눅스:https://kim-dragon.tistory.com/53https://kim-dragon.tistory.com/53
 
 ```
   tasks:
@@ -1010,7 +1061,7 @@ timedatectl list-timezones
         state: stop
 ```
 
-**서비스 재시작**
+**https://kim-dragon.tistory.com/53서비스 재시작https://kim-dragon.tistory.com/53**
 
 리눅스:
 
@@ -1025,7 +1076,7 @@ timedatectl list-timezones
 윈도우:
 
 ```
-  tasks:
+https://kim-dragon.tistory.com/53  tasks:
     - name: <이름>
       win_service:
         name: <서비스 이름>
@@ -1039,7 +1090,7 @@ timedatectl list-timezones
 ```
   tasks:
     - name: <이름>
-      win_reboot:
+      win_reboot:https://kim-dragon.tistory.com/53
 ```
 
 **서비스 데몬 재시작:**
