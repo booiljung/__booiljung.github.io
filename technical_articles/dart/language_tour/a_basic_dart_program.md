@@ -1,19 +1,19 @@
 [Up](./index.md)
 
-## 시작 (Getting started)
+## Dart 프로그램의 기본 (A basic Dart program)
 
-정수 42를 콘솔에 인쇄하는 짧은 Dart 코드를 작성해 보겠습니다.
+다음 코드는 Dart의 가장 기본적인 기능을 많이 사용합니다.
 
 ```dart
-// 함수를 선언 합니다.
+// 함수를 정의 합니다.
 printInteger(int aNumber) {
-	print('The number is $aNumber.');
+	print('The number is $aNumber.'); // 콘솔에 표시합니다.
 }
 
 // 앱의 실행 시작점 입니다.
-main() {
-	var number = 42;
-    printInteger(number);
+void main() {
+	var number = 42; // 변수를 선언하고 초기화 합니다.
+    printInteger(number); // 함수를 호출합니다.
 }
 ```
 
@@ -23,9 +23,13 @@ main() {
 
 한 줄 주석입니다. Dart 는 또한 여러 줄 및 문서 주석을 지원합니다. 자세한 내용은 [주석](./comments.md)을 보세요.
 
+`void`
+
+사용되지 않을 값을 나타내는 특수 타입입니다. `printInteger()`와 `main()`같은 함수는 `void` 반환 타입을 가지고 값을 리턴하지 않는 것을 명시합니다.
+
 `int`
 
-타입입니다. 다른 [builtin types](built_in_types.md)은 `String`, `List`,  `bool` 등이 있습니다.
+다른 타입으로, 정수를 나타내는 타입입니다. 다른 [내장 타입(builtin types)](built_in_types.md)은 `String`, `List`,  `bool` 등이 있습니다.
 
 `42`
 
@@ -33,7 +37,7 @@ main() {
 
 `print()`
 
-디스플레이에 출력하기 위한 수단입니다.
+출력을 표시하는 편리한 수단입니다.
 
 `'...'` (또는 `"..."`)
 
@@ -50,8 +54,6 @@ main() {
 `var`
 
 타입을 지정하지 않고 변수를 선언하는 방법 입니다.
-
-<p id="important-concepts"/>
 
 ### 주요 컨셉 (Important concepts)
 

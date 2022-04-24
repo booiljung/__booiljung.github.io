@@ -6,6 +6,14 @@
 
 - [사용자 관리](user_management.md)
 
+## Ubuntu Kiosk
+
+- [Ubuntu Desktop을 웹 기반 키오스크 모드로 구성하기](configure_a_web_based_kiosk_on_ubuntu_desktop.md)
+
+## Ubuntu Core
+
+- [Ubuntu Core](ubuntu_core/index.md)
+
 ## File System
 
 - [exFAT으로 파일시스템을 설치](exfat_filesystem.md)

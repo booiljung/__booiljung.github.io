@@ -18,6 +18,7 @@
 ### 아키텍쳐, 디자인, 네트워크
 
 - [컴퓨터 아키텍처 (Computer Architecture)](computer_architecture/index.md)
+- [하드웨어](hardware/index.md)
 - [Software Architecture](software_architecture/index.md)
 - [객체지향 프로그래밍](./object_oriented_programming/index.md) 및 디자인 패턴 (Object Oriented Programming and Design Patterns)
 - 병렬컴퓨팅 (Parallel Computing)
@@ -35,7 +36,7 @@
 
 ### 3D 그래픽
 
-- [3D Graphics](3d_graphics/index.md)
+- [Computer Graphics](computer_graphics/index.md)
 - [OpenGL](opengl/index.md)
 - 셰이더 프로그래밍 (Shader Programming)
 
@@ -71,35 +72,42 @@
 ## 개발도구
 
 - [애저와 비주얼 스튜디오](azure_visual_studio/index.md)
+- [vscode](vscode/index.md)
 
 ### 프로그래밍 언어
 
+- [프로그래밍](programming/index.md)
 - [코딩](coding/index.md)
 - [프로그래밍 언어 배우기](./learning_programming_languages/index.md)
-- [파이썬 (Python)](python/index.md)
-- [C#](csharp/index.md)
 - [C/C++](c_language/index.md)
-- Objective-C
+- [C#](csharp/index.md)
 - [Dart](./dart/index.md)
-- [Swift](./swift/index.md)
+- [Haskell](./haskell/index.md)
 - [JavaScript](./javascript/index.md)
 - 루아 (Lua)
-- [Haskell](./haskell/index.md)
+- Objective-C
+- [파이썬 (Python)](python/index.md)
+- [Swift](./swift/index.md)
+- [TypeScript](typescript/index.md)
 - [웹 개발](web/index.md)
 
 ### 프레임워크 라이브러리
 
 - [소프트웨어 개발 도구](software_development_environments/index.md)
-- iOS 프로그래밍 (iOS Programming)
-- [Flutter 프로그래밍 (Flutter Programming)](./flutter/index.md)
 - [Android 프로그래밍 (Android Programming)](./android/index.md)
-- [Qt 프로그래밍 (Qt Programming)](qt_programming/index.md)
-- 윈도우 프로그래밍 (Windows Programming)
 - [닷넷 프로그래밍 (.NET Programming)](dotnet/index.md)
-- [Vue.js](vuejs/index.md)
+- [fastapi](./fastapi/index.md)
+- [Flutter 프로그래밍 (Flutter Programming)](./flutter/index.md)
+- iOS 프로그래밍 (iOS Programming)
 - [Node.js](./nodejs/index.md)
+- [React in JavaScript](./react_in_js/index.md)
+- [React in TypeScript](./react_in_ts/index.md)
 - [React Native](./react_native/index.md)
 - [skia.org: Skia Graphics Library](https://skia.org/)
+- [sqlalchemy](./sqlalchemy/index.md)
+- [Qt 프로그래밍 (Qt Programming)](qt_programming/index.md)
+- 윈도우 프로그래밍 (Windows Programming)
+- [Vue.js](vuejs/index.md)
 
 ## 로봇
 
@@ -131,6 +139,7 @@
 ### 관리 및 운영
 
 - [패키지](./packages/index.md)
+- [보안](securities/index.md)
 - [git](./git/index.md)
 - [제품 및 서비스 기획 (Product Management)](product_managements/index.md)
 - 프로젝트 관리 (Project Management)

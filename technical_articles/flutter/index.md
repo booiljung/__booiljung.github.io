@@ -2,6 +2,8 @@
 
 # Flutter
 
+- [2022년 플러터 단상](a_shoft_thought_of_flutter_in_2022.md)
+
 ## Tips
 
 - Ubuntu 18.04 LTS에서 Android studio 보다 Visual Studio Code가 경쾌하고 빠릅니다.
@@ -32,8 +34,45 @@
 
 ## Library for Fultter
 
-- [번역: Bloc](./bloc/index.md): Dart 및 Flutter용 BLoC 아키텍쳐 패턴
 - [Flutter Redux package](https://pub.dev/packages/flutter_redux): Flutter 위젯을 만들기 위해 Redux 저장소를 쉽게 사용할 수 있게 해주는 유틸리티 세트.
+
+## 상태관리
+
+사용해본 플러터 상태 관리는 아래와 같다.
+
+- `setState()`
+- Bloc
+- Provider
+- GetX
+- get_it
+
+각기 컨셉이 다르며 장단점을 짧게 정리해본다.
+
+**`setState()`**
+
+flutter에서 기본 제공 한다. 상태관리하고자 하는 변수가 클래스 범위를 벗어나면 복잡해진다.
+
+**Bloc**:
+
+많은 기능을 가지고 있다. 그만큼 난해하고 복잡하다. 워드프로세서를 만들때 적합하다.
+
+**Provider**:
+
+심플하고 단순하다. `BuildContext` 벗어난 곳에서 다루기가 복잡해진다. 예를 들면 타이머 핸들러에서 처리하고자 하는 경우다.
+
+**GetX**:
+
+Provider와 달리 `BuildContext` 밖에서 사용할 수 있다. Dart Rx 기반으로 프로퍼티도 Dart Rx 타입을 사용해야 하는 문제가 있다.
+
+**get_it**:
+
+Provider와 GetX의 장점을 취하였다고 볼 수 있다. 구조가 상당히 다르므로 실수하기 쉽다.
+
+**상태관리 관련 문서:**
+
+- [번역: Bloc](./bloc/index.md): Dart 및 Flutter용 BLoC 아키텍쳐 패턴
+- [Provider](./provider/index.md)
+- [get_it](get_it/index.md)
 
 ## Quick Examples
 
