@@ -1,10 +1,8 @@
 # 공개 금지 (제대로 정리해야 함)
 
-# 3D 수학 기초
+# 3D 그래픽스 기초 수학
 
-## Vectors
-
-### 벡터
+## 벡터
 
 벡터는 일반적으로 열벡터 입니다.
 $$
@@ -30,10 +28,10 @@ $$
 벡터에 스칼라를 곱하는 것은 벡터 각 요소에 스칼라를 곱한것과 같습니다.
 $$
 \begin{aligned}
-a \cdot \mathbf p
+a \cdot \mathbf p 
 = \mathbf p \cdot a
-= a \cdot 
-\begin{bmatrix}
+= a \cdot  
+\begin{bmatrix} 
 p_x\\ p_y\\ p_z
 \end{bmatrix}
 = \begin{bmatrix}
@@ -46,7 +44,7 @@ a \cdot p_x\\ a \cdot p_y\\ a \cdot p_z
 \end{aligned}
 $$
 
-### 벡터의 합 (Vector Addition)
+### 벡터의 합 (Vector addition)
 
 두 벡터의 위치나 방향을 합합니다.
 $$
@@ -305,7 +303,7 @@ $$
 
 $n \times n$ 가역행렬 $\mathbf M$ 이 $\mathbf M^{-1} = \mathbf M^\top$을 만족하면 직교행렬(orthogonal matrix)이라고 합니다. 벡터의 직교 정규 집합(orthonormal set)을 형성하는 행이 직각인 행렬입니다. 직교행렬은 길이와 각도를 유지하므로 회전과 반사만 수행합니다.
 
-##3 축척변환
+### 축척변환
 
 다음 변환행렬
 $$

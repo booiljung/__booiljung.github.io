@@ -2,6 +2,8 @@
 
 # 3D 그래픽스(3D Graphics)
 
+- [그래픽스 링크 모음](links_of_computer_graphics.md)
+
 - [그래픽 파이프라인](graphics_pipeline)
 - [수](numerical_issues.md)
 - [클래스 설계](class_design.md)
