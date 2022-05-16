@@ -1,6 +1,6 @@
 # 컴퓨터 그래픽 모음
 
-## 래스터 그래픽스 & 벡터 그래픽
+## 래스터, 복셀, 벡터 그래픽스
 
 ### [raster graphics](![img](https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Rgb-raster-image.svg/220px-Rgb-raster-image.svg.png))
 
@@ -35,6 +35,7 @@
 
 - [어도비 일러스트레이터](https://www.adobe.com/kr/products/illustrator.html)
 - [코렐 드로우](https://www.coreldraw.com/en/)
+- 윈도우용 트루타입 폰트
 
 ### 3차원 그래픽
 
@@ -66,13 +67,13 @@ Red, Green, Blue
 
 ![rgb color space cube at maximum values](https://docs.microsoft.com/en-us/windows/win32/wcs/images/rgbclrs1.png)
 
-![rgb color space cube at minimum values](https://docs.microsoft.com/en-us/windows/win32/wcs/images/rgbclrs2.png)
+![rgb color space cube at minimum values](https://docs.microsoft.com/en-us/windows/win32/wcs/images/rgbclrs2.png)시시시시시
 
 ### HSV 색공간
 
-- Hue
-- SaturationSaturation
-- Volume
+- Hue (색상)
+- Saturation (채도)
+- Volume (명도)
 
 ![Hsv Cylinder - Free Transparent PNG Clipart Images Download](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMnkiHGHqqr_LBNDqQE8lFuPMlZt4RnBwZBpxb4tCfkTZ94_y9tEMk4-qwy8qrP9H8xEI&usqp=CAU)
 
@@ -91,30 +92,188 @@ Red, Green, Blue
 
 
 
+## 용어
+
+- [정점(vertex) / 폴리곤(polygon) / 변(edge) / 메시(mesh)](https://hellowoori.tistory.com/30)
+
+![img](https://t1.daumcdn.net/cfile/tistory/99BCFB4C5C360FD426)
+
+### 정점(vertex)이란?
+
+공간상에서의 위치(position)를 나타내는 것으로, 일반적으로 여러 개가 모여서 특정 형태의 오브젝트를 구성하는 요소를 정점 이라고 한다.
+
+### 변(edge)란?
+
+폴리곤에서 정점과 정점을 연결하는 직선을 변 또는 모서리라고 한다.
+
+### 폴리곤(polygon)이란?
+
+최소 3개의 정점이 모이면 하나의 면(face)을 만들 수 있다. 이렇게 3개의 정점으로 만들어진 삼각형을 폴리곤이라고 한다. 삼각형은 3D 물체의 기본 구성 요소이다.
+
+### 메시(mesh)란?
+
+니오넬 메시 (Messi)?
+
+다다다![바르샤 원클럽맨 '메시' 지난 4년간 얼마 받았나 | 아주경제](http://image.ajunews.com//content/image/2021/01/31/20210131151524361000.jpg)
+
+폴리곤이 모여서 하나의 3차원 물체를 만들게 되는데 이것을 메시라다고 한다. 즉, 메시는 폴리곤이 모여서 만들어진 3차원 공간상의 객체(object)이다.
+
+메시의 삼각형은 우리가 모델링하는 물체의 기본적인 구성 성분이 되며, 메시 삼각형을 폴리곤(polygon) 혹은 기본형(primitive) 이라고도 부른다. 
+
+폴리곤에서 두 개의 변이 만나는 지점을 정점(vertex) 이라고 한다.
+
+하나의 삼각형을 만들기 위해서는 삼각형의 세 정점에 해당하는 세 개의 포인트 위치를 저장해야하며, 이 삼각형을 지정하여 물체를 묘사한다. 
+
+### Vertices - edges - faces - polygons - surfaces
+
+![Elements of polygonal mesh modeling.](https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Mesh_overview.svg/720px-Mesh_overview.svg.png)
+
+### [고급 과정 - Polygon mesh](https://en.wikipedia.org/wiki/Polygon_mesh)
+
 ## 좌표계
 
+### 모델 공간 (Model space 또는 Local space), 모델 좌표계
 
+(3D) 모델 또는 객체가 자체적인 좌표 공간을 가진다.
 
+예를 들자면 병이 있다. 병 바닥 중심에 원점이 있고, 이 원점을 기준으로 정점(Vertex)들이 위치한다.
 
+![Coca Cola Bottle 3D Model](https://www.3dcadbrowser.com/th/2/80/80575.jpg)
 
+### 월드 공간 (World space), 월드 좌표계
 
+세계를 하나의 통일된 절대적인 좌표계로 표현, 모든 객체를 동일한 하나의 좌표계에 배치한다. 객체들의 위치와 방향을 표현하기 위한 좌표계다. 모델 좌표계로 표현된 모델(객체)들은 월드 좌다다다표계에서 그 방향과 위치가 표현되어야 하는데, 이때 모델 좌표계로 표현된 매시는 월드 좌표계로 변환되어야 한다. 이때 월드 변환 행렬이 적용된다.
 
 ### 뷰포트 좌표계 (NDC; Normalized Device Coordinates)
 
-- 투영 변환의 결과
+- 투영 변환의 결과My Programming Box: Screen Transform (화면 변환)
 - 중앙이 (0, 0)
 - 좌측 하단이 (-1, -1)
 - 우측 상단이 (+1, +1)
 
 ![img](https://3.bp.blogspot.com/-HIb7Exxar7U/UTIQ71sbRQI/AAAAAAAABAM/PtUWWa-3CyI/s1600/screen_transform.png)
 
-### 스크린 좌표계
+예를 들어 월드 공간에 위치한 특정 정점이 카메라 공간 안으로 연산이 되면 정규 장치 좌표계 (뷰포트 좌표계)로 변환 된다.
 
-- 뷰포트 좌표계를 화면에 변화
+### 스크린 공간 (screen space)
+
 - 좌측 상단이 (0, 0)
 - 2차원 공간
 
 ![My Programming Box: Screen Transform (화면 변환)](https://3.bp.blogspot.com/-j4chflWsrLQ/UTIQ_mQ_XOI/AAAAAAAABAU/nTjcKlYgjY8/s1600/screen_transform2.png)
+
+뷰포트 좌표계는 장치(화면)에 중립적인 좌표계를 가지고 있다. 최종적으로 화면에 그려지기 위해서는 화면 공간으로 변환되어야 한다.
+
+## 공간 변환 과정
+
+1. 로컬 공간의 정점은 월드 공간상의 정점으로 변환 된다.
+2. 월드 공간상의 정점은 카메라 공간의 정점으로 변환된다.
+3. 카메라 공간의 점은 스크린 공간으로 변환된다.
+
+## 벡터 (Vector)
+
+$$
+\begin{bmatrix}
+x \\
+y \\
+z \\
+\end{bmatrix}
+$$
+
+### 동차좌표계 (homogenious)
+
+$$
+\begin{bmatrix}
+x \\
+y \\
+z \\
+w \\
+\end{bmatrix}
+$$
+
+[동차좌표](https://ko.wikipedia.org/wiki/%EB%8F%99%EC%B0%A8%EC%A2%8C%ED%91%9C)
+
+요약하면 - 특정 좌표가 여러가지(무한대) 좌표로 나타낼 수 있다.
+
+컴퓨터 그래픽에서 여러가지 이유로 동차좌표계를 사용, 컴퓨터 그래픽에서 w가 0이면 벡터, 0이 아니면 동차 좌표다.
+
+동차좌표 (1, 1, 1, 1), (2, 2, 2, 2), (0.5, 0.5, 0.5, 0.5) 는 모두 같은 좌표를 나타낸다.
+
+ w가 1이 되도록 w로 나누면 비교 가능. w가 1이 되도록 w로 나누면 비교 가능. w가 1이 되도록 w로 나누면 비교 가능. w가 1이 되도록 w로 나누면 비교 가능. w가 1이 되도록 w로 나누면 비교 가능.
+
+[친철한 책 Homogeneous Coordinates andComputer Graphics](http://www.geometer.org/mathcircles/cghomogen.pdf)
+
+## 행렬 (Matrix)
+
+3D 그래픽에서 4x4 행렬을 사용
+
+단위 행렬
+$$
+\begin{bmatrix}
+1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 1 \\
+\end{bmatrix}
+$$
+
+### 행렬과 벡터의 곱 (product)
+
+$$
+\begin{bmatrix}
+x \\
+y \\
+z \\
+\end{bmatrix}
+\times
+\begin{bmatrix}
+1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 1 \\
+\end{bmatrix}
+$$
+
+곱 할 수 있는가? Nop
+$$
+\begin{bmatrix}
+x \\
+y \\
+z \\
+w \\
+\end{bmatrix}
+\times
+\begin{bmatrix}
+1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 1 \\
+\end{bmatrix}
+$$
+
+## 오일러 각
+
+3차원 공간에서 회전을 표현하는 방법 - 인간에게 친숙 하다. 버뜨...
+
+![Orientation coordonnees spheriques generalisees.png](https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Orientation_coordonnees_spheriques_generalisees.png/250px-Orientation_coordonnees_spheriques_generalisees.png)
+
+![Eulerangles.svg](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Eulerangles.svg/250px-Eulerangles.svg.png)
+
+
+
+### 짐벌락 (2분 30초)
+
+<iframe width="1120" height="630" src="https://www.youtube.com/embed/zc8b2Jo7mno" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+- [짐벌락과 사원수](https://cutemoomin.tistory.com/entry/%EC%A7%90%EB%B2%8C%EB%9D%BDgimbal-lock%EA%B3%BC-%EC%82%AC%EC%9B%90%EC%88%98%EC%BF%BC%ED%84%B0%EB%8B%88%EC%96%B8-quaternion)
+
+## 사원수 (Quaternion)
+
+수
+
+
+
+
 
 ## 참조
 
