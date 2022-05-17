@@ -205,7 +205,7 @@ $$
 
 ## 행렬 (Matrix)
 
-3D 그래픽에서 4x4 행렬을 사용
+그래픽에서 4x4 행렬을 사용.
 
 단위 행렬
 $$
@@ -217,8 +217,9 @@ $$
 \end{bmatrix}
 $$
 
-### 행렬과 벡터의 곱 (product)
+### 행렬과 벡터의 곱 (Product)
 
+벡터는 열이 1개인 행렬이기도 한다. 곱 할 수 있는가?
 $$
 \begin{bmatrix}
 x \\
@@ -234,7 +235,7 @@ z \\
 \end{bmatrix}
 $$
 
-곱 할 수 있는가? Nop
+Nop
 $$
 \begin{bmatrix}
 x \\
@@ -253,11 +254,21 @@ $$
 
 ## 오일러 각
 
-3차원 공간에서 회전을 표현하는 방법 - 인간에게 친숙 하다. 버뜨...
+3차원 공간에서 회전을 표현하는 방법 - 인간에게 친인숙 하다. 버뜨...
+$$
+\begin{bmatrix}
+r_x \\
+r_y \\
+r_z \\
+\end{bmatrix}
+$$
 
-![Orientation coordonnees spheriques generalisees.png](https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Orientation_coordonnees_spheriques_generalisees.png/250px-Orientation_coordonnees_spheriques_generalisees.png)
 
-![Eulerangles.svg](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Eulerangles.svg/250px-Eulerangles.svg.png)
+
+
+![Orientation coordonnees spheriques generalisees.png](https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Orientation_coordonnees_spheriques_generalisees.png/250px-Orientation_coordonnees_spheriques_generalisees.png)다다
+
+![Eulerangles.svg](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Eulerangles.svg/250px-Eulerangles.svg.png)다
 
 
 
@@ -269,11 +280,179 @@ $$
 
 ## 사원수 (Quaternion)
 
-수
+벡터와 행렬의 발명 그 이전에는 2차원 문제에서 복소 평면 사용. 3차원 문제에서 복소수를 활용할 수 있는가? 이 물음에 대한 답이 해밀턴이 발명한 사원수. 8년동안 연구 끝에 발명한 것이니 이해 못한다고 낙담 말자. 이미 만들어진 함수를 사용하는 방법은 쉽다. [조금은 느리게 살자](https://ghebook.blogspot.com/2010/07/quaternion.html)
 
+*참고 : 영상이나 음성 같은 신호 처리시 코사인이 사용되는데 복소 평면과 코사인은 단짝이다.*
 
+3D 그래픽에서 회전을 표현하는 방법에는 3가지가 있다.
 
+1. 오일러 각 - 짐벌락 문제가 있다.
+2. 사원수
+3. 회전 행렬 - 4x4로 덩치가 크다.
 
+ 복소수:
+$$
+a + bi
+$$
+사원수:
+$$
+a + bi +cj +dk
+$$
+실수부 1개, 허수부 1개.
+
+그래픽 라이브러리들은 사원수 관련 클래스들이 정의 되어 있고, 오픈소스들도 활용할 수 있다. 이해는 나중에 해도 된다.
+
+- [Unity Quaternion](https://docs.unity3d.com/ScriptReference/Quaternion.html)
+- Ogre 3D 사원수 [OgreQuaternion.h](https://github.com/OGRECave/ogre/blob/master/OgreMain/include/OgreQuaternion.h) [OgreQuaternion.cpp](https://github.com/OGRECave/ogre/blob/master/OgreMain/src/OgreQuaternion.cpp)
+  - 오일러 각을 사원수로 변경터
+  - 사원수를 오일러각으로 변경
+  - 특정 사원수에서 다른 사원수 사이를 보간 하기
+  - 길이를 정규화 하기
+  - 내적 구하기 등
+
+이런게 있다고 알고 넘어가도  개발 가능하다.
+
+## 다시 벡터
+
+### 내적 (dot product)
+
+두 벡터의 내적을 구하는 식이나 코드는 검색해 보면 많다. 벡터의 내적을 어떨 경우에 사용하는가?
+
+두 벡터의 내적은 두 벡터가 어느 정도 다른 방향을 가리키는지 알 수 있게 한다.
+
+벡터의 내적은 두벡터 방향의 코사인 값이다.
+
+방향이 같으면 1, 방향이 수직이면 0, 방향이 전혀 다르면 -1이다. 
+
+코사인 값은 $\arccos \theta$ 로 호도법(라다인)을 구할 수 있고, 다시 라디안은 사람에게 친숙한 육십분법으로 변환 할 수 있다.
+
+### 벡터의 외적 (cross product) 
+
+두 벡터의 외적을 구하는 식이나 코드는 검색해 보면 많다. 벡터의 외적을 어떨 경우에 사용하는가?
+
+두 벡터의 외적은 두 벡터에 수직인 단위 벡터를 얻는다. 이처럼 평면 등에 수직인 벡터를 법선벡터(Normal Vector) 이라고 한다. 평면의 방향을 기술 할때는 법선벡터로 표현 한다. [FINDMEAN](http://www.findmean.com/%EC%88%98%ED%95%99/%EB%B2%A1%ED%84%B0/%EB%B2%A1%ED%84%B0%EC%9D%98-%EC%99%B8%EC%A0%81/)
+
+이 법선벡터와 다른 벡터를 dot를 하면 평면의 방향을 알 수 있다.
+
+예를 들어 카메라가 특정 면을 보고 있을때, 그면의 법선벡터와 카메라와의 방향 베터를 비교하면 그 면을 그릴지 말지를 결정 할 수 있다.
+
+## 다시 행렬
+
+그래픽에서는 왜 4x4를 사용하는가?
+
+- v동차좌표계를 사용하기 때문.
+
+왜 동차좌표계를 사용하는가?
+
+- 로컬, 월드, 뷰포트, 스크린 등의 공간을 넘나들기 때문.
+- 이동을 해야 하기 때문. 이동은 선형 변환이 아니라 아핀 변환이다.
+
+[게임프로그래밍](https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=znfgkro1&logNo=80174113848)
+
+[선형변환과 아핀변환](https://codingfarm.tistory.com/377)
+
+### 비례 변환 (Scale 확대축소)
+
+3x3 행렬로도 충분하지만
+$$
+S = \begin{bmatrix}
+	s_x & 0 & 0 \\
+	0 & s_y & 0 \\
+	0 & 0 & s_z
+\end{bmatrix}
+$$
+실제는 4x4 행렬 사용. 왜? 이동 행렬이 4x4이고 이것과 곱해야 하니까.
+$$
+S = \begin{bmatrix}
+	s_x & 0 & 0 & 0\\
+	0 & s_y & 0 & 0\\
+	0 & 0 & s_z & 0\\
+	0 & 0 & 0 & 1
+\end{bmatrix}
+$$
+벡터 $V$를 스케일 하려면
+$$
+U = V \cdot S
+$$
+
+### 회전 변환 (Rotation transform)
+
+회전 변환 행렬도 3x3으로 충분하지만, 4x4 행렬을 사용한다.
+$$
+R_x =  \begin{bmatrix}
+	1 & 0 & 0 & 0 \\
+	0 & \cos \theta & \sin \theta & 0  \\
+	0 & - \sin \theta  & \cos \theta & 0 \\
+	0 & 0 & 0 & 1
+\end{bmatrix}
+\\
+R_y = \begin{bmatrix}
+	\cos \theta & 0 & - \sin \theta & 0 \\
+	0 & 1 & 0 & 0 \\
+	\sin \theta & 0 & \cos \theta & 0
+	\\  0 & 0 & 0 & 1
+\end{bmatrix}
+\\
+R_z = \begin{bmatrix}
+	\cos \theta & \sin \theta & 0 & 0 \\
+	-\sin \theta & \cos \theta & 0 & 0 \\
+	0 & 0 & 1 & 0 \\  0 & 0 & 0 & 1
+\end{bmatrix}
+$$
+벡터 $V$를 회전하고 싶다면
+$$
+R = R_x \cdot R_y \cdot R_z
+\\
+U = V \cdot R
+$$
+
+### 이동 변환 (Translation transform)
+
+이동 변환 행렬은 4x4 행렬이다.
+$$
+T =  \begin{bmatrix}
+	1 & 0 & 0 & 0 \\
+	0 & 1 & 0 & 0 \\
+	0 & 0 & 1 & 0 \\
+	t_x & t_y & t_z & 1
+\end{bmatrix}
+$$
+벡터 V를 이동하려면
+$$
+U = V \cdot T
+$$
+위 이동행렬의 전치 행렬
+$$
+T^\top =  \begin{bmatrix}
+	1 & 0 & 0 & t_x \\
+	0 & 1 & 0 & t_y \\
+	0 & 0 & 1 & t_z \\
+	0 & 0 & 0 & 1
+\end{bmatrix}
+$$
+자료에 따라 회전행렬, 이동행렬이 전치되어 다를 수 있다.
+
+이 차이는 
+
+- 왼손 좌표계냐
+- 오른손 좌표계냐
+
+벡터, 행렬, 사원수 곱의 교환 법칙은 성립하지 않는다.
+
+- 벡터에 행렬을 곱하느냐?
+- 행렬에 벡터를 곱하느냐?
+
+즉
+$$
+U = V \cdot T
+$$
+로 할것인가?
+$$
+U = T \cdot V
+$$
+로 할것인가?
+
+라이브러리 개발자의 선택에 따라 다르다.
 
 ## 참조
 
