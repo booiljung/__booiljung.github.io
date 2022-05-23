@@ -130,7 +130,7 @@ Red, Green, Blue
 
 ### [고급 과정 - Polygon mesh](https://en.wikipedia.org/wiki/Polygon_mesh)
 
-## 좌표계
+## 공간 또는 좌표계
 
 ### 모델 공간 (Model space 또는 Local space), 모델 좌표계
 
@@ -142,7 +142,7 @@ Red, Green, Blue
 
 ### 월드 공간 (World space), 월드 좌표계
 
-세계를 하나의 통일된 절대적인 좌표계로 표현, 모든 객체를 동일한 하나의 좌표계에 배치한다. 객체들의 위치와 방향을 표현하기 위한 좌표계다. 모델 좌표계로 표현된 모델(객체)들은 월드 좌다다다표계에서 그 방향과 위치가 표현되어야 하는데, 이때 모델 좌표계로 표현된 매시는 월드 좌표계로 변환되어야 한다. 이때 월드 변환 행렬이 적용된다.
+세계를 하나의 통일된 절대적인 좌표계로 표현, 모든 객체를 동일한 하나의 좌표계에 배치한다. 객체들의 위치와 방향을 표현하기 위한 좌표계다. 모델 좌표계로 표현된 모델(객체)들은 월드 좌표계에서 그 방향과 위치가 표현되어야 하는데, 이때 모델 좌표계로 표현된 매시는 월드 좌표계로 변환되어야 한다. 이때 월드 변환 행렬이 적용된다.
 
 ### 뷰포트 좌표계 (NDC; Normalized Device Coordinates)
 
@@ -186,7 +186,28 @@ Red, Green, Blue
 
 러시아는 다르다고 하는데 러시아어를 몰라서 검색 할 수 없었다. 영어로 검색해도 나오지 않는다.
 
+### 삼각 함수
+
+![수학 공식 | 고등학교 > 삼각함수의 뜻과 그래프 – MATH FACTORY](links_of_computer_graphics.assets/삼각함수-공식-모음-04.png)
+
+간단히 표현 하자면:
+
+각도 $\theta$ 와 반지름이 1인 원지 주어질때 y의 길이는 $\sin$  x의 길이는 $\cos$.
+
+![img](links_of_computer_graphics.assets/편집02.jpg)
+
+
+
+![image-20220523170348545](links_of_computer_graphics.assets/image-20220523170348545.png)
+
 ## 벡터 (Vector)
+
+$$
+\begin{bmatrix}
+x \\
+y \\
+\end{bmatrix}
+$$
 
 $$
 \begin{bmatrix}
@@ -195,6 +216,8 @@ y \\
 z \\
 \end{bmatrix}
 $$
+
+3D 그래픽에서 벡터는 $U, V, W$ 사용
 
 ### 동차좌표계 (homogenious)
 
@@ -211,24 +234,27 @@ $$
 
 요약하면 - 특정 좌표가 여러가지(무한대) 좌표로 나타낼 수 있다.
 
-컴퓨터 그래픽에서 여러가지 이유로 동차좌표계를 사용, 컴퓨터 그래픽에서 w가 0이면 벡터, 0이 아니면 동차 좌표다.
+컴퓨터 그래픽에서 여러가지 이유로 동차좌표계를 사용
+
+- 컴퓨터 그래픽에서 $w$가 0이면 벡터
+- 0이 아니면 동차 좌표.
 
 동차좌표 (1, 1, 1, 1), (2, 2, 2, 2), (0.5, 0.5, 0.5, 0.5) 는 모두 같은 좌표를 나타낸다.
 
- w가 1이 되도록 w로 나누면 비교 가능. w가 1이 되도록 w로 나누면 비교 가능. w가 1이 되도록 w로 나누면 비교 가능. w가 1이 되도록 w로 나누면 비교 가능. w가 1이 되도록 w로 나누면 비교 가능.
+$w$가 1이 되도록 $w$로 나누면 비교 가능.
 
 [친철한 책 Homogeneous Coordinates andComputer Graphics](http://www.geometer.org/mathcircles/cghomogen.pdf)
 
 왜 동차 좌표계를 사용하느냐?
 
-- 이동 변환이 아핀 변환이기 때문이다![DirectX 3D - 기초 용어 -](https://t1.daumcdn.net/cfile/tistory/1419BF404F2D54EA15?original).
+- 이동 변환이 아핀 변환이기 때문이다.
 - 정점이 다른 공간으로 변환 할때 동차 좌표계가 사용된다.
 
 ## 행렬 (Matrix)
 
 그래픽에서 4x4 행렬을 사용.
 
-단위 행렬
+4x4 단위 행렬
 $$
 \begin{bmatrix}
 1 & 0 & 0 & 0 \\
@@ -275,7 +301,7 @@ $$
 
 ## 오일러 각
 
-3차원 공간에서 회전을 표현하는 방법 - 인간에게 친인숙 하다. 버뜨...
+3차원 공간에서 회전을 표현하는 방법 - 인간에게 친숙 하다. But...
 $$
 \begin{bmatrix}
 r_x \\
@@ -287,21 +313,26 @@ $$
 
 
 
-![Orientation coordonnees spheriques generalisees.png](https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Orientation_coordonnees_spheriques_generalisees.png/250px-Orientation_coordonnees_spheriques_generalisees.png)다다
+![Orientation coordonnees spheriques generalisees.png](https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Orientation_coordonnees_spheriques_generalisees.png/250px-Orientation_coordonnees_spheriques_generalisees.png)
 
-![Eulerangles.svg](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Eulerangles.svg/250px-Eulerangles.svg.png)다
+![Eulerangles.svg](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Eulerangles.svg/250px-Eulerangles.svg.png)
 
 
 
 ### 짐벌락 (2분 30초)
 
-<iframe width="1120" height="630" src="https://www.youtube.com/embed/zc8b2Jo7mno" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+- [위키백과](https://en.wikipedia.org/wiki/Gimbal_lock)
+
+![img](links_of_computer_graphics.assets/Gimbal_Lock_Plane.gif)
 
 - [짐벌락과 사원수](https://cutemoomin.tistory.com/entry/%EC%A7%90%EB%B2%8C%EB%9D%BDgimbal-lock%EA%B3%BC-%EC%82%AC%EC%9B%90%EC%88%98%EC%BF%BC%ED%84%B0%EB%8B%88%EC%96%B8-quaternion)
 
 ## 사원수 (Quaternion)
 
-벡터와 행렬의 발명 그 이전에는 2차원 문제에서 복소 평면 사용. 3차원 문제에서 복소수를 활용할 수 있는가? 이 물음에 대한 답이 해밀턴이 발명한 사원수. 8년동안 연구 끝에 발명한 것이니 이해 못한다고 낙담 말자. 이미 만들어진 함수를 사용하는 방법은 쉽다. [조금은 느리게 살자](https://ghebook.blogspot.com/2010/07/quaternion.html)
+- 벡터와 행렬의 발명 그 이전에는 2차원 문제에서 복소 평면 사용.
+- 3차원 문제에서 복소수를 활용할 수 있는가? 이 물음에 대한 답이 해밀턴이 발명한 사원수.
+- 8년동안 연구 끝에 발명한 것이니 이해 못한다고 낙담 말자.
+- 이미 만들어진 함수를 사용하는 방법은 쉽다. [조금은 느리게 살자](https://ghebook.blogspot.com/2010/07/quaternion.html)
 
 *참고 : 영상이나 음성 같은 신호 처리시 코사인이 사용되는데 복소 평면과 코사인은 단짝이다.*
 
@@ -324,12 +355,15 @@ $$
 그래픽 라이브러리들은 사원수 관련 클래스들이 정의 되어 있고, 오픈소스들도 활용할 수 있다. 이해는 나중에 해도 된다.
 
 - [Unity Quaternion](https://docs.unity3d.com/ScriptReference/Quaternion.html)
-- Ogre 3D 사원수 [OgreQuaternion.h](https://github.com/OGRECave/ogre/blob/master/OgreMain/include/OgreQuaternion.h) [OgreQuaternion.cpp](https://github.com/OGRECave/ogre/blob/master/OgreMain/src/OgreQuaternion.cpp)
+- Ogre 3D 사원수
+  - 헤더 파일: [OgreQuaternion.h](https://github.com/OGRECave/ogre/blob/master/OgreMain/include/OgreQuaternion.h)
+  - 소스파일: [OgreQuaternion.cpp](https://github.com/OGRECave/ogre/blob/master/OgreMain/src/OgreQuaternion.cpp)
   - 오일러 각을 사원수로 변경터
   - 사원수를 오일러각으로 변경
   - 특정 사원수에서 다른 사원수 사이를 보간 하기
   - 길이를 정규화 하기
   - 내적 구하기 등
+  
 
 이런게 있다고 알고 넘어가도  개발 가능하다.
 
@@ -353,13 +387,17 @@ $$
 
 ![img](https://t1.daumcdn.net/cfile/tistory/997CBC335A17BDA82F)
 
-벡터 A를 B에 프로젝션한 길이를 알 수 있다.
+벡터의 사영 크기를 알 수 있다. [설군의 연구소](https://m.blog.naver.com/seolgoons/221389075503)
 
-![image-20220518230056302](/home/booil/booiljung/booiljung.github.io/technical_articles/computer_graphics/links_of_computer_graphics.assets/image-20220518230056302.png)
+![image-20220523160746707](links_of_computer_graphics.assets/image-20220523160746707.png)
+
+벡터 A를 B에 프로젝션한 길이를 알 수 있다.
 
 ### 법선벡터 (Normal Vector)
 
-어떤 평면에 수직인 벡터.
+어떤 평면이 있을때 평면에 수직인 벡터.
+
+법선벡터는 항상 정규벡터다.
 
 ![DirectX 3D - 기초 용어 -](https://t1.daumcdn.net/cfile/tistory/1419BF404F2D54EA15?original)
 
@@ -367,27 +405,35 @@ $$
 
 ### 벡터의 외적 (cross product) 
 
-두 벡터의 외적을 구하는 식이나 코드는 검색해 보면 많다. 벡터의 외적을 어떨 경우에 사용하는가?
+두 벡터의 외적을 구하는 식이나 코드는 검색해 보면 많다. 벡터의 외적을 언제 사용하는가?
 
 ![조금은 느리게 살자: 좌표계 기반 벡터(Vector)](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL1T7Wp1W_liPUOptAs5ikHXpX5Vi6MkYUYQ&usqp=CAU)
 
 두 벡터의 외적은 두 벡터에 수직인 단위 벡터를 얻는다. 이처럼 평면 등에 수직인 벡터를 법선벡터(Normal Vector) 이라고 한다. 평면의 방향을 기술 할때는 법선벡터로 표현 한다. [FINDMEAN](http://www.findmean.com/%EC%88%98%ED%95%99/%EB%B2%A1%ED%84%B0/%EB%B2%A1%ED%84%B0%EC%9D%98-%EC%99%B8%EC%A0%81/)
 
+![벡터의 외적 – findmean](links_of_computer_graphics.assets/images.png)
+
 이 법선벡터와 다른 벡터를 dot를 하면 평면의 방향을 알 수 있다.
 
 예를 들어 카메라가 특정 면을 보고 있을때, 그면의 법선벡터와 카메라와의 방향 베터를 비교하면 그 면을 그릴지 말지를 결정 할 수 있다.
 
-![벡터의 외적 – findmean](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVyAkFo87J_Cg1fbHEMO-E1BSRAYPpTQPOTA&usqp=CAU)
+![img](links_of_computer_graphics.assets/camera%2Bvector%2Cvertex%2Bnormal.png)
 
+[UE4 언리얼 카메라 벡터, 버텍스 노멀 (Fresnel의 원리)](https://lenorefx.blogspot.com/2019/06/ue4_6.html)
 
+#### [Direct3D : 카메라 (Camera) 1 - 뷰행렬 (View Matrix)](http://egloos.zum.com/EireneHue/v/984622)
 
+![img](links_of_computer_graphics.assets/d0136696_52e35a001deeb.jpeg)
 
+![img](links_of_computer_graphics.assets/d0136696_52e4afa05009d.png)
+
+![img](links_of_computer_graphics.assets/d0136696_52e4cabf81467.png)
 
 ## 다시 행렬
 
 그래픽에서는 왜 4x4를 사용하는가?
 
-- v동차좌표계를 사용하기 때문.
+- 동차좌표계를 사용하기 때문.
 
 왜 동차좌표계를 사용하는가?
 
@@ -398,9 +444,29 @@ $$
 
 [선형변환과 아핀변환](https://codingfarm.tistory.com/377)
 
+### 행렬의 곱 (product)
+
+A의 열의 갯수와 B의 행의 갯수가 같아야 한다.
+
+결과는 A의 행 갯수 x B의 열 갯수
+$$
+M = A \times B
+$$
+![img](links_of_computer_graphics.assets/220px-Matrix_multiplication_diagram_2.svg.png)
+
+![행렬 곱셈 - 위키백과, 우리 모두의 백과사전](data:image/png;base64,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)
+
+## 변환 (Transform)
+
 ### 비례 변환 (Scale 확대축소)
 
-3x3 행렬로도 충분하지만
+그냥 곱해도 되지만,
+$$
+q_x = s_x * p_x \\
+q_y = s_y * p_y \\
+q_z = s_z * p_z \\
+$$
+행렬을 사용하는데, 3x3 행렬로도 충분하지만
 $$
 S = \begin{bmatrix}
 	s_x & 0 & 0 \\
@@ -408,7 +474,7 @@ S = \begin{bmatrix}
 	0 & 0 & s_z
 \end{bmatrix}
 $$
-실제는 4x4 행렬 사용. 왜? 이동 행렬이 4x4이고 이것과 곱해야 하니까.
+실제는 4x4 행렬 사용.
 $$
 S = \begin{bmatrix}
 	s_x & 0 & 0 & 0\\
@@ -432,20 +498,24 @@ R_x =  \begin{bmatrix}
 	0 & - \sin \theta  & \cos \theta & 0 \\
 	0 & 0 & 0 & 1
 \end{bmatrix}
-\\
+$$
+$$
 R_y = \begin{bmatrix}
 	\cos \theta & 0 & - \sin \theta & 0 \\
 	0 & 1 & 0 & 0 \\
 	\sin \theta & 0 & \cos \theta & 0
 	\\  0 & 0 & 0 & 1
 \end{bmatrix}
-\\
+$$
+
+$$
 R_z = \begin{bmatrix}
 	\cos \theta & \sin \theta & 0 & 0 \\
 	-\sin \theta & \cos \theta & 0 & 0 \\
 	0 & 0 & 1 & 0 \\  0 & 0 & 0 & 1
 \end{bmatrix}
 $$
+
 벡터 $V$를 회전하고 싶다면
 $$
 R = R_x \cdot R_y \cdot R_z
@@ -477,29 +547,30 @@ T^\top =  \begin{bmatrix}
 	0 & 0 & 0 & 1
 \end{bmatrix}
 $$
-자료에 따라 회전행렬, 이동행렬이 전치되어 다를 수 있다.
+### 변환행렬의 전치 관계
 
+자료에 따라 회전행렬, 이동행렬이 전치되어 다를 수 있다.
+$$
+T' =  \begin{bmatrix}
+	1 & 0 & 0 & t_x \\
+	0 & 1 & 0 & t_y \\
+	0 & 0 & 1 & t_z \\
+	0 & 0 & 0 & 1
+\end{bmatrix}
+\\
+T'' =  \begin{bmatrix}
+	1 & 0 & 0 & 0 \\
+	0 & 1 & 0 & 0 \\
+	0 & 0 & 1 & 0 \\
+	t_x & t_y & t_z & 1
+\end{bmatrix}
+$$
 이 차이는 
 
 - 왼손 좌표계냐
 - 오른손 좌표계냐
 
-벡터, 행렬, 사원수 곱의 교환 법칙은 성립하지 않는다.
-
-- 벡터에 행렬을 곱하느냐?
-- 행렬에 벡터를 곱하느냐?
-
-즉
-$$
-U = V \cdot T
-$$
-로 할것인가?
-$$
-U = T \cdot V
-$$
-로 할것인가?
-
-라이브러리 개발자의 선택에 따라 다르다.
+다르다.
 
 ## 참조
 
