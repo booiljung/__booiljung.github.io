@@ -114,9 +114,9 @@ Red, Green, Blue
 
 니오넬 메시 (Messi)?
 
-다다다![바르샤 원클럽맨 '메시' 지난 4년간 얼마 받았나 | 아주경제](http://image.ajunews.com//content/image/2021/01/31/20210131151524361000.jpg)
+![바르샤 원클럽맨 '메시' 지난 4년간 얼마 받았나 | 아주경제](http://image.ajunews.com//content/image/2021/01/31/20210131151524361000.jpg)
 
-폴리곤이 모여서 하나의 3차원 물체를 만들게 되는데 이것을 메시라다고 한다. 즉, 메시는 폴리곤이 모여서 만들어진 3차원 공간상의 객체(object)이다.
+폴리곤이 모여서 하나의 3차원 물체를 만들게 되는데 이것을 메시라고 한다. 즉, 메시는 폴리곤이 모여서 만들어진 3차원 공간상의 객체(object)이다.
 
 메시의 삼각형은 우리가 모델링하는 물체의 기본적인 구성 성분이 되며, 메시 삼각형을 폴리곤(polygon) 혹은 기본형(primitive) 이라고도 부른다. 
 
@@ -164,11 +164,27 @@ Red, Green, Blue
 
 뷰포트 좌표계는 장치(화면)에 중립적인 좌표계를 가지고 있다. 최종적으로 화면에 그려지기 위해서는 화면 공간으로 변환되어야 한다.
 
-## 공간 변환 과정
+### 공간 변환 과정
 
-1. 로컬 공간의 정점은 월드 공간상의 정점으로 변환 된다.
-2. 월드 공간상의 정점은 카메라 공간의 정점으로 변환된다.
-3. 카메라 공간의 점은 스크린 공간으로 변환된다.
+특정 정점은 로컬 공간 - 월드 공간 - 카메라 공간 (뷰포트) - 스크린 공간을 거쳐서 변환 된다.
+
+특정 정점은 스크린 공간 - 카메라 공간 (뷰포트) - 월드 공간 - 로컬 공간을 거쳐서 변환 된다.
+
+### 왼손 좌표계, 오른손 좌표계
+
+![왼손 좌표계(Left-handed coordinate system)와 오른손 좌표계(Right-handed coordinate  system) :: 갓우리코딩](https://t1.daumcdn.net/cfile/tistory/99CEE93D5C3DCA3815)
+
+#### 왼손 좌표계
+
+스크린에서 비롯되었다. 화면 위가 Y이고, 앞이 Z로 추가 되었다고 보면 이해 하기 쉽다. 주로 게임들이 사용하는 좌표계.
+
+#### 오른손 좌표계
+
+책상에 놓은 종에 위에서 비롯 되었다. 종이 위에서 도면을 그린다. 종이 위쪽에 Y 종이 오른쪽이 X. 종이 위로 Z축이 추가 되었다. 주로 설계 소프트웨어들이 사용. 
+
+미국 항공 설계 분야는 종이 좌측 기수가 X, 종이 위쪽 (오른쪽 날개)이 Y, 바퀴 쪽이 Z축이다.
+
+러시아는 다르다고 하는데 러시아어를 몰라서 검색 할 수 없었다. 영어로 검색해도 나오지 않는다.
 
 ## 벡터 (Vector)
 
@@ -202,6 +218,11 @@ $$
  w가 1이 되도록 w로 나누면 비교 가능. w가 1이 되도록 w로 나누면 비교 가능. w가 1이 되도록 w로 나누면 비교 가능. w가 1이 되도록 w로 나누면 비교 가능. w가 1이 되도록 w로 나누면 비교 가능.
 
 [친철한 책 Homogeneous Coordinates andComputer Graphics](http://www.geometer.org/mathcircles/cghomogen.pdf)
+
+왜 동차 좌표계를 사용하느냐?
+
+- 이동 변환이 아핀 변환이기 때문이다![DirectX 3D - 기초 용어 -](https://t1.daumcdn.net/cfile/tistory/1419BF404F2D54EA15?original).
+- 정점이 다른 공간으로 변환 할때 동차 좌표계가 사용된다.
 
 ## 행렬 (Matrix)
 
@@ -314,6 +335,10 @@ $$
 
 ## 다시 벡터
 
+### 정규 벡터
+
+길이가 1인 벡터.
+
 ### 내적 (dot product)
 
 두 벡터의 내적을 구하는 식이나 코드는 검색해 보면 많다. 벡터의 내적을 어떨 경우에 사용하는가?
@@ -326,15 +351,37 @@ $$
 
 코사인 값은 $\arccos \theta$ 로 호도법(라다인)을 구할 수 있고, 다시 라디안은 사람에게 친숙한 육십분법으로 변환 할 수 있다.
 
+![img](https://t1.daumcdn.net/cfile/tistory/997CBC335A17BDA82F)
+
+벡터 A를 B에 프로젝션한 길이를 알 수 있다.
+
+![image-20220518230056302](/home/booil/booiljung/booiljung.github.io/technical_articles/computer_graphics/links_of_computer_graphics.assets/image-20220518230056302.png)
+
+### 법선벡터 (Normal Vector)
+
+어떤 평면에 수직인 벡터.
+
+![DirectX 3D - 기초 용어 -](https://t1.daumcdn.net/cfile/tistory/1419BF404F2D54EA15?original)
+
+3D 그래픽에서 평면은 법선벡터로 표현 한다.
+
 ### 벡터의 외적 (cross product) 
 
 두 벡터의 외적을 구하는 식이나 코드는 검색해 보면 많다. 벡터의 외적을 어떨 경우에 사용하는가?
+
+![조금은 느리게 살자: 좌표계 기반 벡터(Vector)](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL1T7Wp1W_liPUOptAs5ikHXpX5Vi6MkYUYQ&usqp=CAU)
 
 두 벡터의 외적은 두 벡터에 수직인 단위 벡터를 얻는다. 이처럼 평면 등에 수직인 벡터를 법선벡터(Normal Vector) 이라고 한다. 평면의 방향을 기술 할때는 법선벡터로 표현 한다. [FINDMEAN](http://www.findmean.com/%EC%88%98%ED%95%99/%EB%B2%A1%ED%84%B0/%EB%B2%A1%ED%84%B0%EC%9D%98-%EC%99%B8%EC%A0%81/)
 
 이 법선벡터와 다른 벡터를 dot를 하면 평면의 방향을 알 수 있다.
 
 예를 들어 카메라가 특정 면을 보고 있을때, 그면의 법선벡터와 카메라와의 방향 베터를 비교하면 그 면을 그릴지 말지를 결정 할 수 있다.
+
+![벡터의 외적 – findmean](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVyAkFo87J_Cg1fbHEMO-E1BSRAYPpTQPOTA&usqp=CAU)
+
+
+
+
 
 ## 다시 행렬
 
