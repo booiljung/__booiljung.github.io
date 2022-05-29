@@ -13,7 +13,7 @@
 - 3차원 래스터 그래픽스
 - 복셀이란 '3차원 픽셀'
 
-#### 의료영상 복셀 예제
+#### 의료영상 복셀 예시
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/ZK1yLBJ2MHM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -132,6 +132,12 @@ Red, Green, Blue
 
 ## 공간 또는 좌표계
 
+공간이 바뀌며 좌표가 변환 된다.
+
+![image-20220524131129321](links_of_computer_graphics.assets/image-20220524131129321.png)
+
+
+
 ### 모델 공간 (Model space 또는 Local space), 모델 좌표계
 
 (3D) 모델 또는 객체가 자체적인 좌표 공간을 가진다.
@@ -143,6 +149,8 @@ Red, Green, Blue
 ### 월드 공간 (World space), 월드 좌표계
 
 세계를 하나의 통일된 절대적인 좌표계로 표현, 모든 객체를 동일한 하나의 좌표계에 배치한다. 객체들의 위치와 방향을 표현하기 위한 좌표계다. 모델 좌표계로 표현된 모델(객체)들은 월드 좌표계에서 그 방향과 위치가 표현되어야 하는데, 이때 모델 좌표계로 표현된 매시는 월드 좌표계로 변환되어야 한다. 이때 월드 변환 행렬이 적용된다.
+
+![좌표계들의 변환 ( 로컬 공간 | 월드 변환| 뷰 변환) : 다 행렬 곱 이다. : 네이버 블로그](links_of_computer_graphics.assets/1537346957051.jpg)
 
 ### 뷰포트 좌표계 (NDC; Normalized Device Coordinates)
 
@@ -169,6 +177,12 @@ Red, Green, Blue
 특정 정점은 로컬 공간 - 월드 공간 - 카메라 공간 (뷰포트) - 스크린 공간을 거쳐서 변환 된다.
 
 특정 정점은 스크린 공간 - 카메라 공간 (뷰포트) - 월드 공간 - 로컬 공간을 거쳐서 변환 된다.
+
+### 참조
+
+- [로컬 공간 | 월드 변환 | 뷰변환](https://m.blog.naver.com/m_jackson_ko/221362082753)
+
+
 
 ### 왼손 좌표계, 오른손 좌표계
 
@@ -230,7 +244,7 @@ w \\
 \end{bmatrix}
 $$
 
-[동차좌표](https://ko.wikipedia.org/wiki/%EB%8F%99%EC%B0%A8%EC%A2%8C%ED%91%9C)
+
 
 요약하면 - 특정 좌표가 여러가지(무한대) 좌표로 나타낼 수 있다.
 
@@ -250,6 +264,15 @@ $w$가 1이 되도록 $w$로 나누면 비교 가능.
 - 이동 변환이 아핀 변환이기 때문이다.
 - 정점이 다른 공간으로 변환 할때 동차 좌표계가 사용된다.
 
+**참조**
+
+- [딱딱한 동차좌표](https://ko.wikipedia.org/wiki/%EB%8F%99%EC%B0%A8%EC%A2%8C%ED%91%9C)
+- [동차 좌표계와 투영 행렬](https://jw910911.tistory.com/20?category=665481)
+
+
+
+
+
 ## 행렬 (Matrix)
 
 그래픽에서 4x4 행렬을 사용.
@@ -264,7 +287,7 @@ $$
 \end{bmatrix}
 $$
 
-### 행렬과 벡터의 곱 (Product)
+### 퍼행렬과 벡터의 곱 (Product)
 
 벡터는 열이 1개인 행렬이기도 한다. 곱 할 수 있는가?
 $$
@@ -298,6 +321,22 @@ w \\
 0 & 0 & 0 & 1 \\
 \end{bmatrix}
 $$
+
+### 의외로 3차원 공간과 좌표계를 사용하는 라이브러리 프레임워크
+
+#### iOS
+
+`CALayer` 를 통해 실제 UI 객체들이 3차원 공간에서 표현 된다.
+
+- https://developer.apple.com/documentation/quartzcore/calayer
+  - https://developer.apple.com/documentation/quartzcore/calayer/1410836-transform
+  - https://developer.apple.com/documentation/quartzcore/calayer/1410888-sublayertransform
+  - https://developer.apple.com/documentation/quartzcore/calayer/1410882-affinetransform
+  - https://developer.apple.com/documentation/quartzcore/calayer/1410868-setaffinetransform
+
+#### Android
+
+- https://developer.android.com/reference/android/graphics/Matrix
 
 ## 오일러 각
 
@@ -403,6 +442,13 @@ $$
 
 3D 그래픽에서 평면은 법선벡터로 표현 한다.
 
+### 삼각형을 그리는 순서
+
+-  반시계 방향 `GL_CCW`
+- 시계 방향 `GL_CW`
+
+![img](links_of_computer_graphics.assets/9942F33E5B1B0E262C.jpeg)
+
 ### 벡터의 외적 (cross product) 
 
 두 벡터의 외적을 구하는 식이나 코드는 검색해 보면 많다. 벡터의 외적을 언제 사용하는가?
@@ -419,7 +465,9 @@ $$
 
 ![img](links_of_computer_graphics.assets/camera%2Bvector%2Cvertex%2Bnormal.png)
 
-[UE4 언리얼 카메라 벡터, 버텍스 노멀 (Fresnel의 원리)](https://lenorefx.blogspot.com/2019/06/ue4_6.html)
+
+
+- [UE4 언리얼 카메라 벡터, 버텍스 노멀 (Fresnel의 원리)](https://lenorefx.blogspot.com/2019/06/ue4_6.html)
 
 #### [Direct3D : 카메라 (Camera) 1 - 뷰행렬 (View Matrix)](http://egloos.zum.com/EireneHue/v/984622)
 
@@ -428,6 +476,70 @@ $$
 ![img](links_of_computer_graphics.assets/d0136696_52e4afa05009d.png)
 
 ![img](links_of_computer_graphics.assets/d0136696_52e4cabf81467.png)
+
+## 카메라
+
+![img](links_of_computer_graphics.assets/image.png)
+
+#### FOV (Field Of View) 시야각
+
+![img](links_of_computer_graphics.assets/99D282485B4AE07904.png)
+
+카메라의 이미지 평면
+
+
+
+![img](links_of_computer_graphics.assets/projectionOpenGL.png)
+
+카메라의 절두체 (Frustum), Near clipping plane, Far clipping plane
+
+![img](links_of_computer_graphics.assets/projectionOpenGL2.png)
+
+(주의: 이 카메라의 좌표는 다른 라이브러리와 반대로 표현 되어 있음)
+
+#### 직교 투영 (Orthographical Projection)
+
+![image-20220524133901159](links_of_computer_graphics.assets/image-20220524133901159.png)
+
+#### 원근 투영 (Perspective Projection)
+
+![image-20220524134015307](links_of_computer_graphics.assets/image-20220524134015307.png)
+
+- 참조: [Viewing, 단국대학교 박경신](https://dis.dankook.ac.kr/lectures/cg18/wp-content/uploads/sites/64/2018/11/lecture11-ch5.pdf)
+
+### 컬링 (Culling)
+
+그래픽 라이브러리에서 해주므로 나중에 이해 해도 된다.
+
+- View frustum culling
+- Back face Culling
+- Occlusion Culling
+
+- [컬링](https://blog.naver.com/aiden_ksm/221411019635)
+
+- [Unity Occlusion Culling](https://docs.unity3d.com/kr/2020.3/Manual/OcclusionCulling.html)
+
+  ![alt text](links_of_computer_graphics.assets/42380-1-16538147253815.jpg)
+
+### 후면제거
+
+그래픽 라이브러리에서 해주므로 나중에 이해 해도 된다.
+
+- [후면제거](https://huiyu.tistory.com/entry/%EC%BB%B4%ED%93%A8%ED%84%B0-%EA%B7%B8%EB%9E%98%ED%94%BD%EC%8A%A4-%EC%9D%B4%EB%A1%A0-%EC%A0%95%EB%A6%AC-%ED%9B%84%EB%A9%B4%EC%A0%9C%EA%B1%B0-%ED%91%9C%EB%A9%B4%EA%B3%BC-%EC%9D%B4%EB%A9%B4)
+
+후면제거를 할 것인가 말것인가?
+
+```c++
+void glEnable(GL_CULL_FACE);
+void glCullFace(GLenum mode);
+void glDisable(GL_CULL_FACE);
+```
+
+### 깊이 버퍼 (Z-Buffer)
+
+그래픽 라이브러리에서 해주므로 나중에 이해 해도 된다.
+
+- https://jebae.github.io/z-buffer
 
 ## 다시 행렬
 
@@ -440,9 +552,9 @@ $$
 - 로컬, 월드, 뷰포트, 스크린 등의 공간을 넘나들기 때문.
 - 이동을 해야 하기 때문. 이동은 선형 변환이 아니라 아핀 변환이다.
 
-[게임프로그래밍](https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=znfgkro1&logNo=80174113848)
+- [참조: 게임프로그래밍](https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=znfgkro1&logNo=80174113848)
 
-[선형변환과 아핀변환](https://codingfarm.tistory.com/377)
+- [참조: 선형변환과 아핀변환](https://codingfarm.tistory.com/377)
 
 ### 행렬의 곱 (product)
 
@@ -547,24 +659,65 @@ T^\top =  \begin{bmatrix}
 	0 & 0 & 0 & 1
 \end{bmatrix}
 $$
+### 직교 투영 행렬
+
+![image-20220524134116887](links_of_computer_graphics.assets/image-20220524134116887.png)
+
+- 참조: [Viewing, 단국 대학교 박경신](https://dis.dankook.ac.kr/lectures/cg18/wp-content/uploads/sites/64/2018/11/lecture11-ch5.pdf)
+
+
+
+### 원근 투영 행렬
+
+![image-20220524134157724](links_of_computer_graphics.assets/image-20220524134157724.png)
+
+- 참조: [Viewing, 단국 대학교 박경신](https://dis.dankook.ac.kr/lectures/cg18/wp-content/uploads/sites/64/2018/11/lecture11-ch5.pdf)
+
+- 참조: [Projection Matrix란?](https://jw910911.tistory.com/19)
+- 참조: [동차좌표계란?](https://jw910911.tistory.com/7?category=665481)
+
+
+
+### 행렬의 전치
+
+$$
+\begin{bmatrix}
+0 & 1 \\
+2 & 3 \\
+4 & 5 \\
+\end{bmatrix} ^ \top
+$$
+
+$$
+\begin{bmatrix}
+0 & 2 & 4 \\
+1 & 3 & 5 \\
+
+\end{bmatrix}
+$$
+
+
+
 ### 변환행렬의 전치 관계
 
 자료에 따라 회전행렬, 이동행렬이 전치되어 다를 수 있다.
 $$
-T' =  \begin{bmatrix}
+T =  \begin{bmatrix}
 	1 & 0 & 0 & t_x \\
 	0 & 1 & 0 & t_y \\
 	0 & 0 & 1 & t_z \\
 	0 & 0 & 0 & 1
 \end{bmatrix}
-\\
-T'' =  \begin{bmatrix}
+$$
+$$
+T =  \begin{bmatrix}
 	1 & 0 & 0 & 0 \\
 	0 & 1 & 0 & 0 \\
 	0 & 0 & 1 & 0 \\
 	t_x & t_y & t_z & 1
 \end{bmatrix}
 $$
+
 이 차이는 
 
 - 왼손 좌표계냐
@@ -572,6 +725,17 @@ $$
 
 다르다.
 
+## 물리엔진
+
+유니티 물리엔진 예시
+
+<iframe width="560" height="630" src="https://www.youtube.com/embed/pTz3LMQpvfA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+
 ## 참조
 
 - [화면 변환](https://mycom333.blogspot.com/2013/03/screen-transform.html?m=0) 
+- [Homogeneous Coordinates and Computer Graphics, Tom Davis](http://www.geometer.org/mathcircles/cghomogen.pdf)
+- [3D Viewing: the Pinhole Camera Model, 빠짐 없이 잘 설명 되어 있지만, 영어이고 내용이 많음](https://www.scratchapixel.com/lessons/3d-basic-rendering/3d-viewing-pinhole-camera/implementing-virtual-pinhole-camera)
+- 추천: [Viewing 단국대학교 박경신](https://dis.dankook.ac.kr/lectures/cg18/wp-content/uploads/sites/64/2018/11/lecture11-ch5.pdf)
