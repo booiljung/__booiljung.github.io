@@ -2,7 +2,7 @@
 
 ## 래스터, 복셀, 벡터 그래픽스
 
-### [raster graphics](![img](https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Rgb-raster-image.svg/220px-Rgb-raster-image.svg.png))
+### [raster graphics](https://ko.wikipedia.org/wiki/%EB%9E%98%EC%8A%A4%ED%84%B0_%EA%B7%B8%EB%9E%98%ED%94%BD%EC%8A%A4)
 
 ![img](https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Rgb-raster-image.svg/220px-Rgb-raster-image.svg.png)
 
@@ -112,7 +112,7 @@ Red, Green, Blue
 
 ### 메시(mesh)란?
 
-니오넬 메시 (Messi)?
+니오넬 메시?
 
 ![바르샤 원클럽맨 '메시' 지난 4년간 얼마 받았나 | 아주경제](http://image.ajunews.com//content/image/2021/01/31/20210131151524361000.jpg)
 
@@ -122,13 +122,15 @@ Red, Green, Blue
 
 폴리곤에서 두 개의 변이 만나는 지점을 정점(vertex) 이라고 한다.
 
-하나의 삼각형을 만들기 위해서는 삼각형의 세 정점에 해당하는 세 개의 포인트 위치를 저장해야하며, 이 삼각형을 지정하여 물체를 묘사한다. 
+하나의 삼각형을 만들기 위해서는 삼각형의 세 정점에 해당하는 세 개의 포인트 위치를 저장해야하며, 이 삼각형을 지정하여 물체를 묘사한다.
 
 ### Vertices - edges - faces - polygons - surfaces
 
 ![Elements of polygonal mesh modeling.](https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Mesh_overview.svg/720px-Mesh_overview.svg.png)
 
 ### [고급 과정 - Polygon mesh](https://en.wikipedia.org/wiki/Polygon_mesh)
+
+- 그래픽 소프트웨어에서 메시 데이터는 정점 목록과 정정 목록에 대한 인덱스로 구성.
 
 ## 공간 또는 좌표계
 
@@ -174,15 +176,29 @@ Red, Green, Blue
 
 ### 공간 변환 과정
 
-특정 정점은 로컬 공간 - 월드 공간 - 카메라 공간 (뷰포트) - 스크린 공간을 거쳐서 변환 된다.
+로컬 공간의 특정 정점은 - 월드 공간 - 카메라 공간 (뷰포트) - 스크린 공간을 거쳐서 변환 된다.
 
-특정 정점은 스크린 공간 - 카메라 공간 (뷰포트) - 월드 공간 - 로컬 공간을 거쳐서 변환 된다.
+화면상의 특정 위치는 스크린 공간 - 카메라 공간 (뷰포트) - 월드 공간 - 로컬 공간을 거쳐서 변환 된다.
+
+#### 어느 경우에?
+
+- 오버워치
+
+![오버워치 2 핵심 모드 '밀기'가 화물 운반과 다른 점 : 네이버 포스트](links_of_computer_graphics.assets/20191102060045.jpg)
+
+- 블랜더 (3D 그래픽 디자인 도구)
+
+![Blender: How to Select All Objects – Simply Explained | All3DP](links_of_computer_graphics.assets/Feature-1.jpg)
 
 ### 참조
 
 - [로컬 공간 | 월드 변환 | 뷰변환](https://m.blog.naver.com/m_jackson_ko/221362082753)
 
+## 렌더링 파이프 라인
 
+- https://lalyns.tistory.com/28
+
+- 렌더링 패스는 다양 : https://docs.unity3d.com/Manual/RenderingPaths.html
 
 ### 왼손 좌표계, 오른손 좌표계
 
@@ -231,7 +247,11 @@ z \\
 \end{bmatrix}
 $$
 
-3D 그래픽에서 벡터는 $U, V, W$ 사용
+3D 그래픽에서 벡터는 $U, V, W$ 로 표기
+
+#### 3D 그래픽에서 위치와 벡터는 구분하지 않고 둘다 벡터를 사용
+
+위치도 원점으로부터의 벡터로 간주 - 식과 코드가 단순해지는 효과가 있음.
 
 ### 동차좌표계 (homogenious)
 
@@ -257,11 +277,10 @@ $$
 
 $w$가 1이 되도록 $w$로 나누면 비교 가능.
 
-[친철한 책 Homogeneous Coordinates andComputer Graphics](http://www.geometer.org/mathcircles/cghomogen.pdf)
-
 왜 동차 좌표계를 사용하느냐?
 
 - 이동 변환이 아핀 변환이기 때문이다.
+-  투영 변환이 아핀 변환이기 때문이다.
 - 정점이 다른 공간으로 변환 할때 동차 좌표계가 사용된다.
 
 **참조**
@@ -269,13 +288,9 @@ $w$가 1이 되도록 $w$로 나누면 비교 가능.
 - [딱딱한 동차좌표](https://ko.wikipedia.org/wiki/%EB%8F%99%EC%B0%A8%EC%A2%8C%ED%91%9C)
 - [동차 좌표계와 투영 행렬](https://jw910911.tistory.com/20?category=665481)
 
-
-
-
-
 ## 행렬 (Matrix)
 
-그래픽에서 4x4 행렬을 사용.
+3차원 그래픽에서 4x4 행렬을 사용.
 
 4x4 단위 행렬
 $$
@@ -287,46 +302,97 @@ $$
 \end{bmatrix}
 $$
 
-### 퍼행렬과 벡터의 곱 (Product)
+그래픽에서 행렬은  $L, M, N$ 사용.
 
-벡터는 열이 1개인 행렬이기도 한다. 곱 할 수 있는가?
+## 참조
+
+인공지능에서
+
+벡터는 볼드 소문자 사용
 $$
-\begin{bmatrix}
-x \\
-y \\
-z \\
-\end{bmatrix}
-\times
+\mathbf v, \mathbf w, \mathbf x
+$$
+행렬은 볼드 대문자 사용
+$$
+\mathbf M, \mathbf N, \mathbf L
+$$
+2차원 그래픽도 해야 하는데...?
+
+- 교재등은 2차원 그래픽을 거친 뒤 3차원 그래픽을 안내
+- 실무에서는 2차원 그래픽은 별도로 하지 않으며 3차원에서 한개 차원을 위치를 0으로 사용.
+
+### 행렬과 벡터의 곱 (Product)
+
+곱 할 수 있는가?
+$$
 \begin{bmatrix}
 1 & 0 & 0 & 0 \\
 0 & 1 & 0 & 0 \\
 0 & 0 & 1 & 0 \\
 0 & 0 & 0 & 1 \\
+\end{bmatrix}
+\times
+\begin{bmatrix}
+x \\
+y \\
+z \\
 \end{bmatrix}
 $$
 
 Nop
 $$
 \begin{bmatrix}
-x \\
-y \\
-z \\
-w \\
-\end{bmatrix}
-\times
-\begin{bmatrix}
 1 & 0 & 0 & 0 \\
 0 & 1 & 0 & 0 \\
 0 & 0 & 1 & 0 \\
 0 & 0 & 0 & 1 \\
 \end{bmatrix}
+\times
+\begin{bmatrix}
+x \\
+y \\
+z \\
+w \\
+\end{bmatrix}
 $$
 
-### 의외로 3차원 공간과 좌표계를 사용하는 라이브러리 프레임워크
+#### 프로그래밍에서 벡터도 행렬로 간주
+
+- 벡터는 n개의 요소를 가지는 열행렬 - 코드가 단순해지는 효과가 있음.
+
+```c++
+class Matrix {
+    float *m;
+}
+
+class Matrix4x4 : public Matrix {
+    Matrix4x4() {
+        m = new float[4*4];
+    }
+}
+
+class Vector4 : public Matrix {
+    Vector4() {
+        m = new float[4];
+    }
+}
+
+void main() {
+    Matrix4x4 m;
+    Vector4 v;
+    Matrix n = v * m;
+}
+```
+
+
+
+### 의외로 3차원 공간/좌표계와 변환을 사용하는 (프레임워크) 라이브러리
 
 #### iOS
 
 `CALayer` 를 통해 실제 UI 객체들이 3차원 공간에서 표현 된다.
+
+- 예시 플립 애니메이션 영상 보기 : https://lawrey.medium.com/creating-a-flip-card-animation-with-uicollectionviewcell-swift-3-0-98bc96317fee
 
 - https://developer.apple.com/documentation/quartzcore/calayer
   - https://developer.apple.com/documentation/quartzcore/calayer/1410836-transform
@@ -336,7 +402,18 @@ $$
 
 #### Android
 
+- 예시 플립 애니메이션 영상 보기 : 15분 20초 - https://www.youtube.com/watch?v=DnXWcGmLHHs 
 - https://developer.android.com/reference/android/graphics/Matrix
+
+#### Qt
+
+- 예시 회전 애니메이션 영상 보기 : 16분 40초 - https://www.youtube.com/watch?v=tTOFZtHJCyQ
+- https://doc.qt.io/qt-5/qtransform.html
+
+#### Flutter
+
+- 예시 회전 애니메이션 영상 보기 : 4분 30초 - https://www.youtube.com/watch?v=SUwtLVOVAfI
+- https://www.youtube.com/watch?v=SUwtLVOVAfI
 
 ## 오일러 각
 
@@ -477,6 +554,8 @@ $$
 
 ![img](links_of_computer_graphics.assets/d0136696_52e4cabf81467.png)
 
+위 그림에서 카메라의 Z축을 View Vector라고도 한다.
+
 ## 카메라
 
 ![img](links_of_computer_graphics.assets/image.png)
@@ -535,11 +614,21 @@ void glCullFace(GLenum mode);
 void glDisable(GL_CULL_FACE);
 ```
 
-### 깊이 버퍼 (Z-Buffer)
+### 은면제거, 은선제거
+
+- https://catchknowledge.tistory.com/46
+- https://wjdgh283.tistory.com/entry/OpenGL%EB%A1%9C-%EB%B0%B0%EC%9A%B0%EB%8A%94-%EC%BB%B4%ED%93%A8%ED%84%B0-%EA%B7%B8%EB%9E%98%ED%94%BD%EC%8A%A4-Chapter-08-%EA%B0%80%EC%8B%9C%EC%84%B1-%ED%8C%90%EB%8B%A8-Visibility-Detection
+- https://jeongmorecord.tistory.com/142
+
+### 깊이 버퍼 (Depth buffer, Z-Buffer)
 
 그래픽 라이브러리에서 해주므로 나중에 이해 해도 된다.
 
 - https://jebae.github.io/z-buffer
+
+### 가시성 판단
+
+- https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=dnjsgk0206&logNo=198824100
 
 ## 다시 행렬
 
@@ -597,7 +686,7 @@ S = \begin{bmatrix}
 $$
 벡터 $V$를 스케일 하려면
 $$
-U = V \cdot S
+U = S \cdot V
 $$
 
 ### 회전 변환 (Rotation transform)
@@ -632,7 +721,7 @@ $$
 $$
 R = R_x \cdot R_y \cdot R_z
 \\
-U = V \cdot R
+U = R \cdot V
 $$
 
 ### 이동 변환 (Translation transform)
@@ -648,7 +737,7 @@ T =  \begin{bmatrix}
 $$
 벡터 V를 이동하려면
 $$
-U = V \cdot T
+U = T \cdot V
 $$
 위 이동행렬의 전치 행렬
 $$
@@ -725,13 +814,22 @@ $$
 
 다르다.
 
+### 왜 행렬을 사용하는가?
+
+병렬 컴퓨팅을 사용할 수 있다.
+
+- 하나의 명령으로 여러개의 데이터를 계산 가능
+- SIMD에 대한 집중 탐구 : https://m.blog.naver.com/fs0608/221650925743
+
+- GPU 병렬 컴퓨팅에 대한 설명 : https://blog.unifiedh.com/how-gpus-ate-up-the-world-%EB%B3%91%EB%A0%AC-%EC%BB%B4%ED%93%A8%ED%8C%85%EA%B3%BC-%EB%94%A5%EB%9F%AC%EB%8B%9D%EC%9D%98-%EA%B8%89%EB%B6%80%EC%83%81%EC%97%90-%EB%8C%80%ED%95%9C-%EB%8B%A8%EC%83%81-287ddb5f7af2
+
 ## 물리엔진
 
 유니티 물리엔진 예시
 
 <iframe width="560" height="630" src="https://www.youtube.com/embed/pTz3LMQpvfA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-
+- 물리 엔진 원리 : https://3dev.tistory.com/53
 
 ## 참조
 
