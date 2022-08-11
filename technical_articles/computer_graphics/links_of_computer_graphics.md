@@ -21,7 +21,7 @@
 
 ![img](https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/VectorBitmapExample_kor.png/220px-VectorBitmapExample_kor.png)
 
-래스터 그래픽 도구
+래스터 그래픽 디자인 도구
 
 - [어도비 포토샵](https://www.adobe.com/kr/products/photoshop/landpa.html?gclid=Cj0KCQjw4PKTBhD8ARIsAHChzRK0qIaCzbpHb68buulFE2J_Myy46aH7jNXKFHw-lKs38vSYQfnOwmoaAlcWEALw_wcB&sdid=TBJRLR9V&mv=search&ef_id=Cj0KCQjw4PKTBhD8ARIsAHChzRK0qIaCzbpHb68buulFE2J_Myy46aH7jNXKFHw-lKs38vSYQfnOwmoaAlcWEALw_wcB:G:s&s_kwcid=AL!3085!3!460585117877!e!!g!!%ED%8F%AC%ED%86%A0%EC%83%B5!97967719!4837432399)
 - 윈도우 페인터
@@ -58,6 +58,7 @@
 - [Autodesk 3D MAX](https://www.autodesk.co.kr/products/3ds-max/overview?mktvar002=5160842|SEM|13032940050|120689483503|kwd-3005349321&panel=buy&ef_id=Cj0KCQjwmuiTBhDoARIsAPiv6L9-HwHYBUpOXlJfUgLPp3rzsHMYXMRYX6CVwYWkkhzMulHjw229mpoaAk4iEALw_wcB:G:s&s_kwcid=AL!11172!3!520372896706!e!!g!!autodesk%203d%20max!13032940050!120689483503&mkwid=s|pcrid|520372896706|pkw|autodesk%203d%20max|pmt|e|pdv|c|slid||pgrid|120689483503|ptaid|kwd-3005349321|pid|&utm_medium=cpc&utm_source=google&utm_campaign&utm_term=autodesk%203d%20max&utm_content=s|pcrid|520372896706|pkw|autodesk%203d%20max|pmt|e|pdv|c|slid||pgrid|120689483503|ptaid|kwd-3005349321|&gclid=Cj0KCQjwmuiTBhDoARIsAPiv6L9-HwHYBUpOXlJfUgLPp3rzsHMYXMRYX6CVwYWkkhzMulHjw229mpoaAk4iEALw_wcB&term=1-YEAR&tab=subscription&plc=3DSMAX)
 - [Blender](https://www.blender.org/)
 - [Rhino](https://www.rhino3d.com/)
+- [Maya](https://www.autodesk.co.kr/products/maya/overview?panel=buy&AID=13084954&PID=8206971&SID=jkp_CjwKCAjwkYGVBhArEiwA4sZLuOx8ejiyh2F4o7MIWjxsYXM5x48qPDReT7qls09zMp24CXVFkPS4-BoCdcEQAvD_BwE&cjevent=a3c4bb55e6fc11ec830801770a18050f&mktvar002=afc_kr_deeplink&affname=8206971_13084954&cjdata=MXxOfDB8WXww&term=1-YEAR&tab=subscription&plc=MAYA)
 
 ## 색공간
 
@@ -89,6 +90,39 @@ Red, Green, Blue
 - Alpha (투명도)
 
 ![img](https://upload.wikimedia.org/wikipedia/commons/0/0b/RGBA_comp.png)
+
+## 그래픽 라이브러리
+
+|          | 개발사              | 표준화        | 링크                                                   |             |
+| -------- | ------------------- | ------------- | ------------------------------------------------------ | ----------- |
+| OpenGL   | 실리콘 그래픽스 SGI | 크로노스 그룹 | https://www.opengl.org/                                | C           |
+| OpenGLES |                     | 크로노스 그룹 | https://www.opengl.org/                                | C           |
+| Mesa     |                     |               |                                                        | C           |
+| Vulkan   |                     | 크로노스 그룹 | https://www.opengl.org/                                | C++         |
+| DirectX  | Microsoft           |               | https://docs.microsoft.com/ko-kr/windows/win32/directx | C++         |
+| Metal    | Apple               |               | https://developer.apple.com/kr/metal/                  | Objective-C |
+
+### OpenGL/ES/DirectX/Vulkan/Metal 등의 기반 위에서 동작하는 개발 도구
+
+- Qt : https://www.qt.io/
+- Flutter : https://flutter.dev/
+  - Skia : https://skia.org/
+- 설계 및 디자인 도구
+  - Autodesk : https://www.autodesk.co.kr/
+  - 3D Max : https://www.autodesk.co.kr/products/3ds-max/overview
+  - Blender : https://www.blender.org/
+  - CLO : https://www.clo3d.com/en/
+  - Solid Works : https://www.solidworks.com/ko
+  - Maya : https://www.autodesk.co.kr/products/maya/overview
+  - 목록 : https://www.g2.com/categories/3d-rendering
+- 게임/시뮬레이션 그래픽 엔진
+  - Godot Engine : https://godotengine.org/
+  - Unity : https://unity.com/kr
+  - Unreal : https://www.unrealengine.com/ko/
+  - 목록 : 
+
+- 산업용 그래픽 엔진
+  - https://evergine.com/
 
 
 
@@ -130,7 +164,17 @@ Red, Green, Blue
 
 ### [고급 과정 - Polygon mesh](https://en.wikipedia.org/wiki/Polygon_mesh)
 
-- 그래픽 소프트웨어에서 메시 데이터는 정점 목록과 정정 목록에 대한 인덱스로 구성.
+- 그래픽 소프트웨어에서 메시 데이터는 정점 목록과 정점 목록에 대한 인덱스로 구성.
+
+#### OpenGL Primitives
+
+https://blog.naver.com/gomdev/220106219575
+
+http://www.dgp.toronto.edu/~ah/csc418/fall_2001/tut/ogl_draw.html
+
+실제에서는 사용되지 않는다. OpenGL 프리미티브는 한줄로 그리기 같은 퍼즐. 실제 모델들은 복잡하기 때문이다.
+
+Unity Mesh 클래스 : https://docs.unity3d.com/ScriptReference/Mesh.html
 
 ## 공간 또는 좌표계
 
@@ -321,6 +365,18 @@ $$
 - 교재등은 2차원 그래픽을 거친 뒤 3차원 그래픽을 안내
 - 실무에서는 2차원 그래픽은 별도로 하지 않으며 3차원에서 한개 차원을 위치를 0으로 사용.
 
+$$
+\begin{bmatrix}
+x & y & z
+\end{bmatrix} ^ \top
+$$
+
+
+
+
+
+
+
 ### 행렬과 벡터의 곱 (Product)
 
 곱 할 수 있는가?
@@ -373,7 +429,7 @@ class Matrix4x4 : public Matrix {
 
 class Vector4 : public Matrix {
     Vector4() {
-        m = new float[4];
+        m = new float[4];않음
     }
 }
 
@@ -474,7 +530,7 @@ $$
 - Ogre 3D 사원수
   - 헤더 파일: [OgreQuaternion.h](https://github.com/OGRECave/ogre/blob/master/OgreMain/include/OgreQuaternion.h)
   - 소스파일: [OgreQuaternion.cpp](https://github.com/OGRECave/ogre/blob/master/OgreMain/src/OgreQuaternion.cpp)
-  - 오일러 각을 사원수로 변경터
+  - 오일러 각을 사원수로 변경
   - 사원수를 오일러각으로 변경
   - 특정 사원수에서 다른 사원수 사이를 보간 하기
   - 길이를 정규화 하기
@@ -503,7 +559,7 @@ $$
 
 ![img](https://t1.daumcdn.net/cfile/tistory/997CBC335A17BDA82F)
 
-벡터의 사영 크기를 알 수 있다. [설군의 연구소](https://m.blog.naver.com/seolgoons/221389075503)
+벡터의 사영(프로젝션) 크기를 알 수 있다. [설군의 연구소](https://m.blog.naver.com/seolgoons/221389075503)
 
 ![image-20220523160746707](links_of_computer_graphics.assets/image-20220523160746707.png)
 
@@ -545,6 +601,12 @@ $$
 
 
 - [UE4 언리얼 카메라 벡터, 버텍스 노멀 (Fresnel의 원리)](https://lenorefx.blogspot.com/2019/06/ue4_6.html)
+
+
+
+----
+
+
 
 #### [Direct3D : 카메라 (Camera) 1 - 뷰행렬 (View Matrix)](http://egloos.zum.com/EireneHue/v/984622)
 
@@ -630,6 +692,14 @@ void glDisable(GL_CULL_FACE);
 
 - https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=dnjsgk0206&logNo=198824100
 
+## 다시 벡터
+
+벡터의 내적
+
+벡터의 외적
+
+사영 벡터 :  설군의 연구소 https://m.blog.naver.com/seolgoons/221389075503
+
 ## 다시 행렬
 
 그래픽에서는 왜 4x4를 사용하는가?
@@ -658,6 +728,13 @@ $$
 ![행렬 곱셈 - 위키백과, 우리 모두의 백과사전](data:image/png;base64,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)
 
 ## 변환 (Transform)
+
+OpenGL에서 모델 공간을 변환
+
+```
+glMatrixMode(GL_MODELVIEW);
+glLoadIdentity();
+```
 
 ### 비례 변환 (Scale 확대축소)
 
@@ -748,13 +825,24 @@ T^\top =  \begin{bmatrix}
 	0 & 0 & 0 & 1
 \end{bmatrix}
 $$
+## 투영
+
+- n차원의 좌표를 식에 의해 n-1 차원으로 줄이는 것
+- 3차원 공간의 좌표들을 2차원 평면에 투영하는 것을 렌더링이라고 함
+- 2차원 벡터를 다른 2차원 벡터에 투영하면 가장 가까운 점
+
+OpenGL에서 투영 행렬을 조작시
+
+```
+glMatrixMode(GL_PROJECTION);
+glLoadIdentity();
+```
+
 ### 직교 투영 행렬
 
 ![image-20220524134116887](links_of_computer_graphics.assets/image-20220524134116887.png)
 
 - 참조: [Viewing, 단국 대학교 박경신](https://dis.dankook.ac.kr/lectures/cg18/wp-content/uploads/sites/64/2018/11/lecture11-ch5.pdf)
-
-
 
 ### 원근 투영 행렬
 
@@ -764,8 +852,6 @@ $$
 
 - 참조: [Projection Matrix란?](https://jw910911.tistory.com/19)
 - 참조: [동차좌표계란?](https://jw910911.tistory.com/7?category=665481)
-
-
 
 ### 행렬의 전치
 
@@ -823,6 +909,68 @@ $$
 
 - GPU 병렬 컴퓨팅에 대한 설명 : https://blog.unifiedh.com/how-gpus-ate-up-the-world-%EB%B3%91%EB%A0%AC-%EC%BB%B4%ED%93%A8%ED%8C%85%EA%B3%BC-%EB%94%A5%EB%9F%AC%EB%8B%9D%EC%9D%98-%EA%B8%89%EB%B6%80%EC%83%81%EC%97%90-%EB%8C%80%ED%95%9C-%EB%8B%A8%EC%83%81-287ddb5f7af2
 
+### OpenGL 에서 행렬
+
+glLoadMatrix : https://www.khronos.org/registry/OpenGL-Refpages/gl2.1/xhtml/glLoadMatrix.xml
+
+glMatrixMode : https://www.khronos.org/registry/OpenGL-Refpages/gl2.1/xhtml/glMatrixMode.xml
+
+glLoadIdentity, glPushMatrix, glPopMatrix : 실제 거의 사용하지 않음.
+
+...
+
+## 텍스처
+
+https://extra-ordinary.tv/2021/01/19/tiling-for-expressions-with-vroid-characters/
+
+### 3D 그래픽 처리 단계
+
+https://gameqa.tistory.com/60 - 설명 좋은 문서
+
+![img](links_of_computer_graphics.assets/114DC2484E9BD3660B.jpeg)
+
+### 셰이더 프로그래밍
+
+- 국내 유일한 셰이더 서적 : http://www.yes24.com/Product/Goods/7366949 김포프
+- 정점 셰이더, 래스터라이저, 픽셀 셰이더 : https://nickname.tistory.com/37
+- 셰이더란  무엇일까 : https://icechou.tistory.com/298
+
+대부분의 많은 셰이더 소스코드가 공개 되어 있다
+
+- 셰이더를 개발하는 직업 : 테크니컬 아티스트 https://namu.wiki/w/%ED%85%8C%ED%81%AC%EB%8B%88%EC%BB%AC%20%EC%95%84%ED%8B%B0%EC%8A%A4%ED%8A%B8
+  - 프로그래밍과 아트에 대한 감각을 함께 가지고 있어야 한다.
+
+- OpenGL 계열 셰이더 프로그래밍 언어 : GLSL - https://opentutorials.org/module/3659/22194
+- DirectX  계열 셰이더 프로그래밍 언어 : HLSL -  https://docs.microsoft.com/ko-kr/windows/win32/direct3dhlsl/dx-graphics-hlsl
+
+- Unity 는 HLSL/GLSL 계열 언어에 Unity 포맷을 가짐 : https://docs.unity3d.com/kr/2021.1/Manual/shader-writing.html
+- GLSL이나 HLSL은 C 언어에 기반
+
+대표적인 데이터 구조
+
+| 타입                    | 설명                     |      |
+| ----------------------- | ------------------------ | ---- |
+| float, vec2, vec3, vec4 | 2차원, 3차원, 4차원 벡터 |      |
+| mat2, mat3, mat4        | 2x2, 3x3, 4x4 행렬       |      |
+
+함수: https://www.khronos.org/registry/OpenGL-Refpages/gl4/index.php
+
+abs : 절대값
+
+atan : 아크탄젠트
+
+clamp : 범위 제약
+
+dot : 내적
+
+...
+
+#### 커스텀 셰이더
+
+- https://www.shadertoy.com/
+
+https://docs.unity3d.com/kr/2021.1/Manual/SL-VertexFragmentShaderExamples.html
+
 ## 물리엔진
 
 유니티 물리엔진 예시
@@ -830,6 +978,28 @@ $$
 <iframe width="560" height="630" src="https://www.youtube.com/embed/pTz3LMQpvfA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 - 물리 엔진 원리 : https://3dev.tistory.com/53
+
+### 물리엔진의 종류 https://www.tapirgames.com/blog/open-source-physics-engines
+
+유명 물리 엔진
+
+- PhysX : https://ko.wikipedia.org/wiki/PhysX (엔비디아)
+- Bullet  : www.bulletphysics.org (오픈소스)
+- ODE : http://www.ode.org/ (오픈소스)
+- Havok : https://www.havok.com/ (상용소스)
+- Box2D : https://github.com/erincatto/box2d (오픈소스)
+
+## Octree
+
+- https://ko.wikipedia.org/wiki/%ED%8C%94%EC%A7%84%ED%8A%B8%EB%A6%AC
+
+### Octomap
+
+- https://octomap.github.io/스
+
+### 충돌 검사
+
+- ODE 소스 코드 : https://github.com/thomasmarsh/ODE/tree/master/ode/src
 
 ## 참조
 
