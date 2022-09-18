@@ -127,6 +127,7 @@
 - [Vagrant](./vagrant/index.md)
 - [Ansible](./ansible/index.md)
 - [Kubernetes](./kubernetes/index.md)
+- [Appwrite](./appwrite/index.md)
 
 ### 마크업 언어
 
