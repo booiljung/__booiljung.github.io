@@ -121,6 +121,7 @@
 
 ### 운영체제 & 인프라스트럭쳐 & 데브옵스
 
+- [클라우드](./clouds/index.md)
 - [Windows](./windows/index.md)
 - [Linux](./linux/index.md)
 - [Docker](./docker/index.md)
