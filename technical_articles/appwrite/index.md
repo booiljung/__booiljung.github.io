@@ -34,6 +34,5 @@ Appwrite를 익혀가며 실제 동작하는 방식을 적어 간다.
 ## 차례
 
 - [설치](installation.md)
-- [프로젝트](project.md)
-- [Functions](functions.md)
-
+- [치트시트](cheatsheet.md)
+- [핵](hack_appwrite.md)

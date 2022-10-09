@@ -2,129 +2,128 @@
 
 # TypeScript
 
+https://joshua1988.github.io/ts/guide/basic-types.html#array 를 참고하여 요약
+
+타입스크립트란?
+
+- 자바스크립트에 타입을 부여한 언어.
+- 자바스크립트이 수퍼셋.
+
+장점:
+
+- 빌드 타임에 오류 체크
+- 코드 가이드 및 자동 완성
+
 ## 타입
 
 ### 기본 타입
 
-타입스크립트의 기본 타입은 12가지가 있습니다.
+타입스크립트의 기본 타입은 12가지가 있다.
 
-| 타입        | 설명                                                       |      |
-| ----------- | ---------------------------------------------------------- | ---- |
-| `boolean`   | 진위                                                       |      |
-| `number`    | 숫자                                                       |      |
-| `string`    | 문자열                                                     |      |
-| `object`    |                                                            |      |
-| `Array`     | 배열                                                       |      |
-| `Tuple`     | 튜플                                                       |      |
-| `enum`      | 상수의 집합                                                |      |
-| `any`       | 모든 타입                                                  |      |
-| `void`      | `undefined` 또는 `null`만 할당, 함수의 경우 반환 값이 없음 |      |
-| `null`      |                                                            |      |
-| `undefined` |                                                            |      |
-| `never`     | 함수의 끝에 절대 도달하지 않음                             |      |
+#### string:
 
-#### `Boolean`:
-
-타입이 진위 값인 경우에는 아래와 같이 선언합니다.
+문자열
 
 ```ts
-let isTrue: boolean = false;
+let str: string = 'hi';
 ```
 
-#### `number`:
+#### number:
 
-타입이 숫자이면 아래와 같이 선언합니다.
+숫자
 
 ```ts
-let age: number = 10;
+let num: number = 10;
 ```
 
-#### `string`:
+#### boolean:
 
-타입이 문자열이면 아래와 같이 선언합니다.
+진위
 
 ```ts
-let said: string = 'hello';
+let isLoggedIn: boolean = false;
 ```
 
-#### `Array`:
+### 객체 타입
 
-타입이 배열이면 아래와 같이 선언합니다.
+#### array:
 
 ```ts
-let ages: number[] = [11, 14, 27];
+let arr: number[] = [1,2,3];
 ```
 
-또는 아래와 같이 제네릭을 사용할 수 있습니다.
+제네릭 지원:
 
 ```ts
-let ages: Array<number> = [11, 14, 27];
+let arr: Array<number> = [1,2,3];
 ```
 
-#### `Tuple`:
+#### tuple:
 
-길이가 고정되고 각 요소의 타입이 지정되어 있는 배열 타입입니다.
+각 요소의 타입이 지정되어 있는 고정 길이 배열
 
 ```ts
-let saidHello: [string, number] = ['hello', 8];
+let arr: [string, number] = ['hi', 10];
 ```
 
-만약 정의하지 않은 타입, 인덱스로 접근할 경우 오류가 납니다.
+정의하지 않은 타입 및 인덱스로 접근하면 오류
 
 ```ts
-saidHello[1].concat('!'); // Error, 'number' does not have 'concat'
-saidHello[5] = 'hello'; // Error, Property '5' does not exist on type '[string, number]'.
+arr[1].concat('!'); // Error, 'number' does not have 'concat'
+arr[5] = 'hello'; // Error, Property '5' does not exist on type '[string, number]'.
 ```
 
-#### `enum`:
+#### enum:
 
-상수값의 집합을 의미합니다.
+상수의 집합
 
 ```ts
-enum Jobs { Engineer, Teacher, Student, Soldier, Nurse }
-let work: Jobs = Jobs.Student;
+enum Avengers { Capt, IronMan, Thor }
+let hero: Avengers = Avengers.Capt;
 ```
 
-인덱스로 접근할 수 있습니다.
+인덱스 번호로도 접근 가능
 
 ```ts
-let work: Jobs = Jobs[0]; // Engineer
+enum Avengers { Capt, IronMan, Thor }
+let hero: Avengers = Avengers[0];
 ```
 
-인덱스를 사용자 편의로 변경하여 사용할 수도 있습니다.
+인덱스 변경도 가능
 
 ```ts
-let work: Jobs = Jobs[2]; // Student
-let hero: Jobs = Jobs[4]; // Nurse
+enum Avengers { Capt = 2, IronMan, Thor }
+let hero: Avengers = Avengers[2]; // Capt
+let hero: Avengers = Avengers[4]; // Thor
 ```
 
-#### `any`:
+#### any:
 
-자바스크립트로 구현되어 있는 웹 서비스 코드에 타입스크립트를 점진적으로 적용할 때 활용하기에 적합합니다. 모든 타입에 대해서 허용합니다.
+모든 타입 허용
 
 ```ts
-let said: any = 'hello';
-let age: any = 10;
-let properties: any = [ 'a', 2, true ];
+let str: any = 'hi';
+let num: any = 10;
+let arr: any = ['a', 2, true];
 ```
 
-#### `void`:
-
-`undefined`와 `null`만 할당 가능 합니다.
-
-`void`가 함수 반환 타입에 지젇되면 반환 값을 설정할 수 없습니다:
+#### void:
 
 ```ts
-let v: void = undefined;
+let unuseful: void = undefined;
+function notuse(): void {
+  console.log('sth');
+}
 ```
 
-#### `never`:
+#### never:
 
-함수의 끝에 도달하지 않습니다:
+함수의 끝에 도달하지 않음
 
 ```ts
-function neverFinish(): never {
-  while (true) {      
+// 이 함수는 절대 함수의 끝까지 실행되지 않는다는 의미
+function neverEnd(): never {
+  while (true) {
   }
 }
 ```
@@ -139,15 +138,7 @@ function neverFinish(): never {
 
 ### 함수에서 타입
 
-자바스크립트의 함수는 타입을 지정하지 않습니다:
-
-```js
-function sum(a, b) {
-  return a + b;
-}
-```
-
-타입 스크립트의 경우 매개변수와 반환값에 타입을 지정해야 합니다:
+타입 스크립트의 경우 매개변수와 반환값에 타입을 지정해야 한다:
 
 ```ts
 function sum(a: number, b: number): number {
@@ -155,7 +146,7 @@ function sum(a: number, b: number): number {
 }
 ```
 
-반환값이 없는 경우`void`를 반환 타입으로 지정해야 합니다:
+반환값이 없는 경우`void`를 반환 타입으로 지정해야 한다:
 
 ```ts
 function noresult(): void {
@@ -165,7 +156,7 @@ function noresult(): void {
 
 ### 함수의 인자
 
-타입스크립트에서는 함수의 인자를 모두 필수 값으로 간주합니다. 함수의 매개변수에는 `undefined`나 `null`이라도 인자로 넘겨야 하며, 컴파일러는 정의된 매개변수 값이 넘어 왔는지 체크합니다:
+타입스크립트에서는 함수의 인자를 모두 필수 값으로 간주. 함수의 매개변수에는 `undefined`나 `null`이라도 인자로 넘겨야 한다. 컴파일러는 정의된 매개변수 값이 넘어 왔는지 체크한다:
 
 ```ts
 function sum(a: number, b: number): number {
@@ -176,7 +167,7 @@ sum(10, 20, 30); // error, too many parameters
 sum(10); // error, too few parameters
 ```
 
-정의된 매개변수 만큼 인자를 넘기지 않아도 되는 자바스크립트와 다릅니다. 인자를 선택적으로 전달하고 싶다면 `?`를 지정할 수 있습니다:
+정의된 매개변수 만큼 인자를 넘기지 않아도 되는 자바스크립트와 다릅니다. 인자를 선택적으로 전달하고 싶다면 `?`를 지정할 수 있다:
 
 ```ts
 function sum(a: number, b?: number): number {
@@ -187,7 +178,7 @@ sum(10, 20, 30); // error, too many parameters
 sum(10); // 10
 ```
 
-매개변수 초기화는 ES6와 동일합니다:
+매개변수 초기화는 ES6와 같다:
 
 ```ts
 function sum(a: number, b = 100): number {
@@ -200,19 +191,18 @@ sum(10); // 110
 
 ### 매개변수에 REST 문법 적용
 
-ES6에서 Spread 문법은 배열로된 하나의 인자를 받습니다.
+ES6에서 Spread 문법은 배열로된 하나의 인자를 받는다.
 
 ```js
 function sum(x, y, z) {
   return x + y + z;
 }
-
 const numbers = [1, 2, 3];
 sum(...numbers); // expected output: 6
 sum.apply(null, numbers); // expected output: 6
 ```
 
-기존에 두 배열을 합치려면, `push`, `splice`, `concat`를 사용해야 했습니다. Spread 문법을 사용하면 두 배열을 간단히 합치 거나 복사가 가능합니다:
+기존에 두 배열을 합치려면, `push`, `splice`, `concat`를 사용해야 했다. Spread 문법을 사용하면 두 배열을 간단히 합치 거나 복사가 가능하다:
 
 ```js
 var parts = [ 'shoulders', 'knees' ]; 
@@ -228,7 +218,6 @@ function sum(...theArgs) {
     return previous + current;
   });
 }
-
 sum(1, 2, 3); // expected output: 6
 sum(1, 2, 3, 4); // expected output: 10
 ```
@@ -247,7 +236,7 @@ function sum(a: number, ...nums: number[]): number {
 
 ### `this`
 
-자바스크립트와 다르게 `this`의 잘못된 사용을 탐지 할 수 있습니다. 타입스크립트에서 `this`가 가리키는 것을 명시하려면 아래와 같이 사용합니다:
+자바스크립트와 다르게 `this`의 잘못된 사용을 탐지 할 수 있다. 타입스크립트에서 `this`가 가리키는 것을 명시하려면 아래와 같이 사용한다:
 
 ```ts
 function 함수명(this: 타입) {
@@ -279,7 +268,7 @@ let count = getCount();
 console.log(count); // expected output: 10
 ```
 
-위의 코드를 타입스크립트로 컴파일 했을 때 만일 `--noImplicitThis` 옵션이 있더라도 에러가 발생하지 않습니다.
+위의 코드를 타입스크립트로 컴파일 했을 때 만일 `--noImplicitThis` 옵션이 있더라도 에러가 발생하지 않는다.
 
 ### 콜백에서의 `this`
 
