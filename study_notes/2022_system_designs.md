@@ -14,7 +14,7 @@
 | **minio**                     | aws s3 (simple storage service) 호환 오픈소스                |           |
 | nhost-auth                    | 사용자 인증 api 제공 서비스.                                 |           |
 | nhost-storage                 | minio 에 대한 api 제공 서비스.                               |           |
-| **elasticsearch**             | 키워드 인덱싱 문서 빅데이터 DBMS (일종의 단어 기반 검색 엔진) |           |
+| **elasticsearch**             | 분산 검색 및 분석 엔진 (문서 빅데이터)                       |           |
 | **prometheus**                | 서버 모니터링 서비스                                         |           |
 | **influxdb**                  | 시계열 (time series) 빅데이터 DBMS                           |           |
 | **telegraf**                  | 시계열 (time series) 데이터 수집 에이전트                    |           |
