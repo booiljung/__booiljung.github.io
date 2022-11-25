@@ -19,6 +19,10 @@
 - [exFAT으로 파일시스템을 설치](exfat_filesystem.md)
 - [Link on Linux](link_on_linux.md)
 
+## Displays
+
+- [xrandr를 사용한 화면 해상도 변경](xrandr.md)
+
 ## Driver
 
 - [Ubuntu에 nvidia 드라이버 설치하기](installation_of_nvidia_on_ubuntu.md)
