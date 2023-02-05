@@ -2,5 +2,5 @@
 
 # Node.js
 
-- [Node.js 설치 방법](./nodejs_installation.md)
+- [Node.js 설치 방법](./installation_of_nodejs.md)
 
