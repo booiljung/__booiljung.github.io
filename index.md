@@ -80,6 +80,7 @@
 #### 페이지
 
 - [Technical notes](./technical_articles/index.md)
+- [articles](articles/index.md)
 - [vi shortcuts](./technical_articles/editors/vi.md)
 - [Movies](movies/index.md)
 - [Study notes](study_notes/index.md)
