@@ -4,10 +4,6 @@ Dev Container로 JavaScript 개발환경 구성
 
 JavaScript 는 Node 환경에서 개발 할 수 있습니다. 이 글은 Dev Container에 Node 개발 환경을 구성합니다. Dev Container는 Node 뿐만 아니라 준비된 다양한 개발 환경을 구성 할 수 있습니다. 예를 들자면, Python, Dart, Java  같은 개발 환경들입니다.
 
-## 주의사항
-
-데비안 패키지 `apt` 로 Node를 설치하면 낡은 버전이 설치됩니다. 낡은 버전은 많은 경고와 오류로 개발이 거의 불가능 합니다. 이 문서에 따라 최신 버전을 쉽게 설치 할 수 있습니다.
-
 ## Dev Container란?
 
 마이크로소프트가 제안한 개발 환경 컨테이너 입니다.
