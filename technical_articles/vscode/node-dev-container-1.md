@@ -111,7 +111,7 @@ Node 버전을 물으면 해당 프로젝트가 요구하는 16 또는 18을 선
 
 ![image-20230303001036492](node-dev-container-1.assets/image-20230303001036492.png)
 
-`.devcontainer/devcontainer.js` 파일 내용은 아래와 같습니다.
+`.devcontainer/devcontainer.json` 파일 내용은 아래와 같습니다.
 
 ```json
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
@@ -139,8 +139,8 @@ Node 버전을 물으면 해당 프로젝트가 요구하는 16 또는 18을 선
 
 ```
 
-- `name`은 이름입니다.
-- `image`는 개발에 사용할 도커 이미지 입니다.
+- `name`은 개발 환경 이름입니다.
+- `image`는 개발에 사용할 이미지 입니다.
 
 ## Dev Container 구동하기
 
@@ -152,7 +152,7 @@ Node 버전을 물으면 해당 프로젝트가 요구하는 16 또는 18을 선
 
 이 `Dev Container: Rebuild & Reopen in Container`명령은 다음 작업을 수행 합니다.
 
-- `devcontainer.js`에 표시된 도커 이미지를 찾고 없으면 다운로드 합니다.
+- `devcontainer.json`에 표시된 도커 이미지를 찾고 없으면 다운로드 합니다.
 - `Starting Dev Coltainer (show log)`가 표시되며 컨테이너가 시작 됩니다.
 
 ![image-20230303204018142](node-dev-container-1.assets/image-20230303204018142.png)
