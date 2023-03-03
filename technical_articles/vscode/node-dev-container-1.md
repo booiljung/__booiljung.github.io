@@ -153,21 +153,21 @@ Node 버전을 물으면 해당 프로젝트가 요구하는 16 또는 18을 선
 이 `Dev Container: Rebuild & Reopen in Container`명령은 다음 작업을 수행 합니다.
 
 - `devcontainer.json`에 표시된 도커 이미지를 찾고 없으면 다운로드 합니다.
-- `Starting Dev Coltainer (show log)`가 표시되며 컨테이너가 시작 됩니다.
+- `Starting Dev Coltainer (show log)`가 표시되며 컨테이너를 준비합니다.
 
 ![image-20230303204018142](node-dev-container-1.assets/image-20230303204018142.png)
 
 - Visual Studio Code 하단 상태바 좌측에 `Openning Remote ...`로 컨테이너를 열고 있는 중으로 표시됩니다.
 
-컨테이너가 준비 되었으면 상태바 좌측에 `Dev Container: Node.js & TtypeScript`로 표시됩니다.ca
+컨테이너가 준비 완료 되었으면 상태바 좌측에 `Dev Container: Node.js & TypeScript`로 표시됩니다.
 
 ![image-20230303204247590](node-dev-container-1.assets/image-20230303204247590.png)
 
-이제 NodeJs 개발 환경이 준비되었습니다. "`Ctrl + `"를 눌러서 컨테이너의 Bash 로 들어가 봅니다.
+이제 NodeJs 개발 환경이 준비되었습니다.  터미널 탭을 눌러서 컨테이너의 Bash 로 들어가 봅니다.  유저는 `node`이고 컨테이너 안의 `/workspaces/node1` 폴더에 있습니다:
 
 ![image-20230303204422482](node-dev-container-1.assets/image-20230303204422482.png)
 
-터미너에서 운영체제를 확인합니다:
+터미널에서 운영체제를 확인합니다:
 
 ```sh
 node ➜ /workspaces/node1 $ lsb_release -a
