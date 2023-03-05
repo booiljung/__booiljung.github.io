@@ -20,11 +20,56 @@ JavaScript 는 Node 환경에서 개발 할 수 있습니다. 이 글은 Dev Con
 
 ## Dev Container는 다음으로 구성됩니다.
 
+### [Ubuntu]에서 구성
+
+Ubuntu에서 간단한 명령으로 Dev Container를 사용할 수 있습니다.
+
 - Docker
 - Visual Studio Code
 - Dev Containers (Visual Studio Extension)
 
-## Docker 설치
+### [Windows]에서 구성
+
+윈도우에서도 Docker와 Dev Container를 사용할 수 있습니다.
+
+- Windows Subsystem for Linux (WSL)
+- Docker Desktop
+- Visual Studio Code
+- Dev Containers (Visual Studio Extension)
+
+## [Windows]에서 Windows Subsystem for Linux (WSL) 설치
+
+Container 기술은 Free-BSD와 Linux에서 지원 됩니다. 윈도우에서 Dev Container를 사용하려면 Docker Desktop을 설치해야 하고, Docker를 구동하려면 WSL이 설치되어 있어야 합니다.
+
+[이곳 마이크로소프트 스토어](https://aka.ms/wslstore)에서 WSL을 검색하여 설치 합니다.
+
+![4.2](./node-dev-container-1.assets/4.2.PNG)
+
+(선택사항) 다른 리눅스 배포판을 설치하여 WSL을 테스트 해볼 수도 있습니다.
+
+- [Ubuntu 배포판](https://www.microsoft.com/store/productId/9PDXGNCFSCZV)
+- [22.04](https://www.microsoft.com/store/productId/9PN20MSR04DW)
+- [20.04](https://www.microsoft.com/store/productId/9MTTCL66CPXJ)
+- [18.04](https://www.microsoft.com/store/productId/9PNKSF5ZN4SW)
+- [Debian 배포판](https://www.microsoft.com/store/productId/9MSVKQC78PK6)
+- [Apine 배포판](https://www.microsoft.com/store/productId/9P804CRF0395)
+- [Arch 배포판](https://www.microsoft.com/store/productId/9MZNMNKSM73X)
+
+## [Windows]에서 Docker 설치
+
+[docker.com](https://www.docker.com/products/docker-desktop/)에서 Windows용 Docker Desktop을 다운로드 받아 설치 합니다.
+
+![1](./node-dev-container-1.assets/1.PNG)
+
+설치를 진행합니다.
+
+![2](./node-dev-container-1.assets/2.PNG)
+
+설치를 완료 합니다.
+
+![3](./node-dev-container-1.assets/3.PNG)
+
+## [Ubuntu]에서 Docker 설치
 
 우분투에서 도커 설치는 쉽습니다.
 
@@ -40,7 +85,11 @@ snap install docker
 
 ![image-20230302235659381](node-dev-container-1.assets/image-20230302235659381.png)
 
-## Visual Studio Code 설치
+## [Windows]에서 Visual Studio Code 설치
+
+[이곳](https://code.visualstudio.com/)에서 Visual Studio Code를 다운로드하여 설치 합니다.
+
+## [Ubuntu]에서 Visual Studio Code 설치
 
 우분투 터미널에서 Visual Studio Code를 설치합니다.
 
@@ -54,7 +103,7 @@ snap install code --classic
 
 ## 프로젝트 폴더 만들기
 
-파일 관리자를 열어서 폴더를 `node1`이라는 폴더를 만듭니다. 폴더를 만들고 vscode로 폴더를 오픈합니다.
+파일 관리자를 열어서 폴더를 `node1`이라는 폴더를 만듭니다. 폴더를 만들고 Visual Studio Code로 폴더를 오픈합니다.
 
 ![image-20230302233457935](node-dev-container-1.assets/image-20230302233457935.png)
 
