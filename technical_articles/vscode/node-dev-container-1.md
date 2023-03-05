@@ -18,15 +18,9 @@ JavaScript 는 Node 환경에서 개발 할 수 있습니다. 이 글은 Dev Con
 - 개발/테스트/스테이징/운영 환경을 동일하게 구성할 수 있습니다.
 - 호스트 운영체제를 손상시키지 않습니다.
 
-## Dev Container는 다음으로 구성됩니다.
+## Dev Container 구성하기
 
-### [Ubuntu]에서 구성
-
-Ubuntu에서 간단한 명령으로 Dev Container를 사용할 수 있습니다.
-
-- Docker
-- Visual Studio Code
-- Dev Containers (Visual Studio Extension)
+Dev Container는 Windows, MacOS, Linux에서 구성할 수 있습니다. 맥을 사용하지 않은지 5년 정도 되었고, 맥에서 구성하는 방법은 테스트 할 수 없으므로 적지 않겠습니다.
 
 ### [Windows]에서 구성
 
@@ -34,6 +28,14 @@ Ubuntu에서 간단한 명령으로 Dev Container를 사용할 수 있습니다.
 
 - Windows Subsystem for Linux (WSL)
 - Docker Desktop
+- Visual Studio Code
+- Dev Containers (Visual Studio Extension)
+
+### [Ubuntu]에서 구성
+
+Ubuntu에서 간단한 명령으로 Dev Container를 사용할 수 있습니다.
+
+- Docker
 - Visual Studio Code
 - Dev Containers (Visual Studio Extension)
 
@@ -48,9 +50,10 @@ Container 기술은 Free-BSD와 Linux에서 지원 됩니다. 윈도우에서 De
 (선택사항) 다른 리눅스 배포판을 설치하여 WSL을 테스트 해볼 수도 있습니다.
 
 - [Ubuntu 배포판](https://www.microsoft.com/store/productId/9PDXGNCFSCZV)
-- [22.04](https://www.microsoft.com/store/productId/9PN20MSR04DW)
-- [20.04](https://www.microsoft.com/store/productId/9MTTCL66CPXJ)
-- [18.04](https://www.microsoft.com/store/productId/9PNKSF5ZN4SW)
+  - [22.04](https://www.microsoft.com/store/productId/9PN20MSR04DW)
+  - [20.04](https://www.microsoft.com/store/productId/9MTTCL66CPXJ)
+  - [18.04](https://www.microsoft.com/store/productId/9PNKSF5ZN4SW)
+
 - [Debian 배포판](https://www.microsoft.com/store/productId/9MSVKQC78PK6)
 - [Apine 배포판](https://www.microsoft.com/store/productId/9P804CRF0395)
 - [Arch 배포판](https://www.microsoft.com/store/productId/9MZNMNKSM73X)
@@ -71,19 +74,52 @@ Container 기술은 Free-BSD와 Linux에서 지원 됩니다. 윈도우에서 De
 
 ## [Ubuntu]에서 Docker 설치
 
-우분투에서 도커 설치는 쉽습니다.
+우분투에서 snap으로 도커 설치는 쉽습니다만, 오류 발생시 snap의 앱이 sandbox에서 실행되므로 보다 긴 오류메시지가표시되고 오류 메시지 보기 힘들며, sandbox로 인해 권한 문제가 발생합니다.  snap을 통하지 않고 데비안 패키지로 설치하도록 하겠습니다.
 
-터미널에서
+설치 절차는 [공식 문서](https://docs.docker.com/engine/install/ubuntu/) 가 제공됩니다.
+
+먼저 기존에 설치된 Docker를 제거 합니다:
 
 ```sh
-snap install docker
+$ sudo apt-get remove docker docker-engine docker.io containerd runc
+$ snap remove docker
 ```
 
-를 입력합니다.
+Docker를 설치합니다:
 
-수퍼유저 비밀번호를 물어보면 입력 합니다.
+```sh
+$ sudo apt-get update
+$ sudo apt-get install \
+    ca-certificates \
+    curl \
+    gnupg \
+    lsb-release
+```
 
-![image-20230302235659381](node-dev-container-1.assets/image-20230302235659381.png)
+```sh
+$ sudo mkdir -m 0755 -p /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+```
+
+```sh
+$ echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+```
+
+```sh
+$ sudo apt-get update
+```
+
+```sh
+$ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+```
+
+설치를 확인 합니다.
+
+```sh
+$ docker --version
+```
 
 ## [Windows]에서 Visual Studio Code 설치
 
@@ -91,15 +127,13 @@ snap install docker
 
 ## [Ubuntu]에서 Visual Studio Code 설치
 
-우분투 터미널에서 Visual Studio Code를 설치합니다.
+vscode도 snap에서 설치 할 수 있지만, 오류 메시지 표시나 sandbox내의 권한 문제로, [이곳](https://code.visualstudio.com/)에서 Visual Studio Code를 다운로드합니다.
+
+다운로드 폴더에서 다운로드 받은 데비안 패키지를 설치 합니다. 다운로드 받은 파일을 지정해 주면 됩니다.
 
 ```sh
-snap install code --classic
+$ sudo apt-get install ./code_x.xx.x-xxxxxxxx_amd64.deb
 ```
-
-수퍼유저 비밀번호를 물어보면 입력 합니다.
-
-![image-20230302232814394](node-dev-container-1.assets/image-20230302232814394.png)
 
 ## 프로젝트 폴더 만들기
 
