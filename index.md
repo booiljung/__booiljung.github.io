@@ -2,6 +2,7 @@
 
 #### 최신 글
 
+- vscode: [Dev Container로 JavaScript 개발환경 구성 #2 Electron GUI 앱 개발](./technical_articles/vscode/node-dev-container-2.md)
 - vscode: [Dev Container로 JavaScript 개발환경 구성 #1 기초편](./technical_articles/vscode/node-dev-container-1.md)
 - Ansible: [앤서블 간단 가이드](./technical_articles/ansible/ansible_simple_guide.md)
 - Ubuntu: [Ubuntu 에서 VirtualBox VM 자동으로 시작](./technical_articles/linux/virtualbox_vm_auto_start_on_ubuntu.md)
