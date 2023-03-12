@@ -786,7 +786,7 @@ npm notice
 
 오류 메시지들은 gtk와 opengl에 대한 내용들입니다. 장기적으로 이 오류들을 제거해 보겠습니다.
 
-이 예제의 소스코드들은 https://github.com/booiljung/devcontainer-electron2 에 올려 두었습니다.
+이 예제의 소스코드들은 [github.com/booiljung/devcontainer-electron2](https://github.com/booiljung/devcontainer-electron2) 에 올려 두었습니다.
 
 ## 참조
 
