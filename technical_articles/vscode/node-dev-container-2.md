@@ -4,10 +4,10 @@ Dev Container로 JavaScript 개발환경 구성
 
 컨테이너가 GUI 앱을 실행하는 방법은 2가지가 있습니다.
 
-- 호스트의 xserver 사용
+- 호스트의 xserver 공유
 - VNC를 통한 화면 공유
 
-이중 개인 컴퓨터에서 테스트가 용이한 호스트의 x11을 사용해 보도록 하겠습니다.
+이중 개인 컴퓨터에서 테스트가 용이한 호스트의 xserver 공유를 통해 하겠습니다.
 
 ## 컨테이너란?
 
@@ -669,7 +669,7 @@ RUN apt-get update && apt-get install -yq --no-install-suggests --no-install-rec
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 ```
 
-electron이 사용하는 라이브러리들을 설치해 줍니다. 마지막 `x11-apps`는 x11이 제대로 연결되었는지 확인하는 용도로 사용됩니다. 확인이 끝나면 삭제하여도 됩니다.
+electron이 사용하는 라이브러리들을 설치해 줍니다. 마지막 `x11-apps`는 xserver가 제대로 연결되었는지 확인하는 용도로 사용됩니다. 확인이 끝나면 삭제하여도 됩니다.
 
 ```
 USER node
@@ -689,7 +689,7 @@ $ docker compose build
 
 성공적으로 빌드되고 컨테이너가 올라 왔다면 기본적인 테스트를 해보겠습니다.
 
-먼저 호스트의 x11과 연결이 되었는지 확인 합니다. `Dockerfile`에서 우리는 `x11-apps`를 설치하였습니다. `xeyes`를 실행하여 연결을 확인 하겠습니다:
+먼저 호스트의 xserver와 연결이 되었는지 확인 합니다. `Dockerfile`에서 우리는 `x11-apps`를 설치하였습니다. `xeyes`를 실행하여 연결을 확인 하겠습니다:
 
 ```sh
 $ xeyes
