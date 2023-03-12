@@ -71,14 +71,6 @@ Dev Container로 JavaScript 개발환경 구성
 
 ## DevContainer에서 Electron 시작하기
 
-도커에서 GUI 앱을 구동하는 방법은 인터넷을 검색하였습니다.
-
-- [도커에서 GUI 프로그램 사용하기](https://open-support.tistory.com/entry/%EB%8F%84%EC%BB%A4Docker%EC%97%90%EC%84%9C-GUI%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0)
-- [도커 환경에서 GUI 앱 사용](도커 환경에서 GUI 앱 사용)
-- [docker에서 컨테이너 gui 실행하기](https://conservative-vector.tistory.com/entry/docker%EC%97%90%EC%84%9C-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-gui-%EC%8B%A4%ED%96%89%ED%95%98%EA%B8%B0)
-- [docker와 GUI 환경 연결](https://driz2le.tistory.com/257)
-- [github.com/bengreenier/docker-x11-electron](https://github.com/bengreenier-archive/docker-x11-electron)
-
 먼저 프로젝트 폴더를 만들고 vscode로 폴더를 오픈합니다.
 
 리눅스:
@@ -795,3 +787,13 @@ npm notice
 오류 메시지들은 gtk와 opengl에 대한 내용들입니다. 장기적으로 이 오류들을 제거해 보겠습니다.
 
 이 예제의 소스코드들은 https://github.com/booiljung/devcontainer-electron2 에 올려 두었습니다.
+
+## 참조
+
+도커에서 GUI 앱을 구동하는 방법은 다음 글을 참조하였습니다:
+
+- [도커에서 GUI 프로그램 사용하기](https://open-support.tistory.com/entry/%EB%8F%84%EC%BB%A4Docker%EC%97%90%EC%84%9C-GUI%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0)
+- [도커 환경에서 GUI 앱 사용](도커 환경에서 GUI 앱 사용)
+- [docker에서 컨테이너 gui 실행하기](https://conservative-vector.tistory.com/entry/docker%EC%97%90%EC%84%9C-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-gui-%EC%8B%A4%ED%96%89%ED%95%98%EA%B8%B0)
+- [docker와 GUI 환경 연결](https://driz2le.tistory.com/257)
+- [github.com/bengreenier/docker-x11-electron](https://github.com/bengreenier-archive/docker-x11-electron)
