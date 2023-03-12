@@ -2,7 +2,7 @@ Dev Container로 JavaScript 개발환경 구성
 
 # #2 Electron GUI 앱 개발
 
-컨테이너가 GUI 앱을 실행하는 방법은 2가지가 있습니다.
+컨테이너 안에서 GUI 앱을 구동하는 방법은 2가지가 있습니다.
 
 - 호스트의 xserver 공유
 - VNC를 통한 화면 공유
