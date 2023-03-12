@@ -1,4 +1,4 @@
-Dev Container로 JavaScript 개발환경 구성
+Dev Container로 React JavaScript 개발환경 구성
 
 # #1 기초편
 
@@ -22,7 +22,7 @@ JavaScript 는 Node 환경에서 개발 할 수 있습니다. 이 글은 Dev Con
 
 Dev Container는 Windows, MacOS, Linux에서 구성할 수 있습니다. 맥을 사용하지 않은지 5년 정도 되었고, 맥에서 구성하는 방법은 테스트 할 수 없으므로 적지 않겠습니다.
 
-### [Windows]에서 구성
+### Windows: Dev Container  환경 구성
 
 윈도우에서도 Docker와 Dev Container를 사용할 수 있습니다.
 
@@ -31,7 +31,7 @@ Dev Container는 Windows, MacOS, Linux에서 구성할 수 있습니다. 맥을 
 - Visual Studio Code
 - Dev Containers (Visual Studio Extension)
 
-### [Ubuntu]에서 구성
+### Ubuntu: Dev Container 환경 구성
 
 Ubuntu에서 간단한 명령으로 Dev Container를 사용할 수 있습니다.
 
@@ -39,7 +39,7 @@ Ubuntu에서 간단한 명령으로 Dev Container를 사용할 수 있습니다.
 - Visual Studio Code
 - Dev Containers (Visual Studio Extension)
 
-## [Windows]에서 Windows Subsystem for Linux (WSL) 설치
+## Windows: Windows Subsystem for Linux (WSL) 설치
 
 Container 기술은 Free-BSD와 Linux에서 지원 됩니다. 윈도우에서 Dev Container를 사용하려면 Docker Desktop을 설치해야 하고, Docker를 구동하려면 WSL이 설치되어 있어야 합니다.
 
@@ -58,7 +58,7 @@ Container 기술은 Free-BSD와 Linux에서 지원 됩니다. 윈도우에서 De
 - [Apine 배포판](https://www.microsoft.com/store/productId/9P804CRF0395)
 - [Arch 배포판](https://www.microsoft.com/store/productId/9MZNMNKSM73X)
 
-## [Windows]에서 Docker 설치
+## Windows: Docker 설치
 
 [docker.com](https://www.docker.com/products/docker-desktop/)에서 Windows용 Docker Desktop을 다운로드 받아 설치 합니다.
 
@@ -72,11 +72,11 @@ Container 기술은 Free-BSD와 Linux에서 지원 됩니다. 윈도우에서 De
 
 ![3](./node-dev-container-1.assets/3.PNG)
 
-## [Ubuntu]에서 Docker 설치
+## Ubuntu: Docker 설치
 
 우분투에서 snap으로 도커 설치는 쉽습니다만, 오류 발생시 snap의 앱이 sandbox에서 실행되므로 보다 긴 오류메시지가표시되고 오류 메시지 보기 힘들며, sandbox로 인해 권한 문제가 발생합니다.  snap을 통하지 않고 데비안 패키지로 설치하도록 하겠습니다.
 
-설치 절차는 [공식 문서](https://docs.docker.com/engine/install/ubuntu/) 가 제공됩니다.
+설치 절차는 [공식 문서](https://docs.docker.com/engine/install/ubuntu/) 가 제공됩니다. 시간이 지나 설치 방법이 바뀔 수 있으니 가능한 공식문서를 참조하여 설치하시기 바랍니다.
 
 먼저 기존에 설치된 Docker를 제거 합니다:
 
@@ -85,7 +85,7 @@ $ sudo apt-get remove docker docker-engine docker.io containerd runc
 $ snap remove docker
 ```
 
-Docker를 설치합니다:
+의존성 패키지를 설치합니다:
 
 ```sh
 $ sudo apt-get update
@@ -95,6 +95,8 @@ $ sudo apt-get install \
     gnupg \
     lsb-release
 ```
+
+Docker를 설치합니다:
 
 ```sh
 $ sudo mkdir -m 0755 -p /etc/apt/keyrings
@@ -121,18 +123,32 @@ $ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugi
 $ docker --version
 ```
 
-## [Windows]에서 Visual Studio Code 설치
+## Windows: 에서 Visual Studio Code 설치
 
 [이곳](https://code.visualstudio.com/)에서 Visual Studio Code를 다운로드하여 설치 합니다.
 
-## [Ubuntu]에서 Visual Studio Code 설치
+## Ubuntu: Visual Studio Code 설치
 
-vscode도 snap에서 설치 할 수 있지만, 오류 메시지 표시나 sandbox내의 권한 문제로, [이곳](https://code.visualstudio.com/)에서 Visual Studio Code를 다운로드합니다.
-
-다운로드 폴더에서 다운로드 받은 데비안 패키지를 설치 합니다. 다운로드 받은 파일을 지정해 주면 됩니다.
+vscode도 snap에서 설치 할 수 있지만, 오류 메시지 표시나 sandbox내의 권한 문제로, [이곳](https://code.visualstudio.com/)에서 Visual Studio Code를 다운로드합니다. 다운로드 폴더에서 다운로드 받은 데비안 패키지를 설치 합니다. 다운로드 받은 파일을 지정해 주면 됩니다.
 
 ```sh
 $ sudo apt-get install ./code_x.xx.x-xxxxxxxx_amd64.deb
+```
+
+또는 Microsoft 패키지 저장소에서 설치할 수 있습니다:
+
+```sh
+mkdir -p ~/.cache
+cd ~/.cache
+
+sudo apt-get install wget gpg 
+wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
+sudo install -o root -g root -m 644 packages.microsoft.gpg /etc/apt/trusted.gpg.d/
+sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/trusted.gpg.d/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
+rm -f packages.microsoft.gpg
+sudo apt install apt-transport-https -y
+sudo apt update
+sudo apt install code -y
 ```
 
 ## 프로젝트 폴더 만들기
@@ -141,15 +157,13 @@ $ sudo apt-get install ./code_x.xx.x-xxxxxxxx_amd64.deb
 
 ![image-20230302233457935](node-dev-container-1.assets/image-20230302233457935.png)
 
-Visual Studio Code가 폴더 저작자를 신뢰하냐는 질문에 동의 해 줍니다.
+Visual Studio Code가 폴더 저작자를 신뢰하냐는 질문에 동의 해 줍니다:![image-20230302233809976](node-dev-container-1.assets/image-20230302233809976.png)
 
-![image-20230302233809976](node-dev-container-1.assets/image-20230302233809976.png)
-
-Visual Studio Code의 Extensions (확장 플러그인) 탭을 엽니다.
+Visual Studio Code의 Extensions (확장 플러그인) 탭을 엽니다:
 
 ![image-20230302233948080](node-dev-container-1.assets/image-20230302233948080.png)
 
-확장 플러그인에서 `Dev Containers`를 검색하여 설치합니다.
+확장 플러그인에서 `Dev Containers`를 검색하여 설치합니다:
 
 ![image-20230302234047267](node-dev-container-1.assets/image-20230302234047267.png)
 
@@ -190,19 +204,19 @@ Node 버전을 물으면 해당 프로젝트가 요구하는 16 또는 18을 선
 
 ![image-20230303000913672](node-dev-container-1.assets/image-20230303000913672.png)
 
-아래처럼 `.devcontainer/devcontainer.json`파일이 열리면 구성에 성공한 것입니다.
+아래처럼 `.Dev Container/devcontainer.json`파일이 열리면 구성에 성공한 것입니다.
 
 ![image-20230303001036492](node-dev-container-1.assets/image-20230303001036492.png)
 
-`.devcontainer/devcontainer.json` 파일 내용은 아래와 같습니다.
+`.Dev Container/devcontainer.json` 파일 내용은 아래와 같습니다.
 
 ```json
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
-// README at: https://github.com/devcontainers/templates/tree/main/src/typescript-node
+// README at: https://github.com/Dev Containers/templates/tree/main/src/typescript-node
 {
 	"name": "Node.js & TypeScript",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/typescript-node:0-18"
+	"image": "mcr.microsoft.com/Dev Containers/typescript-node:0-18"
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
@@ -227,9 +241,9 @@ Node 버전을 물으면 해당 프로젝트가 요구하는 16 또는 18을 선
 
 ## Dev Container 구동하기
 
-지금 Dev Container 구성 파일만 만들어졌을 뿐입니다. 아직 Dev Container가 구동되지 않았습니다. 우리는 여전히 로컬 컴퓨터에 있습니다.
+지금 Dev Container 구성 파일만 만들어졌을 뿐입니다. 아직 Dev Container가 구동되지 않았습니다. 우리는 여전히 호스트 컴퓨터에 있습니다.
 
-`Ctrl + Shift + P`를 눌러서 다시 명령 팰럿을 열고, `Rebuild`를 검색하여 `Dev Container: Rebuild & Reopen in Container`를 실행합니다.
+`F1` 또는 `Ctrl + Shift + P`를 눌러서 다시 명령 팰럿을 열고, `Rebuild`를 검색하여 `Dev Container: Rebuild & Reopen in Container`를 실행합니다.
 
 ![image-20230303001414284](node-dev-container-1.assets/image-20230303001414284.png)
 
@@ -506,5 +520,5 @@ export default App;
 
 - [자습서: React 시작하기](https://ko.reactjs.org/tutorial/tutorial.html)
 - [ReactJS React 프로젝트 생성 및 실행 (React로 아주 간단한 게시판 만들기 - 1)](https://antdev.tistory.com/77)
-- [Developing inside a Container](https://code.visualstudio.com/docs/devcontainers/containers)
+- [Developing inside a Container](https://code.visualstudio.com/docs/Dev Containers/containers)
 

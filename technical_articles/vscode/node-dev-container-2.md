@@ -4,14 +4,14 @@ Dev Container로 JavaScript 개발환경 구성
 
 컨테이너가 GUI 앱을 실행하는 방법은 2가지가 있습니다.
 
-- 호스트의 X11 사용
+- 호스트의 xserver 사용
 - VNC를 통한 화면 공유
 
-이중 개인 컴퓨터에서 테스트가 용이한 X11을 사용해 보도록 하겠습니다.
+이중 개인 컴퓨터에서 테스트가 용이한 호스트의 x11을 사용해 보도록 하겠습니다.
 
 ## 컨테이너란?
 
-먼저 호스트 컴퓨터의 X11을 사용하기 전에 컨테이너 기술이란 무엇인지 알아 보겠습니다.
+먼저 호스트 컴퓨터의 xserver을 사용하기 전에 컨테이너 기술이란 무엇인지 알아 보겠습니다.
 
 - [컨테이너 기술의 발전과 역사](https://www.openmaru.io/%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EA%B8%B0%EC%88%A0%EC%9D%98-%EC%97%AD%EC%82%AC%EC%99%80-%EB%B0%9C%EC%A0%84/)
 
@@ -26,25 +26,25 @@ Dev Container로 JavaScript 개발환경 구성
 
 컨테이너는 호스트 컴퓨터 상의 호스트 운영체제에서 격리된 환경을 만들고 이 **격리된 환경**에서 서비스를 구동합니다.
 
-이 격리된 환경은 리눅스에서 제공하는 namespace cgroup를 이용한다는 것인데 이 것은 잊어도 됩니다. 리눅스 커널을 공유하는 격리된 환경이라는 것이 핵심 포인트입니다.
+이 격리된 환경은 리눅스에서 제공하는 namespace cgroup를 이용한다는 것인데 이 것은 잊어도 됩니다. **리눅스 커널을 공유하는 격리된 환경**이라는 것이 핵심 포인트입니다.
 
-가상머신은 생성, 설치, 운영에 느리며 많은 자원을 점유 합니다. 또한 자원을 미리 예약하여 점유하기때문에 자원이 비효율적입니다. (자원: 메모리, 디스크, CPU, 전력 등)
+가상머신은 생성, 설치, 운영에 느리며 메모리, 디스크, CPU, 전력 등 자원을 점유 합니다. 또한 자원을 미리 예약하여 점유하기때문에 자원 활용이 비효율적입니다.
 
-컨테이너는 운영체제의 격리된 환경이기 때문에 생성, 설치, 제거가 빠르고 가볍습니다. 자원을 예약하지 않고 필요한 자원만 점유합니다.
+컨테이너는 운영체제의 격리된 환경이기 때문에 생성, 설치, 제거가 빠르고 가볍습니다. 자원을 사전에 예약하지 않고 필요한 자원만 점유합니다.
 
 ## 도커란?
 
 - [도커란 무엇인가?](https://wooody92.github.io/docker/Docker-%EB%8F%84%EC%BB%A4%EB%9E%80-%EB%AC%B4%EC%97%87%EC%9D%B8%EA%B0%80/)
 
-도커는 컨테이너를 사용하는 기술 중 하나일뿐이지만, 컨테이너 기술의 부흥을 일으킨 기술입니다.
+현재 도커는 컨테이너를 사용하는 기술 중 하나일뿐이지만, 컨테이너 기술의 부흥을 일으킨 기술입니다.
 
 컨테이너는 격리된 환경입니다. 격리된 컨테이너에 호스트의 자원을 제공합니다.
 
 - 컨테이너는 도커 이미지의 인스턴스입니다. 컨테이너 생성시 도커 이미지를 지정해야 합니다.
-- 컨테이너에 volumes을 지정하여 호스트의 디스크 자원을 제공합니다. 지정하지 않으면 디폴트 보륨이 지정됩니다.
-- 컨테이너에 ports를 지정하여 호스트의 TCP/UDP 포트를 제공합니다. 지정하지 않으면 포트를 사용할 수 없습니다.
-- 컨테이너에 networks를 지정하여 네트워크를 제공할 수 있습니다. 지정하지 않으면 디폴트 네트워크가 지정됩니다.
-- 컨테이너에 devices를 지정하여 장치를 제공할 수 있습니다. 요구하는 장치를 제공하지 않으면 컨테이너는 구동되지 않습니다.
+- 컨테이너에 `volumes`을 지정하여 호스트의 디스크 자원을 제공합니다. 지정하지 않으면 자동으로 생성된 디폴트 보륨이 지정됩니다.
+- 컨테이너에 `ports`를 지정하여 호스트의 TCP/UDP 포트를 제공합니다. 지정하지 않으면 포트를 사용할 수 없습니다.
+- 컨테이너에 `networks`를 지정하여 네트워크를 제공할 수 있습니다. 지정하지 않으면 자동으로 생성된 디폴트 네트워크가 지정됩니다.
+- 컨테이너에 `devices`를 지정하여 장치를 제공할 수 있습니다. 컨테이너가 요구하는 장치를 호스트가 제공하지 않으면 컨테이너는 구동되지 않습니다.
 - 컨테이너에 환경변수를 제공할 수 있습니다. 환경변수를 제공하지 않으면 기본 값이 사용됩니다.
 
 도커 이미지는 여러 기업들이 제공하고 있습니다. 도커 이미지를 제공하는 서비스를 registry라고 합니다.
@@ -59,7 +59,7 @@ Dev Container로 JavaScript 개발환경 구성
 - [Github](https://github.com/features/packages)
 - [Azure Container Registry](https://azure.microsoft.com/ko-kr/products/container-registry)
 
-[도커 이미지는 Dockerfile로 부터 빌드 합니다.](https://docs.docker.com/engine/reference/builder/) 도커 파일 작성은 sh을 통한 리눅스 명령을 사용할 수 있으면 어렵지 않습니다.
+[도커 이미지는 Dockerfile로 부터 빌드 합니다.](https://docs.docker.com/engine/reference/builder/) 도커 파일 작성은 sh을 통한 리눅스 명령을 사용할 수 있으면 작성할 수 있습니다.
 
 이상 도커와 컨테이너에 대해 간단하게 안내해 드렸습니다.
 
@@ -88,19 +88,19 @@ vscode는 아래와 같습니다.
 
 ![image-20230312011717522](./node-dev-container-2.assets/image-20230312011717522.png)
 
-F1 또는 Ctrl+Shift+P를 눌러서 명령 팰럿을 열고 DevContainers: Add DevContainer Configuration FIles...를 실행합니다.
+`F1` 또는 `Ctrl+Shift+P`를 눌러서 명령 팰럿을 열고 `DevContainers: Add DevContainer Configuration FIles...`를 실행합니다.
 
 ![image-20230312011838009](./node-dev-container-2.assets/image-20230312011838009.png)
 
-JavaScript와 함께 TypeScript도 사용하기 위해 Node.js & TypeScript devcontainers를 선택합니다.
+JavaScript와 함께 TypeScript도 사용하기 위해 `Node.js & TypeScript devcontainers`를 선택합니다.
 
 ![image-20230312011947546](./node-dev-container-2.assets/image-20230312011947546.png)
 
-Node 18 버전을 선택합니다. 
+`Node 18` 버전을 선택합니다. 
 
 ![image-20230312012052008](./node-dev-container-2.assets/image-20230312012052008.png)
 
-피쳐는 선택하지 않고 바로 OK를 눌러 줍니다.
+피쳐는 선택하지 않고 바로 `OK`를 눌러 줍니다.
 
 ![image-20230312012135430](./node-dev-container-2.assets/image-20230312012135430.png)
 
@@ -110,11 +110,11 @@ Node 18 버전을 선택합니다.
 
 이제 Node DevContainer를 시작할 수 있습니다.
 
-명령 팰럿에서 Dev Containers: Rebuild and Reopen in Container 를 선택하여 컨테이너를 올립니다.
+명령 팰럿에서 `Dev Containers: Rebuild and Reopen in Container` 를 선택하여 컨테이너를 올립니다.
 
 ![image-20230312012246485](./node-dev-container-2.assets/image-20230312012246485.png)
 
-좌측 아래에 Dev Container: Node.js & TypeScript 가 표시되면 성공적으로 컨테이너를 구동한 것입니다.
+좌측 아래에 `Dev Container: Node.js & TypeScript` 가 표시되면 성공적으로 컨테이너를 구동한 것입니다.
 
 ![image-20230312012504711](./node-dev-container-2.assets/image-20230312012504711.png)
 
@@ -189,7 +189,7 @@ npm notice Run npm install -g npm@9.6.1 to update!
 $
 ```
 
-생성된 package.json 내용을 확인해 봅니다:
+생성된 `package.json` 내용을 확인해 봅니다:
 
 ```sh
 $ cat package.json
@@ -221,7 +221,7 @@ found 0 vulnerabilities
 $
 ```
 
-package.json을 수정하여 `npm start` 명령을 추가하고 저장합니다:
+`package.json`을 수정하여 `npm start` 명령을 추가하고 저장합니다:
 
 ```json
 {
@@ -230,7 +230,7 @@ package.json을 수정하여 `npm start` 명령을 추가하고 저장합니다:
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "electron . --no-sandbox", <<< 새로 추가한 명령
+    "start": "electron . --no-sandbox", <<< 새로 추가한 명령. --no-sandbox가 필요합니다.
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -243,7 +243,7 @@ package.json을 수정하여 `npm start` 명령을 추가하고 저장합니다:
 
 튜토리얼에 따라 3개의 소스코드를 추가 합니다.
 
-index.html:
+`index.html`:
 
 ```html
 <!--index.html-->
@@ -268,7 +268,7 @@ index.html:
 </html>
 ```
 
-index.js:
+`index.js`:
 
 ```javascript
 // main.js
@@ -318,7 +318,7 @@ app.on('window-all-closed', () => {
 // code. You can also put them in separate files and require them here.
 ```
 
-preload.js:
+`preload.js`:
 
 ```javascript
 // preload.js
@@ -348,14 +348,13 @@ $ npm start
 /workspaces/electron1/node_modules/electron/dist/electron: error while loading shared libraries: libnss3.so: cannot open shared object file: No such file or directory
 ```
 
-실행되지 않고 오류가 발생하였습니다. 여러 라이브러리들이 설치 되지 않았습니다. 부족한 패키지를 설치하기 위해 DevContainer를 커스터마이징 해야 합니다.
+실행되지 않고 오류가 발생하였습니다. 여러 라이브러리들이 설치 되지 않았습니다. 데비안 패키지를 설치하기 위해 Dev Container를 커스터마이징 해야 합니다.
 
 ### 커스터마이징
 
-.devcontainer 폴더에서 devcontainer.json을 변경합니다.
+`.devcontainer` 폴더에서 `devcontainer.json`을 변경합니다.
 
 ```json
-
 {
 	"name": "Electron & TypeScript",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
@@ -392,13 +391,13 @@ $ npm start
 
 변경 내용을 살펴 보겠습니다:
 
-```
+```json
 // "image": mcr.microsoft.com/devcontainers/typescript-node:0-18
 ```
 
-image 항목을 주석으로 막았습니다. 대신 docker-compose.yml 파일을 추가 하였습니다.
+`"image"` 항목을 주석으로 막았습니다. 대신 `docker-compose.yml` 파일을 추가 하였습니다.
 
-```
+```json
 	// https://code.visualstudio.com/docs/devcontainers/create-dev-container
 	"dockerComposeFile": [
 		"docker-compose.yml"
@@ -406,22 +405,22 @@ image 항목을 주석으로 막았습니다. 대신 docker-compose.yml 파일�
 	"service": "electron-devcontainer",
 ```
 
-dockerComposeFile 항목은 docker-compose.yml을 빌드하게 합니다. 그리고 docker-compose 내에서 사용할 서비스는 electron-devcontainer라는 것을 알립니다.
+`"dockerComposeFile"` 항목은 `docker-compose.yml`을 빌드하게 합니다. 그리고 `docker-compose.yml` 내에서 사용할 서비스는 `electron-devcontainer`라는 것을 알립니다.
 
-어느 컨테이너 개발 환경은 Dockerfile 만으로도 커스터마이징이 가능한데 
+어느 컨테이너 개발 환경은 `Dockerfile` 만으로도 커스터마이징이 가능한데 
 
-```
+```json
 	// "build": {
 	//	"context": "..",
 	//	"dockerfile": "Dockerfile"
 	// },
 ```
 
-GUI 경우 호스트의 x11을 컨테이너에 volume으로 전달해야 하므로 docker-compose.yml을 작성해야 합니다:
+GUI 경우 호스트의 xserver를 컨테이너에 `volume`으로 전달해야 하므로 `docker-compose.yml`을 작성해야 합니다:
 
 ### docker-compose.yml 추가
 
-docker-compose.yml  파일 내용은 아래와 같습니다:
+`docker-compose.yml`  파일 내용은 아래와 같습니다:
 
 ```yaml
 version: '3'
@@ -447,14 +446,14 @@ services:
 
 내용을 살펴 보겠습니다.
 
-```
+```json
 services:
   electron-devcontainer:
 ```
 
-서비스에는 `electron-devcontainer` 하나가 있습니다. 이 서비스 이름은 devcontainer.json에서도 참조하고 있습니다:
+서비스에는 `electron-devcontainer` 하나가 있습니다. 이 서비스 이름은 `devcontainer.json`에서도 참조하고 있습니다:
 
-```
+```json
 	"dockerComposeFile": [
 		"docker-compose.yml"
 	],
@@ -463,7 +462,7 @@ services:
 
 컨테이너 이름을 보겠습니다:
 
-```
+```json
   electron-devcontainer:
     # https://code.visualstudio.com/docs/devcontainers/create-dev-container
     container_name: electron-devcontainer
@@ -473,27 +472,27 @@ services:
 
 사용할 이미지를 보겠습니다L
 
-```
+```json
     container_name: electron-devcontainer
     build:
       context: .
       dockerfile: Dockerfile
 ```
 
-docker-compose.yml에서 이미지 이름을 지정하지 않고 Dockerfile로부터 빌드하라고 지정하였습니다.
+`docker-compose.yml`에서 이미지 이름을 지정하지 않고 `Dockerfile`로부터 빌드하라고 지정하였습니다.
 
-아래가 X11 GUI를 위한 환경 준비 입니다:
+아래가 xserver GUI를 위한 환경 준비 입니다:
 
-```
+```json
     environment:
       - DISPLAY=unix$DISPLAY
 ```
 
 DISPLAY 환경 변수에 화면 번호를 지정하였습니다.
 
-다음은 volume을 지정합니다:
+다음은 `volumes`을 지정합니다:
 
-```
+```json
     volumes:
       - ../..:/workspaces:cached
       # make sure electron access X11 on host computer
@@ -509,13 +508,13 @@ DISPLAY 환경 변수에 화면 번호를 지정하였습니다.
 
 `/var/run/docker.sock:/var/run/docker-host.sock` 호스트의 도커 소켓을 컨테이너의 도커 소켓으로 지정하였습니다.
 
-```
+```json
 	network_mode: host
 ```
 
 네트워크는 호스트와 동일한 네트워크를 사용하도록 하였습니다. 이것은 필수이지 않습니다만, GUI 앱의 경우 호스트 컴퓨터의 네트워크를 사용하는 경우가 많습니다.
 
-```
+```json
     command: /bin/bash -c "while sleep 1000; do :; done"
 ```
 
@@ -552,6 +551,8 @@ $ echo "xhost +local:docker" >> ~/.bashrc
 ```
 
 ### Dockerfile 추가
+
+`Doclerfile`에서 필요한 데비안 패키지들을 추가해 줍니다:
 
 ```dockerfile
 FROM mcr.microsoft.com/devcontainers/typescript-node:0-18
@@ -609,13 +610,13 @@ USER $USERNAME
 FROM mcr.microsoft.com/devcontainers/typescript-node:0-18
 ```
 
-- 베이스로 사용할 도커 이미지를 지정하였습니다. 이 이미지는 1편에서 react  를 사용하던 이미지와 동일합니다.
+- 베이스로 사용할 도커 이미지를 지정하였습니다. 이 이미지는 1편에서 react 를 사용하던 이미지와 동일합니다.
 
 ```
 USER root
 ```
 
-- apt 패키지를 사용하기 위해 root 계정으로 전환 합니다.
+- 데비안  패키지를 설치하기 위해 root 계정으로 전환 합니다.
 
 ```
 ENV DEBIAN_FRONTEND=noninteractive
@@ -623,7 +624,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 - apt 패키지 관리자가 설정 관련 질문 프롬프트를 하지 않도록 합니다.
 
-```
+```dockerfile
 RUN apt-get update -y --no-install-recommends \
     && apt-get install -y --no-install-recommends \
     sudo \
@@ -637,7 +638,7 @@ RUN apt-get update -y --no-install-recommends \
     xauth
 ```
 
-```
+```dockerfile
 RUN apt-get update -y --no-install-recommends \
     && apt-get install -y --no-install-recommends \
     libx11-xcb1 \
@@ -656,7 +657,7 @@ RUN apt-get update -y --no-install-recommends \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 ```
 
-```
+```dockerfile
 RUN apt-get update && apt-get install -yq --no-install-suggests --no-install-recommends \
     xinit \
     xdg-utils \
@@ -680,9 +681,9 @@ USER node
 
 ### 컨테이너 다시 시작
 
-devcontainer를 커스터마이징 하였으니 vscode 명령 팰럿에서 Dev Containers: Rebuild Container를 시작 합니다.
+Dev Container를 커스터마이징 하였으니 vscode 명령 팰럿에서 Dev Containers: Rebuild Container를 시작 합니다.
 
-컨테이너 빌드에 실패하면 .devcontainer에서 직접 docker-compose를 빌드하면 더 빠르기 피드백을 받고 에러 메시지를 확인 할 수 있습니다:
+컨테이너 빌드에 실패하면 .devcontainer 폴더에서 직접 `docker-compose.yml`를 빌드하면 더 짧은 시간에 오류 피드백을 받고 오류 메시지를 확인 할 수 있습니다:
 
 ```sh
 $ docker compose build
@@ -690,7 +691,7 @@ $ docker compose build
 
 성공적으로 빌드되고 컨테이너가 올라 왔다면 기본적인 테스트를 해보겠습니다.
 
-먼저 호스트의 x11과 연결이 되었는지 확인 합니다. Dockerfile에서 우리는 x11-apps를 설치하였습니다. `xeyes`를 실행하여 연결을 확인 하겠습니다:
+먼저 호스트의 x11과 연결이 되었는지 확인 합니다. `Dockerfile`에서 우리는 `x11-apps`를 설치하였습니다. `xeyes`를 실행하여 연결을 확인 하겠습니다:
 
 ```sh
 $ xeyes
