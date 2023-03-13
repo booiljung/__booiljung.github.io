@@ -5,6 +5,7 @@
 ## User
 
 - [사용자 관리](user_management.md)
+- [Ubuntu에서 root 계정 자동 로그인](ubuntu_root_auto_login.md)
 
 ## Ubuntu Kiosk
 

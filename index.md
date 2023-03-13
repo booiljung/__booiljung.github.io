@@ -2,6 +2,7 @@
 
 #### 최신 글
 
+- Ubuntu: [Ubuntu에서 root 계정 자동 로그인](https://booiljung.github.io/technical_articles/linux/ubuntu_root_auto_login)
 - vscode: [Dev Container로 JavaScript 개발환경 구성 #2 Electron GUI 앱 개발](./technical_articles/vscode/node-dev-container-2.md)
 - vscode: [Dev Container로 JavaScript 개발환경 구성 #1 기초편](./technical_articles/vscode/node-dev-container-1.md)
 - Ansible: [앤서블 간단 가이드](./technical_articles/ansible/ansible_simple_guide.md)
