@@ -38,7 +38,7 @@ $ docker build . -t myubuntu
 $ docker run -it myubuntu
 ```
 
-그러면 컨테이너가 올라오며 컨테이너의 bash 셸로 들어가게 되고 리눅스 명령을 사용할 수 있게 됩니다.
+그러면 컨테이너가 올라오며 컨테이너의 bash 셸로 들어가게 되고, 컨테이너 내에서 리눅스 명령을 사용할 수 있게 됩니다.
 
 여기에서 의존성을 설치하며 테스트 할 수 있습니다. 확정이 되면 변경 사항을 Dockfile에 기록 하고 Ctrl+C를 눌러서 컨테이너를 종료 합니다.
 
@@ -78,7 +78,7 @@ FROM ubuntu:20.04
 
 ### 작업 디렉토리
 
-`WORKDIR`은 현재 디렉토리를 지정합니다. 디렉토리가 없으면 빌드시스템이 디렉토리를 새로 만듭니다.
+`WORKDIR`은 **컨테이너 이미지 내의** 현재 디렉토리를 지정합니다. 디렉토리가 없으면 빌드 시스템이 **컨테이너 이미지의** 디렉토리를 새로 만듭니다.
 
 이 예제는 `/app` 디렉토리에 애플리케이션을 설치합니다:
 
@@ -105,6 +105,12 @@ RUN groupadd ${USER_NAME} --gid ${USER_GID}\
 데비안 패키지를 설치하는 경우 대화 모드가 되어 Dockerfile 빌드가 중단되는 경우가 있습니다. 이를 방지하고 설치하는 패턴입니다:
 
 ```dockerfile
+ARG DEBIAN_FRONTEND=noninteractive
+```
+
+데비안 패키지를 설치 합니다:
+
+```dockerfile
 USER root
 
 ARG DEBIAN_FRONTEND=noninteractive
@@ -126,7 +132,7 @@ RUN apt update --no-install-recommends \
     python3-wheel
 ```
 
-먼저 `USER root`로 하였는데  `root` 권한 -`sudo` 명령이 필요한 경우 `USER root`를 통해 `root` 계정으로 전환한 후에 해당 작업을 해야 합니다.
+`USER root`로 하였는데  `root` 권한 -`sudo` 명령이 필요한 경우 `USER root`를 통해 `root` 계정으로 전환한 후에 해당 작업을 합니다.
 
 ### 파이썬 패키지 설치
 
@@ -140,7 +146,7 @@ RUN pip3 install numpy
 
 ### 일반 사용자 계정에 sudo 권한 부여
 
-보안 문제로 root 계정으로 애플리케이션을 설치하는 것은 권장 되지 않으며 빌드 및 설치가 되지 않습니다. 그래서, 일반 사용자 계정으로 설치하고 sudo 권한을 부여하는 패턴 입니다:
+보안 문제로 root 계정으로 애플리케이션을 설치하는 것은 권장 되지 않으며, 경우에 따라 빌드 및 설치가 되지 않습니다. 그래서, 일반 사용자 계정으로 설치하고 sudo 권한을 부여하는 패턴 입니다:
 
 ```dockerfile
 ENV USER=${USER_NAME}
@@ -149,7 +155,7 @@ RUN echo "$USER_NAME ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/${USER_NAME}
 RUN chmod 0440 /etc/sudoers.d/${USER_NAME}
 ```
 
-### 설치 디렉토리를 일반 유저 소유로 변경
+### 디렉토리를 일반 유저 소유로 변경
 
 ```dockerfile
 RUN chown -R ${USER_NAME}:${USER_NAME} /app
