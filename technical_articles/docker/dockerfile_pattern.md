@@ -16,144 +16,43 @@ Dockerfile을 작성하려면
 
 ## 시험용 Ubuntu
 
-Dockerfile을 수정 및 빌드해가며 오류를 찾아내기도 하지만 시간이 걸리는 편입니다. 특별한 경우 Ubuntu 가상 머신에서 설치해가며 관련 패키지 의존성을 확인해야 할 경우도 있습니다. 컨테이너와 동일한 환경으로 Unbuntu VM을 만들어 보겠습니다.
+Dockerfile을 수정 및 빌드해가며 오류를 찾아내기도 하지만 시간이 걸리는 편입니다. 직접 컨테이너에서 설치해가며 관련 패키지 의존성을 확인해야 할 경우도 있습니다.
 
-먼저 virtualbox를 설치 합니다.
+다음과 같이 짧은 Dockerfile로 우분투 이미지를 만들고 실행합니다.
+
+```dockerfile
+FROM ubuntu:20.04
+
+ENTRYPOINT ["/bin/bash"]
+```
+
+그리고 빌드하고:
 
 ```sh
-$ sudo apt install virtualbox -y
+$ docker build . -t myubuntu
 ```
 
-Virtual Box에 Ubuntu를 다운로드 받아 설치 합니다.
-
-**주의: 이 Ubuntu VM은 보안상 문제가 있으므로 Dockerfile 작성을 위한 시험용으로만 사용해야 합니다.**
-
-Dockerfile 빌드는 root 계정으로 시작되며 다른 사용자 계정은 없는 상태에서 시작 됩니다. Ubuntu를 Dockerfile 빌드와 동일한 사용자로 시작 하도록 준비합니다.
-
-root로 로그인을 위해 root 계정의 비밀번호를 생성합니다.
+실행합니다:
 
 ```sh
-ubuntu@bijung:~$ pwd 
-/home/bijung
-
-ubuntu@bijung:~$ whoami 
-bijung
-
-ubuntu@bijung:~$ sudo passwd root 
-[sudo] password for bijung:
-New password:  
-Retype new password:  
-passwd: password updated successfully
-
-ubuntu@bijung:~$ su - root 
-Password: 
-
-root@bijung:~$ whoami 
-root
-
-root@bijung:~$  
+$ docker run -it myubuntu
 ```
 
-ssh로 접속을 허용할 경우 `/etc/ssh/sshd_config` 파일에서 `PermitRootLogin` 항목을 `yes`로 변경합니다:
+그러면 컨테이너가 올라오며 컨테이너의 bash 셸로 들어가게 되고 리눅스 명령을 사용할 수 있게 됩니다.
 
-```sh
-$ nano /etc/ssh/sshd_config
-PermitRootLogin yes
+여기에서 의존성을 설치하며 테스트 할 수 있습니다. 확정이 되면 변경 사항을 Dockfile에 기록 하고 Ctrl+C를 눌러서 컨테이너를 종료 합니다.
 
-$ sudo service ssh restart
+```dockerfile
+FROM ubuntu:20.04
+
+<<< 변경 사항은 이 사이에 추가 될 것입니다.
+
+ENTRYPOINT ["/bin/bash"]
 ```
 
-GUI에서 root 계정으로 접속을 허용하려면 `/etc/gdm3/custom.conf` 파일을 수정하여 3개의 항목을 추가 합니다.
+변경사항을 다시 `build`하고 `run`하여 Dockerfile을 완성해 갑니다.
 
-```ini
-# GDM configuration storage
-#
-# See /usr/share/gdm/gdm.schemas for a list of available options.
-
-[daemon]
-AutomaticLoginEnable=true << 추가
-AutomaticLogin=root << 추가
-
-# Uncoment the line below to force the login screen to use Xorg
-#WaylandEnable=false
-
-# Enabling automatic login
-
-# Enabling timed login
-#  TimedLoginEnable = true
-#  TimedLogin = user1
-#  TimedLoginDelay = 10
-
-[security]
-AllowRoot=true << 추가
-
-[xdmcp]
-
-[chooser]
-
-[debug]
-# Uncomment the line below to turn on debugging
-# More verbose logs
-# Additionally lets the X server dump core if it crashes
-#Enable=true
-```
-
-`/etc/pam.d/gdm-password`에서 한개 항목을 주석처리 합니다:
-
-```ini
-#%PAM-1.0
-auth    requisite       pam_nologin.so
-#auth	required	pam_succeed_if.so user != root quiet_success << 주석처리
-@include common-auth
-auth    optional        pam_gnome_keyring.so
-@include common-account
-# SELinux needs to be the first session rule. This ensures that any 
-# lingering context has been cleared. Without this it is possible 
-# that a module could execute code in the wrong domain.
-session [success=ok ignore=ignore module_unknown=ignore default=bad]        pam_selinux.so close
-session required        pam_loginuid.so
-# SELinux needs to intervene at login time to ensure that the process
-# starts in the proper default security context. Only sessions which are
-# intended to run in the user's context should be run after this.
-session [success=ok ignore=ignore module_unknown=ignore default=bad]        pam_selinux.so open
-session optional        pam_keyinit.so force revoke
-session required        pam_limits.so
-session required        pam_env.so readenv=1
-session required        pam_env.so readenv=1 user_readenv=1 envfile=/etc/default/locale
-@include common-session
-session optional        pam_gnome_keyring.so auto_start
-@include common-password
-```
-
-`/etc/pam.d/gdm-autologin`에서 한개 항목을 주석처리 합니다:
-
-```ini
-#%PAM-1.0
-auth    requisite       pam_nologin.so
-#auth	required	pam_succeed_if.so user != root quiet_success <<< 주석처리
-auth	optional	pam_gdm.so
-auth	optional	pam_gnome_keyring.so
-auth    required        pam_permit.so
-@include common-account
-# SELinux needs to be the first session rule. This ensures that any 
-# lingering context has been cleared. Without this it is possible 
-# that a module could execute code in the wrong domain.
-session [success=ok ignore=ignore module_unknown=ignore default=bad]        pam_selinux.so close
-session required        pam_loginuid.so
-# SELinux needs to intervene at login time to ensure that the process
-# starts in the proper default security context. Only sessions which are
-# intended to run in the user's context should be run after this.
-session [success=ok ignore=ignore module_unknown=ignore default=bad]        pam_selinux.so open
-session optional        pam_keyinit.so force revoke
-session required        pam_limits.so
-session required        pam_env.so readenv=1
-session required        pam_env.so readenv=1 user_readenv=1 envfile=/etc/default/locale
-@include common-session
-session optional        pam_gnome_keyring.so auto_start
-@include common-password
-```
-
-이제 재부팅을 하면  root 계정으로 자동 로그인되는 VM 이미지를 얻었습니다. 이 이미지를 클론하여 Dockerfile 작성 시험용으로 사용하시면 됩니다.
+마지막에 ENTRYPOINT를 변경하면 bash가 시작되지 않고 해당 명령이 실행 될 것입니다.
 
 ## Dockerfile 패턴
 
