@@ -195,13 +195,25 @@ WORKDIR /app
 
 작업 디렉토리는 언제라도 변경 할 수 있습니다. 예컨데:
 
-```sh
+```dockerfile
 WORKDIR /app/scripts
 ```
 
 `/app/script`스크립트 폴더를 생성하거나 이동하여 작업을 합니다.
 
+## 파일 복사
+
+호스트에서 컨테이너 이미지로 파일을 복사가 필요한 경우도 있습니다.
+
+```dockerfile
+WORKDIR /app
+
+COPY <srcfile> <destfile>
+```
+
 ### 소스코드 클론 및 서브 모듈 설치
+
+어느 경우 소스 저장소에서 파일을 클론합니다:
 
 ```dockerfile
 WORKDIR /app
@@ -214,7 +226,7 @@ RUN git submodule update --init --recursive
 
 ### 소스코드 빌드
 
-소스코드 빌드는 애플리케이션마다 다르므로 다루지 않겠습니다. 다만, 일반 유저로 빌드해서 다뤄야 합니다:
+소스코드 빌드는 애플리케이션마다 다르므로 다루지 않겠습니다. 다만, 일반 유저로 빌드해야 합니다:
 
 ```dockerfile
 USER ${USER_NAME}
