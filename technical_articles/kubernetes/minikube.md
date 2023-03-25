@@ -1,56 +1,208 @@
-# Minikube
+# minikube start
 
-Minikube는 학습과 개발을 위한 로컬 컴퓨터용 k8s 이며 `minikube start`로 시작 할 수 있습니다.
+[minikube start](https://minikube.sigs.k8s.io/docs/start/)를 따라하며 메모
 
-데비안 패키지로 설치 방법:
+Debian 배포판에 설치:
 
 ```sh
 $ curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube_latest_amd64.deb
 $ sudo dpkg -i minikube_latest_amd64.deb
 ```
 
-클러스터 시작:
+의존성 설치:
 
 ```sh
 $ minikube start
-W0317 00:17:10.453963   41968 main.go:291] Unable to resolve the current Docker CLI context "default": context "default" does not exist
-😄  minikube v1.29.0 on Ubuntu 20.04
-✨  Automatically selected the docker driver. Other choices: qemu2, virtualbox, none, ssh
-📌  Using Docker driver with root privileges
-👍  Starting control plane node minikube in cluster minikube
-🚜  Pulling base image ...
-💾  Downloading Kubernetes v1.26.1 preload ...
-    > preloaded-images-k8s-v18-v1...:  397.05 MiB / 397.05 MiB  100.00% 25.42 M
-    > gcr.io/k8s-minikube/kicbase...:  407.19 MiB / 407.19 MiB  100.00% 9.50 Mi
-🔥  Creating docker container (CPUs=2, Memory=2200MB) ...- E0317 00:18:06.257310   41968 network_create.go:102] failed to find free subnet for docker network minikube after 20 attempts: no free private network subnets found with given parameters (start: "192.168.49.0", step: 9, tries: 20)
-
-❗  Unable to create dedicated network, this might result in cluster IP change after restart: un-retryable: no free private network subnets found with given parameters (start: "192.168.49.0", step: 9, tries: 20)
-🐳  Preparing Kubernetes v1.26.1 on Docker 20.10.23 ...- E0317 00:18:18.764710   41968 start.go:131] Unable to get host IP: network inspect: docker network inspect minikube --format "{"Name": "{{.Name}}","Driver": "{{.Driver}}","Subnet": "{{range .IPAM.Config}}{{.Subnet}}{{end}}","Gateway": "{{range .IPAM.Config}}{{.Gateway}}{{end}}","MTU": {{if (index .Options "com.docker.network.driver.mtu")}}{{(index .Options "com.docker.network.driver.mtu")}}{{else}}0{{end}}, "ContainerIPs": [{{range $k,$v := .Containers }}"{{$v.IPv4Address}}",{{end}}]}": exit status 1
-stdout:
-stderr:
-Error response from daemon: network minikube not found
-    ▪ Generating certificates and keys ...
-    ▪ Booting up control plane ...
-    ▪ Configuring RBAC rules ...
-🔗  Configuring bridge CNI (Container Networking Interface) ...
-    ▪ Using image gcr.io/k8s-minikube/storage-provisioner:v5
-🔎  Verifying Kubernetes components...
-🌟  Enabled addons: storage-provisioner, default-storageclass
-💡  kubectl not found. If you need it, try: 'minikube kubectl -- get pods -A'
-🏄  Done! kubectl is now configured to use "minikube" cluster and "default" namespace by default
 ```
 
-클러스터 중단:
+단축 명령:
+
+```sh
+$ alias minikube kubectl="minikube kubectl --"
+```
+
+웹 대시보드:
+
+```sh
+$ minikube dashboard
+```
+
+## Service를 통한 애플리케이션 배포
+
+`kicbase/echo-server:1.0`를 배포하고 8080포트로 서비스:
+
+```sh
+$ kubectl create deployment hello-minikube --image=kicbase/echo-server:1.0
+$ kubectl expose deployment hello-minikube --type=NodePort --port=8080
+```
+
+서비스 목록 보기:
+
+```shell
+$ kubectl get services
+```
+
+지정하여 서비스 목록 보기:
+
+```sh
+$ kubectl get services hello-minikube
+```
+
+브라우저를 통해 서비스 동작:
+
+```sh
+$ minikube service hello-minikube
+```
+
+포트 포워딩:
+
+```sh
+$ kubectl port-forward service/hello-minikube 7080:8080
+```
+
+## LoadBalancer를 통한 애플리케이션 배포
+
+잘 되지 않음
+
+## Ingress를 통한 애플리케이션 배포
+
+ingress 애드온 설치:
+
+```sh
+$ minikube addons enable ingress
+```
+
+다음 코드를 `ingress-example.yml`에 저장:
+
+```yaml
+kind: Pod
+apiVersion: v1
+metadata:
+  name: foo-app
+  labels:
+    app: foo
+spec:
+  containers:
+    - name: foo-app
+      image: 'kicbase/echo-server:1.0'
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: foo-service
+spec:
+  selector:
+    app: foo
+  ports:
+    - port: 8080
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: bar-app
+  labels:
+    app: bar
+spec:
+  containers:
+    - name: bar-app
+      image: 'kicbase/echo-server:1.0'
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: bar-service
+spec:
+  selector:
+    app: bar
+  ports:
+    - port: 8080
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: example-ingress
+spec:
+  rules:
+    - http:
+        paths:
+          - pathType: Prefix
+            path: /foo
+            backend:
+              service:
+                name: foo-service
+                port:
+                  number: 8080
+          - pathType: Prefix
+            path: /bar
+            backend:
+              service:
+                name: bar-service
+                port:
+                  number: 8080
+---
+```
+
+`ingress-example.yml` 적용:
+
+```sh
+$ kubectl apply -f ingress-example.yaml
+```
+
+Ingress 정보 보기:
+
+```sh
+$ kubectl get ingress
+NAME              CLASS   HOSTS   ADDRESS      PORTS   AGE
+example-ingress   nginx   *       172.17.0.2   80      38s
+```
+
+curl로 테스트:
+
+```sh
+$ curl <ip_from_above>/foo
+Request served by foo-app
+...
+$ curl <ip_from_above>/bar
+Request served by bar-app
+...
+```
+
+## 클러스터 관리
+
+중지:
+
+```sh
+$ minikube pause
+```
+
+재개:
+
+```sh
+$ minikube unpause
+```
+
+중단 :
 
 ```sh
 $ minikube stop
-W0317 00:19:03.974387   49732 main.go:291] Unable to resolve the current Docker CLI context "default": context "default" does not exist
-✋  Stopping node "minikube"  ...
-🛑  Powering off "minikube" via SSH ...
-🛑  1 node stopped.
 ```
 
+메모리 제한:
 
+```sh
+$ minikube config set memory 9001
+```
 
+이전 k8s 릴리즈 버전으로 두번째 클러스터 시작:
+
+```sh
+$ minikube start -p aged --kubernetes-version=v1.16.1
+```
+
+모든 클러스턱 제거:
+
+```sh
+$ minikube delete --all
+```
 
 
