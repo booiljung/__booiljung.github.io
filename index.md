@@ -2,6 +2,7 @@
 
 #### 최신 글
 
+- Python: [Decoration](technical_articles/python/python_decoration.md)
 - Ubuntu & Docker: [Ubuntu에서 Dockerfile 작성 패턴](./technical_articles/docker/dockerfile_pattern.md)
 - Ubuntu: [Ubuntu에서 root 계정 자동 로그인](./technical_articles/linux/ubuntu_root_auto_login.md)
 - vscode: [Dev Container로 JavaScript 개발환경 구성 #2 Electron GUI 앱 개발](./technical_articles/vscode/node-dev-container-2.md)
