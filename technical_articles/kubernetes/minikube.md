@@ -167,18 +167,6 @@ Request served by bar-app
 ...
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
 ## 클러스터 관리
 
 중지:
@@ -216,4 +204,5 @@ $ minikube start -p aged --kubernetes-version=v1.16.1
 ```sh
 $ minikube delete --all
 ```
+
 
