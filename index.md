@@ -2,6 +2,7 @@
 
 #### 최신 글
 
+- WineHQ: [Kakao Talk on Ubuntu](technical_articles/linux/kakaotalk_on_ubuntu.md)
 - Python: [Decoration](technical_articles/python/python_decoration.md)
 - Ubuntu & Docker: [Ubuntu에서 Dockerfile 작성 패턴](./technical_articles/docker/dockerfile_pattern.md)
 - Ubuntu: [Ubuntu에서 root 계정 자동 로그인](./technical_articles/linux/ubuntu_root_auto_login.md)
