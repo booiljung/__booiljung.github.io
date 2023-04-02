@@ -7,6 +7,10 @@
 - [사용자 관리](user_management.md)
 - [Ubuntu에서 root 계정 자동 로그인](ubuntu_root_auto_login.md)
 
+## Security
+
+- [패스워드 관리 툴: pass](https://go-kalee.tistory.com/m/4)
+
 ## Ubuntu Kiosk
 
 - [Ubuntu Desktop을 웹 기반 키오스크 모드로 구성하기](configure_a_web_based_kiosk_on_ubuntu_desktop.md)

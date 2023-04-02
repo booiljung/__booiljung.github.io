@@ -2,94 +2,93 @@
 
 # TypeScript
 
-https://joshua1988.github.io/ts/guide/basic-types.html#array 를 참고하여 요약
-
 타입스크립트란?
 
 - 자바스크립트에 타입을 부여한 언어.
-- 자바스크립트이 수퍼셋.
+- 자바스크립트의 수퍼셋.
 
 장점:
 
 - 빌드 타임에 오류 체크
 - 코드 가이드 및 자동 완성
 
-## 타입
+## 타입:
 
-### 기본 타입
+기본 타입은 12가지
 
-타입스크립트의 기본 타입은 12가지가 있다.
+- Boolean
+- Number
+- String
+- Object
+- Array
+- Tuple
+- Enum
+- Any
+- Void
+- Null
+- Undefined
+- Never
 
-#### string:
-
-문자열
+#### string 문자열:
 
 ```ts
 let str: string = 'hi';
 ```
 
-#### number:
-
-숫자
+#### number 숫자:
 
 ```ts
 let num: number = 10;
 ```
 
-#### boolean:
-
-진위
+#### boolean 진위:
 
 ```ts
 let isLoggedIn: boolean = false;
 ```
 
-### 객체 타입
-
-#### array:
+#### array 배열:
 
 ```ts
 let arr: number[] = [1,2,3];
 ```
 
-제네릭 지원:
+제네릭:
 
 ```ts
 let arr: Array<number> = [1,2,3];
 ```
 
-#### tuple:
+#### tuple 튜블
 
-각 요소의 타입이 지정되어 있는 고정 길이 배열
+각 요소의 타입이 지정되어 있는 고정 길이 배열:
 
 ```ts
 let arr: [string, number] = ['hi', 10];
 ```
 
-정의하지 않은 타입 및 인덱스로 접근하면 오류
+정의하지 않은 타입 및 인덱스로 접근하면 오류:
 
 ```ts
 arr[1].concat('!'); // Error, 'number' does not have 'concat'
 arr[5] = 'hello'; // Error, Property '5' does not exist on type '[string, number]'.
 ```
 
-#### enum:
-
-상수의 집합
+#### enum 열거형:
 
 ```ts
 enum Avengers { Capt, IronMan, Thor }
 let hero: Avengers = Avengers.Capt;
 ```
 
-인덱스 번호로도 접근 가능
+인덱스 번호로 접근:
 
 ```ts
 enum Avengers { Capt, IronMan, Thor }
 let hero: Avengers = Avengers[0];
 ```
 
-인덱스 변경도 가능
+인덱스 변경:
 
 ```ts
 enum Avengers { Capt = 2, IronMan, Thor }
@@ -97,9 +96,7 @@ let hero: Avengers = Avengers[2]; // Capt
 let hero: Avengers = Avengers[4]; // Thor
 ```
 
-#### any:
-
-모든 타입 허용
+#### any 모든 타입 허용:
 
 ```ts
 let str: any = 'hi';
@@ -109,6 +106,10 @@ let arr: any = ['a', 2, true];
 
 #### void:
 
+- `undefined`와 `null`만 할당.
+
+- 함수 반환값 없음.
+
 ```ts
 let unuseful: void = undefined;
 function notuse(): void {
@@ -116,9 +117,7 @@ function notuse(): void {
 }
 ```
 
-#### never:
-
-함수의 끝에 도달하지 않음
+#### never 함수의 끝에 도달하지 않음
 
 ```ts
 // 이 함수는 절대 함수의 끝까지 실행되지 않는다는 의미
@@ -128,9 +127,9 @@ function neverEnd(): never {
 }
 ```
 
-## 함수
+## 함수:
 
-3가지 타입을 정의할 수 있습니다.
+3가지 타입:
 
 - 함수의 매개변수 타입
 - 함수의 반환 타입
@@ -138,7 +137,7 @@ function neverEnd(): never {
 
 ### 함수에서 타입
 
-타입 스크립트의 경우 매개변수와 반환값에 타입을 지정해야 한다:
+매개변수와 반환값의 타입 지정:
 
 ```ts
 function sum(a: number, b: number): number {
@@ -146,7 +145,7 @@ function sum(a: number, b: number): number {
 }
 ```
 
-반환값이 없는 경우`void`를 반환 타입으로 지정해야 한다:
+반환값이 없는 경우`void`를 반환 타입으로 지정:
 
 ```ts
 function noresult(): void {
@@ -156,7 +155,11 @@ function noresult(): void {
 
 ### 함수의 인자
 
-타입스크립트에서는 함수의 인자를 모두 필수 값으로 간주. 함수의 매개변수에는 `undefined`나 `null`이라도 인자로 넘겨야 한다. 컴파일러는 정의된 매개변수 값이 넘어 왔는지 체크한다:
+함수의 인자를 모두 필수 값으로 간주.
+
+함수의 매개변수에는 `undefined`나 `null`이라도 인자로 전달 필수.
+
+컴파일러는 정의된 매개변수 값이 넘어 왔는지 체크.
 
 ```ts
 function sum(a: number, b: number): number {
@@ -167,7 +170,7 @@ sum(10, 20, 30); // error, too many parameters
 sum(10); // error, too few parameters
 ```
 
-정의된 매개변수 만큼 인자를 넘기지 않아도 되는 자바스크립트와 다릅니다. 인자를 선택적으로 전달하고 싶다면 `?`를 지정할 수 있다:
+인자를 선택적으로 전달하고 싶다면 `?`를 지정:
 
 ```ts
 function sum(a: number, b?: number): number {
@@ -178,10 +181,10 @@ sum(10, 20, 30); // error, too many parameters
 sum(10); // 10
 ```
 
-매개변수 초기화는 ES6와 같다:
+매개변수 초기화는 ES6와 동일:
 
 ```ts
-function sum(a: number, b = 100): number {
+function sum(a: number, b = '100'): number {
   return a + b;
 }
 sum(10, undefined); // 110
@@ -189,9 +192,7 @@ sum(10, 20, 30); // error, too many parameters
 sum(10); // 110
 ```
 
-### 매개변수에 REST 문법 적용
-
-ES6에서 Spread 문법은 배열로된 하나의 인자를 받는다.
+### REST 문법이 적용된 매개변수
 
 ```js
 function sum(x, y, z) {
@@ -202,7 +203,7 @@ sum(...numbers); // expected output: 6
 sum.apply(null, numbers); // expected output: 6
 ```
 
-기존에 두 배열을 합치려면, `push`, `splice`, `concat`를 사용해야 했다. Spread 문법을 사용하면 두 배열을 간단히 합치 거나 복사가 가능하다:
+Spread 문법으로 두 배열을 합치거나 복사:
 
 ```js
 var parts = [ 'shoulders', 'knees' ]; 
@@ -222,7 +223,7 @@ sum(1, 2, 3); // expected output: 6
 sum(1, 2, 3, 4); // expected output: 10
 ```
 
-타입스크립트에서 Rest 문법은 아래와 같이 사용할 수 있습니다:
+타입스크립트에서 Rest 문법:
 
 ```ts
 function sum(a: number, ...nums: number[]): number {
@@ -236,7 +237,7 @@ function sum(a: number, ...nums: number[]): number {
 
 ### `this`
 
-자바스크립트와 다르게 `this`의 잘못된 사용을 탐지 할 수 있다. 타입스크립트에서 `this`가 가리키는 것을 명시하려면 아래와 같이 사용한다:
+타입스크립트에서 `this`:
 
 ```ts
 function 함수명(this: 타입) {
@@ -268,11 +269,11 @@ let count = getCount();
 console.log(count); // expected output: 10
 ```
 
-위의 코드를 타입스크립트로 컴파일 했을 때 만일 `--noImplicitThis` 옵션이 있더라도 에러가 발생하지 않는다.
+위의 코드를 컴파일 했을 때 만일 `--noImplicitThis` 옵션이 있더라도 에러 없음.
 
 ### 콜백에서의 `this`
 
-일반적인 상황에서의 `this`와 다르게 콜백으로 함수가 전달되었을 때의 `this`를 구분해 주어야 하며 강제를 해야 합니다:
+일반적인 상황에서의 `this`와 다르게 콜백으로 함수가 전달되었을 때의 `this`를 구분하여 강제해야 함:
 
 ```ts
 interface UIElement {
@@ -307,8 +308,6 @@ uiElement.addClickListener(handler.onClick);
 
 ## 인터페이스
 
-인터페이스는 규격이며 다음과 같은 규격을 정의 할 수 있습니다.
-
 - 객체의 스펙 (시그니처, 속성 타입)
 - 함수의 스펙 (시그니쳐, 매개변수 타입, 반환 타입)
 - 배열과 객체에 대한 접근 방식
@@ -316,133 +315,475 @@ uiElement.addClickListener(handler.onClick);
 
 ### 간단한 인터페이스의 예:
 
-자바스크립트에서는 아래처럼:
+간단한 인터페이스의 예:
 
 ```js
-let person = { name: 'Tom', age: 12 };
-
-function logAge(obj: { age: number }) {
-  console.log(obj.age); // 12
+function printLabel(labeledObj: { label: string }) {
+  console.log(labeledObj.label);
 }
-logAge(person); // 12
+ 
+let myObj = { size: 10, label: "Size 10 Object" };
+printLabel(myObj);
 ```
 
-`logAge`는 반드시 `age` 속성을 포함해야 합니다. 그렇지 않으면 런타임에 오류가 발생할 것입니다.
-
-타입스크립트에서는 인터페이스를 제공하여 컴파일시 오류를 검증할 수 있습니다:
+타입스크립트에서는 인터페이스를 제공하여 컴파일시 오류 검증:
 
 ```ts
-interface personAge {
-  age: number;
+interface LabeledValue {
+  label: string;
 }
-
-function logAge(obj: personAge) {
-  console.log(obj.age);
+ 
+function printLabel(labeledObj: LabeledValue) {
+  console.log(labeledObj.label);
 }
-
-let person = { name: 'Tom', age: 12 };
-logAge(person);
+ 
+let myObj = { size: 10, label: "Size 10 Object" };
+printLabel(myObj);
 ```
 
 ### 인터페이스에서 옵션 속성
 
-인터페이스를 사용할때 모든 속성에 대해 값을 주지 않아도 됩니다:
+초기값 주지 않아도 되는 인터페이스 속성:
 
 ```ts
-interface Meat {
-  name: string;
-  salt?: number;  
+interface SquareConfig {
+  color?: string;
+  width?: number;
 }
-
-let myMeat = {
-  name: 'Beef'
-};
-function eatMeat(meat: Meat) {
-  console.log(meat.name); // Beef
+ 
+function createSquare(config: SquareConfig): { color: string; area: number } {
+  let newSquare = { color: "white", area: 100 };
+  if (config.color) {
+    newSquare.color = config.color;
+  }
+  if (config.width) {
+    newSquare.area = config.width * config.width;
+  }
+  return newSquare;
 }
-eatMeat(myMeat);
+ 
+let mySquare = createSquare({ color: "black" });
 ```
 
-`Meat` 인터페이스의 속성 `salt`는 옵션 속성이므로 인자로 넘긴 `meat`에는 `salt` 속성을 주지 않아도 오류가 발생하지 않습니다.
-
-옵션 속성은 인터페이스에 정의되어 있지 않은 속성에 대해서 인지시켜줄 수 있습니다.
+lint  또는 컴파일러가 오류 탐지:
 
 ```ts
-interface Meat {
-  name: string;
-  salt?: number;  
+interface SquareConfig {
+  color?: string;
+  width?: number;
 }
+ 
+function createSquare(config: SquareConfig): { color: string; area: number } {
+  let newSquare = { color: "white", area: 100 };
+  if (config.clor) {
+Property 'clor' does not exist on type 'SquareConfig'. Did you mean 'color'?
 
-let myMeat = {
-  name: 'Beef'
-};
-function eatMeat(meat: Meat) {
-  console.log(meat.weight); // `weight`는 `Meat`의 속성이 아니므로 오류가 발생합니다.
+    // Error: Property 'clor' does not exist on type 'SquareConfig'
+    newSquare.color = config.clor;
+Property 'clor' does not exist on type 'SquareConfig'. Did you mean 'color'?
+
+  }
+  if (config.width) {
+    newSquare.area = config.width * config.width;
+  }
+  return newSquare;
 }
-eatMeat(myMeat);
+ 
+let mySquare = createSquare({ color: "black" });
 ```
-
-이 특성은 컴파일시 오류를 검증할 수 있게 합니다.
 
 ### 읽기 전용 속성
 
-읽기 전용 속성은 인터페이스로 객체를 처음 생성할 때만 값을 할당하고 그 이후에는 변경할 수 없는 속성을 의미합니다. 문법은 다음과 같이 `readonly` 속성을 앞에 붙입니다.
+`readonly`를 사용하여 객체 생성시 값을 할당하고 변경할 수 없는 속성.
 
 ```ts
-interface Meat {
-  readonly age: number;
+interface Point {
+  readonly x: number;
+  readonly y: number;
 }
 
-let myMeat = {
-  age: 4  
-};
+let p1: Point = { x: 10, y: 20 };
+p1.x = 5; // error!
 
-myMeat.age = 3; // `age`를 변경하려고 하면 오류가 발생합니다.
+let a: number[] = [1, 2, 3, 4];
+let ro: ReadonlyArray<number> = a;
+ 
+ro[0] = 12; // error!
+ro.push(5); // error!
+ro.length = 100; // error!
+a = ro; // error!
 ```
 
 ### 읽기 전용 배열
 
- `ReadonlyArray<T>` 은 읽기 전용 배열이며 선언시에만 초기자를 줄 수 있습니다:
+ `ReadonlyArray<T>` 은 읽기 전용 배열이며 선언시에만 초기자를 줄 수 있음:
 
 ```ts
 let arr: ReadonlyArray<number> = [ 1,2,3 ];
-arr.splice(0,1); // 배열 내용을 변경할 수 없으므로 오류입니다.
-arr.push(4); // 배열 내용을 변경할 수 없으므로 오류입니다.
-arr[0] = 100; // 배열 내용을 변경할 수 없으므로 오류입니다.
+arr.splice(0,1); // 배열 내용을 변경할 수 없으므로 오류.
+arr.push(4); // 배열 내용을 변경할 수 없으므로 오류.
+arr[0] = 100; // 배열 내용을 변경할 수 없으므로 오류.
 ```
+
+imutable을 mutable에 할당은 허용되지 않음:
+
+```typescript
+let a: number[] = [1, 2, 3, 4];
+let ro: ReadonlyArray<number> = a;
+ 
+a = ro as number[];
+```
+
+`readonly`를 사용할지 `const`를 사용할지 기억하는 가장 쉬운 방법은 변수에 사용할지 프로퍼티에 사용할지에 따름. 변수는 const를 사용하는 반면 프로퍼티는 읽기 전용을 사용.
 
 ### 타입 체크
 
-타입스크립트는 인터페이스를 통한 객체 선언에서 엄밀한 속성 검사를 합니다:
+타입스크립트는 인터페이스를 통한 객체 선언에서 엄밀한 속성 검사:
 
 ```ts
-interface Meat {
-  age?: number;
+interface SquareConfig {
+  color?: string;
+  width?: number;
 }
-
-function eatMeat(meat: Meat) {
-  // ..
+ 
+function createSquare(config: SquareConfig): { color: string; area: number } {
+  return {
+    color: config.color || "red",
+    area: config.width ? config.width * config.width : 20,
+  };
 }
-
-eatMeat({ aze: 20 }); // `aze`는 `Meat`의 속성이 아니므로 오류가 발생 합니다.
+ 
+let mySquare = createSquare({ colour: "red", width: 100 }); // colour 오류
 ```
 
-타입 추론을 무시하려면 `as` 를 사용합니다.
+타입 추론을 무시하려면 `as` 사용.
 
 ```ts
-let myMeat = {
-    aze: 20
-};
-eatMeat(myMeat as Meat);
+let mySquare = createSquare({ width: 100, opacity: 0.5 } as SquareConfig);
 ```
 
-인터페이스 정의하지 않은 속성들을 추가로 사용하려면 아래와 같습니다.
+인터페이스 정의하지 않은 속성들을 추가로 사용:
 
 ```ts
-interface Meat {
-  age?: number;
-  [프로퍼티이름: 타입]: any;
+interface SquareConfig {
+  color?: string;
+  width?: number;
+  [propName: string]: any;
 }
+
+let squareOptions = { colour: "red" };
+let mySquare = createSquare(squareOptions); // 오류
 ```
 
 ### 함수 타입
+
+인터페이스로 함수 타입 정의:
+
+```typescript
+interface SearchFunc {
+  (source: string, subString: string): boolean;
+}
+```
+
+사용의 예:
+
+```typescript
+let mySearch: SearchFunc;
+ 
+mySearch = function (source: string, subString: string): boolean {
+  let result = source.search(subString);
+  return result > -1;
+};
+```
+
+타입만 체크하므로 동일:
+
+```typescript
+let mySearch: SearchFunc;
+ 
+mySearch = function (src: string, sub: string): boolean {
+  let result = src.search(sub);
+  return result > -1;
+};
+```
+
+오류:
+
+```typescript
+let mySearch: SearchFunc;
+ 
+mySearch = function (src, sub) {
+  let result = src.search(sub);
+  return "string"; // string을 리턴하므로 오류
+};
+```
+
+### 인덱서블 타입 Indexable Type:
+
+`[]` 연산자를 사용할 수 있는 타입. 숫자를 인덱스로 주고 문자열을 반환:
+
+```typescript
+interface StringArray {
+  [index: number]: string;
+}
+ 
+let myArray: StringArray;
+myArray = ["Bob", "Fred"];
+ 
+let myStr: string = myArray[0];
+```
+
+인덱스로는  자바스크립트의 레거시로 `string`, `number`, `symbol`, `template strings` 만 사용가능. 인덱스로 number를 사용하면 자바스크립트는 내부적으로 문자열로 변환하여 사용.
+
+```typescript
+interface Animal {
+  name: string;
+}
+ 
+interface Dog extends Animal {
+  breed: string;
+}
+ 
+interface NotOkay {
+  [x: number]: Animal; // number 인덱스는 Animal타입으로 Dog 타입으로 할당 불가능.
+  [x: string]: Dog;
+}
+```
+
+```typescript
+interface NumberDictionary {
+  [index: string]: number; 
+  length: number; // ok, length is a number
+  name: string; // error, the type of 'name' is not a subtype of the indexer
+}
+```
+
+```typescript
+interface NumberOrStringDictionary {
+  [index: string]: number | string; 
+  length: number; // ok, length is a number
+  name: string; // ok, name is a string
+}
+```
+
+읽기 전용 인덱스:
+
+```typescript
+interface ReadonlyStringArray {
+  readonly [index: number]: string;
+}
+ 
+let myArray: ReadonlyStringArray = ["Alice", "Bob"];
+myArray[2] = "Mallory"; // error!
+```
+
+### Indexable Types with Template Strings
+
+```typescript
+interface HeadersResponse {
+  "content-type": string,
+  date: string,
+  "content-length": string 
+  // Permit any property starting with 'data-'.
+  [headerName: 'x-${string}']: string;
+}
+ 
+function handleResponse(r: HeadersResponse) {
+  // Handle known, and x- prefixed
+  const type = r["content-type"]
+  const poweredBy = r["x-powered-by"]
+  const origin = r.origin // // Unknown keys without the prefix raise errors
+}
+```
+
+### 클래스 타입
+
+인터페이스 구현, 생성자는 `constructor`:
+
+```ts
+interface ClockInterface {
+  currentTime: Date;
+}
+ 
+class Clock implements ClockInterface {
+  currentTime: Date = new Date();
+  constructor(h: number, m: number) {}
+}
+```
+
+setTime 메소드 구현:
+
+```typescript
+interface ClockInterface {
+  currentTime: Date;
+  setTime(d: Date): void;
+}
+ 
+class Clock implements ClockInterface {
+  currentTime: Date = new Date();
+  setTime(d: Date) {
+    this.currentTime = d;
+  }
+  constructor(h: number, m: number) {}
+}
+```
+
+Difference between the static and instance sides of classes:
+
+```typescript
+interface ClockConstructor {
+  new (hour: number, minute: number);
+}
+ 
+class Clock implements ClockConstructor {
+  currentTime: Date;
+  constructor(h: number, m: number) {} // new를 구현하지 않았으므로 오류
+}
+```
+
+```typescript
+interface ClockConstructor {
+  new (hour: number, minute: number): ClockInterface;
+}
+ 
+interface ClockInterface {
+  tick(): void;
+}
+ 
+function createClock(
+  ctor: ClockConstructor,
+  hour: number,
+  minute: number
+): ClockInterface {
+  return new ctor(hour, minute);
+}
+ 
+class DigitalClock implements ClockInterface {
+  constructor(h: number, m: number) {}
+  tick() {
+    console.log("beep beep");
+  }
+}
+ 
+class AnalogClock implements ClockInterface {
+  constructor(h: number, m: number) {}
+  tick() {
+    console.log("tick tock");
+  }
+}
+ 
+let digital = createClock(DigitalClock, 12, 17);
+let analog = createClock(AnalogClock, 7, 32);
+```
+
+```typescript
+interface ClockConstructor {
+  new (hour: number, minute: number): ClockInterface;
+}
+ 
+interface ClockInterface {
+  tick(): void;
+}
+ 
+const Clock: ClockConstructor = class Clock implements ClockInterface {
+  constructor(h: number, m: number) {}
+  tick() {
+    console.log("beep beep");
+  }
+};
+ 
+let clock = new Clock(12, 17);
+clock.tick();
+```
+
+#### 인터페이스 확장:
+
+```typescript
+interface Shape {
+  color: string;
+}
+ 
+interface Square extends Shape {
+  sideLength: number;
+}
+ 
+let square = {} as Square;
+square.color = "blue";
+square.sideLength = 10;
+```
+
+인터페이스 다중 상속:
+
+```typescript
+interface Shape {
+  color: string;
+}
+ 
+interface PenStroke {
+  penWidth: number;
+}
+ 
+interface Square extends Shape, PenStroke {
+  sideLength: number;
+}
+ 
+let square = {} as Square;
+square.color = "blue";
+square.sideLength = 10;
+square.penWidth = 5.0;
+```
+
+### 하이브리드 타입
+
+예시: 함수 타입이면서 객체 타입인 인터페이스:
+
+```typescript
+interface Counter {
+  (start: number): string;
+  interval: number;
+  reset(): void;
+}
+ 
+function getCounter(): Counter {
+  let counter = function (start: number) {} as Counter;
+  counter.interval = 123;
+  counter.reset = function () {};
+  return counter;
+}
+ 
+let c = getCounter();
+c(10);
+c.reset();
+c.interval = 5.0;
+```
+
+클래스를 확장한 인터페이스:
+
+```typescript
+class Control {
+  private state: any;
+}
+ 
+interface SelectableControl extends Control {
+  select(): void;
+}
+ 
+class Button extends Control implements SelectableControl {
+  select() {}
+}
+ 
+class TextBox extends Control {
+  select() {}
+}
+ 
+class ImageControl implements SelectableControl {
+  // Class 'ImageControl' incorrectly implements interface 'SelectableControl'.
+  // Types have separate declarations of a private property 'state'.
+  private state: any;
+  select() {}
+}
+```
+
+## 참조
+
+- https://joshua1988.github.io/ts/guide/basic-types.html#array 를 참고하여 요약
