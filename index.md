@@ -2,6 +2,7 @@
 
 #### 최신 글
 
+- vscode: [DevContainer에 docker-compose 적용](technical_articles/vscode/docker-compose-for-devcontainer.md)
 - WineHQ: [Kakao Talk on Ubuntu](technical_articles/linux/kakaotalk_on_ubuntu.md)
 - Python: [Decoration](technical_articles/python/python_decoration.md)
 - Ubuntu & Docker: [Ubuntu에서 Dockerfile 작성 패턴](./technical_articles/docker/dockerfile_pattern.md)
