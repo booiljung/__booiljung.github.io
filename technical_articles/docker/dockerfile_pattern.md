@@ -100,10 +100,10 @@ $ su -
 
 ```dockerfile
 ARG USER_NAME=appuser
-ARG USER_UID=1000
-ARG USER_GID=1000
-RUN groupadd ${USER_NAME} --gid ${USER_GID}\
-    && useradd -l -m ${USER_NAME} -u ${USER_UID} -g ${USER_GID} -s /bin/bash
+ARG USER_ID=1000
+ARG GROUP_ID=1000
+RUN groupadd ${USER_NAME} --gid ${USER_ID}\
+    && useradd -l -m ${USER_NAME} -u ${USER_ID} -g ${USER_ID} -s /bin/bash
 ```
 
 사용자 계정이 만들어지면 사용자 계정으로 전환이 가능 합니다:
@@ -158,14 +158,15 @@ RUN pip3 install numpy
 
 ### 일반 사용자 계정에 sudo 권한 부여
 
-보안 문제로 root 계정으로 애플리케이션을 설치하는 것은 권장 되지 않으며, 경우에 따라 빌드 및 설치가 되지 않습니다. 그래서, 일반 사용자 계정으로 설치하고 sudo 권한을 부여하는 패턴 입니다:
+보안 문제로 root 계정으로 애플리케이션을 설치하는 것은 권장 되지 않으며, 경우에 따라 빌드 및 설치가 되지 않습니다. 그래서, 일반 사용자 계정으로 설치하고 sudo 권한을 부여하는 패턴 입니다. 유저에게 sudo 권한을 부여하려면 sudo 데비안 패키지가 사전에 설치되어 있어야 합니다:
 
+```sh
 
-```dockerfile
+RUN apt install --no-install-recommends -y sudo
+
 USER root
 
 ENV USER=${USER_NAME}
-
 RUN echo "$USER_NAME ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/${USER_NAME}
 RUN chmod 0440 /etc/sudoers.d/${USER_NAME}
 ```
