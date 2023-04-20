@@ -2,6 +2,10 @@
 
 # Ubuntu
 
+## Executions
+
+- [새 Gnome 터미널에서 명령 실행 패턴](execution_on_new_gnome_terminal.md)
+
 ## User
 
 - [사용자 관리](user_management.md)
