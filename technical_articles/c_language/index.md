@@ -4,6 +4,7 @@
 
 ## 언어 기본
 
+- [c++ 버전](cpp_versions.md)
 - [this 포인터](this_pointer.md)
 
 ### 람다

@@ -84,12 +84,13 @@
 - [Dart](./dart/index.md)
 - [Haskell](./haskell/index.md)
 - [JavaScript](./javascript/index.md)
-- 루아 (Lua)
-- Objective-C
+- [Lua](./lua/index.md)
+- [objective c](./objectivec/index.md)
 - [파이썬 (Python)](python/index.md)
 - [Swift](./swift/index.md)
 - [TypeScript](typescript/index.md)
 - [웹 개발](web/index.md)
+- [golang](golang/index.md)
 
 ### 프레임워크 라이브러리
 
@@ -107,6 +108,7 @@
 - [Qt 프로그래밍 (Qt Programming)](qt_programming/index.md)
 - 윈도우 프로그래밍 (Windows Programming)
 - [Vue.js](vuejs/index.md)
+- [Oat++](oatpp/index.md)
 
 ## 로봇
 

@@ -201,5 +201,6 @@ roslaunch turtlebot3_gazebo turtlebot3_gazebo_rviz.launch
 ## 참조
 
 - [Turtlebot3](http://emanual.robotis.com/docs/en/platform/turtlebot3/overview/#overview)
-
 - ROS 로봇 프로그래밍, 2017, 표윤석, 조한철, 정려운, 임태훈.
+- [ros-noetic-turtlebot3](https://emanual.robotis.com/docs/en/platform/turtlebot3/simulation/)
+
