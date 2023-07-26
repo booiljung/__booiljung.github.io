@@ -2,9 +2,11 @@
 
 # Ubuntu
 
-## Executions
+## Shell
 
 - [새 Gnome 터미널에서 명령 실행 패턴](execution_on_new_gnome_terminal.md)
+- [현재 경로를 기준으로 실행 패턴](executions_on_current_directory.md)
+- [조건부 PATH 변수](update_path_variable_conditional.md)
 
 ## User
 
