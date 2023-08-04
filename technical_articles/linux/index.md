@@ -42,6 +42,7 @@
 
 ## VirtualBox
 
+- [VirtualBox: 우분투에서 호스트 우분투의 공유 폴더 액세스](./access_host_shared_folder.md)
 - [VirtualBox: 개발용 우분투 설치 템플릿](./installation_ubuntu_on_virtualbox_for_development.md)
 - [VirtualBox: 우분투에 Guest Additions 설치](virtual_box_install_guest_additions.md)
 - [VirtualBox: 우분투에 호스트 공유폴더를 설정](./virtual_box_shared_folder.md)
