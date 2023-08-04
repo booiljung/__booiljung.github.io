@@ -2,24 +2,34 @@
 
 호스트 컴퓨터에 우분투가 설치되어 있고, VM의 게스트 우분투에서 호스트의 공유 파일 액세스 방법
 
-1. VirtualBox Guest Additions 을 설치한다.
+1. VirutalBox 인스턴스 설정에서 Auto-mout, Make Permanent를 활성화 하여 공유 폴더를 설정한다.
 
-2. 공유 폴더 액세스 한다.
+2. 게스트 우분투에 VirtualBox Guest Additions 을 설치한다.
 
-   ```sh
-   sudo usermod -aG vboxsf <username>
+3. 수퍼유저 권한으로 `/etc/group` 파일을 편집하여 아래를 수정하거나
+
+   ```
+   vboxsf:x:999:<username>
    ```
 
-3. 링크를 만든다.
+   또는
+
+   ```sh
+   sudo adduser $USER vboxsf
+   ```
+
+   를 한다.
+
+4. 링크를 만든다.
 
    ```sh
    mkdir <대상 경로>
    ln -s <원본 경로> <대상 경로>
    ```
 
-4. Logout 그리고 로그인 한다.
+5. 재부팅을 한다.
 
-5. 나중에 링크 삭제시
+6. 나중에 링크 삭제시
 
    ```sh
    unlink <대상 경로>
