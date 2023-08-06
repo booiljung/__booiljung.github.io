@@ -51,6 +51,7 @@
 - [DBMS](./dbms/index.md)
 
 - [데이터 분석 (Data Analytics)](data_analytics/index.md)
+- [GraphQL](./graphql/index.md)
 - 데이터 시각화 (Data Visualization)
 - [아파치 스파크 (Apache Spark)](apache_spark/index.md)
 
