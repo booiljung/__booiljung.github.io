@@ -2,6 +2,7 @@
 
 #### 최신 글
 
+- 번역: graphql: [graphql.org](./technical_articles/graphql/graphql.org/index.md)
 - mavlink: [MAVLink commands & messages index](technical_articles/mavlink/mavlink_commands_and_messages_index.md)
 - docker: [Docker UDP 서버 테스트](technical_articles/docker/docker_udp_server_test.md)
 - vscode: [DevContainer listen udp](technical_articles/vscode/devContainer_listen_udp.md)
