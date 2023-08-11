@@ -2,6 +2,7 @@
 
 #### 최신 글
 
+- 번역: git: [Git 커밋을 취소하는 방법](./technical_articles/git/how_to_undo_a_commit_in_git.md)
 - 번역: graphql: [graphql.org](./technical_articles/graphql/graphql.org/index.md)
 - mavlink: [MAVLink commands & messages index](technical_articles/mavlink/mavlink_commands_and_messages_index.md)
 - docker: [Docker UDP 서버 테스트](technical_articles/docker/docker_udp_server_test.md)
