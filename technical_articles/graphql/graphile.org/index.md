@@ -6,7 +6,15 @@
 - [Namespaces](002_namespaces.md)
 - [Inflection](003_inflection.md)
 - [Tables](004_tables.md)
-- [Functions](005_functions.md)
+  - [Relations](005_postgresql_tables_relations.md)
+  - [Connections](006_postgresql_tables_connections.md)
+  - [Filtering](007_postgresql_tables_filtering.md)
+  - [CRUD Mutations](008_postgresql_tables_crud_mutations.md)
+  - [node/id](009_postgresql_tables_node_id.md)
+  
+- [Database Functions](005_database_functions.md)
+  - 
+
 - [Enums](006_enums.md)
 - [Views](007_views.md)
 - [Aggregates](008_aggregates.md)
