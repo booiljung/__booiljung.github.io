@@ -2,26 +2,31 @@
 
 # Postgraphile
 
-- [Quick Start Guide](001_quick_start_guide.md)
-- [Namespaces](002_namespaces.md)
-- [Inflection](003_inflection.md)
-- [Tables](004_tables.md)
-  - [Relations](005_postgresql_tables_relations.md)
-  - [Connections](006_postgresql_tables_connections.md)
-  - [Filtering](007_postgresql_tables_filtering.md)
-  - [CRUD Mutations](008_postgresql_tables_crud_mutations.md)
-  - [node/id](009_postgresql_tables_node_id.md)
-  
-- [Database Functions](005_database_functions.md)
-  - 
+## Overview
 
-- [Enums](006_enums.md)
-- [Views](007_views.md)
-- [Aggregates](008_aggregates.md)
-- [PostgreSQL indexes](009_postgresql_indexes.md)
-- [Sequrity](010_security.md)
-- [Realtime](011_realtime.md)
-- [Background Tasks](012_background_tasks.md)
-- [Reserved Keywords](013_reserved_keywords.md)
-- [Debugging](014_debugging.md)
+- [Introduction](A01_introduction.md)
+- [Example Gallery]()
+
+## Operation
+
+- [Quick Start Guide](B01_quick_start_guide.md)
+- [Namespaces](B02_namespaces.md)
+- [Inflection](B03_inflection.md)
+- [Tables](B04_tables.md)
+  - [Relations](B05_postgresql_tables_relations.md)
+  - [Connections](B06_postgresql_tables_connections.md)
+  - [Filtering](B07_postgresql_tables_filtering.md)
+  - [CRUD Mutations](B08_postgresql_tables_crud_mutations.md)
+  - [node/id](B09_postgresql_tables_node_id.md)  
+- [Database Functions](B10_database_functions.md)
+
+- [Enums](enums.md)
+- [Views](views.md)
+- [Aggregates](aggregates.md)
+- [PostgreSQL indexes](postgresql_indexes.md)
+- [Sequrity](security.md)
+- [Realtime](realtime.md)
+- [Background Tasks](background_tasks.md)
+- [Reserved Keywords](reserved_keywords.md)
+- [Debugging](debugging.md)
 
