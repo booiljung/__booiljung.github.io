@@ -27,6 +27,7 @@
 
 ## File System
 
+- [우분투가 부팅되지 않고 GRUB>이 보이면](ubnutu_not_boot_and_grup_shown.md)
 - [exFAT으로 파일시스템을 설치](exfat_filesystem.md)
 - [Link on Linux](link_on_linux.md)
 
