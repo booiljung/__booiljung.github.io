@@ -18,6 +18,7 @@
 - [git 비밀번호 캐시 설정 방법](./setup_git_password_cache.md)
 - [Docker Compose 로 GitLab 설치](installation_of_gitlab_with_docker_compose.md)
 - [마지막 커밋을 취소하는 방법](how_to_undo_a_commit_in_git.md)
+- [원본 저장소의 변경사항을 포크 저장소에 머지하기](merge_fork_from_upstream.md)
 
 
 
